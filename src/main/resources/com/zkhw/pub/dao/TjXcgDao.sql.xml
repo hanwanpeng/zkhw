@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.TjXcgDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.TjXcg">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="aichive_no" jdbcType="VARCHAR" property="aichiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
+    <result column="WBC" jdbcType="VARCHAR" property="wbc" />
+    <result column="RBC" jdbcType="VARCHAR" property="rbc" />
+    <result column="PCT" jdbcType="VARCHAR" property="pct" />
+    <result column="PLT" jdbcType="VARCHAR" property="plt" />
+    <result column="HGB" jdbcType="VARCHAR" property="hgb" />
+    <result column="HCT" jdbcType="VARCHAR" property="hct" />
+    <result column="MCV" jdbcType="VARCHAR" property="mcv" />
+    <result column="MCH" jdbcType="VARCHAR" property="mch" />
+    <result column="MCHC" jdbcType="VARCHAR" property="mchc" />
+    <result column="RDWCV" jdbcType="VARCHAR" property="rdwcv" />
+    <result column="RDWSD" jdbcType="VARCHAR" property="rdwsd" />
+    <result column="MONO" jdbcType="VARCHAR" property="mono" />
+    <result column="MONOP" jdbcType="VARCHAR" property="monop" />
+    <result column="GRAN" jdbcType="VARCHAR" property="gran" />
+    <result column="GRANP" jdbcType="VARCHAR" property="granp" />
+    <result column="NEUT" jdbcType="VARCHAR" property="neut" />
+    <result column="NEUTP" jdbcType="VARCHAR" property="neutp" />
+    <result column="EO" jdbcType="VARCHAR" property="eo" />
+    <result column="EOP" jdbcType="VARCHAR" property="eop" />
+    <result column="BASO" jdbcType="VARCHAR" property="baso" />
+    <result column="BASOP" jdbcType="VARCHAR" property="basop" />
+    <result column="LYM" jdbcType="VARCHAR" property="lym" />
+    <result column="LYMP" jdbcType="VARCHAR" property="lymp" />
+    <result column="MPV" jdbcType="VARCHAR" property="mpv" />
+    <result column="PDW" jdbcType="VARCHAR" property="pdw" />
+    <result column="MXD" jdbcType="VARCHAR" property="mxd" />
+    <result column="MXDP" jdbcType="VARCHAR" property="mxdp" />
+    <result column="PLCR" jdbcType="VARCHAR" property="plcr" />
+    <result column="OTHERS" jdbcType="VARCHAR" property="others" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="synchronize_type" jdbcType="VARCHAR" property="synchronizeType" />
+    <result column="ZrysXCG" jdbcType="VARCHAR" property="zrysxcg" />
+    <result column="timeCodeUnique" jdbcType="VARCHAR" property="timecodeunique" />
+    <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, aichive_no, id_number, bar_code, WBC, RBC, PCT, PLT, HGB, HCT, MCV, MCH, MCHC, 
+    RDWCV, RDWSD, MONO, MONOP, GRAN, GRANP, NEUT, NEUTP, EO, EOP, BASO, BASOP, LYM, LYMP, 
+    MPV, PDW, MXD, MXDP, PLCR, OTHERS, createtime, updatetime, synchronize_type, ZrysXCG, 
+    timeCodeUnique, upload_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zkhw_tj_xcg
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findListByAichiveNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zkhw_tj_xcg
+    where aichive_no = #{aichiveNo,jdbcType=VARCHAR}
+    order by createtime desc
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from zkhw_tj_xcg
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.pub.entity.TjXcg">
+    insert into zkhw_tj_xcg (ID, aichive_no, id_number, 
+      bar_code, WBC, RBC, 
+      PCT, PLT, HGB, HCT, 
+      MCV, MCH, MCHC, RDWCV, 
+      RDWSD, MONO, MONOP, 
+      GRAN, GRANP, NEUT, 
+      NEUTP, EO, EOP, BASO, 
+      BASOP, LYM, LYMP, MPV, 
+      PDW, MXD, MXDP, PLCR, 
+      OTHERS, createtime, updatetime, 
+      synchronize_type, ZrysXCG, timeCodeUnique, 
+      upload_status)
+    values (#{id,jdbcType=VARCHAR}, #{aichiveNo,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, 
+      #{barCode,jdbcType=VARCHAR}, #{wbc,jdbcType=VARCHAR}, #{rbc,jdbcType=VARCHAR}, 
+      #{pct,jdbcType=VARCHAR}, #{plt,jdbcType=VARCHAR}, #{hgb,jdbcType=VARCHAR}, #{hct,jdbcType=VARCHAR}, 
+      #{mcv,jdbcType=VARCHAR}, #{mch,jdbcType=VARCHAR}, #{mchc,jdbcType=VARCHAR}, #{rdwcv,jdbcType=VARCHAR}, 
+      #{rdwsd,jdbcType=VARCHAR}, #{mono,jdbcType=VARCHAR}, #{monop,jdbcType=VARCHAR}, 
+      #{gran,jdbcType=VARCHAR}, #{granp,jdbcType=VARCHAR}, #{neut,jdbcType=VARCHAR}, 
+      #{neutp,jdbcType=VARCHAR}, #{eo,jdbcType=VARCHAR}, #{eop,jdbcType=VARCHAR}, #{baso,jdbcType=VARCHAR}, 
+      #{basop,jdbcType=VARCHAR}, #{lym,jdbcType=VARCHAR}, #{lymp,jdbcType=VARCHAR}, #{mpv,jdbcType=VARCHAR}, 
+      #{pdw,jdbcType=VARCHAR}, #{mxd,jdbcType=VARCHAR}, #{mxdp,jdbcType=VARCHAR}, #{plcr,jdbcType=VARCHAR}, 
+      #{others,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{synchronizeType,jdbcType=VARCHAR}, #{zrysxcg,jdbcType=VARCHAR}, #{timecodeunique,jdbcType=VARCHAR}, 
+      #{uploadStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.TjXcg">
+    insert into zkhw_tj_xcg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="aichiveNo != null">
+        aichive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="barCode != null">
+        bar_code,
+      </if>
+      <if test="wbc != null">
+        WBC,
+      </if>
+      <if test="rbc != null">
+        RBC,
+      </if>
+      <if test="pct != null">
+        PCT,
+      </if>
+      <if test="plt != null">
+        PLT,
+      </if>
+      <if test="hgb != null">
+        HGB,
+      </if>
+      <if test="hct != null">
+        HCT,
+      </if>
+      <if test="mcv != null">
+        MCV,
+      </if>
+      <if test="mch != null">
+        MCH,
+      </if>
+      <if test="mchc != null">
+        MCHC,
+      </if>
+      <if test="rdwcv != null">
+        RDWCV,
+      </if>
+      <if test="rdwsd != null">
+        RDWSD,
+      </if>
+      <if test="mono != null">
+        MONO,
+      </if>
+      <if test="monop != null">
+        MONOP,
+      </if>
+      <if test="gran != null">
+        GRAN,
+      </if>
+      <if test="granp != null">
+        GRANP,
+      </if>
+      <if test="neut != null">
+        NEUT,
+      </if>
+      <if test="neutp != null">
+        NEUTP,
+      </if>
+      <if test="eo != null">
+        EO,
+      </if>
+      <if test="eop != null">
+        EOP,
+      </if>
+      <if test="baso != null">
+        BASO,
+      </if>
+      <if test="basop != null">
+        BASOP,
+      </if>
+      <if test="lym != null">
+        LYM,
+      </if>
+      <if test="lymp != null">
+        LYMP,
+      </if>
+      <if test="mpv != null">
+        MPV,
+      </if>
+      <if test="pdw != null">
+        PDW,
+      </if>
+      <if test="mxd != null">
+        MXD,
+      </if>
+      <if test="mxdp != null">
+        MXDP,
+      </if>
+      <if test="plcr != null">
+        PLCR,
+      </if>
+      <if test="others != null">
+        OTHERS,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="synchronizeType != null">
+        synchronize_type,
+      </if>
+      <if test="zrysxcg != null">
+        ZrysXCG,
+      </if>
+      <if test="timecodeunique != null">
+        timeCodeUnique,
+      </if>
+      <if test="uploadStatus != null">
+        upload_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="aichiveNo != null">
+        #{aichiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wbc != null">
+        #{wbc,jdbcType=VARCHAR},
+      </if>
+      <if test="rbc != null">
+        #{rbc,jdbcType=VARCHAR},
+      </if>
+      <if test="pct != null">
+        #{pct,jdbcType=VARCHAR},
+      </if>
+      <if test="plt != null">
+        #{plt,jdbcType=VARCHAR},
+      </if>
+      <if test="hgb != null">
+        #{hgb,jdbcType=VARCHAR},
+      </if>
+      <if test="hct != null">
+        #{hct,jdbcType=VARCHAR},
+      </if>
+      <if test="mcv != null">
+        #{mcv,jdbcType=VARCHAR},
+      </if>
+      <if test="mch != null">
+        #{mch,jdbcType=VARCHAR},
+      </if>
+      <if test="mchc != null">
+        #{mchc,jdbcType=VARCHAR},
+      </if>
+      <if test="rdwcv != null">
+        #{rdwcv,jdbcType=VARCHAR},
+      </if>
+      <if test="rdwsd != null">
+        #{rdwsd,jdbcType=VARCHAR},
+      </if>
+      <if test="mono != null">
+        #{mono,jdbcType=VARCHAR},
+      </if>
+      <if test="monop != null">
+        #{monop,jdbcType=VARCHAR},
+      </if>
+      <if test="gran != null">
+        #{gran,jdbcType=VARCHAR},
+      </if>
+      <if test="granp != null">
+        #{granp,jdbcType=VARCHAR},
+      </if>
+      <if test="neut != null">
+        #{neut,jdbcType=VARCHAR},
+      </if>
+      <if test="neutp != null">
+        #{neutp,jdbcType=VARCHAR},
+      </if>
+      <if test="eo != null">
+        #{eo,jdbcType=VARCHAR},
+      </if>
+      <if test="eop != null">
+        #{eop,jdbcType=VARCHAR},
+      </if>
+      <if test="baso != null">
+        #{baso,jdbcType=VARCHAR},
+      </if>
+      <if test="basop != null">
+        #{basop,jdbcType=VARCHAR},
+      </if>
+      <if test="lym != null">
+        #{lym,jdbcType=VARCHAR},
+      </if>
+      <if test="lymp != null">
+        #{lymp,jdbcType=VARCHAR},
+      </if>
+      <if test="mpv != null">
+        #{mpv,jdbcType=VARCHAR},
+      </if>
+      <if test="pdw != null">
+        #{pdw,jdbcType=VARCHAR},
+      </if>
+      <if test="mxd != null">
+        #{mxd,jdbcType=VARCHAR},
+      </if>
+      <if test="mxdp != null">
+        #{mxdp,jdbcType=VARCHAR},
+      </if>
+      <if test="plcr != null">
+        #{plcr,jdbcType=VARCHAR},
+      </if>
+      <if test="others != null">
+        #{others,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="synchronizeType != null">
+        #{synchronizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="zrysxcg != null">
+        #{zrysxcg,jdbcType=VARCHAR},
+      </if>
+      <if test="timecodeunique != null">
+        #{timecodeunique,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadStatus != null">
+        #{uploadStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.TjXcg">
+    update zkhw_tj_xcg
+    <set>
+      <if test="aichiveNo != null">
+        aichive_no = #{aichiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        bar_code = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wbc != null">
+        WBC = #{wbc,jdbcType=VARCHAR},
+      </if>
+      <if test="rbc != null">
+        RBC = #{rbc,jdbcType=VARCHAR},
+      </if>
+      <if test="pct != null">
+        PCT = #{pct,jdbcType=VARCHAR},
+      </if>
+      <if test="plt != null">
+        PLT = #{plt,jdbcType=VARCHAR},
+      </if>
+      <if test="hgb != null">
+        HGB = #{hgb,jdbcType=VARCHAR},
+      </if>
+      <if test="hct != null">
+        HCT = #{hct,jdbcType=VARCHAR},
+      </if>
+      <if test="mcv != null">
+        MCV = #{mcv,jdbcType=VARCHAR},
+      </if>
+      <if test="mch != null">
+        MCH = #{mch,jdbcType=VARCHAR},
+      </if>
+      <if test="mchc != null">
+        MCHC = #{mchc,jdbcType=VARCHAR},
+      </if>
+      <if test="rdwcv != null">
+        RDWCV = #{rdwcv,jdbcType=VARCHAR},
+      </if>
+      <if test="rdwsd != null">
+        RDWSD = #{rdwsd,jdbcType=VARCHAR},
+      </if>
+      <if test="mono != null">
+        MONO = #{mono,jdbcType=VARCHAR},
+      </if>
+      <if test="monop != null">
+        MONOP = #{monop,jdbcType=VARCHAR},
+      </if>
+      <if test="gran != null">
+        GRAN = #{gran,jdbcType=VARCHAR},
+      </if>
+      <if test="granp != null">
+        GRANP = #{granp,jdbcType=VARCHAR},
+      </if>
+      <if test="neut != null">
+        NEUT = #{neut,jdbcType=VARCHAR},
+      </if>
+      <if test="neutp != null">
+        NEUTP = #{neutp,jdbcType=VARCHAR},
+      </if>
+      <if test="eo != null">
+        EO = #{eo,jdbcType=VARCHAR},
+      </if>
+      <if test="eop != null">
+        EOP = #{eop,jdbcType=VARCHAR},
+      </if>
+      <if test="baso != null">
+        BASO = #{baso,jdbcType=VARCHAR},
+      </if>
+      <if test="basop != null">
+        BASOP = #{basop,jdbcType=VARCHAR},
+      </if>
+      <if test="lym != null">
+        LYM = #{lym,jdbcType=VARCHAR},
+      </if>
+      <if test="lymp != null">
+        LYMP = #{lymp,jdbcType=VARCHAR},
+      </if>
+      <if test="mpv != null">
+        MPV = #{mpv,jdbcType=VARCHAR},
+      </if>
+      <if test="pdw != null">
+        PDW = #{pdw,jdbcType=VARCHAR},
+      </if>
+      <if test="mxd != null">
+        MXD = #{mxd,jdbcType=VARCHAR},
+      </if>
+      <if test="mxdp != null">
+        MXDP = #{mxdp,jdbcType=VARCHAR},
+      </if>
+      <if test="plcr != null">
+        PLCR = #{plcr,jdbcType=VARCHAR},
+      </if>
+      <if test="others != null">
+        OTHERS = #{others,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="synchronizeType != null">
+        synchronize_type = #{synchronizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="zrysxcg != null">
+        ZrysXCG = #{zrysxcg,jdbcType=VARCHAR},
+      </if>
+      <if test="timecodeunique != null">
+        timeCodeUnique = #{timecodeunique,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadStatus != null">
+        upload_status = #{uploadStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.TjXcg">
+    update zkhw_tj_xcg
+    set aichive_no = #{aichiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      bar_code = #{barCode,jdbcType=VARCHAR},
+      WBC = #{wbc,jdbcType=VARCHAR},
+      RBC = #{rbc,jdbcType=VARCHAR},
+      PCT = #{pct,jdbcType=VARCHAR},
+      PLT = #{plt,jdbcType=VARCHAR},
+      HGB = #{hgb,jdbcType=VARCHAR},
+      HCT = #{hct,jdbcType=VARCHAR},
+      MCV = #{mcv,jdbcType=VARCHAR},
+      MCH = #{mch,jdbcType=VARCHAR},
+      MCHC = #{mchc,jdbcType=VARCHAR},
+      RDWCV = #{rdwcv,jdbcType=VARCHAR},
+      RDWSD = #{rdwsd,jdbcType=VARCHAR},
+      MONO = #{mono,jdbcType=VARCHAR},
+      MONOP = #{monop,jdbcType=VARCHAR},
+      GRAN = #{gran,jdbcType=VARCHAR},
+      GRANP = #{granp,jdbcType=VARCHAR},
+      NEUT = #{neut,jdbcType=VARCHAR},
+      NEUTP = #{neutp,jdbcType=VARCHAR},
+      EO = #{eo,jdbcType=VARCHAR},
+      EOP = #{eop,jdbcType=VARCHAR},
+      BASO = #{baso,jdbcType=VARCHAR},
+      BASOP = #{basop,jdbcType=VARCHAR},
+      LYM = #{lym,jdbcType=VARCHAR},
+      LYMP = #{lymp,jdbcType=VARCHAR},
+      MPV = #{mpv,jdbcType=VARCHAR},
+      PDW = #{pdw,jdbcType=VARCHAR},
+      MXD = #{mxd,jdbcType=VARCHAR},
+      MXDP = #{mxdp,jdbcType=VARCHAR},
+      PLCR = #{plcr,jdbcType=VARCHAR},
+      OTHERS = #{others,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      synchronize_type = #{synchronizeType,jdbcType=VARCHAR},
+      ZrysXCG = #{zrysxcg,jdbcType=VARCHAR},
+      timeCodeUnique = #{timecodeunique,jdbcType=VARCHAR},
+      upload_status = #{uploadStatus,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

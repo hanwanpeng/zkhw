@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.FamilyMemberDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.FamilyMember">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="family_archive_no" jdbcType="VARCHAR" property="familyArchiveNo" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="relation" jdbcType="VARCHAR" property="relation" />
+    <result column="sattus" jdbcType="VARCHAR" property="sattus" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="creat_name" jdbcType="VARCHAR" property="creatName" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, family_archive_no, archive_no, name, id_number, relation, sattus, create_user, 
+    creat_name, creat_time, update_user, update_name, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from family_member
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findMemberList" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from family_member
+    where family_archive_no = #{familyArchiveNo,jdbcType=VARCHAR}
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from family_member
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.pub.entity.FamilyMember">
+    insert into family_member (id, family_archive_no, archive_no, 
+      name, id_number, relation, 
+      sattus, create_user, creat_name, 
+      creat_time, update_user, update_name, 
+      update_time)
+    values (#{id,jdbcType=VARCHAR}, #{familyArchiveNo,jdbcType=VARCHAR}, #{archiveNo,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, #{relation,jdbcType=VARCHAR}, 
+      #{sattus,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{creatName,jdbcType=VARCHAR}, 
+      #{creatTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.FamilyMember">
+    insert into family_member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="familyArchiveNo != null">
+        family_archive_no,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="relation != null">
+        relation,
+      </if>
+      <if test="sattus != null">
+        sattus,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="creatName != null">
+        creat_name,
+      </if>
+      <if test="creatTime != null">
+        creat_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="familyArchiveNo != null">
+        #{familyArchiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null">
+        #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="sattus != null">
+        #{sattus,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="creatName != null">
+        #{creatName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null">
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.FamilyMember">
+    update family_member
+    <set>
+      <if test="familyArchiveNo != null">
+        family_archive_no = #{familyArchiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null">
+        relation = #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="sattus != null">
+        sattus = #{sattus,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="creatName != null">
+        creat_name = #{creatName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null">
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.FamilyMember">
+    update family_member
+    set family_archive_no = #{familyArchiveNo,jdbcType=VARCHAR},
+      archive_no = #{archiveNo,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      relation = #{relation,jdbcType=VARCHAR},
+      sattus = #{sattus,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      creat_name = #{creatName,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

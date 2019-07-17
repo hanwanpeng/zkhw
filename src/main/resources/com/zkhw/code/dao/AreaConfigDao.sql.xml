@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zkhw.code.dao.AreaConfigDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.code.entity.AreaConfig">
+
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="parent_code" jdbcType="VARCHAR" property="parentCode" />
+    <result column="full_name" jdbcType="VARCHAR" property="fullName" />
+    <result column="level_type" jdbcType="INTEGER" property="levelType" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, code, name, parent_code, full_name, level_type
+  </sql>
+
+	<!-- 根据编码查询区域 -->
+	<select id="findAreaByCode" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from code_area_config
+		where code = #{code}
+	</select>
+
+	<select id="findAllArea" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from code_area_config
+	</select>
+
+	<select id="findAreaByLevel" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from code_area_config
+		where level_type = #{levelType}
+	</select>
+	
+	<select id="findAllProvince" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from code_area_config where level_type = 1
+	</select>
+
+
+	<!--根据省级/直辖市 查询所属市级 -->
+	<select id="findCityByCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from code_area_config where level_type=2 and
+		parent_code=#{provinceCode}
+	</select>
+
+  
+  
+    <!--根据市级  查询区县级 -->
+   <select id="findCountyByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+      select <include refid="Base_Column_List" />
+       from code_area_config where level_type= 3 and parent_code=#{cityCode}
+  </select>
+
+	<!-- 根据区县查询乡镇街道 -->
+   <select id="findTownsByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+      select <include refid="Base_Column_List" />
+       from code_area_config where level_type= 4 and parent_code=#{countyCode}
+   </select>  
+	<!-- 根据乡镇查询村 -->
+   <select id="findVillageByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+      select <include refid="Base_Column_List" />
+       from code_area_config where level_type= 5 and parent_code=#{townsCode}
+   </select>  
+   
+  <!-- 保存区域 -->
+
+  <insert id="saveArea" parameterType="com.zkhw.code.entity.AreaConfig">
+    insert into code_area_config
+
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="parentCode != null">
+        parent_code,
+      </if>
+      <if test="fullName != null">
+        full_name,
+      </if>
+      <if test="levelType != null">
+        level_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null">
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="levelType != null">
+        #{levelType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <!-- 更新区域 -->
+
+  <update id="updateAreaByCode" parameterType="com.zkhw.code.entity.AreaConfig">
+    update code_area_config
+
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        parent_code = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null">
+        full_name = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="levelType != null">
+        level_type = #{levelType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where code = #{code,jdbcType=INTEGER}
+  </update>
+</mapper>

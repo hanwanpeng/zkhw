@@ -1,0 +1,2620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.PhysicalExaminationDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.PhysicalExamination">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="batch_no" jdbcType="VARCHAR" property="batchNo" />
+    <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
+    <result column="check_flag" jdbcType="VARCHAR" property="checkFlag" />
+    <result column="dutydoctor" jdbcType="VARCHAR" property="dutydoctor" />
+    <result column="symptom" jdbcType="VARCHAR" property="symptom" />
+    <result column="symptom_other" jdbcType="VARCHAR" property="symptomOther" />
+    <result column="check_date" jdbcType="VARCHAR" property="checkDate" />
+    <result column="base_temperature" jdbcType="VARCHAR" property="baseTemperature" />
+    <result column="base_heartbeat" jdbcType="VARCHAR" property="baseHeartbeat" />
+    <result column="base_respiratory" jdbcType="VARCHAR" property="baseRespiratory" />
+    <result column="base_blood_pressure_left_high" jdbcType="INTEGER" property="baseBloodPressureLeftHigh" />
+    <result column="base_blood_pressure_left_low" jdbcType="INTEGER" property="baseBloodPressureLeftLow" />
+    <result column="base_blood_pressure_right_high" jdbcType="INTEGER" property="baseBloodPressureRightHigh" />
+    <result column="base_blood_pressure_right_low" jdbcType="INTEGER" property="baseBloodPressureRightLow" />
+    <result column="base_height" jdbcType="VARCHAR" property="baseHeight" />
+    <result column="base_weight" jdbcType="VARCHAR" property="baseWeight" />
+    <result column="base_waist" jdbcType="VARCHAR" property="baseWaist" />
+    <result column="base_bmi" jdbcType="VARCHAR" property="baseBmi" />
+    <result column="base_health_estimate" jdbcType="VARCHAR" property="baseHealthEstimate" />
+    <result column="base_selfcare_estimate" jdbcType="VARCHAR" property="baseSelfcareEstimate" />
+    <result column="base_cognition_estimate" jdbcType="VARCHAR" property="baseCognitionEstimate" />
+    <result column="base_cognition_score" jdbcType="VARCHAR" property="baseCognitionScore" />
+    <result column="base_feeling_estimate" jdbcType="VARCHAR" property="baseFeelingEstimate" />
+    <result column="base_feeling_score" jdbcType="VARCHAR" property="baseFeelingScore" />
+    <result column="base_doctor" jdbcType="VARCHAR" property="baseDoctor" />
+    <result column="lifeway_exercise_frequency" jdbcType="VARCHAR" property="lifewayExerciseFrequency" />
+    <result column="lifeway_exercise_time" jdbcType="VARCHAR" property="lifewayExerciseTime" />
+    <result column="lifeway_exercise_year" jdbcType="VARCHAR" property="lifewayExerciseYear" />
+    <result column="lifeway_exercise_type" jdbcType="VARCHAR" property="lifewayExerciseType" />
+    <result column="lifeway_diet" jdbcType="VARCHAR" property="lifewayDiet" />
+    <result column="lifeway_smoke_status" jdbcType="VARCHAR" property="lifewaySmokeStatus" />
+    <result column="lifeway_smoke_number" jdbcType="VARCHAR" property="lifewaySmokeNumber" />
+    <result column="lifeway_smoke_startage" jdbcType="VARCHAR" property="lifewaySmokeStartage" />
+    <result column="lifeway_smoke_endage" jdbcType="VARCHAR" property="lifewaySmokeEndage" />
+    <result column="lifeway_drink_status" jdbcType="VARCHAR" property="lifewayDrinkStatus" />
+    <result column="lifeway_drink_number" jdbcType="VARCHAR" property="lifewayDrinkNumber" />
+    <result column="lifeway_drink_stop" jdbcType="VARCHAR" property="lifewayDrinkStop" />
+    <result column="lifeway_drink_stopage" jdbcType="VARCHAR" property="lifewayDrinkStopage" />
+    <result column="lifeway_drink_startage" jdbcType="VARCHAR" property="lifewayDrinkStartage" />
+    <result column="lifeway_drink_oneyear" jdbcType="VARCHAR" property="lifewayDrinkOneyear" />
+    <result column="lifeway_drink_type" jdbcType="VARCHAR" property="lifewayDrinkType" />
+    <result column="lifeway_drink_other" jdbcType="VARCHAR" property="lifewayDrinkOther" />
+    <result column="lifeway_occupational_disease" jdbcType="VARCHAR" property="lifewayOccupationalDisease" />
+    <result column="lifeway_job" jdbcType="VARCHAR" property="lifewayJob" />
+    <result column="lifeway_job_period" jdbcType="VARCHAR" property="lifewayJobPeriod" />
+    <result column="lifeway_hazardous_dust" jdbcType="VARCHAR" property="lifewayHazardousDust" />
+    <result column="lifeway_dust_preventive" jdbcType="VARCHAR" property="lifewayDustPreventive" />
+    <result column="lifeway_hazardous_radiation" jdbcType="VARCHAR" property="lifewayHazardousRadiation" />
+    <result column="lifeway_radiation_preventive" jdbcType="VARCHAR" property="lifewayRadiationPreventive" />
+    <result column="lifeway_hazardous_physical" jdbcType="VARCHAR" property="lifewayHazardousPhysical" />
+    <result column="lifeway_physical_preventive" jdbcType="VARCHAR" property="lifewayPhysicalPreventive" />
+    <result column="lifeway_hazardous_chemical" jdbcType="VARCHAR" property="lifewayHazardousChemical" />
+    <result column="lifeway_chemical_preventive" jdbcType="VARCHAR" property="lifewayChemicalPreventive" />
+    <result column="lifeway_hazardous_other" jdbcType="VARCHAR" property="lifewayHazardousOther" />
+    <result column="lifeway_other_preventive" jdbcType="VARCHAR" property="lifewayOtherPreventive" />
+    <result column="lifeway_doctor" jdbcType="VARCHAR" property="lifewayDoctor" />
+    <result column="organ_lips" jdbcType="VARCHAR" property="organLips" />
+    <result column="organ_tooth" jdbcType="VARCHAR" property="organTooth" />
+    <result column="organ_hypodontia" jdbcType="VARCHAR" property="organHypodontia" />
+    <result column="organ_hypodontia_topleft" jdbcType="VARCHAR" property="organHypodontiaTopleft" />
+    <result column="organ_hypodontia_topright" jdbcType="VARCHAR" property="organHypodontiaTopright" />
+    <result column="organ_hypodontia_bottomleft" jdbcType="VARCHAR" property="organHypodontiaBottomleft" />
+    <result column="organ_hypodontia_bottomright" jdbcType="VARCHAR" property="organHypodontiaBottomright" />
+    <result column="organ_caries" jdbcType="VARCHAR" property="organCaries" />
+    <result column="organ_caries_topleft" jdbcType="VARCHAR" property="organCariesTopleft" />
+    <result column="organ_caries_topright" jdbcType="VARCHAR" property="organCariesTopright" />
+    <result column="organ_caries_bottomleft" jdbcType="VARCHAR" property="organCariesBottomleft" />
+    <result column="organ_caries_bottomright" jdbcType="VARCHAR" property="organCariesBottomright" />
+    <result column="organ_denture" jdbcType="VARCHAR" property="organDenture" />
+    <result column="organ_denture_topleft" jdbcType="VARCHAR" property="organDentureTopleft" />
+    <result column="organ_denture_topright" jdbcType="VARCHAR" property="organDentureTopright" />
+    <result column="organ_denture_bottomleft" jdbcType="VARCHAR" property="organDentureBottomleft" />
+    <result column="organ_denture_bottomright" jdbcType="VARCHAR" property="organDentureBottomright" />
+    <result column="organ_guttur" jdbcType="VARCHAR" property="organGuttur" />
+    <result column="organ_vision_left" jdbcType="VARCHAR" property="organVisionLeft" />
+    <result column="organ_vision_right" jdbcType="VARCHAR" property="organVisionRight" />
+    <result column="organ_correctedvision_left" jdbcType="VARCHAR" property="organCorrectedvisionLeft" />
+    <result column="organ_correctedvision_right" jdbcType="VARCHAR" property="organCorrectedvisionRight" />
+    <result column="organ_hearing" jdbcType="VARCHAR" property="organHearing" />
+    <result column="organ_movement" jdbcType="VARCHAR" property="organMovement" />
+    <result column="organ_doctor" jdbcType="VARCHAR" property="organDoctor" />
+    <result column="examination_eye" jdbcType="VARCHAR" property="examinationEye" />
+    <result column="examination_eye_other" jdbcType="VARCHAR" property="examinationEyeOther" />
+    <result column="examination_skin" jdbcType="VARCHAR" property="examinationSkin" />
+    <result column="examination_skin_other" jdbcType="VARCHAR" property="examinationSkinOther" />
+    <result column="examination_sclera" jdbcType="VARCHAR" property="examinationSclera" />
+    <result column="examination_sclera_other" jdbcType="VARCHAR" property="examinationScleraOther" />
+    <result column="examination_lymph" jdbcType="VARCHAR" property="examinationLymph" />
+    <result column="examination_lymph_other" jdbcType="VARCHAR" property="examinationLymphOther" />
+    <result column="examination_barrel_chest" jdbcType="VARCHAR" property="examinationBarrelChest" />
+    <result column="examination_breath_sounds" jdbcType="VARCHAR" property="examinationBreathSounds" />
+    <result column="examination_breath_other" jdbcType="VARCHAR" property="examinationBreathOther" />
+    <result column="examination_rale" jdbcType="VARCHAR" property="examinationRale" />
+    <result column="examination_rale_other" jdbcType="VARCHAR" property="examinationRaleOther" />
+    <result column="examination_heart_rate" jdbcType="VARCHAR" property="examinationHeartRate" />
+    <result column="examination_heart_rhythm" jdbcType="VARCHAR" property="examinationHeartRhythm" />
+    <result column="examination_heart_noise" jdbcType="VARCHAR" property="examinationHeartNoise" />
+    <result column="examination_noise_other" jdbcType="VARCHAR" property="examinationNoiseOther" />
+    <result column="examination_abdomen_tenderness" jdbcType="VARCHAR" property="examinationAbdomenTenderness" />
+    <result column="examination_tenderness_memo" jdbcType="VARCHAR" property="examinationTendernessMemo" />
+    <result column="examination_abdomen_mass" jdbcType="VARCHAR" property="examinationAbdomenMass" />
+    <result column="examination_mass_memo" jdbcType="VARCHAR" property="examinationMassMemo" />
+    <result column="examination_abdomen_hepatomegaly" jdbcType="VARCHAR" property="examinationAbdomenHepatomegaly" />
+    <result column="examination_hepatomegaly_memo" jdbcType="VARCHAR" property="examinationHepatomegalyMemo" />
+    <result column="examination_abdomen_splenomegaly" jdbcType="VARCHAR" property="examinationAbdomenSplenomegaly" />
+    <result column="examination_splenomegaly_memo" jdbcType="VARCHAR" property="examinationSplenomegalyMemo" />
+    <result column="examination_abdomen_shiftingdullness" jdbcType="VARCHAR" property="examinationAbdomenShiftingdullness" />
+    <result column="examination_shiftingdullness_memo" jdbcType="VARCHAR" property="examinationShiftingdullnessMemo" />
+    <result column="examination_lowerextremity_edema" jdbcType="VARCHAR" property="examinationLowerextremityEdema" />
+    <result column="examination_dorsal_artery" jdbcType="VARCHAR" property="examinationDorsalArtery" />
+    <result column="examination_anus" jdbcType="VARCHAR" property="examinationAnus" />
+    <result column="examination_anus_other" jdbcType="VARCHAR" property="examinationAnusOther" />
+    <result column="examination_breast" jdbcType="VARCHAR" property="examinationBreast" />
+    <result column="examination_breast_other" jdbcType="VARCHAR" property="examinationBreastOther" />
+    <result column="examination_doctor" jdbcType="VARCHAR" property="examinationDoctor" />
+    <result column="examination_woman_vulva" jdbcType="VARCHAR" property="examinationWomanVulva" />
+    <result column="examination_vulva_memo" jdbcType="VARCHAR" property="examinationVulvaMemo" />
+    <result column="examination_woman_vagina" jdbcType="VARCHAR" property="examinationWomanVagina" />
+    <result column="examination_vagina_memo" jdbcType="VARCHAR" property="examinationVaginaMemo" />
+    <result column="examination_woman_cervix" jdbcType="VARCHAR" property="examinationWomanCervix" />
+    <result column="examination_cervix_memo" jdbcType="VARCHAR" property="examinationCervixMemo" />
+    <result column="examination_woman_corpus" jdbcType="VARCHAR" property="examinationWomanCorpus" />
+    <result column="examination_corpus_memo" jdbcType="VARCHAR" property="examinationCorpusMemo" />
+    <result column="examination_woman_accessories" jdbcType="VARCHAR" property="examinationWomanAccessories" />
+    <result column="examination_accessories_memo" jdbcType="VARCHAR" property="examinationAccessoriesMemo" />
+    <result column="examination_woman_doctor" jdbcType="VARCHAR" property="examinationWomanDoctor" />
+    <result column="examination_other" jdbcType="VARCHAR" property="examinationOther" />
+    <result column="blood_hemoglobin" jdbcType="VARCHAR" property="bloodHemoglobin" />
+    <result column="blood_leukocyte" jdbcType="VARCHAR" property="bloodLeukocyte" />
+    <result column="blood_platelet" jdbcType="VARCHAR" property="bloodPlatelet" />
+    <result column="blood_other" jdbcType="VARCHAR" property="bloodOther" />
+    <result column="urine_protein" jdbcType="VARCHAR" property="urineProtein" />
+    <result column="glycosuria" jdbcType="VARCHAR" property="glycosuria" />
+    <result column="urine_acetone_bodies" jdbcType="VARCHAR" property="urineAcetoneBodies" />
+    <result column="bld" jdbcType="VARCHAR" property="bld" />
+    <result column="urine_other" jdbcType="VARCHAR" property="urineOther" />
+    <result column="blood_glucose_mmol" jdbcType="VARCHAR" property="bloodGlucoseMmol" />
+    <result column="blood_glucose_mg" jdbcType="VARCHAR" property="bloodGlucoseMg" />
+    <result column="cardiogram" jdbcType="VARCHAR" property="cardiogram" />
+    <result column="cardiogram_memo" jdbcType="VARCHAR" property="cardiogramMemo" />
+    <result column="cardiogram_img" jdbcType="VARCHAR" property="cardiogramImg" />
+    <result column="microalbuminuria" jdbcType="VARCHAR" property="microalbuminuria" />
+    <result column="fob" jdbcType="VARCHAR" property="fob" />
+    <result column="glycosylated_hemoglobin" jdbcType="VARCHAR" property="glycosylatedHemoglobin" />
+    <result column="hb" jdbcType="VARCHAR" property="hb" />
+    <result column="sgft" jdbcType="VARCHAR" property="sgft" />
+    <result column="ast" jdbcType="VARCHAR" property="ast" />
+    <result column="albumin" jdbcType="VARCHAR" property="albumin" />
+    <result column="total_bilirubin" jdbcType="VARCHAR" property="totalBilirubin" />
+    <result column="conjugated_bilirubin" jdbcType="VARCHAR" property="conjugatedBilirubin" />
+    <result column="scr" jdbcType="VARCHAR" property="scr" />
+    <result column="blood_urea" jdbcType="VARCHAR" property="bloodUrea" />
+    <result column="blood_k" jdbcType="VARCHAR" property="bloodK" />
+    <result column="blood_na" jdbcType="VARCHAR" property="bloodNa" />
+    <result column="tc" jdbcType="VARCHAR" property="tc" />
+    <result column="tg" jdbcType="VARCHAR" property="tg" />
+    <result column="ldl" jdbcType="VARCHAR" property="ldl" />
+    <result column="hdl" jdbcType="VARCHAR" property="hdl" />
+    <result column="chest_x" jdbcType="VARCHAR" property="chestX" />
+    <result column="x_memo" jdbcType="VARCHAR" property="xMemo" />
+    <result column="chestx_img" jdbcType="VARCHAR" property="chestxImg" />
+    <result column="ultrasound_abdomen" jdbcType="VARCHAR" property="ultrasoundAbdomen" />
+    <result column="ultrasound_memo" jdbcType="VARCHAR" property="ultrasoundMemo" />
+    <result column="abdomenB_img" jdbcType="VARCHAR" property="abdomenbImg" />
+    <result column="other_b" jdbcType="VARCHAR" property="otherB" />
+    <result column="otherb_memo" jdbcType="VARCHAR" property="otherbMemo" />
+    <result column="otherb_img" jdbcType="VARCHAR" property="otherbImg" />
+    <result column="cervical_smear" jdbcType="VARCHAR" property="cervicalSmear" />
+    <result column="cervical_smear_memo" jdbcType="VARCHAR" property="cervicalSmearMemo" />
+    <result column="other" jdbcType="VARCHAR" property="other" />
+    <result column="cerebrovascular_disease" jdbcType="VARCHAR" property="cerebrovascularDisease" />
+    <result column="cerebrovascular_disease_other" jdbcType="VARCHAR" property="cerebrovascularDiseaseOther" />
+    <result column="kidney_disease" jdbcType="VARCHAR" property="kidneyDisease" />
+    <result column="kidney_disease_other" jdbcType="VARCHAR" property="kidneyDiseaseOther" />
+    <result column="heart_disease" jdbcType="VARCHAR" property="heartDisease" />
+    <result column="heart_disease_other" jdbcType="VARCHAR" property="heartDiseaseOther" />
+    <result column="vascular_disease" jdbcType="VARCHAR" property="vascularDisease" />
+    <result column="vascular_disease_other" jdbcType="VARCHAR" property="vascularDiseaseOther" />
+    <result column="ocular_diseases" jdbcType="VARCHAR" property="ocularDiseases" />
+    <result column="ocular_diseases_other" jdbcType="VARCHAR" property="ocularDiseasesOther" />
+    <result column="nervous_system_disease" jdbcType="VARCHAR" property="nervousSystemDisease" />
+    <result column="nervous_disease_memo" jdbcType="VARCHAR" property="nervousDiseaseMemo" />
+    <result column="other_disease" jdbcType="VARCHAR" property="otherDisease" />
+    <result column="other_disease_memo" jdbcType="VARCHAR" property="otherDiseaseMemo" />
+    <result column="health_evaluation" jdbcType="VARCHAR" property="healthEvaluation" />
+    <result column="abnormal1" jdbcType="VARCHAR" property="abnormal1" />
+    <result column="abnormal2" jdbcType="VARCHAR" property="abnormal2" />
+    <result column="abnormal3" jdbcType="VARCHAR" property="abnormal3" />
+    <result column="abnormal4" jdbcType="VARCHAR" property="abnormal4" />
+    <result column="health_guidance" jdbcType="VARCHAR" property="healthGuidance" />
+    <result column="danger_controlling" jdbcType="VARCHAR" property="dangerControlling" />
+    <result column="target_weight" jdbcType="VARCHAR" property="targetWeight" />
+    <result column="advise_bacterin" jdbcType="VARCHAR" property="adviseBacterin" />
+    <result column="danger_controlling_other" jdbcType="VARCHAR" property="dangerControllingOther" />
+    <result column="health_advice" jdbcType="VARCHAR" property="healthAdvice" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_org" jdbcType="VARCHAR" property="createOrg" />
+    <result column="create_org_name" jdbcType="VARCHAR" property="createOrgName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+    <result column="upload_result" jdbcType="VARCHAR" property="uploadResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, archive_no, id_number, batch_no, bar_code, check_flag, dutydoctor, symptom, 
+    symptom_other, check_date, base_temperature, base_heartbeat, base_respiratory, base_blood_pressure_left_high, 
+    base_blood_pressure_left_low, base_blood_pressure_right_high, base_blood_pressure_right_low, 
+    base_height, base_weight, base_waist, base_bmi, base_health_estimate, base_selfcare_estimate, 
+    base_cognition_estimate, base_cognition_score, base_feeling_estimate, base_feeling_score, 
+    base_doctor, lifeway_exercise_frequency, lifeway_exercise_time, lifeway_exercise_year, 
+    lifeway_exercise_type, lifeway_diet, lifeway_smoke_status, lifeway_smoke_number, 
+    lifeway_smoke_startage, lifeway_smoke_endage, lifeway_drink_status, lifeway_drink_number, 
+    lifeway_drink_stop, lifeway_drink_stopage, lifeway_drink_startage, lifeway_drink_oneyear, 
+    lifeway_drink_type, lifeway_drink_other, lifeway_occupational_disease, lifeway_job, 
+    lifeway_job_period, lifeway_hazardous_dust, lifeway_dust_preventive, lifeway_hazardous_radiation, 
+    lifeway_radiation_preventive, lifeway_hazardous_physical, lifeway_physical_preventive, 
+    lifeway_hazardous_chemical, lifeway_chemical_preventive, lifeway_hazardous_other, 
+    lifeway_other_preventive, lifeway_doctor, organ_lips, organ_tooth, organ_hypodontia, 
+    organ_hypodontia_topleft, organ_hypodontia_topright, organ_hypodontia_bottomleft, 
+    organ_hypodontia_bottomright, organ_caries, organ_caries_topleft, organ_caries_topright, 
+    organ_caries_bottomleft, organ_caries_bottomright, organ_denture, organ_denture_topleft, 
+    organ_denture_topright, organ_denture_bottomleft, organ_denture_bottomright, organ_guttur, 
+    organ_vision_left, organ_vision_right, organ_correctedvision_left, organ_correctedvision_right, 
+    organ_hearing, organ_movement, organ_doctor, examination_eye, examination_eye_other, 
+    examination_skin, examination_skin_other, examination_sclera, examination_sclera_other, 
+    examination_lymph, examination_lymph_other, examination_barrel_chest, examination_breath_sounds, 
+    examination_breath_other, examination_rale, examination_rale_other, examination_heart_rate, 
+    examination_heart_rhythm, examination_heart_noise, examination_noise_other, examination_abdomen_tenderness, 
+    examination_tenderness_memo, examination_abdomen_mass, examination_mass_memo, examination_abdomen_hepatomegaly, 
+    examination_hepatomegaly_memo, examination_abdomen_splenomegaly, examination_splenomegaly_memo, 
+    examination_abdomen_shiftingdullness, examination_shiftingdullness_memo, examination_lowerextremity_edema, 
+    examination_dorsal_artery, examination_anus, examination_anus_other, examination_breast, 
+    examination_breast_other, examination_doctor, examination_woman_vulva, examination_vulva_memo, 
+    examination_woman_vagina, examination_vagina_memo, examination_woman_cervix, examination_cervix_memo, 
+    examination_woman_corpus, examination_corpus_memo, examination_woman_accessories, 
+    examination_accessories_memo, examination_woman_doctor, examination_other, blood_hemoglobin, 
+    blood_leukocyte, blood_platelet, blood_other, urine_protein, glycosuria, urine_acetone_bodies, 
+    bld, urine_other, blood_glucose_mmol, blood_glucose_mg, cardiogram, cardiogram_memo, 
+    cardiogram_img, microalbuminuria, fob, glycosylated_hemoglobin, hb, sgft, ast, albumin, 
+    total_bilirubin, conjugated_bilirubin, scr, blood_urea, blood_k, blood_na, tc, tg, 
+    ldl, hdl, chest_x, x_memo, chestx_img, ultrasound_abdomen, ultrasound_memo, abdomenB_img, 
+    other_b, otherb_memo, otherb_img, cervical_smear, cervical_smear_memo, other, cerebrovascular_disease, 
+    cerebrovascular_disease_other, kidney_disease, kidney_disease_other, heart_disease, 
+    heart_disease_other, vascular_disease, vascular_disease_other, ocular_diseases, ocular_diseases_other, 
+    nervous_system_disease, nervous_disease_memo, other_disease, other_disease_memo, 
+    health_evaluation, abnormal1, abnormal2, abnormal3, abnormal4, health_guidance, danger_controlling, 
+    target_weight, advise_bacterin, danger_controlling_other, health_advice, create_user, 
+    create_name, create_org, create_org_name, create_time, update_user, update_name, 
+    update_time, upload_status, upload_time, upload_result
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from physical_examination_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 根据组织机构查询体检信息-->
+  <select id="selectByOrg" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from physical_examination_record
+    where create_org = #{createOrg,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 根据身份证号查询 -->
+  <select id="physicalByIdNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from physical_examination_record
+    where id_number = #{idNumber,jdbcType=VARCHAR} 
+    order by create_time desc limit 1
+  </select>
+  
+  <select id="getLastByArchiveNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from physical_examination_record
+    where archive_no = #{archiveNo,jdbcType=VARCHAR} 
+    order by create_time desc limit 1
+  </select>  
+  <!-- 梧州同步数据 -->
+  <select id="findWuzhouSyncList"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from physical_examination_record r
+    where upload_status = 0 and EXISTS(select 1 from ltd_organization o where o.organ_code = r.create_org and o.city_code = '450400')
+  </select> 
+  
+ <!-- 陕西同步数据 -->
+  <select id="findShanxiSyncList"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from physical_examination_record r
+    where ifnull(upload_status,0) = 0 and EXISTS(select 1 from ltd_organization o where o.organ_code = r.create_org and o.province_code = '61')
+  </select> 
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from physical_examination_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.pub.entity.PhysicalExamination">
+    insert into physical_examination_record (id, name, archive_no, 
+      id_number, batch_no, bar_code, 
+      check_flag, dutydoctor, symptom, 
+      symptom_other, check_date, base_temperature, 
+      base_heartbeat, base_respiratory, base_blood_pressure_left_high, 
+      base_blood_pressure_left_low, base_blood_pressure_right_high, 
+      base_blood_pressure_right_low, base_height, 
+      base_weight, base_waist, base_bmi, 
+      base_health_estimate, base_selfcare_estimate, 
+      base_cognition_estimate, base_cognition_score, 
+      base_feeling_estimate, base_feeling_score, 
+      base_doctor, lifeway_exercise_frequency, lifeway_exercise_time, 
+      lifeway_exercise_year, lifeway_exercise_type, 
+      lifeway_diet, lifeway_smoke_status, lifeway_smoke_number, 
+      lifeway_smoke_startage, lifeway_smoke_endage, 
+      lifeway_drink_status, lifeway_drink_number, 
+      lifeway_drink_stop, lifeway_drink_stopage, 
+      lifeway_drink_startage, lifeway_drink_oneyear, 
+      lifeway_drink_type, lifeway_drink_other, lifeway_occupational_disease, 
+      lifeway_job, lifeway_job_period, lifeway_hazardous_dust, 
+      lifeway_dust_preventive, lifeway_hazardous_radiation, 
+      lifeway_radiation_preventive, lifeway_hazardous_physical, 
+      lifeway_physical_preventive, lifeway_hazardous_chemical, 
+      lifeway_chemical_preventive, lifeway_hazardous_other, 
+      lifeway_other_preventive, lifeway_doctor, 
+      organ_lips, organ_tooth, organ_hypodontia, 
+      organ_hypodontia_topleft, organ_hypodontia_topright, 
+      organ_hypodontia_bottomleft, organ_hypodontia_bottomright, 
+      organ_caries, organ_caries_topleft, organ_caries_topright, 
+      organ_caries_bottomleft, organ_caries_bottomright, 
+      organ_denture, organ_denture_topleft, organ_denture_topright, 
+      organ_denture_bottomleft, organ_denture_bottomright, 
+      organ_guttur, organ_vision_left, organ_vision_right, 
+      organ_correctedvision_left, organ_correctedvision_right, 
+      organ_hearing, organ_movement, organ_doctor, 
+      examination_eye, examination_eye_other, examination_skin, 
+      examination_skin_other, examination_sclera, 
+      examination_sclera_other, examination_lymph, 
+      examination_lymph_other, examination_barrel_chest, 
+      examination_breath_sounds, examination_breath_other, 
+      examination_rale, examination_rale_other, 
+      examination_heart_rate, examination_heart_rhythm, 
+      examination_heart_noise, examination_noise_other, 
+      examination_abdomen_tenderness, examination_tenderness_memo, 
+      examination_abdomen_mass, examination_mass_memo, 
+      examination_abdomen_hepatomegaly, examination_hepatomegaly_memo, 
+      examination_abdomen_splenomegaly, examination_splenomegaly_memo, 
+      examination_abdomen_shiftingdullness, examination_shiftingdullness_memo, 
+      examination_lowerextremity_edema, examination_dorsal_artery, 
+      examination_anus, examination_anus_other, 
+      examination_breast, examination_breast_other, 
+      examination_doctor, examination_woman_vulva, 
+      examination_vulva_memo, examination_woman_vagina, 
+      examination_vagina_memo, examination_woman_cervix, 
+      examination_cervix_memo, examination_woman_corpus, 
+      examination_corpus_memo, examination_woman_accessories, 
+      examination_accessories_memo, examination_woman_doctor, 
+      examination_other, blood_hemoglobin, blood_leukocyte, 
+      blood_platelet, blood_other, urine_protein, 
+      glycosuria, urine_acetone_bodies, bld, 
+      urine_other, blood_glucose_mmol, blood_glucose_mg, 
+      cardiogram, cardiogram_memo, cardiogram_img, 
+      microalbuminuria, fob, glycosylated_hemoglobin, 
+      hb, sgft, ast, albumin, 
+      total_bilirubin, conjugated_bilirubin, scr, 
+      blood_urea, blood_k, blood_na, 
+      tc, tg, ldl, hdl, 
+      chest_x, x_memo, chestx_img, 
+      ultrasound_abdomen, ultrasound_memo, abdomenB_img, 
+      other_b, otherb_memo, otherb_img, 
+      cervical_smear, cervical_smear_memo, other, 
+      cerebrovascular_disease, cerebrovascular_disease_other, 
+      kidney_disease, kidney_disease_other, heart_disease, 
+      heart_disease_other, vascular_disease, vascular_disease_other, 
+      ocular_diseases, ocular_diseases_other, nervous_system_disease, 
+      nervous_disease_memo, other_disease, other_disease_memo, 
+      health_evaluation, abnormal1, abnormal2, 
+      abnormal3, abnormal4, health_guidance, 
+      danger_controlling, target_weight, advise_bacterin, 
+      danger_controlling_other, health_advice, create_user, 
+      create_name, create_org, create_org_name, 
+      create_time, update_user, update_name, 
+      update_time, upload_status, upload_time, 
+      upload_result)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{archiveNo,jdbcType=VARCHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{batchNo,jdbcType=VARCHAR}, #{barCode,jdbcType=VARCHAR}, 
+      #{checkFlag,jdbcType=VARCHAR}, #{dutydoctor,jdbcType=VARCHAR}, #{symptom,jdbcType=VARCHAR}, 
+      #{symptomOther,jdbcType=VARCHAR}, #{checkDate,jdbcType=VARCHAR}, #{baseTemperature,jdbcType=VARCHAR}, 
+      #{baseHeartbeat,jdbcType=VARCHAR}, #{baseRespiratory,jdbcType=VARCHAR}, #{baseBloodPressureLeftHigh,jdbcType=INTEGER}, 
+      #{baseBloodPressureLeftLow,jdbcType=INTEGER}, #{baseBloodPressureRightHigh,jdbcType=INTEGER}, 
+      #{baseBloodPressureRightLow,jdbcType=INTEGER}, #{baseHeight,jdbcType=VARCHAR}, 
+      #{baseWeight,jdbcType=VARCHAR}, #{baseWaist,jdbcType=VARCHAR}, #{baseBmi,jdbcType=VARCHAR}, 
+      #{baseHealthEstimate,jdbcType=VARCHAR}, #{baseSelfcareEstimate,jdbcType=VARCHAR}, 
+      #{baseCognitionEstimate,jdbcType=VARCHAR}, #{baseCognitionScore,jdbcType=VARCHAR}, 
+      #{baseFeelingEstimate,jdbcType=VARCHAR}, #{baseFeelingScore,jdbcType=VARCHAR}, 
+      #{baseDoctor,jdbcType=VARCHAR}, #{lifewayExerciseFrequency,jdbcType=VARCHAR}, #{lifewayExerciseTime,jdbcType=VARCHAR}, 
+      #{lifewayExerciseYear,jdbcType=VARCHAR}, #{lifewayExerciseType,jdbcType=VARCHAR}, 
+      #{lifewayDiet,jdbcType=VARCHAR}, #{lifewaySmokeStatus,jdbcType=VARCHAR}, #{lifewaySmokeNumber,jdbcType=VARCHAR}, 
+      #{lifewaySmokeStartage,jdbcType=VARCHAR}, #{lifewaySmokeEndage,jdbcType=VARCHAR}, 
+      #{lifewayDrinkStatus,jdbcType=VARCHAR}, #{lifewayDrinkNumber,jdbcType=VARCHAR}, 
+      #{lifewayDrinkStop,jdbcType=VARCHAR}, #{lifewayDrinkStopage,jdbcType=VARCHAR}, 
+      #{lifewayDrinkStartage,jdbcType=VARCHAR}, #{lifewayDrinkOneyear,jdbcType=VARCHAR}, 
+      #{lifewayDrinkType,jdbcType=VARCHAR}, #{lifewayDrinkOther,jdbcType=VARCHAR}, #{lifewayOccupationalDisease,jdbcType=VARCHAR}, 
+      #{lifewayJob,jdbcType=VARCHAR}, #{lifewayJobPeriod,jdbcType=VARCHAR}, #{lifewayHazardousDust,jdbcType=VARCHAR}, 
+      #{lifewayDustPreventive,jdbcType=VARCHAR}, #{lifewayHazardousRadiation,jdbcType=VARCHAR}, 
+      #{lifewayRadiationPreventive,jdbcType=VARCHAR}, #{lifewayHazardousPhysical,jdbcType=VARCHAR}, 
+      #{lifewayPhysicalPreventive,jdbcType=VARCHAR}, #{lifewayHazardousChemical,jdbcType=VARCHAR}, 
+      #{lifewayChemicalPreventive,jdbcType=VARCHAR}, #{lifewayHazardousOther,jdbcType=VARCHAR}, 
+      #{lifewayOtherPreventive,jdbcType=VARCHAR}, #{lifewayDoctor,jdbcType=VARCHAR}, 
+      #{organLips,jdbcType=VARCHAR}, #{organTooth,jdbcType=VARCHAR}, #{organHypodontia,jdbcType=VARCHAR}, 
+      #{organHypodontiaTopleft,jdbcType=VARCHAR}, #{organHypodontiaTopright,jdbcType=VARCHAR}, 
+      #{organHypodontiaBottomleft,jdbcType=VARCHAR}, #{organHypodontiaBottomright,jdbcType=VARCHAR}, 
+      #{organCaries,jdbcType=VARCHAR}, #{organCariesTopleft,jdbcType=VARCHAR}, #{organCariesTopright,jdbcType=VARCHAR}, 
+      #{organCariesBottomleft,jdbcType=VARCHAR}, #{organCariesBottomright,jdbcType=VARCHAR}, 
+      #{organDenture,jdbcType=VARCHAR}, #{organDentureTopleft,jdbcType=VARCHAR}, #{organDentureTopright,jdbcType=VARCHAR}, 
+      #{organDentureBottomleft,jdbcType=VARCHAR}, #{organDentureBottomright,jdbcType=VARCHAR}, 
+      #{organGuttur,jdbcType=VARCHAR}, #{organVisionLeft,jdbcType=VARCHAR}, #{organVisionRight,jdbcType=VARCHAR}, 
+      #{organCorrectedvisionLeft,jdbcType=VARCHAR}, #{organCorrectedvisionRight,jdbcType=VARCHAR}, 
+      #{organHearing,jdbcType=VARCHAR}, #{organMovement,jdbcType=VARCHAR}, #{organDoctor,jdbcType=VARCHAR}, 
+      #{examinationEye,jdbcType=VARCHAR}, #{examinationEyeOther,jdbcType=VARCHAR}, #{examinationSkin,jdbcType=VARCHAR}, 
+      #{examinationSkinOther,jdbcType=VARCHAR}, #{examinationSclera,jdbcType=VARCHAR}, 
+      #{examinationScleraOther,jdbcType=VARCHAR}, #{examinationLymph,jdbcType=VARCHAR}, 
+      #{examinationLymphOther,jdbcType=VARCHAR}, #{examinationBarrelChest,jdbcType=VARCHAR}, 
+      #{examinationBreathSounds,jdbcType=VARCHAR}, #{examinationBreathOther,jdbcType=VARCHAR}, 
+      #{examinationRale,jdbcType=VARCHAR}, #{examinationRaleOther,jdbcType=VARCHAR}, 
+      #{examinationHeartRate,jdbcType=VARCHAR}, #{examinationHeartRhythm,jdbcType=VARCHAR}, 
+      #{examinationHeartNoise,jdbcType=VARCHAR}, #{examinationNoiseOther,jdbcType=VARCHAR}, 
+      #{examinationAbdomenTenderness,jdbcType=VARCHAR}, #{examinationTendernessMemo,jdbcType=VARCHAR}, 
+      #{examinationAbdomenMass,jdbcType=VARCHAR}, #{examinationMassMemo,jdbcType=VARCHAR}, 
+      #{examinationAbdomenHepatomegaly,jdbcType=VARCHAR}, #{examinationHepatomegalyMemo,jdbcType=VARCHAR}, 
+      #{examinationAbdomenSplenomegaly,jdbcType=VARCHAR}, #{examinationSplenomegalyMemo,jdbcType=VARCHAR}, 
+      #{examinationAbdomenShiftingdullness,jdbcType=VARCHAR}, #{examinationShiftingdullnessMemo,jdbcType=VARCHAR}, 
+      #{examinationLowerextremityEdema,jdbcType=VARCHAR}, #{examinationDorsalArtery,jdbcType=VARCHAR}, 
+      #{examinationAnus,jdbcType=VARCHAR}, #{examinationAnusOther,jdbcType=VARCHAR}, 
+      #{examinationBreast,jdbcType=VARCHAR}, #{examinationBreastOther,jdbcType=VARCHAR}, 
+      #{examinationDoctor,jdbcType=VARCHAR}, #{examinationWomanVulva,jdbcType=VARCHAR}, 
+      #{examinationVulvaMemo,jdbcType=VARCHAR}, #{examinationWomanVagina,jdbcType=VARCHAR}, 
+      #{examinationVaginaMemo,jdbcType=VARCHAR}, #{examinationWomanCervix,jdbcType=VARCHAR}, 
+      #{examinationCervixMemo,jdbcType=VARCHAR}, #{examinationWomanCorpus,jdbcType=VARCHAR}, 
+      #{examinationCorpusMemo,jdbcType=VARCHAR}, #{examinationWomanAccessories,jdbcType=VARCHAR}, 
+      #{examinationAccessoriesMemo,jdbcType=VARCHAR}, #{examinationWomanDoctor,jdbcType=VARCHAR}, 
+      #{examinationOther,jdbcType=VARCHAR}, #{bloodHemoglobin,jdbcType=VARCHAR}, #{bloodLeukocyte,jdbcType=VARCHAR}, 
+      #{bloodPlatelet,jdbcType=VARCHAR}, #{bloodOther,jdbcType=VARCHAR}, #{urineProtein,jdbcType=VARCHAR}, 
+      #{glycosuria,jdbcType=VARCHAR}, #{urineAcetoneBodies,jdbcType=VARCHAR}, #{bld,jdbcType=VARCHAR}, 
+      #{urineOther,jdbcType=VARCHAR}, #{bloodGlucoseMmol,jdbcType=VARCHAR}, #{bloodGlucoseMg,jdbcType=VARCHAR}, 
+      #{cardiogram,jdbcType=VARCHAR}, #{cardiogramMemo,jdbcType=VARCHAR}, #{cardiogramImg,jdbcType=VARCHAR}, 
+      #{microalbuminuria,jdbcType=VARCHAR}, #{fob,jdbcType=VARCHAR}, #{glycosylatedHemoglobin,jdbcType=VARCHAR}, 
+      #{hb,jdbcType=VARCHAR}, #{sgft,jdbcType=VARCHAR}, #{ast,jdbcType=VARCHAR}, #{albumin,jdbcType=VARCHAR}, 
+      #{totalBilirubin,jdbcType=VARCHAR}, #{conjugatedBilirubin,jdbcType=VARCHAR}, #{scr,jdbcType=VARCHAR}, 
+      #{bloodUrea,jdbcType=VARCHAR}, #{bloodK,jdbcType=VARCHAR}, #{bloodNa,jdbcType=VARCHAR}, 
+      #{tc,jdbcType=VARCHAR}, #{tg,jdbcType=VARCHAR}, #{ldl,jdbcType=VARCHAR}, #{hdl,jdbcType=VARCHAR}, 
+      #{chestX,jdbcType=VARCHAR}, #{xMemo,jdbcType=VARCHAR}, #{chestxImg,jdbcType=VARCHAR}, 
+      #{ultrasoundAbdomen,jdbcType=VARCHAR}, #{ultrasoundMemo,jdbcType=VARCHAR}, #{abdomenbImg,jdbcType=VARCHAR}, 
+      #{otherB,jdbcType=VARCHAR}, #{otherbMemo,jdbcType=VARCHAR}, #{otherbImg,jdbcType=VARCHAR}, 
+      #{cervicalSmear,jdbcType=VARCHAR}, #{cervicalSmearMemo,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}, 
+      #{cerebrovascularDisease,jdbcType=VARCHAR}, #{cerebrovascularDiseaseOther,jdbcType=VARCHAR}, 
+      #{kidneyDisease,jdbcType=VARCHAR}, #{kidneyDiseaseOther,jdbcType=VARCHAR}, #{heartDisease,jdbcType=VARCHAR}, 
+      #{heartDiseaseOther,jdbcType=VARCHAR}, #{vascularDisease,jdbcType=VARCHAR}, #{vascularDiseaseOther,jdbcType=VARCHAR}, 
+      #{ocularDiseases,jdbcType=VARCHAR}, #{ocularDiseasesOther,jdbcType=VARCHAR}, #{nervousSystemDisease,jdbcType=VARCHAR}, 
+      #{nervousDiseaseMemo,jdbcType=VARCHAR}, #{otherDisease,jdbcType=VARCHAR}, #{otherDiseaseMemo,jdbcType=VARCHAR}, 
+      #{healthEvaluation,jdbcType=VARCHAR}, #{abnormal1,jdbcType=VARCHAR}, #{abnormal2,jdbcType=VARCHAR}, 
+      #{abnormal3,jdbcType=VARCHAR}, #{abnormal4,jdbcType=VARCHAR}, #{healthGuidance,jdbcType=VARCHAR}, 
+      #{dangerControlling,jdbcType=VARCHAR}, #{targetWeight,jdbcType=VARCHAR}, #{adviseBacterin,jdbcType=VARCHAR}, 
+      #{dangerControllingOther,jdbcType=VARCHAR}, #{healthAdvice,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
+      #{createName,jdbcType=VARCHAR}, #{createOrg,jdbcType=VARCHAR}, #{createOrgName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{uploadStatus,jdbcType=INTEGER}, #{uploadTime,jdbcType=TIMESTAMP}, 
+      #{uploadResult,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.PhysicalExamination">
+    insert into physical_examination_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="batchNo != null">
+        batch_no,
+      </if>
+      <if test="barCode != null">
+        bar_code,
+      </if>
+      <if test="checkFlag != null">
+        check_flag,
+      </if>
+      <if test="dutydoctor != null">
+        dutydoctor,
+      </if>
+      <if test="symptom != null">
+        symptom,
+      </if>
+      <if test="symptomOther != null">
+        symptom_other,
+      </if>
+      <if test="checkDate != null">
+        check_date,
+      </if>
+      <if test="baseTemperature != null">
+        base_temperature,
+      </if>
+      <if test="baseHeartbeat != null">
+        base_heartbeat,
+      </if>
+      <if test="baseRespiratory != null">
+        base_respiratory,
+      </if>
+      <if test="baseBloodPressureLeftHigh != null">
+        base_blood_pressure_left_high,
+      </if>
+      <if test="baseBloodPressureLeftLow != null">
+        base_blood_pressure_left_low,
+      </if>
+      <if test="baseBloodPressureRightHigh != null">
+        base_blood_pressure_right_high,
+      </if>
+      <if test="baseBloodPressureRightLow != null">
+        base_blood_pressure_right_low,
+      </if>
+      <if test="baseHeight != null">
+        base_height,
+      </if>
+      <if test="baseWeight != null">
+        base_weight,
+      </if>
+      <if test="baseWaist != null">
+        base_waist,
+      </if>
+      <if test="baseBmi != null">
+        base_bmi,
+      </if>
+      <if test="baseHealthEstimate != null">
+        base_health_estimate,
+      </if>
+      <if test="baseSelfcareEstimate != null">
+        base_selfcare_estimate,
+      </if>
+      <if test="baseCognitionEstimate != null">
+        base_cognition_estimate,
+      </if>
+      <if test="baseCognitionScore != null">
+        base_cognition_score,
+      </if>
+      <if test="baseFeelingEstimate != null">
+        base_feeling_estimate,
+      </if>
+      <if test="baseFeelingScore != null">
+        base_feeling_score,
+      </if>
+      <if test="baseDoctor != null">
+        base_doctor,
+      </if>
+      <if test="lifewayExerciseFrequency != null">
+        lifeway_exercise_frequency,
+      </if>
+      <if test="lifewayExerciseTime != null">
+        lifeway_exercise_time,
+      </if>
+      <if test="lifewayExerciseYear != null">
+        lifeway_exercise_year,
+      </if>
+      <if test="lifewayExerciseType != null">
+        lifeway_exercise_type,
+      </if>
+      <if test="lifewayDiet != null">
+        lifeway_diet,
+      </if>
+      <if test="lifewaySmokeStatus != null">
+        lifeway_smoke_status,
+      </if>
+      <if test="lifewaySmokeNumber != null">
+        lifeway_smoke_number,
+      </if>
+      <if test="lifewaySmokeStartage != null">
+        lifeway_smoke_startage,
+      </if>
+      <if test="lifewaySmokeEndage != null">
+        lifeway_smoke_endage,
+      </if>
+      <if test="lifewayDrinkStatus != null">
+        lifeway_drink_status,
+      </if>
+      <if test="lifewayDrinkNumber != null">
+        lifeway_drink_number,
+      </if>
+      <if test="lifewayDrinkStop != null">
+        lifeway_drink_stop,
+      </if>
+      <if test="lifewayDrinkStopage != null">
+        lifeway_drink_stopage,
+      </if>
+      <if test="lifewayDrinkStartage != null">
+        lifeway_drink_startage,
+      </if>
+      <if test="lifewayDrinkOneyear != null">
+        lifeway_drink_oneyear,
+      </if>
+      <if test="lifewayDrinkType != null">
+        lifeway_drink_type,
+      </if>
+      <if test="lifewayDrinkOther != null">
+        lifeway_drink_other,
+      </if>
+      <if test="lifewayOccupationalDisease != null">
+        lifeway_occupational_disease,
+      </if>
+      <if test="lifewayJob != null">
+        lifeway_job,
+      </if>
+      <if test="lifewayJobPeriod != null">
+        lifeway_job_period,
+      </if>
+      <if test="lifewayHazardousDust != null">
+        lifeway_hazardous_dust,
+      </if>
+      <if test="lifewayDustPreventive != null">
+        lifeway_dust_preventive,
+      </if>
+      <if test="lifewayHazardousRadiation != null">
+        lifeway_hazardous_radiation,
+      </if>
+      <if test="lifewayRadiationPreventive != null">
+        lifeway_radiation_preventive,
+      </if>
+      <if test="lifewayHazardousPhysical != null">
+        lifeway_hazardous_physical,
+      </if>
+      <if test="lifewayPhysicalPreventive != null">
+        lifeway_physical_preventive,
+      </if>
+      <if test="lifewayHazardousChemical != null">
+        lifeway_hazardous_chemical,
+      </if>
+      <if test="lifewayChemicalPreventive != null">
+        lifeway_chemical_preventive,
+      </if>
+      <if test="lifewayHazardousOther != null">
+        lifeway_hazardous_other,
+      </if>
+      <if test="lifewayOtherPreventive != null">
+        lifeway_other_preventive,
+      </if>
+      <if test="lifewayDoctor != null">
+        lifeway_doctor,
+      </if>
+      <if test="organLips != null">
+        organ_lips,
+      </if>
+      <if test="organTooth != null">
+        organ_tooth,
+      </if>
+      <if test="organHypodontia != null">
+        organ_hypodontia,
+      </if>
+      <if test="organHypodontiaTopleft != null">
+        organ_hypodontia_topleft,
+      </if>
+      <if test="organHypodontiaTopright != null">
+        organ_hypodontia_topright,
+      </if>
+      <if test="organHypodontiaBottomleft != null">
+        organ_hypodontia_bottomleft,
+      </if>
+      <if test="organHypodontiaBottomright != null">
+        organ_hypodontia_bottomright,
+      </if>
+      <if test="organCaries != null">
+        organ_caries,
+      </if>
+      <if test="organCariesTopleft != null">
+        organ_caries_topleft,
+      </if>
+      <if test="organCariesTopright != null">
+        organ_caries_topright,
+      </if>
+      <if test="organCariesBottomleft != null">
+        organ_caries_bottomleft,
+      </if>
+      <if test="organCariesBottomright != null">
+        organ_caries_bottomright,
+      </if>
+      <if test="organDenture != null">
+        organ_denture,
+      </if>
+      <if test="organDentureTopleft != null">
+        organ_denture_topleft,
+      </if>
+      <if test="organDentureTopright != null">
+        organ_denture_topright,
+      </if>
+      <if test="organDentureBottomleft != null">
+        organ_denture_bottomleft,
+      </if>
+      <if test="organDentureBottomright != null">
+        organ_denture_bottomright,
+      </if>
+      <if test="organGuttur != null">
+        organ_guttur,
+      </if>
+      <if test="organVisionLeft != null">
+        organ_vision_left,
+      </if>
+      <if test="organVisionRight != null">
+        organ_vision_right,
+      </if>
+      <if test="organCorrectedvisionLeft != null">
+        organ_correctedvision_left,
+      </if>
+      <if test="organCorrectedvisionRight != null">
+        organ_correctedvision_right,
+      </if>
+      <if test="organHearing != null">
+        organ_hearing,
+      </if>
+      <if test="organMovement != null">
+        organ_movement,
+      </if>
+      <if test="organDoctor != null">
+        organ_doctor,
+      </if>
+      <if test="examinationEye != null">
+        examination_eye,
+      </if>
+      <if test="examinationEyeOther != null">
+        examination_eye_other,
+      </if>
+      <if test="examinationSkin != null">
+        examination_skin,
+      </if>
+      <if test="examinationSkinOther != null">
+        examination_skin_other,
+      </if>
+      <if test="examinationSclera != null">
+        examination_sclera,
+      </if>
+      <if test="examinationScleraOther != null">
+        examination_sclera_other,
+      </if>
+      <if test="examinationLymph != null">
+        examination_lymph,
+      </if>
+      <if test="examinationLymphOther != null">
+        examination_lymph_other,
+      </if>
+      <if test="examinationBarrelChest != null">
+        examination_barrel_chest,
+      </if>
+      <if test="examinationBreathSounds != null">
+        examination_breath_sounds,
+      </if>
+      <if test="examinationBreathOther != null">
+        examination_breath_other,
+      </if>
+      <if test="examinationRale != null">
+        examination_rale,
+      </if>
+      <if test="examinationRaleOther != null">
+        examination_rale_other,
+      </if>
+      <if test="examinationHeartRate != null">
+        examination_heart_rate,
+      </if>
+      <if test="examinationHeartRhythm != null">
+        examination_heart_rhythm,
+      </if>
+      <if test="examinationHeartNoise != null">
+        examination_heart_noise,
+      </if>
+      <if test="examinationNoiseOther != null">
+        examination_noise_other,
+      </if>
+      <if test="examinationAbdomenTenderness != null">
+        examination_abdomen_tenderness,
+      </if>
+      <if test="examinationTendernessMemo != null">
+        examination_tenderness_memo,
+      </if>
+      <if test="examinationAbdomenMass != null">
+        examination_abdomen_mass,
+      </if>
+      <if test="examinationMassMemo != null">
+        examination_mass_memo,
+      </if>
+      <if test="examinationAbdomenHepatomegaly != null">
+        examination_abdomen_hepatomegaly,
+      </if>
+      <if test="examinationHepatomegalyMemo != null">
+        examination_hepatomegaly_memo,
+      </if>
+      <if test="examinationAbdomenSplenomegaly != null">
+        examination_abdomen_splenomegaly,
+      </if>
+      <if test="examinationSplenomegalyMemo != null">
+        examination_splenomegaly_memo,
+      </if>
+      <if test="examinationAbdomenShiftingdullness != null">
+        examination_abdomen_shiftingdullness,
+      </if>
+      <if test="examinationShiftingdullnessMemo != null">
+        examination_shiftingdullness_memo,
+      </if>
+      <if test="examinationLowerextremityEdema != null">
+        examination_lowerextremity_edema,
+      </if>
+      <if test="examinationDorsalArtery != null">
+        examination_dorsal_artery,
+      </if>
+      <if test="examinationAnus != null">
+        examination_anus,
+      </if>
+      <if test="examinationAnusOther != null">
+        examination_anus_other,
+      </if>
+      <if test="examinationBreast != null">
+        examination_breast,
+      </if>
+      <if test="examinationBreastOther != null">
+        examination_breast_other,
+      </if>
+      <if test="examinationDoctor != null">
+        examination_doctor,
+      </if>
+      <if test="examinationWomanVulva != null">
+        examination_woman_vulva,
+      </if>
+      <if test="examinationVulvaMemo != null">
+        examination_vulva_memo,
+      </if>
+      <if test="examinationWomanVagina != null">
+        examination_woman_vagina,
+      </if>
+      <if test="examinationVaginaMemo != null">
+        examination_vagina_memo,
+      </if>
+      <if test="examinationWomanCervix != null">
+        examination_woman_cervix,
+      </if>
+      <if test="examinationCervixMemo != null">
+        examination_cervix_memo,
+      </if>
+      <if test="examinationWomanCorpus != null">
+        examination_woman_corpus,
+      </if>
+      <if test="examinationCorpusMemo != null">
+        examination_corpus_memo,
+      </if>
+      <if test="examinationWomanAccessories != null">
+        examination_woman_accessories,
+      </if>
+      <if test="examinationAccessoriesMemo != null">
+        examination_accessories_memo,
+      </if>
+      <if test="examinationWomanDoctor != null">
+        examination_woman_doctor,
+      </if>
+      <if test="examinationOther != null">
+        examination_other,
+      </if>
+      <if test="bloodHemoglobin != null">
+        blood_hemoglobin,
+      </if>
+      <if test="bloodLeukocyte != null">
+        blood_leukocyte,
+      </if>
+      <if test="bloodPlatelet != null">
+        blood_platelet,
+      </if>
+      <if test="bloodOther != null">
+        blood_other,
+      </if>
+      <if test="urineProtein != null">
+        urine_protein,
+      </if>
+      <if test="glycosuria != null">
+        glycosuria,
+      </if>
+      <if test="urineAcetoneBodies != null">
+        urine_acetone_bodies,
+      </if>
+      <if test="bld != null">
+        bld,
+      </if>
+      <if test="urineOther != null">
+        urine_other,
+      </if>
+      <if test="bloodGlucoseMmol != null">
+        blood_glucose_mmol,
+      </if>
+      <if test="bloodGlucoseMg != null">
+        blood_glucose_mg,
+      </if>
+      <if test="cardiogram != null">
+        cardiogram,
+      </if>
+      <if test="cardiogramMemo != null">
+        cardiogram_memo,
+      </if>
+      <if test="cardiogramImg != null">
+        cardiogram_img,
+      </if>
+      <if test="microalbuminuria != null">
+        microalbuminuria,
+      </if>
+      <if test="fob != null">
+        fob,
+      </if>
+      <if test="glycosylatedHemoglobin != null">
+        glycosylated_hemoglobin,
+      </if>
+      <if test="hb != null">
+        hb,
+      </if>
+      <if test="sgft != null">
+        sgft,
+      </if>
+      <if test="ast != null">
+        ast,
+      </if>
+      <if test="albumin != null">
+        albumin,
+      </if>
+      <if test="totalBilirubin != null">
+        total_bilirubin,
+      </if>
+      <if test="conjugatedBilirubin != null">
+        conjugated_bilirubin,
+      </if>
+      <if test="scr != null">
+        scr,
+      </if>
+      <if test="bloodUrea != null">
+        blood_urea,
+      </if>
+      <if test="bloodK != null">
+        blood_k,
+      </if>
+      <if test="bloodNa != null">
+        blood_na,
+      </if>
+      <if test="tc != null">
+        tc,
+      </if>
+      <if test="tg != null">
+        tg,
+      </if>
+      <if test="ldl != null">
+        ldl,
+      </if>
+      <if test="hdl != null">
+        hdl,
+      </if>
+      <if test="chestX != null">
+        chest_x,
+      </if>
+      <if test="xMemo != null">
+        x_memo,
+      </if>
+      <if test="chestxImg != null">
+        chestx_img,
+      </if>
+      <if test="ultrasoundAbdomen != null">
+        ultrasound_abdomen,
+      </if>
+      <if test="ultrasoundMemo != null">
+        ultrasound_memo,
+      </if>
+      <if test="abdomenbImg != null">
+        abdomenB_img,
+      </if>
+      <if test="otherB != null">
+        other_b,
+      </if>
+      <if test="otherbMemo != null">
+        otherb_memo,
+      </if>
+      <if test="otherbImg != null">
+        otherb_img,
+      </if>
+      <if test="cervicalSmear != null">
+        cervical_smear,
+      </if>
+      <if test="cervicalSmearMemo != null">
+        cervical_smear_memo,
+      </if>
+      <if test="other != null">
+        other,
+      </if>
+      <if test="cerebrovascularDisease != null">
+        cerebrovascular_disease,
+      </if>
+      <if test="cerebrovascularDiseaseOther != null">
+        cerebrovascular_disease_other,
+      </if>
+      <if test="kidneyDisease != null">
+        kidney_disease,
+      </if>
+      <if test="kidneyDiseaseOther != null">
+        kidney_disease_other,
+      </if>
+      <if test="heartDisease != null">
+        heart_disease,
+      </if>
+      <if test="heartDiseaseOther != null">
+        heart_disease_other,
+      </if>
+      <if test="vascularDisease != null">
+        vascular_disease,
+      </if>
+      <if test="vascularDiseaseOther != null">
+        vascular_disease_other,
+      </if>
+      <if test="ocularDiseases != null">
+        ocular_diseases,
+      </if>
+      <if test="ocularDiseasesOther != null">
+        ocular_diseases_other,
+      </if>
+      <if test="nervousSystemDisease != null">
+        nervous_system_disease,
+      </if>
+      <if test="nervousDiseaseMemo != null">
+        nervous_disease_memo,
+      </if>
+      <if test="otherDisease != null">
+        other_disease,
+      </if>
+      <if test="otherDiseaseMemo != null">
+        other_disease_memo,
+      </if>
+      <if test="healthEvaluation != null">
+        health_evaluation,
+      </if>
+      <if test="abnormal1 != null">
+        abnormal1,
+      </if>
+      <if test="abnormal2 != null">
+        abnormal2,
+      </if>
+      <if test="abnormal3 != null">
+        abnormal3,
+      </if>
+      <if test="abnormal4 != null">
+        abnormal4,
+      </if>
+      <if test="healthGuidance != null">
+        health_guidance,
+      </if>
+      <if test="dangerControlling != null">
+        danger_controlling,
+      </if>
+      <if test="targetWeight != null">
+        target_weight,
+      </if>
+      <if test="adviseBacterin != null">
+        advise_bacterin,
+      </if>
+      <if test="dangerControllingOther != null">
+        danger_controlling_other,
+      </if>
+      <if test="healthAdvice != null">
+        health_advice,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createOrg != null">
+        create_org,
+      </if>
+      <if test="createOrgName != null">
+        create_org_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="uploadStatus != null">
+        upload_status,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+      <if test="uploadResult != null">
+        upload_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null">
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checkFlag != null">
+        #{checkFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="dutydoctor != null">
+        #{dutydoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="symptom != null">
+        #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="symptomOther != null">
+        #{symptomOther,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null">
+        #{checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="baseTemperature != null">
+        #{baseTemperature,jdbcType=VARCHAR},
+      </if>
+      <if test="baseHeartbeat != null">
+        #{baseHeartbeat,jdbcType=VARCHAR},
+      </if>
+      <if test="baseRespiratory != null">
+        #{baseRespiratory,jdbcType=VARCHAR},
+      </if>
+      <if test="baseBloodPressureLeftHigh != null">
+        #{baseBloodPressureLeftHigh,jdbcType=INTEGER},
+      </if>
+      <if test="baseBloodPressureLeftLow != null">
+        #{baseBloodPressureLeftLow,jdbcType=INTEGER},
+      </if>
+      <if test="baseBloodPressureRightHigh != null">
+        #{baseBloodPressureRightHigh,jdbcType=INTEGER},
+      </if>
+      <if test="baseBloodPressureRightLow != null">
+        #{baseBloodPressureRightLow,jdbcType=INTEGER},
+      </if>
+      <if test="baseHeight != null">
+        #{baseHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="baseWeight != null">
+        #{baseWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="baseWaist != null">
+        #{baseWaist,jdbcType=VARCHAR},
+      </if>
+      <if test="baseBmi != null">
+        #{baseBmi,jdbcType=VARCHAR},
+      </if>
+      <if test="baseHealthEstimate != null">
+        #{baseHealthEstimate,jdbcType=VARCHAR},
+      </if>
+      <if test="baseSelfcareEstimate != null">
+        #{baseSelfcareEstimate,jdbcType=VARCHAR},
+      </if>
+      <if test="baseCognitionEstimate != null">
+        #{baseCognitionEstimate,jdbcType=VARCHAR},
+      </if>
+      <if test="baseCognitionScore != null">
+        #{baseCognitionScore,jdbcType=VARCHAR},
+      </if>
+      <if test="baseFeelingEstimate != null">
+        #{baseFeelingEstimate,jdbcType=VARCHAR},
+      </if>
+      <if test="baseFeelingScore != null">
+        #{baseFeelingScore,jdbcType=VARCHAR},
+      </if>
+      <if test="baseDoctor != null">
+        #{baseDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayExerciseFrequency != null">
+        #{lifewayExerciseFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayExerciseTime != null">
+        #{lifewayExerciseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayExerciseYear != null">
+        #{lifewayExerciseYear,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayExerciseType != null">
+        #{lifewayExerciseType,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDiet != null">
+        #{lifewayDiet,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewaySmokeStatus != null">
+        #{lifewaySmokeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewaySmokeNumber != null">
+        #{lifewaySmokeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewaySmokeStartage != null">
+        #{lifewaySmokeStartage,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewaySmokeEndage != null">
+        #{lifewaySmokeEndage,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkStatus != null">
+        #{lifewayDrinkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkNumber != null">
+        #{lifewayDrinkNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkStop != null">
+        #{lifewayDrinkStop,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkStopage != null">
+        #{lifewayDrinkStopage,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkStartage != null">
+        #{lifewayDrinkStartage,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkOneyear != null">
+        #{lifewayDrinkOneyear,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkType != null">
+        #{lifewayDrinkType,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkOther != null">
+        #{lifewayDrinkOther,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayOccupationalDisease != null">
+        #{lifewayOccupationalDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayJob != null">
+        #{lifewayJob,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayJobPeriod != null">
+        #{lifewayJobPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayHazardousDust != null">
+        #{lifewayHazardousDust,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDustPreventive != null">
+        #{lifewayDustPreventive,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayHazardousRadiation != null">
+        #{lifewayHazardousRadiation,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayRadiationPreventive != null">
+        #{lifewayRadiationPreventive,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayHazardousPhysical != null">
+        #{lifewayHazardousPhysical,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayPhysicalPreventive != null">
+        #{lifewayPhysicalPreventive,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayHazardousChemical != null">
+        #{lifewayHazardousChemical,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayChemicalPreventive != null">
+        #{lifewayChemicalPreventive,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayHazardousOther != null">
+        #{lifewayHazardousOther,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayOtherPreventive != null">
+        #{lifewayOtherPreventive,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDoctor != null">
+        #{lifewayDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="organLips != null">
+        #{organLips,jdbcType=VARCHAR},
+      </if>
+      <if test="organTooth != null">
+        #{organTooth,jdbcType=VARCHAR},
+      </if>
+      <if test="organHypodontia != null">
+        #{organHypodontia,jdbcType=VARCHAR},
+      </if>
+      <if test="organHypodontiaTopleft != null">
+        #{organHypodontiaTopleft,jdbcType=VARCHAR},
+      </if>
+      <if test="organHypodontiaTopright != null">
+        #{organHypodontiaTopright,jdbcType=VARCHAR},
+      </if>
+      <if test="organHypodontiaBottomleft != null">
+        #{organHypodontiaBottomleft,jdbcType=VARCHAR},
+      </if>
+      <if test="organHypodontiaBottomright != null">
+        #{organHypodontiaBottomright,jdbcType=VARCHAR},
+      </if>
+      <if test="organCaries != null">
+        #{organCaries,jdbcType=VARCHAR},
+      </if>
+      <if test="organCariesTopleft != null">
+        #{organCariesTopleft,jdbcType=VARCHAR},
+      </if>
+      <if test="organCariesTopright != null">
+        #{organCariesTopright,jdbcType=VARCHAR},
+      </if>
+      <if test="organCariesBottomleft != null">
+        #{organCariesBottomleft,jdbcType=VARCHAR},
+      </if>
+      <if test="organCariesBottomright != null">
+        #{organCariesBottomright,jdbcType=VARCHAR},
+      </if>
+      <if test="organDenture != null">
+        #{organDenture,jdbcType=VARCHAR},
+      </if>
+      <if test="organDentureTopleft != null">
+        #{organDentureTopleft,jdbcType=VARCHAR},
+      </if>
+      <if test="organDentureTopright != null">
+        #{organDentureTopright,jdbcType=VARCHAR},
+      </if>
+      <if test="organDentureBottomleft != null">
+        #{organDentureBottomleft,jdbcType=VARCHAR},
+      </if>
+      <if test="organDentureBottomright != null">
+        #{organDentureBottomright,jdbcType=VARCHAR},
+      </if>
+      <if test="organGuttur != null">
+        #{organGuttur,jdbcType=VARCHAR},
+      </if>
+      <if test="organVisionLeft != null">
+        #{organVisionLeft,jdbcType=VARCHAR},
+      </if>
+      <if test="organVisionRight != null">
+        #{organVisionRight,jdbcType=VARCHAR},
+      </if>
+      <if test="organCorrectedvisionLeft != null">
+        #{organCorrectedvisionLeft,jdbcType=VARCHAR},
+      </if>
+      <if test="organCorrectedvisionRight != null">
+        #{organCorrectedvisionRight,jdbcType=VARCHAR},
+      </if>
+      <if test="organHearing != null">
+        #{organHearing,jdbcType=VARCHAR},
+      </if>
+      <if test="organMovement != null">
+        #{organMovement,jdbcType=VARCHAR},
+      </if>
+      <if test="organDoctor != null">
+        #{organDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationEye != null">
+        #{examinationEye,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationEyeOther != null">
+        #{examinationEyeOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationSkin != null">
+        #{examinationSkin,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationSkinOther != null">
+        #{examinationSkinOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationSclera != null">
+        #{examinationSclera,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationScleraOther != null">
+        #{examinationScleraOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationLymph != null">
+        #{examinationLymph,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationLymphOther != null">
+        #{examinationLymphOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationBarrelChest != null">
+        #{examinationBarrelChest,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationBreathSounds != null">
+        #{examinationBreathSounds,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationBreathOther != null">
+        #{examinationBreathOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationRale != null">
+        #{examinationRale,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationRaleOther != null">
+        #{examinationRaleOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationHeartRate != null">
+        #{examinationHeartRate,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationHeartRhythm != null">
+        #{examinationHeartRhythm,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationHeartNoise != null">
+        #{examinationHeartNoise,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationNoiseOther != null">
+        #{examinationNoiseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAbdomenTenderness != null">
+        #{examinationAbdomenTenderness,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationTendernessMemo != null">
+        #{examinationTendernessMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAbdomenMass != null">
+        #{examinationAbdomenMass,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationMassMemo != null">
+        #{examinationMassMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAbdomenHepatomegaly != null">
+        #{examinationAbdomenHepatomegaly,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationHepatomegalyMemo != null">
+        #{examinationHepatomegalyMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAbdomenSplenomegaly != null">
+        #{examinationAbdomenSplenomegaly,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationSplenomegalyMemo != null">
+        #{examinationSplenomegalyMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAbdomenShiftingdullness != null">
+        #{examinationAbdomenShiftingdullness,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationShiftingdullnessMemo != null">
+        #{examinationShiftingdullnessMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationLowerextremityEdema != null">
+        #{examinationLowerextremityEdema,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationDorsalArtery != null">
+        #{examinationDorsalArtery,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAnus != null">
+        #{examinationAnus,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAnusOther != null">
+        #{examinationAnusOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationBreast != null">
+        #{examinationBreast,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationBreastOther != null">
+        #{examinationBreastOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationDoctor != null">
+        #{examinationDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationWomanVulva != null">
+        #{examinationWomanVulva,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationVulvaMemo != null">
+        #{examinationVulvaMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationWomanVagina != null">
+        #{examinationWomanVagina,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationVaginaMemo != null">
+        #{examinationVaginaMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationWomanCervix != null">
+        #{examinationWomanCervix,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationCervixMemo != null">
+        #{examinationCervixMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationWomanCorpus != null">
+        #{examinationWomanCorpus,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationCorpusMemo != null">
+        #{examinationCorpusMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationWomanAccessories != null">
+        #{examinationWomanAccessories,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAccessoriesMemo != null">
+        #{examinationAccessoriesMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationWomanDoctor != null">
+        #{examinationWomanDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationOther != null">
+        #{examinationOther,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodHemoglobin != null">
+        #{bloodHemoglobin,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodLeukocyte != null">
+        #{bloodLeukocyte,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodPlatelet != null">
+        #{bloodPlatelet,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodOther != null">
+        #{bloodOther,jdbcType=VARCHAR},
+      </if>
+      <if test="urineProtein != null">
+        #{urineProtein,jdbcType=VARCHAR},
+      </if>
+      <if test="glycosuria != null">
+        #{glycosuria,jdbcType=VARCHAR},
+      </if>
+      <if test="urineAcetoneBodies != null">
+        #{urineAcetoneBodies,jdbcType=VARCHAR},
+      </if>
+      <if test="bld != null">
+        #{bld,jdbcType=VARCHAR},
+      </if>
+      <if test="urineOther != null">
+        #{urineOther,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodGlucoseMmol != null">
+        #{bloodGlucoseMmol,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodGlucoseMg != null">
+        #{bloodGlucoseMg,jdbcType=VARCHAR},
+      </if>
+      <if test="cardiogram != null">
+        #{cardiogram,jdbcType=VARCHAR},
+      </if>
+      <if test="cardiogramMemo != null">
+        #{cardiogramMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardiogramImg != null">
+        #{cardiogramImg,jdbcType=VARCHAR},
+      </if>
+      <if test="microalbuminuria != null">
+        #{microalbuminuria,jdbcType=VARCHAR},
+      </if>
+      <if test="fob != null">
+        #{fob,jdbcType=VARCHAR},
+      </if>
+      <if test="glycosylatedHemoglobin != null">
+        #{glycosylatedHemoglobin,jdbcType=VARCHAR},
+      </if>
+      <if test="hb != null">
+        #{hb,jdbcType=VARCHAR},
+      </if>
+      <if test="sgft != null">
+        #{sgft,jdbcType=VARCHAR},
+      </if>
+      <if test="ast != null">
+        #{ast,jdbcType=VARCHAR},
+      </if>
+      <if test="albumin != null">
+        #{albumin,jdbcType=VARCHAR},
+      </if>
+      <if test="totalBilirubin != null">
+        #{totalBilirubin,jdbcType=VARCHAR},
+      </if>
+      <if test="conjugatedBilirubin != null">
+        #{conjugatedBilirubin,jdbcType=VARCHAR},
+      </if>
+      <if test="scr != null">
+        #{scr,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodUrea != null">
+        #{bloodUrea,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodK != null">
+        #{bloodK,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodNa != null">
+        #{bloodNa,jdbcType=VARCHAR},
+      </if>
+      <if test="tc != null">
+        #{tc,jdbcType=VARCHAR},
+      </if>
+      <if test="tg != null">
+        #{tg,jdbcType=VARCHAR},
+      </if>
+      <if test="ldl != null">
+        #{ldl,jdbcType=VARCHAR},
+      </if>
+      <if test="hdl != null">
+        #{hdl,jdbcType=VARCHAR},
+      </if>
+      <if test="chestX != null">
+        #{chestX,jdbcType=VARCHAR},
+      </if>
+      <if test="xMemo != null">
+        #{xMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="chestxImg != null">
+        #{chestxImg,jdbcType=VARCHAR},
+      </if>
+      <if test="ultrasoundAbdomen != null">
+        #{ultrasoundAbdomen,jdbcType=VARCHAR},
+      </if>
+      <if test="ultrasoundMemo != null">
+        #{ultrasoundMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="abdomenbImg != null">
+        #{abdomenbImg,jdbcType=VARCHAR},
+      </if>
+      <if test="otherB != null">
+        #{otherB,jdbcType=VARCHAR},
+      </if>
+      <if test="otherbMemo != null">
+        #{otherbMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherbImg != null">
+        #{otherbImg,jdbcType=VARCHAR},
+      </if>
+      <if test="cervicalSmear != null">
+        #{cervicalSmear,jdbcType=VARCHAR},
+      </if>
+      <if test="cervicalSmearMemo != null">
+        #{cervicalSmearMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="cerebrovascularDisease != null">
+        #{cerebrovascularDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="cerebrovascularDiseaseOther != null">
+        #{cerebrovascularDiseaseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="kidneyDisease != null">
+        #{kidneyDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="kidneyDiseaseOther != null">
+        #{kidneyDiseaseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="heartDisease != null">
+        #{heartDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="heartDiseaseOther != null">
+        #{heartDiseaseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="vascularDisease != null">
+        #{vascularDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="vascularDiseaseOther != null">
+        #{vascularDiseaseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="ocularDiseases != null">
+        #{ocularDiseases,jdbcType=VARCHAR},
+      </if>
+      <if test="ocularDiseasesOther != null">
+        #{ocularDiseasesOther,jdbcType=VARCHAR},
+      </if>
+      <if test="nervousSystemDisease != null">
+        #{nervousSystemDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="nervousDiseaseMemo != null">
+        #{nervousDiseaseMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDisease != null">
+        #{otherDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDiseaseMemo != null">
+        #{otherDiseaseMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="healthEvaluation != null">
+        #{healthEvaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormal1 != null">
+        #{abnormal1,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormal2 != null">
+        #{abnormal2,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormal3 != null">
+        #{abnormal3,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormal4 != null">
+        #{abnormal4,jdbcType=VARCHAR},
+      </if>
+      <if test="healthGuidance != null">
+        #{healthGuidance,jdbcType=VARCHAR},
+      </if>
+      <if test="dangerControlling != null">
+        #{dangerControlling,jdbcType=VARCHAR},
+      </if>
+      <if test="targetWeight != null">
+        #{targetWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="adviseBacterin != null">
+        #{adviseBacterin,jdbcType=VARCHAR},
+      </if>
+      <if test="dangerControllingOther != null">
+        #{dangerControllingOther,jdbcType=VARCHAR},
+      </if>
+      <if test="healthAdvice != null">
+        #{healthAdvice,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.PhysicalExamination">
+    update physical_examination_record
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNo != null">
+        batch_no = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        bar_code = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checkFlag != null">
+        check_flag = #{checkFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="dutydoctor != null">
+        dutydoctor = #{dutydoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="symptom != null">
+        symptom = #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="symptomOther != null">
+        symptom_other = #{symptomOther,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null">
+        check_date = #{checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="baseTemperature != null">
+        base_temperature = #{baseTemperature,jdbcType=VARCHAR},
+      </if>
+      <if test="baseHeartbeat != null">
+        base_heartbeat = #{baseHeartbeat,jdbcType=VARCHAR},
+      </if>
+      <if test="baseRespiratory != null">
+        base_respiratory = #{baseRespiratory,jdbcType=VARCHAR},
+      </if>
+      <if test="baseBloodPressureLeftHigh != null">
+        base_blood_pressure_left_high = #{baseBloodPressureLeftHigh,jdbcType=INTEGER},
+      </if>
+      <if test="baseBloodPressureLeftLow != null">
+        base_blood_pressure_left_low = #{baseBloodPressureLeftLow,jdbcType=INTEGER},
+      </if>
+      <if test="baseBloodPressureRightHigh != null">
+        base_blood_pressure_right_high = #{baseBloodPressureRightHigh,jdbcType=INTEGER},
+      </if>
+      <if test="baseBloodPressureRightLow != null">
+        base_blood_pressure_right_low = #{baseBloodPressureRightLow,jdbcType=INTEGER},
+      </if>
+      <if test="baseHeight != null">
+        base_height = #{baseHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="baseWeight != null">
+        base_weight = #{baseWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="baseWaist != null">
+        base_waist = #{baseWaist,jdbcType=VARCHAR},
+      </if>
+      <if test="baseBmi != null">
+        base_bmi = #{baseBmi,jdbcType=VARCHAR},
+      </if>
+      <if test="baseHealthEstimate != null">
+        base_health_estimate = #{baseHealthEstimate,jdbcType=VARCHAR},
+      </if>
+      <if test="baseSelfcareEstimate != null">
+        base_selfcare_estimate = #{baseSelfcareEstimate,jdbcType=VARCHAR},
+      </if>
+      <if test="baseCognitionEstimate != null">
+        base_cognition_estimate = #{baseCognitionEstimate,jdbcType=VARCHAR},
+      </if>
+      <if test="baseCognitionScore != null">
+        base_cognition_score = #{baseCognitionScore,jdbcType=VARCHAR},
+      </if>
+      <if test="baseFeelingEstimate != null">
+        base_feeling_estimate = #{baseFeelingEstimate,jdbcType=VARCHAR},
+      </if>
+      <if test="baseFeelingScore != null">
+        base_feeling_score = #{baseFeelingScore,jdbcType=VARCHAR},
+      </if>
+      <if test="baseDoctor != null">
+        base_doctor = #{baseDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayExerciseFrequency != null">
+        lifeway_exercise_frequency = #{lifewayExerciseFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayExerciseTime != null">
+        lifeway_exercise_time = #{lifewayExerciseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayExerciseYear != null">
+        lifeway_exercise_year = #{lifewayExerciseYear,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayExerciseType != null">
+        lifeway_exercise_type = #{lifewayExerciseType,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDiet != null">
+        lifeway_diet = #{lifewayDiet,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewaySmokeStatus != null">
+        lifeway_smoke_status = #{lifewaySmokeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewaySmokeNumber != null">
+        lifeway_smoke_number = #{lifewaySmokeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewaySmokeStartage != null">
+        lifeway_smoke_startage = #{lifewaySmokeStartage,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewaySmokeEndage != null">
+        lifeway_smoke_endage = #{lifewaySmokeEndage,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkStatus != null">
+        lifeway_drink_status = #{lifewayDrinkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkNumber != null">
+        lifeway_drink_number = #{lifewayDrinkNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkStop != null">
+        lifeway_drink_stop = #{lifewayDrinkStop,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkStopage != null">
+        lifeway_drink_stopage = #{lifewayDrinkStopage,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkStartage != null">
+        lifeway_drink_startage = #{lifewayDrinkStartage,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkOneyear != null">
+        lifeway_drink_oneyear = #{lifewayDrinkOneyear,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkType != null">
+        lifeway_drink_type = #{lifewayDrinkType,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDrinkOther != null">
+        lifeway_drink_other = #{lifewayDrinkOther,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayOccupationalDisease != null">
+        lifeway_occupational_disease = #{lifewayOccupationalDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayJob != null">
+        lifeway_job = #{lifewayJob,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayJobPeriod != null">
+        lifeway_job_period = #{lifewayJobPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayHazardousDust != null">
+        lifeway_hazardous_dust = #{lifewayHazardousDust,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDustPreventive != null">
+        lifeway_dust_preventive = #{lifewayDustPreventive,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayHazardousRadiation != null">
+        lifeway_hazardous_radiation = #{lifewayHazardousRadiation,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayRadiationPreventive != null">
+        lifeway_radiation_preventive = #{lifewayRadiationPreventive,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayHazardousPhysical != null">
+        lifeway_hazardous_physical = #{lifewayHazardousPhysical,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayPhysicalPreventive != null">
+        lifeway_physical_preventive = #{lifewayPhysicalPreventive,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayHazardousChemical != null">
+        lifeway_hazardous_chemical = #{lifewayHazardousChemical,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayChemicalPreventive != null">
+        lifeway_chemical_preventive = #{lifewayChemicalPreventive,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayHazardousOther != null">
+        lifeway_hazardous_other = #{lifewayHazardousOther,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayOtherPreventive != null">
+        lifeway_other_preventive = #{lifewayOtherPreventive,jdbcType=VARCHAR},
+      </if>
+      <if test="lifewayDoctor != null">
+        lifeway_doctor = #{lifewayDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="organLips != null">
+        organ_lips = #{organLips,jdbcType=VARCHAR},
+      </if>
+      <if test="organTooth != null">
+        organ_tooth = #{organTooth,jdbcType=VARCHAR},
+      </if>
+      <if test="organHypodontia != null">
+        organ_hypodontia = #{organHypodontia,jdbcType=VARCHAR},
+      </if>
+      <if test="organHypodontiaTopleft != null">
+        organ_hypodontia_topleft = #{organHypodontiaTopleft,jdbcType=VARCHAR},
+      </if>
+      <if test="organHypodontiaTopright != null">
+        organ_hypodontia_topright = #{organHypodontiaTopright,jdbcType=VARCHAR},
+      </if>
+      <if test="organHypodontiaBottomleft != null">
+        organ_hypodontia_bottomleft = #{organHypodontiaBottomleft,jdbcType=VARCHAR},
+      </if>
+      <if test="organHypodontiaBottomright != null">
+        organ_hypodontia_bottomright = #{organHypodontiaBottomright,jdbcType=VARCHAR},
+      </if>
+      <if test="organCaries != null">
+        organ_caries = #{organCaries,jdbcType=VARCHAR},
+      </if>
+      <if test="organCariesTopleft != null">
+        organ_caries_topleft = #{organCariesTopleft,jdbcType=VARCHAR},
+      </if>
+      <if test="organCariesTopright != null">
+        organ_caries_topright = #{organCariesTopright,jdbcType=VARCHAR},
+      </if>
+      <if test="organCariesBottomleft != null">
+        organ_caries_bottomleft = #{organCariesBottomleft,jdbcType=VARCHAR},
+      </if>
+      <if test="organCariesBottomright != null">
+        organ_caries_bottomright = #{organCariesBottomright,jdbcType=VARCHAR},
+      </if>
+      <if test="organDenture != null">
+        organ_denture = #{organDenture,jdbcType=VARCHAR},
+      </if>
+      <if test="organDentureTopleft != null">
+        organ_denture_topleft = #{organDentureTopleft,jdbcType=VARCHAR},
+      </if>
+      <if test="organDentureTopright != null">
+        organ_denture_topright = #{organDentureTopright,jdbcType=VARCHAR},
+      </if>
+      <if test="organDentureBottomleft != null">
+        organ_denture_bottomleft = #{organDentureBottomleft,jdbcType=VARCHAR},
+      </if>
+      <if test="organDentureBottomright != null">
+        organ_denture_bottomright = #{organDentureBottomright,jdbcType=VARCHAR},
+      </if>
+      <if test="organGuttur != null">
+        organ_guttur = #{organGuttur,jdbcType=VARCHAR},
+      </if>
+      <if test="organVisionLeft != null">
+        organ_vision_left = #{organVisionLeft,jdbcType=VARCHAR},
+      </if>
+      <if test="organVisionRight != null">
+        organ_vision_right = #{organVisionRight,jdbcType=VARCHAR},
+      </if>
+      <if test="organCorrectedvisionLeft != null">
+        organ_correctedvision_left = #{organCorrectedvisionLeft,jdbcType=VARCHAR},
+      </if>
+      <if test="organCorrectedvisionRight != null">
+        organ_correctedvision_right = #{organCorrectedvisionRight,jdbcType=VARCHAR},
+      </if>
+      <if test="organHearing != null">
+        organ_hearing = #{organHearing,jdbcType=VARCHAR},
+      </if>
+      <if test="organMovement != null">
+        organ_movement = #{organMovement,jdbcType=VARCHAR},
+      </if>
+      <if test="organDoctor != null">
+        organ_doctor = #{organDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationEye != null">
+        examination_eye = #{examinationEye,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationEyeOther != null">
+        examination_eye_other = #{examinationEyeOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationSkin != null">
+        examination_skin = #{examinationSkin,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationSkinOther != null">
+        examination_skin_other = #{examinationSkinOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationSclera != null">
+        examination_sclera = #{examinationSclera,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationScleraOther != null">
+        examination_sclera_other = #{examinationScleraOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationLymph != null">
+        examination_lymph = #{examinationLymph,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationLymphOther != null">
+        examination_lymph_other = #{examinationLymphOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationBarrelChest != null">
+        examination_barrel_chest = #{examinationBarrelChest,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationBreathSounds != null">
+        examination_breath_sounds = #{examinationBreathSounds,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationBreathOther != null">
+        examination_breath_other = #{examinationBreathOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationRale != null">
+        examination_rale = #{examinationRale,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationRaleOther != null">
+        examination_rale_other = #{examinationRaleOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationHeartRate != null">
+        examination_heart_rate = #{examinationHeartRate,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationHeartRhythm != null">
+        examination_heart_rhythm = #{examinationHeartRhythm,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationHeartNoise != null">
+        examination_heart_noise = #{examinationHeartNoise,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationNoiseOther != null">
+        examination_noise_other = #{examinationNoiseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAbdomenTenderness != null">
+        examination_abdomen_tenderness = #{examinationAbdomenTenderness,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationTendernessMemo != null">
+        examination_tenderness_memo = #{examinationTendernessMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAbdomenMass != null">
+        examination_abdomen_mass = #{examinationAbdomenMass,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationMassMemo != null">
+        examination_mass_memo = #{examinationMassMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAbdomenHepatomegaly != null">
+        examination_abdomen_hepatomegaly = #{examinationAbdomenHepatomegaly,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationHepatomegalyMemo != null">
+        examination_hepatomegaly_memo = #{examinationHepatomegalyMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAbdomenSplenomegaly != null">
+        examination_abdomen_splenomegaly = #{examinationAbdomenSplenomegaly,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationSplenomegalyMemo != null">
+        examination_splenomegaly_memo = #{examinationSplenomegalyMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAbdomenShiftingdullness != null">
+        examination_abdomen_shiftingdullness = #{examinationAbdomenShiftingdullness,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationShiftingdullnessMemo != null">
+        examination_shiftingdullness_memo = #{examinationShiftingdullnessMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationLowerextremityEdema != null">
+        examination_lowerextremity_edema = #{examinationLowerextremityEdema,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationDorsalArtery != null">
+        examination_dorsal_artery = #{examinationDorsalArtery,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAnus != null">
+        examination_anus = #{examinationAnus,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAnusOther != null">
+        examination_anus_other = #{examinationAnusOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationBreast != null">
+        examination_breast = #{examinationBreast,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationBreastOther != null">
+        examination_breast_other = #{examinationBreastOther,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationDoctor != null">
+        examination_doctor = #{examinationDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationWomanVulva != null">
+        examination_woman_vulva = #{examinationWomanVulva,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationVulvaMemo != null">
+        examination_vulva_memo = #{examinationVulvaMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationWomanVagina != null">
+        examination_woman_vagina = #{examinationWomanVagina,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationVaginaMemo != null">
+        examination_vagina_memo = #{examinationVaginaMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationWomanCervix != null">
+        examination_woman_cervix = #{examinationWomanCervix,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationCervixMemo != null">
+        examination_cervix_memo = #{examinationCervixMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationWomanCorpus != null">
+        examination_woman_corpus = #{examinationWomanCorpus,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationCorpusMemo != null">
+        examination_corpus_memo = #{examinationCorpusMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationWomanAccessories != null">
+        examination_woman_accessories = #{examinationWomanAccessories,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationAccessoriesMemo != null">
+        examination_accessories_memo = #{examinationAccessoriesMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationWomanDoctor != null">
+        examination_woman_doctor = #{examinationWomanDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="examinationOther != null">
+        examination_other = #{examinationOther,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodHemoglobin != null">
+        blood_hemoglobin = #{bloodHemoglobin,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodLeukocyte != null">
+        blood_leukocyte = #{bloodLeukocyte,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodPlatelet != null">
+        blood_platelet = #{bloodPlatelet,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodOther != null">
+        blood_other = #{bloodOther,jdbcType=VARCHAR},
+      </if>
+      <if test="urineProtein != null">
+        urine_protein = #{urineProtein,jdbcType=VARCHAR},
+      </if>
+      <if test="glycosuria != null">
+        glycosuria = #{glycosuria,jdbcType=VARCHAR},
+      </if>
+      <if test="urineAcetoneBodies != null">
+        urine_acetone_bodies = #{urineAcetoneBodies,jdbcType=VARCHAR},
+      </if>
+      <if test="bld != null">
+        bld = #{bld,jdbcType=VARCHAR},
+      </if>
+      <if test="urineOther != null">
+        urine_other = #{urineOther,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodGlucoseMmol != null">
+        blood_glucose_mmol = #{bloodGlucoseMmol,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodGlucoseMg != null">
+        blood_glucose_mg = #{bloodGlucoseMg,jdbcType=VARCHAR},
+      </if>
+      <if test="cardiogram != null">
+        cardiogram = #{cardiogram,jdbcType=VARCHAR},
+      </if>
+      <if test="cardiogramMemo != null">
+        cardiogram_memo = #{cardiogramMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardiogramImg != null">
+        cardiogram_img = #{cardiogramImg,jdbcType=VARCHAR},
+      </if>
+      <if test="microalbuminuria != null">
+        microalbuminuria = #{microalbuminuria,jdbcType=VARCHAR},
+      </if>
+      <if test="fob != null">
+        fob = #{fob,jdbcType=VARCHAR},
+      </if>
+      <if test="glycosylatedHemoglobin != null">
+        glycosylated_hemoglobin = #{glycosylatedHemoglobin,jdbcType=VARCHAR},
+      </if>
+      <if test="hb != null">
+        hb = #{hb,jdbcType=VARCHAR},
+      </if>
+      <if test="sgft != null">
+        sgft = #{sgft,jdbcType=VARCHAR},
+      </if>
+      <if test="ast != null">
+        ast = #{ast,jdbcType=VARCHAR},
+      </if>
+      <if test="albumin != null">
+        albumin = #{albumin,jdbcType=VARCHAR},
+      </if>
+      <if test="totalBilirubin != null">
+        total_bilirubin = #{totalBilirubin,jdbcType=VARCHAR},
+      </if>
+      <if test="conjugatedBilirubin != null">
+        conjugated_bilirubin = #{conjugatedBilirubin,jdbcType=VARCHAR},
+      </if>
+      <if test="scr != null">
+        scr = #{scr,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodUrea != null">
+        blood_urea = #{bloodUrea,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodK != null">
+        blood_k = #{bloodK,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodNa != null">
+        blood_na = #{bloodNa,jdbcType=VARCHAR},
+      </if>
+      <if test="tc != null">
+        tc = #{tc,jdbcType=VARCHAR},
+      </if>
+      <if test="tg != null">
+        tg = #{tg,jdbcType=VARCHAR},
+      </if>
+      <if test="ldl != null">
+        ldl = #{ldl,jdbcType=VARCHAR},
+      </if>
+      <if test="hdl != null">
+        hdl = #{hdl,jdbcType=VARCHAR},
+      </if>
+      <if test="chestX != null">
+        chest_x = #{chestX,jdbcType=VARCHAR},
+      </if>
+      <if test="xMemo != null">
+        x_memo = #{xMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="chestxImg != null">
+        chestx_img = #{chestxImg,jdbcType=VARCHAR},
+      </if>
+      <if test="ultrasoundAbdomen != null">
+        ultrasound_abdomen = #{ultrasoundAbdomen,jdbcType=VARCHAR},
+      </if>
+      <if test="ultrasoundMemo != null">
+        ultrasound_memo = #{ultrasoundMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="abdomenbImg != null">
+        abdomenB_img = #{abdomenbImg,jdbcType=VARCHAR},
+      </if>
+      <if test="otherB != null">
+        other_b = #{otherB,jdbcType=VARCHAR},
+      </if>
+      <if test="otherbMemo != null">
+        otherb_memo = #{otherbMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherbImg != null">
+        otherb_img = #{otherbImg,jdbcType=VARCHAR},
+      </if>
+      <if test="cervicalSmear != null">
+        cervical_smear = #{cervicalSmear,jdbcType=VARCHAR},
+      </if>
+      <if test="cervicalSmearMemo != null">
+        cervical_smear_memo = #{cervicalSmearMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="cerebrovascularDisease != null">
+        cerebrovascular_disease = #{cerebrovascularDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="cerebrovascularDiseaseOther != null">
+        cerebrovascular_disease_other = #{cerebrovascularDiseaseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="kidneyDisease != null">
+        kidney_disease = #{kidneyDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="kidneyDiseaseOther != null">
+        kidney_disease_other = #{kidneyDiseaseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="heartDisease != null">
+        heart_disease = #{heartDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="heartDiseaseOther != null">
+        heart_disease_other = #{heartDiseaseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="vascularDisease != null">
+        vascular_disease = #{vascularDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="vascularDiseaseOther != null">
+        vascular_disease_other = #{vascularDiseaseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="ocularDiseases != null">
+        ocular_diseases = #{ocularDiseases,jdbcType=VARCHAR},
+      </if>
+      <if test="ocularDiseasesOther != null">
+        ocular_diseases_other = #{ocularDiseasesOther,jdbcType=VARCHAR},
+      </if>
+      <if test="nervousSystemDisease != null">
+        nervous_system_disease = #{nervousSystemDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="nervousDiseaseMemo != null">
+        nervous_disease_memo = #{nervousDiseaseMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDisease != null">
+        other_disease = #{otherDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDiseaseMemo != null">
+        other_disease_memo = #{otherDiseaseMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="healthEvaluation != null">
+        health_evaluation = #{healthEvaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormal1 != null">
+        abnormal1 = #{abnormal1,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormal2 != null">
+        abnormal2 = #{abnormal2,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormal3 != null">
+        abnormal3 = #{abnormal3,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormal4 != null">
+        abnormal4 = #{abnormal4,jdbcType=VARCHAR},
+      </if>
+      <if test="healthGuidance != null">
+        health_guidance = #{healthGuidance,jdbcType=VARCHAR},
+      </if>
+      <if test="dangerControlling != null">
+        danger_controlling = #{dangerControlling,jdbcType=VARCHAR},
+      </if>
+      <if test="targetWeight != null">
+        target_weight = #{targetWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="adviseBacterin != null">
+        advise_bacterin = #{adviseBacterin,jdbcType=VARCHAR},
+      </if>
+      <if test="dangerControllingOther != null">
+        danger_controlling_other = #{dangerControllingOther,jdbcType=VARCHAR},
+      </if>
+      <if test="healthAdvice != null">
+        health_advice = #{healthAdvice,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        create_org = #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        upload_status = #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        upload_result = #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.PhysicalExamination">
+    update physical_examination_record
+    set name = #{name,jdbcType=VARCHAR},
+      archive_no = #{archiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      batch_no = #{batchNo,jdbcType=VARCHAR},
+      bar_code = #{barCode,jdbcType=VARCHAR},
+      check_flag = #{checkFlag,jdbcType=VARCHAR},
+      dutydoctor = #{dutydoctor,jdbcType=VARCHAR},
+      symptom = #{symptom,jdbcType=VARCHAR},
+      symptom_other = #{symptomOther,jdbcType=VARCHAR},
+      check_date = #{checkDate,jdbcType=VARCHAR},
+      base_temperature = #{baseTemperature,jdbcType=VARCHAR},
+      base_heartbeat = #{baseHeartbeat,jdbcType=VARCHAR},
+      base_respiratory = #{baseRespiratory,jdbcType=VARCHAR},
+      base_blood_pressure_left_high = #{baseBloodPressureLeftHigh,jdbcType=INTEGER},
+      base_blood_pressure_left_low = #{baseBloodPressureLeftLow,jdbcType=INTEGER},
+      base_blood_pressure_right_high = #{baseBloodPressureRightHigh,jdbcType=INTEGER},
+      base_blood_pressure_right_low = #{baseBloodPressureRightLow,jdbcType=INTEGER},
+      base_height = #{baseHeight,jdbcType=VARCHAR},
+      base_weight = #{baseWeight,jdbcType=VARCHAR},
+      base_waist = #{baseWaist,jdbcType=VARCHAR},
+      base_bmi = #{baseBmi,jdbcType=VARCHAR},
+      base_health_estimate = #{baseHealthEstimate,jdbcType=VARCHAR},
+      base_selfcare_estimate = #{baseSelfcareEstimate,jdbcType=VARCHAR},
+      base_cognition_estimate = #{baseCognitionEstimate,jdbcType=VARCHAR},
+      base_cognition_score = #{baseCognitionScore,jdbcType=VARCHAR},
+      base_feeling_estimate = #{baseFeelingEstimate,jdbcType=VARCHAR},
+      base_feeling_score = #{baseFeelingScore,jdbcType=VARCHAR},
+      base_doctor = #{baseDoctor,jdbcType=VARCHAR},
+      lifeway_exercise_frequency = #{lifewayExerciseFrequency,jdbcType=VARCHAR},
+      lifeway_exercise_time = #{lifewayExerciseTime,jdbcType=VARCHAR},
+      lifeway_exercise_year = #{lifewayExerciseYear,jdbcType=VARCHAR},
+      lifeway_exercise_type = #{lifewayExerciseType,jdbcType=VARCHAR},
+      lifeway_diet = #{lifewayDiet,jdbcType=VARCHAR},
+      lifeway_smoke_status = #{lifewaySmokeStatus,jdbcType=VARCHAR},
+      lifeway_smoke_number = #{lifewaySmokeNumber,jdbcType=VARCHAR},
+      lifeway_smoke_startage = #{lifewaySmokeStartage,jdbcType=VARCHAR},
+      lifeway_smoke_endage = #{lifewaySmokeEndage,jdbcType=VARCHAR},
+      lifeway_drink_status = #{lifewayDrinkStatus,jdbcType=VARCHAR},
+      lifeway_drink_number = #{lifewayDrinkNumber,jdbcType=VARCHAR},
+      lifeway_drink_stop = #{lifewayDrinkStop,jdbcType=VARCHAR},
+      lifeway_drink_stopage = #{lifewayDrinkStopage,jdbcType=VARCHAR},
+      lifeway_drink_startage = #{lifewayDrinkStartage,jdbcType=VARCHAR},
+      lifeway_drink_oneyear = #{lifewayDrinkOneyear,jdbcType=VARCHAR},
+      lifeway_drink_type = #{lifewayDrinkType,jdbcType=VARCHAR},
+      lifeway_drink_other = #{lifewayDrinkOther,jdbcType=VARCHAR},
+      lifeway_occupational_disease = #{lifewayOccupationalDisease,jdbcType=VARCHAR},
+      lifeway_job = #{lifewayJob,jdbcType=VARCHAR},
+      lifeway_job_period = #{lifewayJobPeriod,jdbcType=VARCHAR},
+      lifeway_hazardous_dust = #{lifewayHazardousDust,jdbcType=VARCHAR},
+      lifeway_dust_preventive = #{lifewayDustPreventive,jdbcType=VARCHAR},
+      lifeway_hazardous_radiation = #{lifewayHazardousRadiation,jdbcType=VARCHAR},
+      lifeway_radiation_preventive = #{lifewayRadiationPreventive,jdbcType=VARCHAR},
+      lifeway_hazardous_physical = #{lifewayHazardousPhysical,jdbcType=VARCHAR},
+      lifeway_physical_preventive = #{lifewayPhysicalPreventive,jdbcType=VARCHAR},
+      lifeway_hazardous_chemical = #{lifewayHazardousChemical,jdbcType=VARCHAR},
+      lifeway_chemical_preventive = #{lifewayChemicalPreventive,jdbcType=VARCHAR},
+      lifeway_hazardous_other = #{lifewayHazardousOther,jdbcType=VARCHAR},
+      lifeway_other_preventive = #{lifewayOtherPreventive,jdbcType=VARCHAR},
+      lifeway_doctor = #{lifewayDoctor,jdbcType=VARCHAR},
+      organ_lips = #{organLips,jdbcType=VARCHAR},
+      organ_tooth = #{organTooth,jdbcType=VARCHAR},
+      organ_hypodontia = #{organHypodontia,jdbcType=VARCHAR},
+      organ_hypodontia_topleft = #{organHypodontiaTopleft,jdbcType=VARCHAR},
+      organ_hypodontia_topright = #{organHypodontiaTopright,jdbcType=VARCHAR},
+      organ_hypodontia_bottomleft = #{organHypodontiaBottomleft,jdbcType=VARCHAR},
+      organ_hypodontia_bottomright = #{organHypodontiaBottomright,jdbcType=VARCHAR},
+      organ_caries = #{organCaries,jdbcType=VARCHAR},
+      organ_caries_topleft = #{organCariesTopleft,jdbcType=VARCHAR},
+      organ_caries_topright = #{organCariesTopright,jdbcType=VARCHAR},
+      organ_caries_bottomleft = #{organCariesBottomleft,jdbcType=VARCHAR},
+      organ_caries_bottomright = #{organCariesBottomright,jdbcType=VARCHAR},
+      organ_denture = #{organDenture,jdbcType=VARCHAR},
+      organ_denture_topleft = #{organDentureTopleft,jdbcType=VARCHAR},
+      organ_denture_topright = #{organDentureTopright,jdbcType=VARCHAR},
+      organ_denture_bottomleft = #{organDentureBottomleft,jdbcType=VARCHAR},
+      organ_denture_bottomright = #{organDentureBottomright,jdbcType=VARCHAR},
+      organ_guttur = #{organGuttur,jdbcType=VARCHAR},
+      organ_vision_left = #{organVisionLeft,jdbcType=VARCHAR},
+      organ_vision_right = #{organVisionRight,jdbcType=VARCHAR},
+      organ_correctedvision_left = #{organCorrectedvisionLeft,jdbcType=VARCHAR},
+      organ_correctedvision_right = #{organCorrectedvisionRight,jdbcType=VARCHAR},
+      organ_hearing = #{organHearing,jdbcType=VARCHAR},
+      organ_movement = #{organMovement,jdbcType=VARCHAR},
+      organ_doctor = #{organDoctor,jdbcType=VARCHAR},
+      examination_eye = #{examinationEye,jdbcType=VARCHAR},
+      examination_eye_other = #{examinationEyeOther,jdbcType=VARCHAR},
+      examination_skin = #{examinationSkin,jdbcType=VARCHAR},
+      examination_skin_other = #{examinationSkinOther,jdbcType=VARCHAR},
+      examination_sclera = #{examinationSclera,jdbcType=VARCHAR},
+      examination_sclera_other = #{examinationScleraOther,jdbcType=VARCHAR},
+      examination_lymph = #{examinationLymph,jdbcType=VARCHAR},
+      examination_lymph_other = #{examinationLymphOther,jdbcType=VARCHAR},
+      examination_barrel_chest = #{examinationBarrelChest,jdbcType=VARCHAR},
+      examination_breath_sounds = #{examinationBreathSounds,jdbcType=VARCHAR},
+      examination_breath_other = #{examinationBreathOther,jdbcType=VARCHAR},
+      examination_rale = #{examinationRale,jdbcType=VARCHAR},
+      examination_rale_other = #{examinationRaleOther,jdbcType=VARCHAR},
+      examination_heart_rate = #{examinationHeartRate,jdbcType=VARCHAR},
+      examination_heart_rhythm = #{examinationHeartRhythm,jdbcType=VARCHAR},
+      examination_heart_noise = #{examinationHeartNoise,jdbcType=VARCHAR},
+      examination_noise_other = #{examinationNoiseOther,jdbcType=VARCHAR},
+      examination_abdomen_tenderness = #{examinationAbdomenTenderness,jdbcType=VARCHAR},
+      examination_tenderness_memo = #{examinationTendernessMemo,jdbcType=VARCHAR},
+      examination_abdomen_mass = #{examinationAbdomenMass,jdbcType=VARCHAR},
+      examination_mass_memo = #{examinationMassMemo,jdbcType=VARCHAR},
+      examination_abdomen_hepatomegaly = #{examinationAbdomenHepatomegaly,jdbcType=VARCHAR},
+      examination_hepatomegaly_memo = #{examinationHepatomegalyMemo,jdbcType=VARCHAR},
+      examination_abdomen_splenomegaly = #{examinationAbdomenSplenomegaly,jdbcType=VARCHAR},
+      examination_splenomegaly_memo = #{examinationSplenomegalyMemo,jdbcType=VARCHAR},
+      examination_abdomen_shiftingdullness = #{examinationAbdomenShiftingdullness,jdbcType=VARCHAR},
+      examination_shiftingdullness_memo = #{examinationShiftingdullnessMemo,jdbcType=VARCHAR},
+      examination_lowerextremity_edema = #{examinationLowerextremityEdema,jdbcType=VARCHAR},
+      examination_dorsal_artery = #{examinationDorsalArtery,jdbcType=VARCHAR},
+      examination_anus = #{examinationAnus,jdbcType=VARCHAR},
+      examination_anus_other = #{examinationAnusOther,jdbcType=VARCHAR},
+      examination_breast = #{examinationBreast,jdbcType=VARCHAR},
+      examination_breast_other = #{examinationBreastOther,jdbcType=VARCHAR},
+      examination_doctor = #{examinationDoctor,jdbcType=VARCHAR},
+      examination_woman_vulva = #{examinationWomanVulva,jdbcType=VARCHAR},
+      examination_vulva_memo = #{examinationVulvaMemo,jdbcType=VARCHAR},
+      examination_woman_vagina = #{examinationWomanVagina,jdbcType=VARCHAR},
+      examination_vagina_memo = #{examinationVaginaMemo,jdbcType=VARCHAR},
+      examination_woman_cervix = #{examinationWomanCervix,jdbcType=VARCHAR},
+      examination_cervix_memo = #{examinationCervixMemo,jdbcType=VARCHAR},
+      examination_woman_corpus = #{examinationWomanCorpus,jdbcType=VARCHAR},
+      examination_corpus_memo = #{examinationCorpusMemo,jdbcType=VARCHAR},
+      examination_woman_accessories = #{examinationWomanAccessories,jdbcType=VARCHAR},
+      examination_accessories_memo = #{examinationAccessoriesMemo,jdbcType=VARCHAR},
+      examination_woman_doctor = #{examinationWomanDoctor,jdbcType=VARCHAR},
+      examination_other = #{examinationOther,jdbcType=VARCHAR},
+      blood_hemoglobin = #{bloodHemoglobin,jdbcType=VARCHAR},
+      blood_leukocyte = #{bloodLeukocyte,jdbcType=VARCHAR},
+      blood_platelet = #{bloodPlatelet,jdbcType=VARCHAR},
+      blood_other = #{bloodOther,jdbcType=VARCHAR},
+      urine_protein = #{urineProtein,jdbcType=VARCHAR},
+      glycosuria = #{glycosuria,jdbcType=VARCHAR},
+      urine_acetone_bodies = #{urineAcetoneBodies,jdbcType=VARCHAR},
+      bld = #{bld,jdbcType=VARCHAR},
+      urine_other = #{urineOther,jdbcType=VARCHAR},
+      blood_glucose_mmol = #{bloodGlucoseMmol,jdbcType=VARCHAR},
+      blood_glucose_mg = #{bloodGlucoseMg,jdbcType=VARCHAR},
+      cardiogram = #{cardiogram,jdbcType=VARCHAR},
+      cardiogram_memo = #{cardiogramMemo,jdbcType=VARCHAR},
+      cardiogram_img = #{cardiogramImg,jdbcType=VARCHAR},
+      microalbuminuria = #{microalbuminuria,jdbcType=VARCHAR},
+      fob = #{fob,jdbcType=VARCHAR},
+      glycosylated_hemoglobin = #{glycosylatedHemoglobin,jdbcType=VARCHAR},
+      hb = #{hb,jdbcType=VARCHAR},
+      sgft = #{sgft,jdbcType=VARCHAR},
+      ast = #{ast,jdbcType=VARCHAR},
+      albumin = #{albumin,jdbcType=VARCHAR},
+      total_bilirubin = #{totalBilirubin,jdbcType=VARCHAR},
+      conjugated_bilirubin = #{conjugatedBilirubin,jdbcType=VARCHAR},
+      scr = #{scr,jdbcType=VARCHAR},
+      blood_urea = #{bloodUrea,jdbcType=VARCHAR},
+      blood_k = #{bloodK,jdbcType=VARCHAR},
+      blood_na = #{bloodNa,jdbcType=VARCHAR},
+      tc = #{tc,jdbcType=VARCHAR},
+      tg = #{tg,jdbcType=VARCHAR},
+      ldl = #{ldl,jdbcType=VARCHAR},
+      hdl = #{hdl,jdbcType=VARCHAR},
+      chest_x = #{chestX,jdbcType=VARCHAR},
+      x_memo = #{xMemo,jdbcType=VARCHAR},
+      chestx_img = #{chestxImg,jdbcType=VARCHAR},
+      ultrasound_abdomen = #{ultrasoundAbdomen,jdbcType=VARCHAR},
+      ultrasound_memo = #{ultrasoundMemo,jdbcType=VARCHAR},
+      abdomenB_img = #{abdomenbImg,jdbcType=VARCHAR},
+      other_b = #{otherB,jdbcType=VARCHAR},
+      otherb_memo = #{otherbMemo,jdbcType=VARCHAR},
+      otherb_img = #{otherbImg,jdbcType=VARCHAR},
+      cervical_smear = #{cervicalSmear,jdbcType=VARCHAR},
+      cervical_smear_memo = #{cervicalSmearMemo,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR},
+      cerebrovascular_disease = #{cerebrovascularDisease,jdbcType=VARCHAR},
+      cerebrovascular_disease_other = #{cerebrovascularDiseaseOther,jdbcType=VARCHAR},
+      kidney_disease = #{kidneyDisease,jdbcType=VARCHAR},
+      kidney_disease_other = #{kidneyDiseaseOther,jdbcType=VARCHAR},
+      heart_disease = #{heartDisease,jdbcType=VARCHAR},
+      heart_disease_other = #{heartDiseaseOther,jdbcType=VARCHAR},
+      vascular_disease = #{vascularDisease,jdbcType=VARCHAR},
+      vascular_disease_other = #{vascularDiseaseOther,jdbcType=VARCHAR},
+      ocular_diseases = #{ocularDiseases,jdbcType=VARCHAR},
+      ocular_diseases_other = #{ocularDiseasesOther,jdbcType=VARCHAR},
+      nervous_system_disease = #{nervousSystemDisease,jdbcType=VARCHAR},
+      nervous_disease_memo = #{nervousDiseaseMemo,jdbcType=VARCHAR},
+      other_disease = #{otherDisease,jdbcType=VARCHAR},
+      other_disease_memo = #{otherDiseaseMemo,jdbcType=VARCHAR},
+      health_evaluation = #{healthEvaluation,jdbcType=VARCHAR},
+      abnormal1 = #{abnormal1,jdbcType=VARCHAR},
+      abnormal2 = #{abnormal2,jdbcType=VARCHAR},
+      abnormal3 = #{abnormal3,jdbcType=VARCHAR},
+      abnormal4 = #{abnormal4,jdbcType=VARCHAR},
+      health_guidance = #{healthGuidance,jdbcType=VARCHAR},
+      danger_controlling = #{dangerControlling,jdbcType=VARCHAR},
+      target_weight = #{targetWeight,jdbcType=VARCHAR},
+      advise_bacterin = #{adviseBacterin,jdbcType=VARCHAR},
+      danger_controlling_other = #{dangerControllingOther,jdbcType=VARCHAR},
+      health_advice = #{healthAdvice,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_org = #{createOrg,jdbcType=VARCHAR},
+      create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      upload_status = #{uploadStatus,jdbcType=INTEGER},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      upload_result = #{uploadResult,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+    
+  <update id="updateArchiveNo" parameterType="com.zkhw.pub.vo.ArchiveId">
+  	update physical_examination_record
+  	set archive_no = #{archiveNo,jdbcType=VARCHAR}
+  	where archive_no = #{oldArchiveNo,jdbcType=VARCHAR}
+  </update> 
+  
+  <!-- 体检总人数 -->
+  <select id="allExamNum" parameterType="com.zkhw.stat.query.ResidentQuery"
+	resultType="com.zkhw.stat.vo.StatisticsVo">
+	SELECT COUNT(*) examTotalNum FROM physical_examination_record 
+	where 1 = 1
+	<if test="createOrg != null and createOrg != ''">
+		and create_org = #{createOrg,jdbcType=VARCHAR}
+	</if>
+	<if test="startTime != null and startTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') >= #{startTime}]]>
+	</if>
+	<if test="endTime != null and endTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') <= #{endTime}]]>
+	</if>
+</select>
+    
+</mapper>

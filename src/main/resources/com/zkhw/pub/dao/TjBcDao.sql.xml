@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.TjBcDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.TjBc">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="aichive_no" jdbcType="VARCHAR" property="aichiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
+    <result column="FubuBC" jdbcType="VARCHAR" property="fububc" />
+    <result column="FubuResult" jdbcType="VARCHAR" property="fuburesult" />
+    <result column="FubuDesc" jdbcType="VARCHAR" property="fubudesc" />
+    <result column="QitaBC" jdbcType="VARCHAR" property="qitabc" />
+    <result column="QitaResult" jdbcType="VARCHAR" property="qitaresult" />
+    <result column="QitaDesc" jdbcType="VARCHAR" property="qitadesc" />
+    <result column="BuPic01" jdbcType="VARCHAR" property="bupic01" />
+    <result column="BuPic02" jdbcType="VARCHAR" property="bupic02" />
+    <result column="BuPic03" jdbcType="VARCHAR" property="bupic03" />
+    <result column="BuPic04" jdbcType="VARCHAR" property="bupic04" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="synchronize_type" jdbcType="VARCHAR" property="synchronizeType" />
+    <result column="ZrysBC" jdbcType="VARCHAR" property="zrysbc" />
+    <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
+    <result column="imageUrl_a" jdbcType="VARCHAR" property="imageurlA" />
+    <result column="imageUrl_b" jdbcType="VARCHAR" property="imageurlB" />
+    <result column="imageUrl_c" jdbcType="VARCHAR" property="imageurlC" />
+    <result column="imageUrl_d" jdbcType="VARCHAR" property="imageurlD" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, aichive_no, id_number, bar_code, FubuBC, FubuResult, FubuDesc, QitaBC, QitaResult, 
+    QitaDesc, BuPic01, BuPic02, BuPic03, BuPic04, createtime, updatetime, synchronize_type, 
+    ZrysBC, upload_status, imageUrl_a, imageUrl_b, imageUrl_c, imageUrl_d
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zkhw_tj_bc
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findListByAichiveNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zkhw_tj_bc
+    where aichive_no = #{aichiveNo,jdbcType=VARCHAR}
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from zkhw_tj_bc
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.pub.entity.TjBc">
+    insert into zkhw_tj_bc (ID, aichive_no, id_number, 
+      bar_code, FubuBC, FubuResult, 
+      FubuDesc, QitaBC, QitaResult, 
+      QitaDesc, BuPic01, BuPic02, 
+      BuPic03, BuPic04, createtime, 
+      updatetime, synchronize_type, ZrysBC, 
+      upload_status, imageUrl_a, imageUrl_b, 
+      imageUrl_c, imageUrl_d)
+    values (#{id,jdbcType=VARCHAR}, #{aichiveNo,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, 
+      #{barCode,jdbcType=VARCHAR}, #{fububc,jdbcType=VARCHAR}, #{fuburesult,jdbcType=VARCHAR}, 
+      #{fubudesc,jdbcType=VARCHAR}, #{qitabc,jdbcType=VARCHAR}, #{qitaresult,jdbcType=VARCHAR}, 
+      #{qitadesc,jdbcType=VARCHAR}, #{bupic01,jdbcType=VARCHAR}, #{bupic02,jdbcType=VARCHAR}, 
+      #{bupic03,jdbcType=VARCHAR}, #{bupic04,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{synchronizeType,jdbcType=VARCHAR}, #{zrysbc,jdbcType=VARCHAR}, 
+      #{uploadStatus,jdbcType=INTEGER}, #{imageurlA,jdbcType=VARCHAR}, #{imageurlB,jdbcType=VARCHAR}, 
+      #{imageurlC,jdbcType=VARCHAR}, #{imageurlD,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.TjBc">
+    insert into zkhw_tj_bc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="aichiveNo != null">
+        aichive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="barCode != null">
+        bar_code,
+      </if>
+      <if test="fububc != null">
+        FubuBC,
+      </if>
+      <if test="fuburesult != null">
+        FubuResult,
+      </if>
+      <if test="fubudesc != null">
+        FubuDesc,
+      </if>
+      <if test="qitabc != null">
+        QitaBC,
+      </if>
+      <if test="qitaresult != null">
+        QitaResult,
+      </if>
+      <if test="qitadesc != null">
+        QitaDesc,
+      </if>
+      <if test="bupic01 != null">
+        BuPic01,
+      </if>
+      <if test="bupic02 != null">
+        BuPic02,
+      </if>
+      <if test="bupic03 != null">
+        BuPic03,
+      </if>
+      <if test="bupic04 != null">
+        BuPic04,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="synchronizeType != null">
+        synchronize_type,
+      </if>
+      <if test="zrysbc != null">
+        ZrysBC,
+      </if>
+      <if test="uploadStatus != null">
+        upload_status,
+      </if>
+      <if test="imageurlA != null">
+        imageUrl_a,
+      </if>
+      <if test="imageurlB != null">
+        imageUrl_b,
+      </if>
+      <if test="imageurlC != null">
+        imageUrl_c,
+      </if>
+      <if test="imageurlD != null">
+        imageUrl_d,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="aichiveNo != null">
+        #{aichiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fububc != null">
+        #{fububc,jdbcType=VARCHAR},
+      </if>
+      <if test="fuburesult != null">
+        #{fuburesult,jdbcType=VARCHAR},
+      </if>
+      <if test="fubudesc != null">
+        #{fubudesc,jdbcType=VARCHAR},
+      </if>
+      <if test="qitabc != null">
+        #{qitabc,jdbcType=VARCHAR},
+      </if>
+      <if test="qitaresult != null">
+        #{qitaresult,jdbcType=VARCHAR},
+      </if>
+      <if test="qitadesc != null">
+        #{qitadesc,jdbcType=VARCHAR},
+      </if>
+      <if test="bupic01 != null">
+        #{bupic01,jdbcType=VARCHAR},
+      </if>
+      <if test="bupic02 != null">
+        #{bupic02,jdbcType=VARCHAR},
+      </if>
+      <if test="bupic03 != null">
+        #{bupic03,jdbcType=VARCHAR},
+      </if>
+      <if test="bupic04 != null">
+        #{bupic04,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="synchronizeType != null">
+        #{synchronizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="zrysbc != null">
+        #{zrysbc,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadStatus != null">
+        #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="imageurlA != null">
+        #{imageurlA,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurlB != null">
+        #{imageurlB,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurlC != null">
+        #{imageurlC,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurlD != null">
+        #{imageurlD,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.TjBc">
+    update zkhw_tj_bc
+    <set>
+      <if test="aichiveNo != null">
+        aichive_no = #{aichiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        bar_code = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fububc != null">
+        FubuBC = #{fububc,jdbcType=VARCHAR},
+      </if>
+      <if test="fuburesult != null">
+        FubuResult = #{fuburesult,jdbcType=VARCHAR},
+      </if>
+      <if test="fubudesc != null">
+        FubuDesc = #{fubudesc,jdbcType=VARCHAR},
+      </if>
+      <if test="qitabc != null">
+        QitaBC = #{qitabc,jdbcType=VARCHAR},
+      </if>
+      <if test="qitaresult != null">
+        QitaResult = #{qitaresult,jdbcType=VARCHAR},
+      </if>
+      <if test="qitadesc != null">
+        QitaDesc = #{qitadesc,jdbcType=VARCHAR},
+      </if>
+      <if test="bupic01 != null">
+        BuPic01 = #{bupic01,jdbcType=VARCHAR},
+      </if>
+      <if test="bupic02 != null">
+        BuPic02 = #{bupic02,jdbcType=VARCHAR},
+      </if>
+      <if test="bupic03 != null">
+        BuPic03 = #{bupic03,jdbcType=VARCHAR},
+      </if>
+      <if test="bupic04 != null">
+        BuPic04 = #{bupic04,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="synchronizeType != null">
+        synchronize_type = #{synchronizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="zrysbc != null">
+        ZrysBC = #{zrysbc,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadStatus != null">
+        upload_status = #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="imageurlA != null">
+        imageUrl_a = #{imageurlA,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurlB != null">
+        imageUrl_b = #{imageurlB,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurlC != null">
+        imageUrl_c = #{imageurlC,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurlD != null">
+        imageUrl_d = #{imageurlD,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.TjBc">
+    update zkhw_tj_bc
+    set aichive_no = #{aichiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      bar_code = #{barCode,jdbcType=VARCHAR},
+      FubuBC = #{fububc,jdbcType=VARCHAR},
+      FubuResult = #{fuburesult,jdbcType=VARCHAR},
+      FubuDesc = #{fubudesc,jdbcType=VARCHAR},
+      QitaBC = #{qitabc,jdbcType=VARCHAR},
+      QitaResult = #{qitaresult,jdbcType=VARCHAR},
+      QitaDesc = #{qitadesc,jdbcType=VARCHAR},
+      BuPic01 = #{bupic01,jdbcType=VARCHAR},
+      BuPic02 = #{bupic02,jdbcType=VARCHAR},
+      BuPic03 = #{bupic03,jdbcType=VARCHAR},
+      BuPic04 = #{bupic04,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      synchronize_type = #{synchronizeType,jdbcType=VARCHAR},
+      ZrysBC = #{zrysbc,jdbcType=VARCHAR},
+      upload_status = #{uploadStatus,jdbcType=INTEGER},
+      imageUrl_a = #{imageurlA,jdbcType=VARCHAR},
+      imageUrl_b = #{imageurlB,jdbcType=VARCHAR},
+      imageUrl_c = #{imageurlC,jdbcType=VARCHAR},
+      imageUrl_d = #{imageurlD,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

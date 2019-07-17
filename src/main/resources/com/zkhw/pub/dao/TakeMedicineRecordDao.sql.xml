@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.TakeMedicineRecordDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.TakeMedicineRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="exam_id" jdbcType="VARCHAR" property="examId" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="service_name" jdbcType="VARCHAR" property="serviceName" />
+    <result column="medicine_type" jdbcType="VARCHAR" property="medicineType" />
+    <result column="medicine_name" jdbcType="VARCHAR" property="medicineName" />
+    <result column="medicine_usage" jdbcType="VARCHAR" property="medicineUsage" />
+    <result column="frequency" jdbcType="VARCHAR" property="frequency" />
+    <result column="medicine_dosage" jdbcType="VARCHAR" property="medicineDosage" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="medicine_time" jdbcType="VARCHAR" property="medicineTime" />
+    <result column="medicine_time_unit" jdbcType="VARCHAR" property="medicineTimeUnit" />
+    <result column="medicine_compliance" jdbcType="VARCHAR" property="medicineCompliance" />
+    <result column="other" jdbcType="VARCHAR" property="other" />
+    <result column="create_org" jdbcType="VARCHAR" property="createOrg" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, exam_id, archive_no, id_number, service_name, medicine_type, medicine_name, medicine_usage, 
+    frequency, medicine_dosage, unit, medicine_time, medicine_time_unit, medicine_compliance, 
+    other, create_org, create_name, create_time, update_name, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from take_medicine_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findRecordByExamId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from take_medicine_record
+    where exam_id = #{examId,jdbcType=VARCHAR}
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from take_medicine_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.pub.entity.TakeMedicineRecord">
+    insert into take_medicine_record (id, exam_id, archive_no, 
+      id_number, service_name, medicine_type, 
+      medicine_name, medicine_usage, frequency, 
+      medicine_dosage, unit, medicine_time, 
+      medicine_time_unit, medicine_compliance, other, 
+      create_org, create_name, create_time, 
+      update_name, update_time)
+    values (#{id,jdbcType=VARCHAR}, #{examId,jdbcType=VARCHAR}, #{archiveNo,jdbcType=VARCHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{serviceName,jdbcType=VARCHAR}, #{medicineType,jdbcType=VARCHAR}, 
+      #{medicineName,jdbcType=VARCHAR}, #{medicineUsage,jdbcType=VARCHAR}, #{frequency,jdbcType=VARCHAR}, 
+      #{medicineDosage,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{medicineTime,jdbcType=VARCHAR}, 
+      #{medicineTimeUnit,jdbcType=VARCHAR}, #{medicineCompliance,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}, 
+      #{createOrg,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.TakeMedicineRecord">
+    insert into take_medicine_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="examId != null">
+        exam_id,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="serviceName != null">
+        service_name,
+      </if>
+      <if test="medicineType != null">
+        medicine_type,
+      </if>
+      <if test="medicineName != null">
+        medicine_name,
+      </if>
+      <if test="medicineUsage != null">
+        medicine_usage,
+      </if>
+      <if test="frequency != null">
+        frequency,
+      </if>
+      <if test="medicineDosage != null">
+        medicine_dosage,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="medicineTime != null">
+        medicine_time,
+      </if>
+      <if test="medicineTimeUnit != null">
+        medicine_time_unit,
+      </if>
+      <if test="medicineCompliance != null">
+        medicine_compliance,
+      </if>
+      <if test="other != null">
+        other,
+      </if>
+      <if test="createOrg != null">
+        create_org,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="examId != null">
+        #{examId,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineType != null">
+        #{medicineType,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineName != null">
+        #{medicineName,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineUsage != null">
+        #{medicineUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null">
+        #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineDosage != null">
+        #{medicineDosage,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineTime != null">
+        #{medicineTime,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineTimeUnit != null">
+        #{medicineTimeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineCompliance != null">
+        #{medicineCompliance,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.TakeMedicineRecord">
+    update take_medicine_record
+    <set>
+      <if test="examId != null">
+        exam_id = #{examId,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        service_name = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineType != null">
+        medicine_type = #{medicineType,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineName != null">
+        medicine_name = #{medicineName,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineUsage != null">
+        medicine_usage = #{medicineUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null">
+        frequency = #{frequency,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineDosage != null">
+        medicine_dosage = #{medicineDosage,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineTime != null">
+        medicine_time = #{medicineTime,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineTimeUnit != null">
+        medicine_time_unit = #{medicineTimeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineCompliance != null">
+        medicine_compliance = #{medicineCompliance,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        create_org = #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where archive_no = #{archiveNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.TakeMedicineRecord">
+    update take_medicine_record
+    set exam_id = #{examId,jdbcType=VARCHAR},
+      archive_no = #{archiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      service_name = #{serviceName,jdbcType=VARCHAR},
+      medicine_type = #{medicineType,jdbcType=VARCHAR},
+      medicine_name = #{medicineName,jdbcType=VARCHAR},
+      medicine_usage = #{medicineUsage,jdbcType=VARCHAR},
+      frequency = #{frequency,jdbcType=VARCHAR},
+      medicine_dosage = #{medicineDosage,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      medicine_time = #{medicineTime,jdbcType=VARCHAR},
+      medicine_time_unit = #{medicineTimeUnit,jdbcType=VARCHAR},
+      medicine_compliance = #{medicineCompliance,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR},
+      create_org = #{createOrg,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateArchiveNo" parameterType="com.zkhw.pub.vo.ArchiveId">
+  	update take_medicine_record
+  	set archive_no = #{archiveNo,jdbcType=VARCHAR}
+  	where archive_no = #{oldArchiveNo,jdbcType=VARCHAR}
+  </update>  
+</mapper>

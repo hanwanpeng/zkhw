@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhou.pub.dao.HealthExamInhosDao">
+  <resultMap id="BaseResultMap" type="com.wuzhou.pub.entity.HealthExamInhos">
+    <id column="HEALTH_EXAM_INHOS_ID" jdbcType="VARCHAR" property="healthExamInhosId" />
+    <result column="ADMISSION_DATE" jdbcType="TIMESTAMP" property="admissionDate" />
+    <result column="ADMISSION_REASON" jdbcType="VARCHAR" property="admissionReason" />
+    <result column="DISCHARGE_DATE" jdbcType="TIMESTAMP" property="dischargeDate" />
+    <result column="HEALTH_EXAM_ID" jdbcType="VARCHAR" property="healthExamId" />
+    <result column="HOSPITAL_NAME" jdbcType="VARCHAR" property="hospitalName" />
+    <result column="INHOS_HISTORY_TYPE_CODE" jdbcType="VARCHAR" property="inhosHistoryTypeCode" />
+    <result column="MEDICAL_RECORD_NO" jdbcType="VARCHAR" property="medicalRecordNo" />
+    <result column="ERR_CODE" jdbcType="DECIMAL" property="errCode" />
+    <result column="ERR_STR" jdbcType="VARCHAR" property="errStr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    HEALTH_EXAM_INHOS_ID, ADMISSION_DATE, ADMISSION_REASON, DISCHARGE_DATE, HEALTH_EXAM_ID, 
+    HOSPITAL_NAME, INHOS_HISTORY_TYPE_CODE, MEDICAL_RECORD_NO, ERR_CODE, ERR_STR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HEALTH_EXAM_INHOS
+    where HEALTH_EXAM_INHOS_ID = #{healthExamInhosId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HEALTH_EXAM_INHOS
+    where HEALTH_EXAM_INHOS_ID = #{healthExamInhosId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuzhou.pub.entity.HealthExamInhos">
+    insert into HEALTH_EXAM_INHOS (HEALTH_EXAM_INHOS_ID, ADMISSION_DATE, 
+      ADMISSION_REASON, DISCHARGE_DATE, HEALTH_EXAM_ID, 
+      HOSPITAL_NAME, INHOS_HISTORY_TYPE_CODE, MEDICAL_RECORD_NO, 
+      ERR_CODE, ERR_STR)
+    values (#{healthExamInhosId,jdbcType=VARCHAR}, #{admissionDate,jdbcType=TIMESTAMP}, 
+      #{admissionReason,jdbcType=VARCHAR}, #{dischargeDate,jdbcType=TIMESTAMP}, #{healthExamId,jdbcType=VARCHAR}, 
+      #{hospitalName,jdbcType=VARCHAR}, #{inhosHistoryTypeCode,jdbcType=VARCHAR}, #{medicalRecordNo,jdbcType=VARCHAR}, 
+      #{errCode,jdbcType=DECIMAL}, #{errStr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuzhou.pub.entity.HealthExamInhos">
+    insert into HEALTH_EXAM_INHOS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="healthExamInhosId != null">
+        HEALTH_EXAM_INHOS_ID,
+      </if>
+      <if test="admissionDate != null">
+        ADMISSION_DATE,
+      </if>
+      <if test="admissionReason != null">
+        ADMISSION_REASON,
+      </if>
+      <if test="dischargeDate != null">
+        DISCHARGE_DATE,
+      </if>
+      <if test="healthExamId != null">
+        HEALTH_EXAM_ID,
+      </if>
+      <if test="hospitalName != null">
+        HOSPITAL_NAME,
+      </if>
+      <if test="inhosHistoryTypeCode != null">
+        INHOS_HISTORY_TYPE_CODE,
+      </if>
+      <if test="medicalRecordNo != null">
+        MEDICAL_RECORD_NO,
+      </if>
+      <if test="errCode != null">
+        ERR_CODE,
+      </if>
+      <if test="errStr != null">
+        ERR_STR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="healthExamInhosId != null">
+        #{healthExamInhosId,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionDate != null">
+        #{admissionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admissionReason != null">
+        #{admissionReason,jdbcType=VARCHAR},
+      </if>
+      <if test="dischargeDate != null">
+        #{dischargeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="healthExamId != null">
+        #{healthExamId,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalName != null">
+        #{hospitalName,jdbcType=VARCHAR},
+      </if>
+      <if test="inhosHistoryTypeCode != null">
+        #{inhosHistoryTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalRecordNo != null">
+        #{medicalRecordNo,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null">
+        #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        #{errStr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuzhou.pub.entity.HealthExamInhos">
+    update HEALTH_EXAM_INHOS
+    <set>
+      <if test="admissionDate != null">
+        ADMISSION_DATE = #{admissionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="admissionReason != null">
+        ADMISSION_REASON = #{admissionReason,jdbcType=VARCHAR},
+      </if>
+      <if test="dischargeDate != null">
+        DISCHARGE_DATE = #{dischargeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="healthExamId != null">
+        HEALTH_EXAM_ID = #{healthExamId,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalName != null">
+        HOSPITAL_NAME = #{hospitalName,jdbcType=VARCHAR},
+      </if>
+      <if test="inhosHistoryTypeCode != null">
+        INHOS_HISTORY_TYPE_CODE = #{inhosHistoryTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalRecordNo != null">
+        MEDICAL_RECORD_NO = #{medicalRecordNo,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null">
+        ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        ERR_STR = #{errStr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HEALTH_EXAM_INHOS_ID = #{healthExamInhosId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuzhou.pub.entity.HealthExamInhos">
+    update HEALTH_EXAM_INHOS
+    set ADMISSION_DATE = #{admissionDate,jdbcType=TIMESTAMP},
+      ADMISSION_REASON = #{admissionReason,jdbcType=VARCHAR},
+      DISCHARGE_DATE = #{dischargeDate,jdbcType=TIMESTAMP},
+      HEALTH_EXAM_ID = #{healthExamId,jdbcType=VARCHAR},
+      HOSPITAL_NAME = #{hospitalName,jdbcType=VARCHAR},
+      INHOS_HISTORY_TYPE_CODE = #{inhosHistoryTypeCode,jdbcType=VARCHAR},
+      MEDICAL_RECORD_NO = #{medicalRecordNo,jdbcType=VARCHAR},
+      ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      ERR_STR = #{errStr,jdbcType=VARCHAR}
+    where HEALTH_EXAM_INHOS_ID = #{healthExamInhosId,jdbcType=VARCHAR}
+  </update>
+</mapper>

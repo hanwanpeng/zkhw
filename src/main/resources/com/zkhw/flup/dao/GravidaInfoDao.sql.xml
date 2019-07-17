@@ -1,0 +1,1304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.flup.dao.GravidaInfoDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.flup.entity.GravidaInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="visit_date" jdbcType="VARCHAR" property="visitDate" />
+    <result column="gestational_weeks" jdbcType="INTEGER" property="gestationalWeeks" />
+    <result column="gravida_age" jdbcType="INTEGER" property="gravidaAge" />
+    <result column="husband_name" jdbcType="VARCHAR" property="husbandName" />
+    <result column="husband_age" jdbcType="INTEGER" property="husbandAge" />
+    <result column="husband_phone" jdbcType="VARCHAR" property="husbandPhone" />
+    <result column="pregnant_num" jdbcType="INTEGER" property="pregnantNum" />
+    <result column="natural_labour_num" jdbcType="INTEGER" property="naturalLabourNum" />
+    <result column="cesarean_num" jdbcType="INTEGER" property="cesareanNum" />
+    <result column="last_menstruation_date" jdbcType="VARCHAR" property="lastMenstruationDate" />
+    <result column="due_date" jdbcType="VARCHAR" property="dueDate" />
+    <result column="past_illness" jdbcType="VARCHAR" property="pastIllness" />
+    <result column="past_illness_other" jdbcType="VARCHAR" property="pastIllnessOther" />
+    <result column="family_history" jdbcType="VARCHAR" property="familyHistory" />
+    <result column="family_history_other" jdbcType="VARCHAR" property="familyHistoryOther" />
+    <result column="habits_customs" jdbcType="VARCHAR" property="habitsCustoms" />
+    <result column="habits_customs_other" jdbcType="VARCHAR" property="habitsCustomsOther" />
+    <result column="isoperation" jdbcType="VARCHAR" property="isoperation" />
+    <result column="operation_name" jdbcType="VARCHAR" property="operationName" />
+    <result column="natural_abortion_num" jdbcType="INTEGER" property="naturalAbortionNum" />
+    <result column="abactio_num" jdbcType="INTEGER" property="abactioNum" />
+    <result column="fetaldeath_num" jdbcType="INTEGER" property="fetaldeathNum" />
+    <result column="stillbirth_num" jdbcType="INTEGER" property="stillbirthNum" />
+    <result column="neonatal_death_num" jdbcType="INTEGER" property="neonatalDeathNum" />
+    <result column="birth_defect_num" jdbcType="INTEGER" property="birthDefectNum" />
+    <result column="height" jdbcType="VARCHAR" property="height" />
+    <result column="weight" jdbcType="VARCHAR" property="weight" />
+    <result column="bmi" jdbcType="VARCHAR" property="bmi" />
+    <result column="blood_pressure_high" jdbcType="INTEGER" property="bloodPressureHigh" />
+    <result column="blood_pressure_low" jdbcType="INTEGER" property="bloodPressureLow" />
+    <result column="heart" jdbcType="VARCHAR" property="heart" />
+    <result column="heart_other" jdbcType="VARCHAR" property="heartOther" />
+    <result column="lungs" jdbcType="VARCHAR" property="lungs" />
+    <result column="lungs_other" jdbcType="VARCHAR" property="lungsOther" />
+    <result column="vulva" jdbcType="VARCHAR" property="vulva" />
+    <result column="vulva_other" jdbcType="VARCHAR" property="vulvaOther" />
+    <result column="vagina" jdbcType="VARCHAR" property="vagina" />
+    <result column="vagina_other" jdbcType="VARCHAR" property="vaginaOther" />
+    <result column="cervix" jdbcType="VARCHAR" property="cervix" />
+    <result column="cervix_other" jdbcType="VARCHAR" property="cervixOther" />
+    <result column="corpus" jdbcType="VARCHAR" property="corpus" />
+    <result column="corpus_other" jdbcType="VARCHAR" property="corpusOther" />
+    <result column="accessories" jdbcType="VARCHAR" property="accessories" />
+    <result column="accessories_other" jdbcType="VARCHAR" property="accessoriesOther" />
+    <result column="hemoglobin" jdbcType="VARCHAR" property="hemoglobin" />
+    <result column="leukocyte" jdbcType="VARCHAR" property="leukocyte" />
+    <result column="platelet" jdbcType="VARCHAR" property="platelet" />
+    <result column="blood_other" jdbcType="VARCHAR" property="bloodOther" />
+    <result column="urine_protein" jdbcType="VARCHAR" property="urineProtein" />
+    <result column="glycosuria" jdbcType="VARCHAR" property="glycosuria" />
+    <result column="urine_acetone_bodies" jdbcType="VARCHAR" property="urineAcetoneBodies" />
+    <result column="bld" jdbcType="VARCHAR" property="bld" />
+    <result column="urine_other" jdbcType="VARCHAR" property="urineOther" />
+    <result column="blood_sugar" jdbcType="VARCHAR" property="bloodSugar" />
+    <result column="blood_group" jdbcType="VARCHAR" property="bloodGroup" />
+    <result column="blood_rh" jdbcType="VARCHAR" property="bloodRh" />
+    <result column="sgft" jdbcType="VARCHAR" property="sgft" />
+    <result column="ast" jdbcType="VARCHAR" property="ast" />
+    <result column="albumin" jdbcType="VARCHAR" property="albumin" />
+    <result column="total_bilirubin" jdbcType="VARCHAR" property="totalBilirubin" />
+    <result column="conjugated_bilirubin" jdbcType="VARCHAR" property="conjugatedBilirubin" />
+    <result column="scr" jdbcType="VARCHAR" property="scr" />
+    <result column="blood_urea" jdbcType="VARCHAR" property="bloodUrea" />
+    <result column="vaginal_fluid" jdbcType="VARCHAR" property="vaginalFluid" />
+    <result column="vaginal_fluid_other" jdbcType="VARCHAR" property="vaginalFluidOther" />
+    <result column="vaginal_cleaning" jdbcType="VARCHAR" property="vaginalCleaning" />
+    <result column="hb" jdbcType="VARCHAR" property="hb" />
+    <result column="hbsab" jdbcType="VARCHAR" property="hbsab" />
+    <result column="hbeag" jdbcType="VARCHAR" property="hbeag" />
+    <result column="hbeab" jdbcType="VARCHAR" property="hbeab" />
+    <result column="hbcab" jdbcType="VARCHAR" property="hbcab" />
+    <result column="syphilis" jdbcType="VARCHAR" property="syphilis" />
+    <result column="hiv" jdbcType="VARCHAR" property="hiv" />
+    <result column="b_ultrasonic" jdbcType="VARCHAR" property="bUltrasonic" />
+    <result column="other" jdbcType="VARCHAR" property="other" />
+    <result column="general_assessment" jdbcType="VARCHAR" property="generalAssessment" />
+    <result column="assessment_error" jdbcType="VARCHAR" property="assessmentError" />
+    <result column="health_guidance" jdbcType="VARCHAR" property="healthGuidance" />
+    <result column="health_guidance_other" jdbcType="VARCHAR" property="healthGuidanceOther" />
+    <result column="transfer_treatment" jdbcType="VARCHAR" property="transferTreatment" />
+    <result column="transfer_treatment_reason" jdbcType="VARCHAR" property="transferTreatmentReason" />
+    <result column="transfer_treatment_department" jdbcType="VARCHAR" property="transferTreatmentDepartment" />
+    <result column="next_visit_date" jdbcType="VARCHAR" property="nextVisitDate" />
+    <result column="visit_doctor" jdbcType="VARCHAR" property="visitDoctor" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_org" jdbcType="VARCHAR" property="createOrg" />
+    <result column="create_org_name" jdbcType="VARCHAR" property="createOrgName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+    <result column="upload_result" jdbcType="VARCHAR" property="uploadResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, archive_no, id_number, visit_date, gestational_weeks, gravida_age, husband_name, 
+    husband_age, husband_phone, pregnant_num, natural_labour_num, cesarean_num, last_menstruation_date, 
+    due_date, past_illness, past_illness_other, family_history, family_history_other, 
+    habits_customs, habits_customs_other, isoperation, operation_name, natural_abortion_num, 
+    abactio_num, fetaldeath_num, stillbirth_num, neonatal_death_num, birth_defect_num, 
+    height, weight, bmi, blood_pressure_high, blood_pressure_low, heart, heart_other, 
+    lungs, lungs_other, vulva, vulva_other, vagina, vagina_other, cervix, cervix_other, 
+    corpus, corpus_other, accessories, accessories_other, hemoglobin, leukocyte, platelet, 
+    blood_other, urine_protein, glycosuria, urine_acetone_bodies, bld, urine_other, blood_sugar, 
+    blood_group, blood_rh, sgft, ast, albumin, total_bilirubin, conjugated_bilirubin, 
+    scr, blood_urea, vaginal_fluid, vaginal_fluid_other, vaginal_cleaning, hb, hbsab, 
+    hbeag, hbeab, hbcab, syphilis, hiv, b_ultrasonic, other, general_assessment, assessment_error, 
+    health_guidance, health_guidance_other, transfer_treatment, transfer_treatment_reason, 
+    transfer_treatment_department, next_visit_date, visit_doctor, status, create_user, 
+    create_name, create_org, create_org_name, create_time, update_user, update_name, 
+    update_time, upload_status, upload_time, upload_result
+  </sql>
+  
+  
+  <!-- 孕产妇统计 -->
+  <select id="statForGravida" parameterType="com.zkhw.stat.query.ResidentQuery" resultType="com.zkhw.stat.vo.GravidaVo">
+   SELECT (SELECT COUNT(1) FROM gravida_info
+   where 1 = 1
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+   ) AS gravidaInfoNum,
+	(SELECT COUNT(1) FROM gravida_info i JOIN gravida_after_record a ON i.archive_no = a.archive_no
+	where 1 = 1
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+	) AS gravidaAfterNum
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gravida_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findGravidaList" parameterType="com.zkhw.flup.query.GravidaInfoQuery" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gravida_info
+    where 1 = 1
+     <if test="archiveNo != null and archiveNo != ''">
+       and  archive_no = #{archiveNo,jdbcType=VARCHAR}
+     </if>  
+     <if test="provinceCode != null and provinceCode != ''">
+       and  exists(select 1 from resident_base_info i where i.archive_no = archive_no and  i.province_code = #{provinceCode,jdbcType=VARCHAR})
+     </if>   
+     <if test="cityCode != null and cityCode != ''">
+       and  exists(select 1 from resident_base_info i where i.archive_no = archive_no and  i.city_code = #{cityCode,jdbcType=VARCHAR})
+     </if> 
+     <if test="countyCode != null and countyCode != ''">
+       and  exists(select 1 from resident_base_info i where i.archive_no = archive_no and  i.county_code = #{countyCode,jdbcType=VARCHAR})
+     </if>  
+     <if test="townsCode != null and townsCode != ''">
+       and  exists(select 1 from resident_base_info i where i.archive_no = archive_no and  i.towns_code = #{townsCode,jdbcType=VARCHAR})
+     </if>  
+     <if test="villageCode != null and villageCode != ''">
+       and  exists(select 1 from resident_base_info i where i.archive_no = archive_no and  i.village_code = #{villageCode,jdbcType=VARCHAR})
+     </if>   
+     <if test="name != null and name != ''">
+       and (name like concat(concat('%',#{name,jdbcType=VARCHAR}),'%') 
+       or id_number like concat(concat('%',#{name,jdbcType=VARCHAR}),'%'))
+     </if>  
+     <if test="status != null and status != ''">
+       and  status = #{status,jdbcType=VARCHAR}
+     </if> 
+     <if test="minage != null and minage != ''">
+       and  gravida_age &gt;= #{minage,jdbcType=INTEGER}
+     </if>  
+     <if test="maxage != null and maxage != ''">
+       and  gravida_age &lt;= #{maxage,jdbcType=INTEGER}
+     </if>   
+     <if test="startDate != null and minage != ''">
+       and  visit_date &gt;= #{startDate,jdbcType=INTEGER}
+     </if>  
+     <if test="endDate != null and maxage != ''">
+       and  visit_date &lt;= #{endDate,jdbcType=INTEGER}
+     </if>         
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from gravida_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.flup.entity.GravidaInfo">
+    insert into gravida_info (id, name, archive_no, 
+      id_number, visit_date, gestational_weeks, 
+      gravida_age, husband_name, husband_age, 
+      husband_phone, pregnant_num, natural_labour_num, 
+      cesarean_num, last_menstruation_date, due_date, 
+      past_illness, past_illness_other, family_history, 
+      family_history_other, habits_customs, habits_customs_other, 
+      isoperation, operation_name, natural_abortion_num, 
+      abactio_num, fetaldeath_num, stillbirth_num, 
+      neonatal_death_num, birth_defect_num, height, 
+      weight, bmi, blood_pressure_high, 
+      blood_pressure_low, heart, heart_other, 
+      lungs, lungs_other, vulva, 
+      vulva_other, vagina, vagina_other, 
+      cervix, cervix_other, corpus, 
+      corpus_other, accessories, accessories_other, 
+      hemoglobin, leukocyte, platelet, 
+      blood_other, urine_protein, glycosuria, 
+      urine_acetone_bodies, bld, urine_other, 
+      blood_sugar, blood_group, blood_rh, 
+      sgft, ast, albumin, 
+      total_bilirubin, conjugated_bilirubin, scr, 
+      blood_urea, vaginal_fluid, vaginal_fluid_other, 
+      vaginal_cleaning, hb, hbsab, 
+      hbeag, hbeab, hbcab, 
+      syphilis, hiv, b_ultrasonic, 
+      other, general_assessment, assessment_error, 
+      health_guidance, health_guidance_other, transfer_treatment, 
+      transfer_treatment_reason, transfer_treatment_department, 
+      next_visit_date, visit_doctor, status, 
+      create_user, create_name, create_org, 
+      create_org_name, create_time, update_user, 
+      update_name, update_time, upload_status, 
+      upload_time, upload_result)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{archiveNo,jdbcType=VARCHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{visitDate,jdbcType=VARCHAR}, #{gestationalWeeks,jdbcType=INTEGER}, 
+      #{gravidaAge,jdbcType=INTEGER}, #{husbandName,jdbcType=VARCHAR}, #{husbandAge,jdbcType=INTEGER}, 
+      #{husbandPhone,jdbcType=VARCHAR}, #{pregnantNum,jdbcType=INTEGER}, #{naturalLabourNum,jdbcType=INTEGER}, 
+      #{cesareanNum,jdbcType=INTEGER}, #{lastMenstruationDate,jdbcType=VARCHAR}, #{dueDate,jdbcType=VARCHAR}, 
+      #{pastIllness,jdbcType=VARCHAR}, #{pastIllnessOther,jdbcType=VARCHAR}, #{familyHistory,jdbcType=VARCHAR}, 
+      #{familyHistoryOther,jdbcType=VARCHAR}, #{habitsCustoms,jdbcType=VARCHAR}, #{habitsCustomsOther,jdbcType=VARCHAR}, 
+      #{isoperation,jdbcType=VARCHAR}, #{operationName,jdbcType=VARCHAR}, #{naturalAbortionNum,jdbcType=INTEGER}, 
+      #{abactioNum,jdbcType=INTEGER}, #{fetaldeathNum,jdbcType=INTEGER}, #{stillbirthNum,jdbcType=INTEGER}, 
+      #{neonatalDeathNum,jdbcType=INTEGER}, #{birthDefectNum,jdbcType=INTEGER}, #{height,jdbcType=VARCHAR}, 
+      #{weight,jdbcType=VARCHAR}, #{bmi,jdbcType=VARCHAR}, #{bloodPressureHigh,jdbcType=INTEGER}, 
+      #{bloodPressureLow,jdbcType=INTEGER}, #{heart,jdbcType=VARCHAR}, #{heartOther,jdbcType=VARCHAR}, 
+      #{lungs,jdbcType=VARCHAR}, #{lungsOther,jdbcType=VARCHAR}, #{vulva,jdbcType=VARCHAR}, 
+      #{vulvaOther,jdbcType=VARCHAR}, #{vagina,jdbcType=VARCHAR}, #{vaginaOther,jdbcType=VARCHAR}, 
+      #{cervix,jdbcType=VARCHAR}, #{cervixOther,jdbcType=VARCHAR}, #{corpus,jdbcType=VARCHAR}, 
+      #{corpusOther,jdbcType=VARCHAR}, #{accessories,jdbcType=VARCHAR}, #{accessoriesOther,jdbcType=VARCHAR}, 
+      #{hemoglobin,jdbcType=VARCHAR}, #{leukocyte,jdbcType=VARCHAR}, #{platelet,jdbcType=VARCHAR}, 
+      #{bloodOther,jdbcType=VARCHAR}, #{urineProtein,jdbcType=VARCHAR}, #{glycosuria,jdbcType=VARCHAR}, 
+      #{urineAcetoneBodies,jdbcType=VARCHAR}, #{bld,jdbcType=VARCHAR}, #{urineOther,jdbcType=VARCHAR}, 
+      #{bloodSugar,jdbcType=VARCHAR}, #{bloodGroup,jdbcType=VARCHAR}, #{bloodRh,jdbcType=VARCHAR}, 
+      #{sgft,jdbcType=VARCHAR}, #{ast,jdbcType=VARCHAR}, #{albumin,jdbcType=VARCHAR}, 
+      #{totalBilirubin,jdbcType=VARCHAR}, #{conjugatedBilirubin,jdbcType=VARCHAR}, #{scr,jdbcType=VARCHAR}, 
+      #{bloodUrea,jdbcType=VARCHAR}, #{vaginalFluid,jdbcType=VARCHAR}, #{vaginalFluidOther,jdbcType=VARCHAR}, 
+      #{vaginalCleaning,jdbcType=VARCHAR}, #{hb,jdbcType=VARCHAR}, #{hbsab,jdbcType=VARCHAR}, 
+      #{hbeag,jdbcType=VARCHAR}, #{hbeab,jdbcType=VARCHAR}, #{hbcab,jdbcType=VARCHAR}, 
+      #{syphilis,jdbcType=VARCHAR}, #{hiv,jdbcType=VARCHAR}, #{bUltrasonic,jdbcType=VARCHAR}, 
+      #{other,jdbcType=VARCHAR}, #{generalAssessment,jdbcType=VARCHAR}, #{assessmentError,jdbcType=VARCHAR}, 
+      #{healthGuidance,jdbcType=VARCHAR}, #{healthGuidanceOther,jdbcType=VARCHAR}, #{transferTreatment,jdbcType=VARCHAR}, 
+      #{transferTreatmentReason,jdbcType=VARCHAR}, #{transferTreatmentDepartment,jdbcType=VARCHAR}, 
+      #{nextVisitDate,jdbcType=VARCHAR}, #{visitDoctor,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, #{createOrg,jdbcType=VARCHAR}, 
+      #{createOrgName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, 
+      #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{uploadStatus,jdbcType=INTEGER}, 
+      #{uploadTime,jdbcType=TIMESTAMP}, #{uploadResult,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.flup.entity.GravidaInfo">
+    insert into gravida_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="visitDate != null">
+        visit_date,
+      </if>
+      <if test="gestationalWeeks != null">
+        gestational_weeks,
+      </if>
+      <if test="gravidaAge != null">
+        gravida_age,
+      </if>
+      <if test="husbandName != null">
+        husband_name,
+      </if>
+      <if test="husbandAge != null">
+        husband_age,
+      </if>
+      <if test="husbandPhone != null">
+        husband_phone,
+      </if>
+      <if test="pregnantNum != null">
+        pregnant_num,
+      </if>
+      <if test="naturalLabourNum != null">
+        natural_labour_num,
+      </if>
+      <if test="cesareanNum != null">
+        cesarean_num,
+      </if>
+      <if test="lastMenstruationDate != null">
+        last_menstruation_date,
+      </if>
+      <if test="dueDate != null">
+        due_date,
+      </if>
+      <if test="pastIllness != null">
+        past_illness,
+      </if>
+      <if test="pastIllnessOther != null">
+        past_illness_other,
+      </if>
+      <if test="familyHistory != null">
+        family_history,
+      </if>
+      <if test="familyHistoryOther != null">
+        family_history_other,
+      </if>
+      <if test="habitsCustoms != null">
+        habits_customs,
+      </if>
+      <if test="habitsCustomsOther != null">
+        habits_customs_other,
+      </if>
+      <if test="isoperation != null">
+        isoperation,
+      </if>
+      <if test="operationName != null">
+        operation_name,
+      </if>
+      <if test="naturalAbortionNum != null">
+        natural_abortion_num,
+      </if>
+      <if test="abactioNum != null">
+        abactio_num,
+      </if>
+      <if test="fetaldeathNum != null">
+        fetaldeath_num,
+      </if>
+      <if test="stillbirthNum != null">
+        stillbirth_num,
+      </if>
+      <if test="neonatalDeathNum != null">
+        neonatal_death_num,
+      </if>
+      <if test="birthDefectNum != null">
+        birth_defect_num,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="bmi != null">
+        bmi,
+      </if>
+      <if test="bloodPressureHigh != null">
+        blood_pressure_high,
+      </if>
+      <if test="bloodPressureLow != null">
+        blood_pressure_low,
+      </if>
+      <if test="heart != null">
+        heart,
+      </if>
+      <if test="heartOther != null">
+        heart_other,
+      </if>
+      <if test="lungs != null">
+        lungs,
+      </if>
+      <if test="lungsOther != null">
+        lungs_other,
+      </if>
+      <if test="vulva != null">
+        vulva,
+      </if>
+      <if test="vulvaOther != null">
+        vulva_other,
+      </if>
+      <if test="vagina != null">
+        vagina,
+      </if>
+      <if test="vaginaOther != null">
+        vagina_other,
+      </if>
+      <if test="cervix != null">
+        cervix,
+      </if>
+      <if test="cervixOther != null">
+        cervix_other,
+      </if>
+      <if test="corpus != null">
+        corpus,
+      </if>
+      <if test="corpusOther != null">
+        corpus_other,
+      </if>
+      <if test="accessories != null">
+        accessories,
+      </if>
+      <if test="accessoriesOther != null">
+        accessories_other,
+      </if>
+      <if test="hemoglobin != null">
+        hemoglobin,
+      </if>
+      <if test="leukocyte != null">
+        leukocyte,
+      </if>
+      <if test="platelet != null">
+        platelet,
+      </if>
+      <if test="bloodOther != null">
+        blood_other,
+      </if>
+      <if test="urineProtein != null">
+        urine_protein,
+      </if>
+      <if test="glycosuria != null">
+        glycosuria,
+      </if>
+      <if test="urineAcetoneBodies != null">
+        urine_acetone_bodies,
+      </if>
+      <if test="bld != null">
+        bld,
+      </if>
+      <if test="urineOther != null">
+        urine_other,
+      </if>
+      <if test="bloodSugar != null">
+        blood_sugar,
+      </if>
+      <if test="bloodGroup != null">
+        blood_group,
+      </if>
+      <if test="bloodRh != null">
+        blood_rh,
+      </if>
+      <if test="sgft != null">
+        sgft,
+      </if>
+      <if test="ast != null">
+        ast,
+      </if>
+      <if test="albumin != null">
+        albumin,
+      </if>
+      <if test="totalBilirubin != null">
+        total_bilirubin,
+      </if>
+      <if test="conjugatedBilirubin != null">
+        conjugated_bilirubin,
+      </if>
+      <if test="scr != null">
+        scr,
+      </if>
+      <if test="bloodUrea != null">
+        blood_urea,
+      </if>
+      <if test="vaginalFluid != null">
+        vaginal_fluid,
+      </if>
+      <if test="vaginalFluidOther != null">
+        vaginal_fluid_other,
+      </if>
+      <if test="vaginalCleaning != null">
+        vaginal_cleaning,
+      </if>
+      <if test="hb != null">
+        hb,
+      </if>
+      <if test="hbsab != null">
+        hbsab,
+      </if>
+      <if test="hbeag != null">
+        hbeag,
+      </if>
+      <if test="hbeab != null">
+        hbeab,
+      </if>
+      <if test="hbcab != null">
+        hbcab,
+      </if>
+      <if test="syphilis != null">
+        syphilis,
+      </if>
+      <if test="hiv != null">
+        hiv,
+      </if>
+      <if test="bUltrasonic != null">
+        b_ultrasonic,
+      </if>
+      <if test="other != null">
+        other,
+      </if>
+      <if test="generalAssessment != null">
+        general_assessment,
+      </if>
+      <if test="assessmentError != null">
+        assessment_error,
+      </if>
+      <if test="healthGuidance != null">
+        health_guidance,
+      </if>
+      <if test="healthGuidanceOther != null">
+        health_guidance_other,
+      </if>
+      <if test="transferTreatment != null">
+        transfer_treatment,
+      </if>
+      <if test="transferTreatmentReason != null">
+        transfer_treatment_reason,
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        transfer_treatment_department,
+      </if>
+      <if test="nextVisitDate != null">
+        next_visit_date,
+      </if>
+      <if test="visitDoctor != null">
+        visit_doctor,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createOrg != null">
+        create_org,
+      </if>
+      <if test="createOrgName != null">
+        create_org_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="uploadStatus != null">
+        upload_status,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+      <if test="uploadResult != null">
+        upload_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null">
+        #{visitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="gestationalWeeks != null">
+        #{gestationalWeeks,jdbcType=INTEGER},
+      </if>
+      <if test="gravidaAge != null">
+        #{gravidaAge,jdbcType=INTEGER},
+      </if>
+      <if test="husbandName != null">
+        #{husbandName,jdbcType=VARCHAR},
+      </if>
+      <if test="husbandAge != null">
+        #{husbandAge,jdbcType=INTEGER},
+      </if>
+      <if test="husbandPhone != null">
+        #{husbandPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="pregnantNum != null">
+        #{pregnantNum,jdbcType=INTEGER},
+      </if>
+      <if test="naturalLabourNum != null">
+        #{naturalLabourNum,jdbcType=INTEGER},
+      </if>
+      <if test="cesareanNum != null">
+        #{cesareanNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastMenstruationDate != null">
+        #{lastMenstruationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDate != null">
+        #{dueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="pastIllness != null">
+        #{pastIllness,jdbcType=VARCHAR},
+      </if>
+      <if test="pastIllnessOther != null">
+        #{pastIllnessOther,jdbcType=VARCHAR},
+      </if>
+      <if test="familyHistory != null">
+        #{familyHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="familyHistoryOther != null">
+        #{familyHistoryOther,jdbcType=VARCHAR},
+      </if>
+      <if test="habitsCustoms != null">
+        #{habitsCustoms,jdbcType=VARCHAR},
+      </if>
+      <if test="habitsCustomsOther != null">
+        #{habitsCustomsOther,jdbcType=VARCHAR},
+      </if>
+      <if test="isoperation != null">
+        #{isoperation,jdbcType=VARCHAR},
+      </if>
+      <if test="operationName != null">
+        #{operationName,jdbcType=VARCHAR},
+      </if>
+      <if test="naturalAbortionNum != null">
+        #{naturalAbortionNum,jdbcType=INTEGER},
+      </if>
+      <if test="abactioNum != null">
+        #{abactioNum,jdbcType=INTEGER},
+      </if>
+      <if test="fetaldeathNum != null">
+        #{fetaldeathNum,jdbcType=INTEGER},
+      </if>
+      <if test="stillbirthNum != null">
+        #{stillbirthNum,jdbcType=INTEGER},
+      </if>
+      <if test="neonatalDeathNum != null">
+        #{neonatalDeathNum,jdbcType=INTEGER},
+      </if>
+      <if test="birthDefectNum != null">
+        #{birthDefectNum,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="bmi != null">
+        #{bmi,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodPressureHigh != null">
+        #{bloodPressureHigh,jdbcType=INTEGER},
+      </if>
+      <if test="bloodPressureLow != null">
+        #{bloodPressureLow,jdbcType=INTEGER},
+      </if>
+      <if test="heart != null">
+        #{heart,jdbcType=VARCHAR},
+      </if>
+      <if test="heartOther != null">
+        #{heartOther,jdbcType=VARCHAR},
+      </if>
+      <if test="lungs != null">
+        #{lungs,jdbcType=VARCHAR},
+      </if>
+      <if test="lungsOther != null">
+        #{lungsOther,jdbcType=VARCHAR},
+      </if>
+      <if test="vulva != null">
+        #{vulva,jdbcType=VARCHAR},
+      </if>
+      <if test="vulvaOther != null">
+        #{vulvaOther,jdbcType=VARCHAR},
+      </if>
+      <if test="vagina != null">
+        #{vagina,jdbcType=VARCHAR},
+      </if>
+      <if test="vaginaOther != null">
+        #{vaginaOther,jdbcType=VARCHAR},
+      </if>
+      <if test="cervix != null">
+        #{cervix,jdbcType=VARCHAR},
+      </if>
+      <if test="cervixOther != null">
+        #{cervixOther,jdbcType=VARCHAR},
+      </if>
+      <if test="corpus != null">
+        #{corpus,jdbcType=VARCHAR},
+      </if>
+      <if test="corpusOther != null">
+        #{corpusOther,jdbcType=VARCHAR},
+      </if>
+      <if test="accessories != null">
+        #{accessories,jdbcType=VARCHAR},
+      </if>
+      <if test="accessoriesOther != null">
+        #{accessoriesOther,jdbcType=VARCHAR},
+      </if>
+      <if test="hemoglobin != null">
+        #{hemoglobin,jdbcType=VARCHAR},
+      </if>
+      <if test="leukocyte != null">
+        #{leukocyte,jdbcType=VARCHAR},
+      </if>
+      <if test="platelet != null">
+        #{platelet,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodOther != null">
+        #{bloodOther,jdbcType=VARCHAR},
+      </if>
+      <if test="urineProtein != null">
+        #{urineProtein,jdbcType=VARCHAR},
+      </if>
+      <if test="glycosuria != null">
+        #{glycosuria,jdbcType=VARCHAR},
+      </if>
+      <if test="urineAcetoneBodies != null">
+        #{urineAcetoneBodies,jdbcType=VARCHAR},
+      </if>
+      <if test="bld != null">
+        #{bld,jdbcType=VARCHAR},
+      </if>
+      <if test="urineOther != null">
+        #{urineOther,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodSugar != null">
+        #{bloodSugar,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodGroup != null">
+        #{bloodGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodRh != null">
+        #{bloodRh,jdbcType=VARCHAR},
+      </if>
+      <if test="sgft != null">
+        #{sgft,jdbcType=VARCHAR},
+      </if>
+      <if test="ast != null">
+        #{ast,jdbcType=VARCHAR},
+      </if>
+      <if test="albumin != null">
+        #{albumin,jdbcType=VARCHAR},
+      </if>
+      <if test="totalBilirubin != null">
+        #{totalBilirubin,jdbcType=VARCHAR},
+      </if>
+      <if test="conjugatedBilirubin != null">
+        #{conjugatedBilirubin,jdbcType=VARCHAR},
+      </if>
+      <if test="scr != null">
+        #{scr,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodUrea != null">
+        #{bloodUrea,jdbcType=VARCHAR},
+      </if>
+      <if test="vaginalFluid != null">
+        #{vaginalFluid,jdbcType=VARCHAR},
+      </if>
+      <if test="vaginalFluidOther != null">
+        #{vaginalFluidOther,jdbcType=VARCHAR},
+      </if>
+      <if test="vaginalCleaning != null">
+        #{vaginalCleaning,jdbcType=VARCHAR},
+      </if>
+      <if test="hb != null">
+        #{hb,jdbcType=VARCHAR},
+      </if>
+      <if test="hbsab != null">
+        #{hbsab,jdbcType=VARCHAR},
+      </if>
+      <if test="hbeag != null">
+        #{hbeag,jdbcType=VARCHAR},
+      </if>
+      <if test="hbeab != null">
+        #{hbeab,jdbcType=VARCHAR},
+      </if>
+      <if test="hbcab != null">
+        #{hbcab,jdbcType=VARCHAR},
+      </if>
+      <if test="syphilis != null">
+        #{syphilis,jdbcType=VARCHAR},
+      </if>
+      <if test="hiv != null">
+        #{hiv,jdbcType=VARCHAR},
+      </if>
+      <if test="bUltrasonic != null">
+        #{bUltrasonic,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="generalAssessment != null">
+        #{generalAssessment,jdbcType=VARCHAR},
+      </if>
+      <if test="assessmentError != null">
+        #{assessmentError,jdbcType=VARCHAR},
+      </if>
+      <if test="healthGuidance != null">
+        #{healthGuidance,jdbcType=VARCHAR},
+      </if>
+      <if test="healthGuidanceOther != null">
+        #{healthGuidanceOther,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatment != null">
+        #{transferTreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentReason != null">
+        #{transferTreatmentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="nextVisitDate != null">
+        #{nextVisitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDoctor != null">
+        #{visitDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.flup.entity.GravidaInfo">
+    update gravida_info
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null">
+        visit_date = #{visitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="gestationalWeeks != null">
+        gestational_weeks = #{gestationalWeeks,jdbcType=INTEGER},
+      </if>
+      <if test="gravidaAge != null">
+        gravida_age = #{gravidaAge,jdbcType=INTEGER},
+      </if>
+      <if test="husbandName != null">
+        husband_name = #{husbandName,jdbcType=VARCHAR},
+      </if>
+      <if test="husbandAge != null">
+        husband_age = #{husbandAge,jdbcType=INTEGER},
+      </if>
+      <if test="husbandPhone != null">
+        husband_phone = #{husbandPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="pregnantNum != null">
+        pregnant_num = #{pregnantNum,jdbcType=INTEGER},
+      </if>
+      <if test="naturalLabourNum != null">
+        natural_labour_num = #{naturalLabourNum,jdbcType=INTEGER},
+      </if>
+      <if test="cesareanNum != null">
+        cesarean_num = #{cesareanNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastMenstruationDate != null">
+        last_menstruation_date = #{lastMenstruationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDate != null">
+        due_date = #{dueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="pastIllness != null">
+        past_illness = #{pastIllness,jdbcType=VARCHAR},
+      </if>
+      <if test="pastIllnessOther != null">
+        past_illness_other = #{pastIllnessOther,jdbcType=VARCHAR},
+      </if>
+      <if test="familyHistory != null">
+        family_history = #{familyHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="familyHistoryOther != null">
+        family_history_other = #{familyHistoryOther,jdbcType=VARCHAR},
+      </if>
+      <if test="habitsCustoms != null">
+        habits_customs = #{habitsCustoms,jdbcType=VARCHAR},
+      </if>
+      <if test="habitsCustomsOther != null">
+        habits_customs_other = #{habitsCustomsOther,jdbcType=VARCHAR},
+      </if>
+      <if test="isoperation != null">
+        isoperation = #{isoperation,jdbcType=VARCHAR},
+      </if>
+      <if test="operationName != null">
+        operation_name = #{operationName,jdbcType=VARCHAR},
+      </if>
+      <if test="naturalAbortionNum != null">
+        natural_abortion_num = #{naturalAbortionNum,jdbcType=INTEGER},
+      </if>
+      <if test="abactioNum != null">
+        abactio_num = #{abactioNum,jdbcType=INTEGER},
+      </if>
+      <if test="fetaldeathNum != null">
+        fetaldeath_num = #{fetaldeathNum,jdbcType=INTEGER},
+      </if>
+      <if test="stillbirthNum != null">
+        stillbirth_num = #{stillbirthNum,jdbcType=INTEGER},
+      </if>
+      <if test="neonatalDeathNum != null">
+        neonatal_death_num = #{neonatalDeathNum,jdbcType=INTEGER},
+      </if>
+      <if test="birthDefectNum != null">
+        birth_defect_num = #{birthDefectNum,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="bmi != null">
+        bmi = #{bmi,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodPressureHigh != null">
+        blood_pressure_high = #{bloodPressureHigh,jdbcType=INTEGER},
+      </if>
+      <if test="bloodPressureLow != null">
+        blood_pressure_low = #{bloodPressureLow,jdbcType=INTEGER},
+      </if>
+      <if test="heart != null">
+        heart = #{heart,jdbcType=VARCHAR},
+      </if>
+      <if test="heartOther != null">
+        heart_other = #{heartOther,jdbcType=VARCHAR},
+      </if>
+      <if test="lungs != null">
+        lungs = #{lungs,jdbcType=VARCHAR},
+      </if>
+      <if test="lungsOther != null">
+        lungs_other = #{lungsOther,jdbcType=VARCHAR},
+      </if>
+      <if test="vulva != null">
+        vulva = #{vulva,jdbcType=VARCHAR},
+      </if>
+      <if test="vulvaOther != null">
+        vulva_other = #{vulvaOther,jdbcType=VARCHAR},
+      </if>
+      <if test="vagina != null">
+        vagina = #{vagina,jdbcType=VARCHAR},
+      </if>
+      <if test="vaginaOther != null">
+        vagina_other = #{vaginaOther,jdbcType=VARCHAR},
+      </if>
+      <if test="cervix != null">
+        cervix = #{cervix,jdbcType=VARCHAR},
+      </if>
+      <if test="cervixOther != null">
+        cervix_other = #{cervixOther,jdbcType=VARCHAR},
+      </if>
+      <if test="corpus != null">
+        corpus = #{corpus,jdbcType=VARCHAR},
+      </if>
+      <if test="corpusOther != null">
+        corpus_other = #{corpusOther,jdbcType=VARCHAR},
+      </if>
+      <if test="accessories != null">
+        accessories = #{accessories,jdbcType=VARCHAR},
+      </if>
+      <if test="accessoriesOther != null">
+        accessories_other = #{accessoriesOther,jdbcType=VARCHAR},
+      </if>
+      <if test="hemoglobin != null">
+        hemoglobin = #{hemoglobin,jdbcType=VARCHAR},
+      </if>
+      <if test="leukocyte != null">
+        leukocyte = #{leukocyte,jdbcType=VARCHAR},
+      </if>
+      <if test="platelet != null">
+        platelet = #{platelet,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodOther != null">
+        blood_other = #{bloodOther,jdbcType=VARCHAR},
+      </if>
+      <if test="urineProtein != null">
+        urine_protein = #{urineProtein,jdbcType=VARCHAR},
+      </if>
+      <if test="glycosuria != null">
+        glycosuria = #{glycosuria,jdbcType=VARCHAR},
+      </if>
+      <if test="urineAcetoneBodies != null">
+        urine_acetone_bodies = #{urineAcetoneBodies,jdbcType=VARCHAR},
+      </if>
+      <if test="bld != null">
+        bld = #{bld,jdbcType=VARCHAR},
+      </if>
+      <if test="urineOther != null">
+        urine_other = #{urineOther,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodSugar != null">
+        blood_sugar = #{bloodSugar,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodGroup != null">
+        blood_group = #{bloodGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodRh != null">
+        blood_rh = #{bloodRh,jdbcType=VARCHAR},
+      </if>
+      <if test="sgft != null">
+        sgft = #{sgft,jdbcType=VARCHAR},
+      </if>
+      <if test="ast != null">
+        ast = #{ast,jdbcType=VARCHAR},
+      </if>
+      <if test="albumin != null">
+        albumin = #{albumin,jdbcType=VARCHAR},
+      </if>
+      <if test="totalBilirubin != null">
+        total_bilirubin = #{totalBilirubin,jdbcType=VARCHAR},
+      </if>
+      <if test="conjugatedBilirubin != null">
+        conjugated_bilirubin = #{conjugatedBilirubin,jdbcType=VARCHAR},
+      </if>
+      <if test="scr != null">
+        scr = #{scr,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodUrea != null">
+        blood_urea = #{bloodUrea,jdbcType=VARCHAR},
+      </if>
+      <if test="vaginalFluid != null">
+        vaginal_fluid = #{vaginalFluid,jdbcType=VARCHAR},
+      </if>
+      <if test="vaginalFluidOther != null">
+        vaginal_fluid_other = #{vaginalFluidOther,jdbcType=VARCHAR},
+      </if>
+      <if test="vaginalCleaning != null">
+        vaginal_cleaning = #{vaginalCleaning,jdbcType=VARCHAR},
+      </if>
+      <if test="hb != null">
+        hb = #{hb,jdbcType=VARCHAR},
+      </if>
+      <if test="hbsab != null">
+        hbsab = #{hbsab,jdbcType=VARCHAR},
+      </if>
+      <if test="hbeag != null">
+        hbeag = #{hbeag,jdbcType=VARCHAR},
+      </if>
+      <if test="hbeab != null">
+        hbeab = #{hbeab,jdbcType=VARCHAR},
+      </if>
+      <if test="hbcab != null">
+        hbcab = #{hbcab,jdbcType=VARCHAR},
+      </if>
+      <if test="syphilis != null">
+        syphilis = #{syphilis,jdbcType=VARCHAR},
+      </if>
+      <if test="hiv != null">
+        hiv = #{hiv,jdbcType=VARCHAR},
+      </if>
+      <if test="bUltrasonic != null">
+        b_ultrasonic = #{bUltrasonic,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="generalAssessment != null">
+        general_assessment = #{generalAssessment,jdbcType=VARCHAR},
+      </if>
+      <if test="assessmentError != null">
+        assessment_error = #{assessmentError,jdbcType=VARCHAR},
+      </if>
+      <if test="healthGuidance != null">
+        health_guidance = #{healthGuidance,jdbcType=VARCHAR},
+      </if>
+      <if test="healthGuidanceOther != null">
+        health_guidance_other = #{healthGuidanceOther,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatment != null">
+        transfer_treatment = #{transferTreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentReason != null">
+        transfer_treatment_reason = #{transferTreatmentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        transfer_treatment_department = #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="nextVisitDate != null">
+        next_visit_date = #{nextVisitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDoctor != null">
+        visit_doctor = #{visitDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        create_org = #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        upload_status = #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        upload_result = #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.flup.entity.GravidaInfo">
+    update gravida_info
+    set name = #{name,jdbcType=VARCHAR},
+      archive_no = #{archiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      visit_date = #{visitDate,jdbcType=VARCHAR},
+      gestational_weeks = #{gestationalWeeks,jdbcType=INTEGER},
+      gravida_age = #{gravidaAge,jdbcType=INTEGER},
+      husband_name = #{husbandName,jdbcType=VARCHAR},
+      husband_age = #{husbandAge,jdbcType=INTEGER},
+      husband_phone = #{husbandPhone,jdbcType=VARCHAR},
+      pregnant_num = #{pregnantNum,jdbcType=INTEGER},
+      natural_labour_num = #{naturalLabourNum,jdbcType=INTEGER},
+      cesarean_num = #{cesareanNum,jdbcType=INTEGER},
+      last_menstruation_date = #{lastMenstruationDate,jdbcType=VARCHAR},
+      due_date = #{dueDate,jdbcType=VARCHAR},
+      past_illness = #{pastIllness,jdbcType=VARCHAR},
+      past_illness_other = #{pastIllnessOther,jdbcType=VARCHAR},
+      family_history = #{familyHistory,jdbcType=VARCHAR},
+      family_history_other = #{familyHistoryOther,jdbcType=VARCHAR},
+      habits_customs = #{habitsCustoms,jdbcType=VARCHAR},
+      habits_customs_other = #{habitsCustomsOther,jdbcType=VARCHAR},
+      isoperation = #{isoperation,jdbcType=VARCHAR},
+      operation_name = #{operationName,jdbcType=VARCHAR},
+      natural_abortion_num = #{naturalAbortionNum,jdbcType=INTEGER},
+      abactio_num = #{abactioNum,jdbcType=INTEGER},
+      fetaldeath_num = #{fetaldeathNum,jdbcType=INTEGER},
+      stillbirth_num = #{stillbirthNum,jdbcType=INTEGER},
+      neonatal_death_num = #{neonatalDeathNum,jdbcType=INTEGER},
+      birth_defect_num = #{birthDefectNum,jdbcType=INTEGER},
+      height = #{height,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=VARCHAR},
+      bmi = #{bmi,jdbcType=VARCHAR},
+      blood_pressure_high = #{bloodPressureHigh,jdbcType=INTEGER},
+      blood_pressure_low = #{bloodPressureLow,jdbcType=INTEGER},
+      heart = #{heart,jdbcType=VARCHAR},
+      heart_other = #{heartOther,jdbcType=VARCHAR},
+      lungs = #{lungs,jdbcType=VARCHAR},
+      lungs_other = #{lungsOther,jdbcType=VARCHAR},
+      vulva = #{vulva,jdbcType=VARCHAR},
+      vulva_other = #{vulvaOther,jdbcType=VARCHAR},
+      vagina = #{vagina,jdbcType=VARCHAR},
+      vagina_other = #{vaginaOther,jdbcType=VARCHAR},
+      cervix = #{cervix,jdbcType=VARCHAR},
+      cervix_other = #{cervixOther,jdbcType=VARCHAR},
+      corpus = #{corpus,jdbcType=VARCHAR},
+      corpus_other = #{corpusOther,jdbcType=VARCHAR},
+      accessories = #{accessories,jdbcType=VARCHAR},
+      accessories_other = #{accessoriesOther,jdbcType=VARCHAR},
+      hemoglobin = #{hemoglobin,jdbcType=VARCHAR},
+      leukocyte = #{leukocyte,jdbcType=VARCHAR},
+      platelet = #{platelet,jdbcType=VARCHAR},
+      blood_other = #{bloodOther,jdbcType=VARCHAR},
+      urine_protein = #{urineProtein,jdbcType=VARCHAR},
+      glycosuria = #{glycosuria,jdbcType=VARCHAR},
+      urine_acetone_bodies = #{urineAcetoneBodies,jdbcType=VARCHAR},
+      bld = #{bld,jdbcType=VARCHAR},
+      urine_other = #{urineOther,jdbcType=VARCHAR},
+      blood_sugar = #{bloodSugar,jdbcType=VARCHAR},
+      blood_group = #{bloodGroup,jdbcType=VARCHAR},
+      blood_rh = #{bloodRh,jdbcType=VARCHAR},
+      sgft = #{sgft,jdbcType=VARCHAR},
+      ast = #{ast,jdbcType=VARCHAR},
+      albumin = #{albumin,jdbcType=VARCHAR},
+      total_bilirubin = #{totalBilirubin,jdbcType=VARCHAR},
+      conjugated_bilirubin = #{conjugatedBilirubin,jdbcType=VARCHAR},
+      scr = #{scr,jdbcType=VARCHAR},
+      blood_urea = #{bloodUrea,jdbcType=VARCHAR},
+      vaginal_fluid = #{vaginalFluid,jdbcType=VARCHAR},
+      vaginal_fluid_other = #{vaginalFluidOther,jdbcType=VARCHAR},
+      vaginal_cleaning = #{vaginalCleaning,jdbcType=VARCHAR},
+      hb = #{hb,jdbcType=VARCHAR},
+      hbsab = #{hbsab,jdbcType=VARCHAR},
+      hbeag = #{hbeag,jdbcType=VARCHAR},
+      hbeab = #{hbeab,jdbcType=VARCHAR},
+      hbcab = #{hbcab,jdbcType=VARCHAR},
+      syphilis = #{syphilis,jdbcType=VARCHAR},
+      hiv = #{hiv,jdbcType=VARCHAR},
+      b_ultrasonic = #{bUltrasonic,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR},
+      general_assessment = #{generalAssessment,jdbcType=VARCHAR},
+      assessment_error = #{assessmentError,jdbcType=VARCHAR},
+      health_guidance = #{healthGuidance,jdbcType=VARCHAR},
+      health_guidance_other = #{healthGuidanceOther,jdbcType=VARCHAR},
+      transfer_treatment = #{transferTreatment,jdbcType=VARCHAR},
+      transfer_treatment_reason = #{transferTreatmentReason,jdbcType=VARCHAR},
+      transfer_treatment_department = #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      next_visit_date = #{nextVisitDate,jdbcType=VARCHAR},
+      visit_doctor = #{visitDoctor,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_org = #{createOrg,jdbcType=VARCHAR},
+      create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      upload_status = #{uploadStatus,jdbcType=INTEGER},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      upload_result = #{uploadResult,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

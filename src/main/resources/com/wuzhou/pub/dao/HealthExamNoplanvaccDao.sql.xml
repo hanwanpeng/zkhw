@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhou.pub.dao.HealthExamNoplanvaccDao">
+  <resultMap id="BaseResultMap" type="com.wuzhou.pub.entity.HealthExamNoplanvacc">
+    <id column="HEALTH_EXAM_NOPLAN_VACC_ID" jdbcType="VARCHAR" property="healthExamNoplanVaccId" />
+    <result column="HEALTH_EXAM_ID" jdbcType="VARCHAR" property="healthExamId" />
+    <result column="SSN" jdbcType="DECIMAL" property="ssn" />
+    <result column="VACCINATION_DATE" jdbcType="TIMESTAMP" property="vaccinationDate" />
+    <result column="VACCINATION_ORG_NAME" jdbcType="VARCHAR" property="vaccinationOrgName" />
+    <result column="VACCINE_CODE" jdbcType="VARCHAR" property="vaccineCode" />
+    <result column="ERR_CODE" jdbcType="DECIMAL" property="errCode" />
+    <result column="ERR_STR" jdbcType="VARCHAR" property="errStr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    HEALTH_EXAM_NOPLAN_VACC_ID, HEALTH_EXAM_ID, SSN, VACCINATION_DATE, VACCINATION_ORG_NAME, 
+    VACCINE_CODE, ERR_CODE, ERR_STR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HEALTH_EXAM_NOPLAN_VACC
+    where HEALTH_EXAM_NOPLAN_VACC_ID = #{healthExamNoplanVaccId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HEALTH_EXAM_NOPLAN_VACC
+    where HEALTH_EXAM_NOPLAN_VACC_ID = #{healthExamNoplanVaccId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuzhou.pub.entity.HealthExamNoplanvacc">
+    insert into HEALTH_EXAM_NOPLAN_VACC (HEALTH_EXAM_NOPLAN_VACC_ID, HEALTH_EXAM_ID, 
+      SSN, VACCINATION_DATE, VACCINATION_ORG_NAME, 
+      VACCINE_CODE, ERR_CODE, ERR_STR
+      )
+    values (#{healthExamNoplanVaccId,jdbcType=VARCHAR}, #{healthExamId,jdbcType=VARCHAR}, 
+      #{ssn,jdbcType=DECIMAL}, #{vaccinationDate,jdbcType=TIMESTAMP}, #{vaccinationOrgName,jdbcType=VARCHAR}, 
+      #{vaccineCode,jdbcType=VARCHAR}, #{errCode,jdbcType=DECIMAL}, #{errStr,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuzhou.pub.entity.HealthExamNoplanvacc">
+    insert into HEALTH_EXAM_NOPLAN_VACC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="healthExamNoplanVaccId != null">
+        HEALTH_EXAM_NOPLAN_VACC_ID,
+      </if>
+      <if test="healthExamId != null">
+        HEALTH_EXAM_ID,
+      </if>
+      <if test="ssn != null">
+        SSN,
+      </if>
+      <if test="vaccinationDate != null">
+        VACCINATION_DATE,
+      </if>
+      <if test="vaccinationOrgName != null">
+        VACCINATION_ORG_NAME,
+      </if>
+      <if test="vaccineCode != null">
+        VACCINE_CODE,
+      </if>
+      <if test="errCode != null">
+        ERR_CODE,
+      </if>
+      <if test="errStr != null">
+        ERR_STR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="healthExamNoplanVaccId != null">
+        #{healthExamNoplanVaccId,jdbcType=VARCHAR},
+      </if>
+      <if test="healthExamId != null">
+        #{healthExamId,jdbcType=VARCHAR},
+      </if>
+      <if test="ssn != null">
+        #{ssn,jdbcType=DECIMAL},
+      </if>
+      <if test="vaccinationDate != null">
+        #{vaccinationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vaccinationOrgName != null">
+        #{vaccinationOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccineCode != null">
+        #{vaccineCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null">
+        #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        #{errStr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuzhou.pub.entity.HealthExamNoplanvacc">
+    update HEALTH_EXAM_NOPLAN_VACC
+    <set>
+      <if test="healthExamId != null">
+        HEALTH_EXAM_ID = #{healthExamId,jdbcType=VARCHAR},
+      </if>
+      <if test="ssn != null">
+        SSN = #{ssn,jdbcType=DECIMAL},
+      </if>
+      <if test="vaccinationDate != null">
+        VACCINATION_DATE = #{vaccinationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vaccinationOrgName != null">
+        VACCINATION_ORG_NAME = #{vaccinationOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccineCode != null">
+        VACCINE_CODE = #{vaccineCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null">
+        ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        ERR_STR = #{errStr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HEALTH_EXAM_NOPLAN_VACC_ID = #{healthExamNoplanVaccId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuzhou.pub.entity.HealthExamNoplanvacc">
+    update HEALTH_EXAM_NOPLAN_VACC
+    set HEALTH_EXAM_ID = #{healthExamId,jdbcType=VARCHAR},
+      SSN = #{ssn,jdbcType=DECIMAL},
+      VACCINATION_DATE = #{vaccinationDate,jdbcType=TIMESTAMP},
+      VACCINATION_ORG_NAME = #{vaccinationOrgName,jdbcType=VARCHAR},
+      VACCINE_CODE = #{vaccineCode,jdbcType=VARCHAR},
+      ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      ERR_STR = #{errStr,jdbcType=VARCHAR}
+    where HEALTH_EXAM_NOPLAN_VACC_ID = #{healthExamNoplanVaccId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.flup.dao.DiabetesFollowRecordDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.flup.entity.DiabetesFollowRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="visit_date" jdbcType="VARCHAR" property="visitDate" />
+    <result column="visit_type" jdbcType="VARCHAR" property="visitType" />
+    <result column="symptom" jdbcType="VARCHAR" property="symptom" />
+    <result column="symptom_other" jdbcType="VARCHAR" property="symptomOther" />
+    <result column="blood_pressure_high" jdbcType="INTEGER" property="bloodPressureHigh" />
+    <result column="blood_pressure_low" jdbcType="INTEGER" property="bloodPressureLow" />
+    <result column="weight_now" jdbcType="VARCHAR" property="weightNow" />
+    <result column="weight_next" jdbcType="VARCHAR" property="weightNext" />
+    <result column="height" jdbcType="VARCHAR" property="height" />
+    <result column="bmi_now" jdbcType="VARCHAR" property="bmiNow" />
+    <result column="bmi_next" jdbcType="VARCHAR" property="bmiNext" />
+    <result column="dorsal_artery" jdbcType="VARCHAR" property="dorsalArtery" />
+    <result column="pulsation_position" jdbcType="VARCHAR" property="pulsationPosition" />
+    <result column="other" jdbcType="VARCHAR" property="other" />
+    <result column="smoke_now" jdbcType="INTEGER" property="smokeNow" />
+    <result column="smoke_next" jdbcType="INTEGER" property="smokeNext" />
+    <result column="drink_now" jdbcType="INTEGER" property="drinkNow" />
+    <result column="drink_next" jdbcType="INTEGER" property="drinkNext" />
+    <result column="sports_num_now" jdbcType="INTEGER" property="sportsNumNow" />
+    <result column="sports_time_now" jdbcType="INTEGER" property="sportsTimeNow" />
+    <result column="sports_num_next" jdbcType="INTEGER" property="sportsNumNext" />
+    <result column="sports_time_next" jdbcType="INTEGER" property="sportsTimeNext" />
+    <result column="staple_food_now" jdbcType="VARCHAR" property="stapleFoodNow" />
+    <result column="staple_food_next" jdbcType="VARCHAR" property="stapleFoodNext" />
+    <result column="psychological_recovery" jdbcType="VARCHAR" property="psychologicalRecovery" />
+    <result column="medical_compliance" jdbcType="VARCHAR" property="medicalCompliance" />
+    <result column="blood_glucose" jdbcType="VARCHAR" property="bloodGlucose" />
+    <result column="glycosylated_hemoglobin" jdbcType="VARCHAR" property="glycosylatedHemoglobin" />
+    <result column="check_date" jdbcType="VARCHAR" property="checkDate" />
+    <result column="compliance" jdbcType="VARCHAR" property="compliance" />
+    <result column="untoward_effect" jdbcType="VARCHAR" property="untowardEffect" />
+    <result column="untoward_effect_drug" jdbcType="VARCHAR" property="untowardEffectDrug" />
+    <result column="reactive_hypoglycemia" jdbcType="VARCHAR" property="reactiveHypoglycemia" />
+    <result column="follow_type" jdbcType="VARCHAR" property="followType" />
+    <result column="insulin_name" jdbcType="VARCHAR" property="insulinName" />
+    <result column="insulin_usage" jdbcType="VARCHAR" property="insulinUsage" />
+    <result column="transfer_treatment" jdbcType="VARCHAR" property="transferTreatment" />
+    <result column="transfer_treatment_reason" jdbcType="VARCHAR" property="transferTreatmentReason" />
+    <result column="transfer_treatment_department" jdbcType="VARCHAR" property="transferTreatmentDepartment" />
+    <result column="next_visit_date" jdbcType="VARCHAR" property="nextVisitDate" />
+    <result column="visit_doctor" jdbcType="VARCHAR" property="visitDoctor" />
+    <result column="advice" jdbcType="VARCHAR" property="advice" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_org" jdbcType="VARCHAR" property="createOrg" />
+    <result column="create_org_name" jdbcType="VARCHAR" property="createOrgName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+    <result column="upload_result" jdbcType="VARCHAR" property="uploadResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, archive_no, id_number, visit_date, visit_type, symptom, symptom_other, 
+    blood_pressure_high, blood_pressure_low, weight_now, weight_next, height, bmi_now, 
+    bmi_next, dorsal_artery, pulsation_position, other, smoke_now, smoke_next, drink_now, 
+    drink_next, sports_num_now, sports_time_now, sports_num_next, sports_time_next, staple_food_now, 
+    staple_food_next, psychological_recovery, medical_compliance, blood_glucose, glycosylated_hemoglobin, 
+    check_date, compliance, untoward_effect, untoward_effect_drug, reactive_hypoglycemia, 
+    follow_type, insulin_name, insulin_usage, transfer_treatment, transfer_treatment_reason, 
+    transfer_treatment_department, next_visit_date, visit_doctor, advice, create_user, 
+    create_name, create_org, create_org_name, create_time, update_user, update_name, 
+    update_time, upload_status, upload_time, upload_result
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from diabetes_follow_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="findLastFollowRecord" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from diabetes_follow_record
+    where archive_no = #{archiveNo,jdbcType=VARCHAR}
+     order by create_time desc limit 1
+  </select>
+
+  <select id="findFollowRecordList" parameterType="com.zkhw.flup.entity.DiabetesFollowRecord" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from diabetes_follow_record
+    where 1 = 1
+     <if test="archiveNo != null">
+       and  archive_no = #{archiveNo,jdbcType=VARCHAR}
+     </if>  
+     order by create_time desc
+  </select>
+
+  <select id="findFollowByYear" parameterType="com.zkhw.flup.entity.DiabetesFollowRecord" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from diabetes_follow_record
+    where 1 = 1
+     <if test="archiveNo != null">
+       and  archive_no = #{archiveNo,jdbcType=VARCHAR}
+     </if>  
+     <if test="visitDate != null">
+       and  visit_date like concat(#{visitDate,jdbcType=VARCHAR},'%') 
+     </if>           
+     order by create_time asc
+  </select> 
+  
+  <select id="shanxiSyncList"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from diabetes_follow_record r
+ 	where ifnull(upload_status,0) = 0 and EXISTS(select 1 from ltd_organization o where o.organ_code = r.create_org and o.province_code = '61')
+  </select>
+   
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from diabetes_follow_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.flup.entity.DiabetesFollowRecord">
+    insert into diabetes_follow_record (id, name, archive_no, 
+      id_number, visit_date, visit_type, 
+      symptom, symptom_other, blood_pressure_high, 
+      blood_pressure_low, weight_now, weight_next, 
+      height, bmi_now, bmi_next, 
+      dorsal_artery, pulsation_position, other, 
+      smoke_now, smoke_next, drink_now, 
+      drink_next, sports_num_now, sports_time_now, 
+      sports_num_next, sports_time_next, staple_food_now, 
+      staple_food_next, psychological_recovery, 
+      medical_compliance, blood_glucose, glycosylated_hemoglobin, 
+      check_date, compliance, untoward_effect, 
+      untoward_effect_drug, reactive_hypoglycemia, 
+      follow_type, insulin_name, insulin_usage, 
+      transfer_treatment, transfer_treatment_reason, 
+      transfer_treatment_department, next_visit_date, 
+      visit_doctor, advice, create_user, 
+      create_name, create_org, create_org_name, 
+      create_time, update_user, update_name, 
+      update_time, upload_status, upload_time, 
+      upload_result)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{archiveNo,jdbcType=VARCHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{visitDate,jdbcType=VARCHAR}, #{visitType,jdbcType=VARCHAR}, 
+      #{symptom,jdbcType=VARCHAR}, #{symptomOther,jdbcType=VARCHAR}, #{bloodPressureHigh,jdbcType=INTEGER}, 
+      #{bloodPressureLow,jdbcType=INTEGER}, #{weightNow,jdbcType=VARCHAR}, #{weightNext,jdbcType=VARCHAR}, 
+      #{height,jdbcType=VARCHAR}, #{bmiNow,jdbcType=VARCHAR}, #{bmiNext,jdbcType=VARCHAR}, 
+      #{dorsalArtery,jdbcType=VARCHAR}, #{pulsationPosition,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}, 
+      #{smokeNow,jdbcType=INTEGER}, #{smokeNext,jdbcType=INTEGER}, #{drinkNow,jdbcType=INTEGER}, 
+      #{drinkNext,jdbcType=INTEGER}, #{sportsNumNow,jdbcType=INTEGER}, #{sportsTimeNow,jdbcType=INTEGER}, 
+      #{sportsNumNext,jdbcType=INTEGER}, #{sportsTimeNext,jdbcType=INTEGER}, #{stapleFoodNow,jdbcType=VARCHAR}, 
+      #{stapleFoodNext,jdbcType=VARCHAR}, #{psychologicalRecovery,jdbcType=VARCHAR}, 
+      #{medicalCompliance,jdbcType=VARCHAR}, #{bloodGlucose,jdbcType=VARCHAR}, #{glycosylatedHemoglobin,jdbcType=VARCHAR}, 
+      #{checkDate,jdbcType=VARCHAR}, #{compliance,jdbcType=VARCHAR}, #{untowardEffect,jdbcType=VARCHAR}, 
+      #{untowardEffectDrug,jdbcType=VARCHAR}, #{reactiveHypoglycemia,jdbcType=VARCHAR}, 
+      #{followType,jdbcType=VARCHAR}, #{insulinName,jdbcType=VARCHAR}, #{insulinUsage,jdbcType=VARCHAR}, 
+      #{transferTreatment,jdbcType=VARCHAR}, #{transferTreatmentReason,jdbcType=VARCHAR}, 
+      #{transferTreatmentDepartment,jdbcType=VARCHAR}, #{nextVisitDate,jdbcType=VARCHAR}, 
+      #{visitDoctor,jdbcType=VARCHAR}, #{advice,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
+      #{createName,jdbcType=VARCHAR}, #{createOrg,jdbcType=VARCHAR}, #{createOrgName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{uploadStatus,jdbcType=INTEGER}, #{uploadTime,jdbcType=TIMESTAMP}, 
+      #{uploadResult,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.flup.entity.DiabetesFollowRecord">
+    insert into diabetes_follow_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="visitDate != null">
+        visit_date,
+      </if>
+      <if test="visitType != null">
+        visit_type,
+      </if>
+      <if test="symptom != null">
+        symptom,
+      </if>
+      <if test="symptomOther != null">
+        symptom_other,
+      </if>
+      <if test="bloodPressureHigh != null">
+        blood_pressure_high,
+      </if>
+      <if test="bloodPressureLow != null">
+        blood_pressure_low,
+      </if>
+      <if test="weightNow != null">
+        weight_now,
+      </if>
+      <if test="weightNext != null">
+        weight_next,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="bmiNow != null">
+        bmi_now,
+      </if>
+      <if test="bmiNext != null">
+        bmi_next,
+      </if>
+      <if test="dorsalArtery != null">
+        dorsal_artery,
+      </if>
+      <if test="pulsationPosition != null">
+        pulsation_position,
+      </if>
+      <if test="other != null">
+        other,
+      </if>
+      <if test="smokeNow != null">
+        smoke_now,
+      </if>
+      <if test="smokeNext != null">
+        smoke_next,
+      </if>
+      <if test="drinkNow != null">
+        drink_now,
+      </if>
+      <if test="drinkNext != null">
+        drink_next,
+      </if>
+      <if test="sportsNumNow != null">
+        sports_num_now,
+      </if>
+      <if test="sportsTimeNow != null">
+        sports_time_now,
+      </if>
+      <if test="sportsNumNext != null">
+        sports_num_next,
+      </if>
+      <if test="sportsTimeNext != null">
+        sports_time_next,
+      </if>
+      <if test="stapleFoodNow != null">
+        staple_food_now,
+      </if>
+      <if test="stapleFoodNext != null">
+        staple_food_next,
+      </if>
+      <if test="psychologicalRecovery != null">
+        psychological_recovery,
+      </if>
+      <if test="medicalCompliance != null">
+        medical_compliance,
+      </if>
+      <if test="bloodGlucose != null">
+        blood_glucose,
+      </if>
+      <if test="glycosylatedHemoglobin != null">
+        glycosylated_hemoglobin,
+      </if>
+      <if test="checkDate != null">
+        check_date,
+      </if>
+      <if test="compliance != null">
+        compliance,
+      </if>
+      <if test="untowardEffect != null">
+        untoward_effect,
+      </if>
+      <if test="untowardEffectDrug != null">
+        untoward_effect_drug,
+      </if>
+      <if test="reactiveHypoglycemia != null">
+        reactive_hypoglycemia,
+      </if>
+      <if test="followType != null">
+        follow_type,
+      </if>
+      <if test="insulinName != null">
+        insulin_name,
+      </if>
+      <if test="insulinUsage != null">
+        insulin_usage,
+      </if>
+      <if test="transferTreatment != null">
+        transfer_treatment,
+      </if>
+      <if test="transferTreatmentReason != null">
+        transfer_treatment_reason,
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        transfer_treatment_department,
+      </if>
+      <if test="nextVisitDate != null">
+        next_visit_date,
+      </if>
+      <if test="visitDoctor != null">
+        visit_doctor,
+      </if>
+      <if test="advice != null">
+        advice,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createOrg != null">
+        create_org,
+      </if>
+      <if test="createOrgName != null">
+        create_org_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="uploadStatus != null">
+        upload_status,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+      <if test="uploadResult != null">
+        upload_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null">
+        #{visitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="visitType != null">
+        #{visitType,jdbcType=VARCHAR},
+      </if>
+      <if test="symptom != null">
+        #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="symptomOther != null">
+        #{symptomOther,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodPressureHigh != null">
+        #{bloodPressureHigh,jdbcType=INTEGER},
+      </if>
+      <if test="bloodPressureLow != null">
+        #{bloodPressureLow,jdbcType=INTEGER},
+      </if>
+      <if test="weightNow != null">
+        #{weightNow,jdbcType=VARCHAR},
+      </if>
+      <if test="weightNext != null">
+        #{weightNext,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="bmiNow != null">
+        #{bmiNow,jdbcType=VARCHAR},
+      </if>
+      <if test="bmiNext != null">
+        #{bmiNext,jdbcType=VARCHAR},
+      </if>
+      <if test="dorsalArtery != null">
+        #{dorsalArtery,jdbcType=VARCHAR},
+      </if>
+      <if test="pulsationPosition != null">
+        #{pulsationPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="smokeNow != null">
+        #{smokeNow,jdbcType=INTEGER},
+      </if>
+      <if test="smokeNext != null">
+        #{smokeNext,jdbcType=INTEGER},
+      </if>
+      <if test="drinkNow != null">
+        #{drinkNow,jdbcType=INTEGER},
+      </if>
+      <if test="drinkNext != null">
+        #{drinkNext,jdbcType=INTEGER},
+      </if>
+      <if test="sportsNumNow != null">
+        #{sportsNumNow,jdbcType=INTEGER},
+      </if>
+      <if test="sportsTimeNow != null">
+        #{sportsTimeNow,jdbcType=INTEGER},
+      </if>
+      <if test="sportsNumNext != null">
+        #{sportsNumNext,jdbcType=INTEGER},
+      </if>
+      <if test="sportsTimeNext != null">
+        #{sportsTimeNext,jdbcType=INTEGER},
+      </if>
+      <if test="stapleFoodNow != null">
+        #{stapleFoodNow,jdbcType=VARCHAR},
+      </if>
+      <if test="stapleFoodNext != null">
+        #{stapleFoodNext,jdbcType=VARCHAR},
+      </if>
+      <if test="psychologicalRecovery != null">
+        #{psychologicalRecovery,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalCompliance != null">
+        #{medicalCompliance,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodGlucose != null">
+        #{bloodGlucose,jdbcType=VARCHAR},
+      </if>
+      <if test="glycosylatedHemoglobin != null">
+        #{glycosylatedHemoglobin,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null">
+        #{checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="compliance != null">
+        #{compliance,jdbcType=VARCHAR},
+      </if>
+      <if test="untowardEffect != null">
+        #{untowardEffect,jdbcType=VARCHAR},
+      </if>
+      <if test="untowardEffectDrug != null">
+        #{untowardEffectDrug,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveHypoglycemia != null">
+        #{reactiveHypoglycemia,jdbcType=VARCHAR},
+      </if>
+      <if test="followType != null">
+        #{followType,jdbcType=VARCHAR},
+      </if>
+      <if test="insulinName != null">
+        #{insulinName,jdbcType=VARCHAR},
+      </if>
+      <if test="insulinUsage != null">
+        #{insulinUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatment != null">
+        #{transferTreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentReason != null">
+        #{transferTreatmentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="nextVisitDate != null">
+        #{nextVisitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDoctor != null">
+        #{visitDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="advice != null">
+        #{advice,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.flup.entity.DiabetesFollowRecord">
+    update diabetes_follow_record
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null">
+        visit_date = #{visitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="visitType != null">
+        visit_type = #{visitType,jdbcType=VARCHAR},
+      </if>
+      <if test="symptom != null">
+        symptom = #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="symptomOther != null">
+        symptom_other = #{symptomOther,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodPressureHigh != null">
+        blood_pressure_high = #{bloodPressureHigh,jdbcType=INTEGER},
+      </if>
+      <if test="bloodPressureLow != null">
+        blood_pressure_low = #{bloodPressureLow,jdbcType=INTEGER},
+      </if>
+      <if test="weightNow != null">
+        weight_now = #{weightNow,jdbcType=VARCHAR},
+      </if>
+      <if test="weightNext != null">
+        weight_next = #{weightNext,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="bmiNow != null">
+        bmi_now = #{bmiNow,jdbcType=VARCHAR},
+      </if>
+      <if test="bmiNext != null">
+        bmi_next = #{bmiNext,jdbcType=VARCHAR},
+      </if>
+      <if test="dorsalArtery != null">
+        dorsal_artery = #{dorsalArtery,jdbcType=VARCHAR},
+      </if>
+      <if test="pulsationPosition != null">
+        pulsation_position = #{pulsationPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="smokeNow != null">
+        smoke_now = #{smokeNow,jdbcType=INTEGER},
+      </if>
+      <if test="smokeNext != null">
+        smoke_next = #{smokeNext,jdbcType=INTEGER},
+      </if>
+      <if test="drinkNow != null">
+        drink_now = #{drinkNow,jdbcType=INTEGER},
+      </if>
+      <if test="drinkNext != null">
+        drink_next = #{drinkNext,jdbcType=INTEGER},
+      </if>
+      <if test="sportsNumNow != null">
+        sports_num_now = #{sportsNumNow,jdbcType=INTEGER},
+      </if>
+      <if test="sportsTimeNow != null">
+        sports_time_now = #{sportsTimeNow,jdbcType=INTEGER},
+      </if>
+      <if test="sportsNumNext != null">
+        sports_num_next = #{sportsNumNext,jdbcType=INTEGER},
+      </if>
+      <if test="sportsTimeNext != null">
+        sports_time_next = #{sportsTimeNext,jdbcType=INTEGER},
+      </if>
+      <if test="stapleFoodNow != null">
+        staple_food_now = #{stapleFoodNow,jdbcType=VARCHAR},
+      </if>
+      <if test="stapleFoodNext != null">
+        staple_food_next = #{stapleFoodNext,jdbcType=VARCHAR},
+      </if>
+      <if test="psychologicalRecovery != null">
+        psychological_recovery = #{psychologicalRecovery,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalCompliance != null">
+        medical_compliance = #{medicalCompliance,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodGlucose != null">
+        blood_glucose = #{bloodGlucose,jdbcType=VARCHAR},
+      </if>
+      <if test="glycosylatedHemoglobin != null">
+        glycosylated_hemoglobin = #{glycosylatedHemoglobin,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null">
+        check_date = #{checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="compliance != null">
+        compliance = #{compliance,jdbcType=VARCHAR},
+      </if>
+      <if test="untowardEffect != null">
+        untoward_effect = #{untowardEffect,jdbcType=VARCHAR},
+      </if>
+      <if test="untowardEffectDrug != null">
+        untoward_effect_drug = #{untowardEffectDrug,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveHypoglycemia != null">
+        reactive_hypoglycemia = #{reactiveHypoglycemia,jdbcType=VARCHAR},
+      </if>
+      <if test="followType != null">
+        follow_type = #{followType,jdbcType=VARCHAR},
+      </if>
+      <if test="insulinName != null">
+        insulin_name = #{insulinName,jdbcType=VARCHAR},
+      </if>
+      <if test="insulinUsage != null">
+        insulin_usage = #{insulinUsage,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatment != null">
+        transfer_treatment = #{transferTreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentReason != null">
+        transfer_treatment_reason = #{transferTreatmentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        transfer_treatment_department = #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="nextVisitDate != null">
+        next_visit_date = #{nextVisitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDoctor != null">
+        visit_doctor = #{visitDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="advice != null">
+        advice = #{advice,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        create_org = #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        upload_status = #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        upload_result = #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.flup.entity.DiabetesFollowRecord">
+    update diabetes_follow_record
+    set name = #{name,jdbcType=VARCHAR},
+      archive_no = #{archiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      visit_date = #{visitDate,jdbcType=VARCHAR},
+      visit_type = #{visitType,jdbcType=VARCHAR},
+      symptom = #{symptom,jdbcType=VARCHAR},
+      symptom_other = #{symptomOther,jdbcType=VARCHAR},
+      blood_pressure_high = #{bloodPressureHigh,jdbcType=INTEGER},
+      blood_pressure_low = #{bloodPressureLow,jdbcType=INTEGER},
+      weight_now = #{weightNow,jdbcType=VARCHAR},
+      weight_next = #{weightNext,jdbcType=VARCHAR},
+      height = #{height,jdbcType=VARCHAR},
+      bmi_now = #{bmiNow,jdbcType=VARCHAR},
+      bmi_next = #{bmiNext,jdbcType=VARCHAR},
+      dorsal_artery = #{dorsalArtery,jdbcType=VARCHAR},
+      pulsation_position = #{pulsationPosition,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR},
+      smoke_now = #{smokeNow,jdbcType=INTEGER},
+      smoke_next = #{smokeNext,jdbcType=INTEGER},
+      drink_now = #{drinkNow,jdbcType=INTEGER},
+      drink_next = #{drinkNext,jdbcType=INTEGER},
+      sports_num_now = #{sportsNumNow,jdbcType=INTEGER},
+      sports_time_now = #{sportsTimeNow,jdbcType=INTEGER},
+      sports_num_next = #{sportsNumNext,jdbcType=INTEGER},
+      sports_time_next = #{sportsTimeNext,jdbcType=INTEGER},
+      staple_food_now = #{stapleFoodNow,jdbcType=VARCHAR},
+      staple_food_next = #{stapleFoodNext,jdbcType=VARCHAR},
+      psychological_recovery = #{psychologicalRecovery,jdbcType=VARCHAR},
+      medical_compliance = #{medicalCompliance,jdbcType=VARCHAR},
+      blood_glucose = #{bloodGlucose,jdbcType=VARCHAR},
+      glycosylated_hemoglobin = #{glycosylatedHemoglobin,jdbcType=VARCHAR},
+      check_date = #{checkDate,jdbcType=VARCHAR},
+      compliance = #{compliance,jdbcType=VARCHAR},
+      untoward_effect = #{untowardEffect,jdbcType=VARCHAR},
+      untoward_effect_drug = #{untowardEffectDrug,jdbcType=VARCHAR},
+      reactive_hypoglycemia = #{reactiveHypoglycemia,jdbcType=VARCHAR},
+      follow_type = #{followType,jdbcType=VARCHAR},
+      insulin_name = #{insulinName,jdbcType=VARCHAR},
+      insulin_usage = #{insulinUsage,jdbcType=VARCHAR},
+      transfer_treatment = #{transferTreatment,jdbcType=VARCHAR},
+      transfer_treatment_reason = #{transferTreatmentReason,jdbcType=VARCHAR},
+      transfer_treatment_department = #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      next_visit_date = #{nextVisitDate,jdbcType=VARCHAR},
+      visit_doctor = #{visitDoctor,jdbcType=VARCHAR},
+      advice = #{advice,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_org = #{createOrg,jdbcType=VARCHAR},
+      create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      upload_status = #{uploadStatus,jdbcType=INTEGER},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      upload_result = #{uploadResult,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

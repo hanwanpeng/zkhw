@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd"
+	default-lazy-init="true" default-autowire="byName">
+
+	<!-- 使Spring支持自动检测组件 -->
+	<context:component-scan base-package="com.zkhw.*"
+		use-default-filters="false">
+		<!-- 扫描符合@Controller的类 -->
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Repository" />
+	</context:component-scan>
+
+	<!-- 默认的注解映射的支持 -->
+	<mvc:annotation-driven />
+
+	<!-- 配置静态资源 ${webappRoot}/resources/ directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- 资源文件绑定器 -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/message/messages" />
+		<property name="cacheSeconds" value="0" />
+	</bean>
+
+	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+	<bean	class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+	</bean>
+
+	<!-- 配置springmvc自定义的拦截器 -->
+	<mvc:interceptors>
+		<bean class="com.zkhw.common.utils.ResponseInterceptor"></bean>
+		<mvc:interceptor>
+		<mvc:mapping path="/**"/>
+		<bean class="com.zkhw.common.utils.AuthInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!-- 视图解释类 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/page/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="exceptionResolver" class="com.zkhw.framework.handler.ExceptionResolver" />
+    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"  />  
+</beans>

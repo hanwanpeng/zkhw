@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.code.dao.DictionariesDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.code.entity.Dictionaries">
+    <id column="mt_id" jdbcType="INTEGER" property="mtId" />
+    <result column="DICTID" jdbcType="VARCHAR" property="dictid" />
+    <result column="DICTTYPE" jdbcType="VARCHAR" property="dicttype" />
+    <result column="DICTMEMO" jdbcType="VARCHAR" property="dictmemo" />
+    <result column="ITEMCODE" jdbcType="VARCHAR" property="itemcode" />
+    <result column="DICTCODE" jdbcType="VARCHAR" property="dictcode" />
+    <result column="ITEMNAME" jdbcType="VARCHAR" property="itemname" />
+    <result column="ORDERNO" jdbcType="INTEGER" property="orderno" />
+    <result column="DICTSTATUS" jdbcType="VARCHAR" property="dictstatus" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_DATE" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="UPDATED_DATE" jdbcType="TIMESTAMP" property="updatedDate" />
+    <result column="DISABLED_BY" jdbcType="VARCHAR" property="disabledBy" />
+    <result column="DUNS" jdbcType="VARCHAR" property="duns" />
+    <result column="DISABLED_DATE" jdbcType="TIMESTAMP" property="disabledDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mt_id, DICTID, DICTTYPE, DICTMEMO, ITEMCODE, DICTCODE, ITEMNAME, ORDERNO, DICTSTATUS, 
+    REMARK, STATUS, CREATED_BY, CREATED_DATE, UPDATED_BY, UPDATED_DATE, DISABLED_BY, 
+    DUNS, DISABLED_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zkhw_dictionaries
+    where mt_id = #{mtId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="findAll"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zkhw_dictionaries
+    where DICTSTATUS != '0'
+  </select>  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zkhw_dictionaries
+    where mt_id = #{mtId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.code.entity.Dictionaries">
+    insert into zkhw_dictionaries (mt_id, DICTID, DICTTYPE, 
+      DICTMEMO, ITEMCODE, DICTCODE, 
+      ITEMNAME, ORDERNO, DICTSTATUS, 
+      REMARK, STATUS, CREATED_BY, 
+      CREATED_DATE, UPDATED_BY, UPDATED_DATE, 
+      DISABLED_BY, DUNS, DISABLED_DATE
+      )
+    values (#{mtId,jdbcType=INTEGER}, #{dictid,jdbcType=VARCHAR}, #{dicttype,jdbcType=VARCHAR}, 
+      #{dictmemo,jdbcType=VARCHAR}, #{itemcode,jdbcType=VARCHAR}, #{dictcode,jdbcType=VARCHAR}, 
+      #{itemname,jdbcType=VARCHAR}, #{orderno,jdbcType=INTEGER}, #{dictstatus,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdDate,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedDate,jdbcType=TIMESTAMP}, 
+      #{disabledBy,jdbcType=VARCHAR}, #{duns,jdbcType=VARCHAR}, #{disabledDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.code.entity.Dictionaries">
+    insert into zkhw_dictionaries
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mtId != null">
+        mt_id,
+      </if>
+      <if test="dictid != null">
+        DICTID,
+      </if>
+      <if test="dicttype != null">
+        DICTTYPE,
+      </if>
+      <if test="dictmemo != null">
+        DICTMEMO,
+      </if>
+      <if test="itemcode != null">
+        ITEMCODE,
+      </if>
+      <if test="dictcode != null">
+        DICTCODE,
+      </if>
+      <if test="itemname != null">
+        ITEMNAME,
+      </if>
+      <if test="orderno != null">
+        ORDERNO,
+      </if>
+      <if test="dictstatus != null">
+        DICTSTATUS,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdDate != null">
+        CREATED_DATE,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedDate != null">
+        UPDATED_DATE,
+      </if>
+      <if test="disabledBy != null">
+        DISABLED_BY,
+      </if>
+      <if test="duns != null">
+        DUNS,
+      </if>
+      <if test="disabledDate != null">
+        DISABLED_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mtId != null">
+        #{mtId,jdbcType=INTEGER},
+      </if>
+      <if test="dictid != null">
+        #{dictid,jdbcType=VARCHAR},
+      </if>
+      <if test="dicttype != null">
+        #{dicttype,jdbcType=VARCHAR},
+      </if>
+      <if test="dictmemo != null">
+        #{dictmemo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemcode != null">
+        #{itemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictcode != null">
+        #{dictcode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemname != null">
+        #{itemname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null">
+        #{orderno,jdbcType=INTEGER},
+      </if>
+      <if test="dictstatus != null">
+        #{dictstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null">
+        #{updatedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disabledBy != null">
+        #{disabledBy,jdbcType=VARCHAR},
+      </if>
+      <if test="duns != null">
+        #{duns,jdbcType=VARCHAR},
+      </if>
+      <if test="disabledDate != null">
+        #{disabledDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.code.entity.Dictionaries">
+    update zkhw_dictionaries
+    <set>
+      <if test="dictid != null">
+        DICTID = #{dictid,jdbcType=VARCHAR},
+      </if>
+      <if test="dicttype != null">
+        DICTTYPE = #{dicttype,jdbcType=VARCHAR},
+      </if>
+      <if test="dictmemo != null">
+        DICTMEMO = #{dictmemo,jdbcType=VARCHAR},
+      </if>
+      <if test="itemcode != null">
+        ITEMCODE = #{itemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictcode != null">
+        DICTCODE = #{dictcode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemname != null">
+        ITEMNAME = #{itemname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null">
+        ORDERNO = #{orderno,jdbcType=INTEGER},
+      </if>
+      <if test="dictstatus != null">
+        DICTSTATUS = #{dictstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedDate != null">
+        UPDATED_DATE = #{updatedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disabledBy != null">
+        DISABLED_BY = #{disabledBy,jdbcType=VARCHAR},
+      </if>
+      <if test="duns != null">
+        DUNS = #{duns,jdbcType=VARCHAR},
+      </if>
+      <if test="disabledDate != null">
+        DISABLED_DATE = #{disabledDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where mt_id = #{mtId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.code.entity.Dictionaries">
+    update zkhw_dictionaries
+    set DICTID = #{dictid,jdbcType=VARCHAR},
+      DICTTYPE = #{dicttype,jdbcType=VARCHAR},
+      DICTMEMO = #{dictmemo,jdbcType=VARCHAR},
+      ITEMCODE = #{itemcode,jdbcType=VARCHAR},
+      DICTCODE = #{dictcode,jdbcType=VARCHAR},
+      ITEMNAME = #{itemname,jdbcType=VARCHAR},
+      ORDERNO = #{orderno,jdbcType=INTEGER},
+      DICTSTATUS = #{dictstatus,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_DATE = #{updatedDate,jdbcType=TIMESTAMP},
+      DISABLED_BY = #{disabledBy,jdbcType=VARCHAR},
+      DUNS = #{duns,jdbcType=VARCHAR},
+      DISABLED_DATE = #{disabledDate,jdbcType=TIMESTAMP}
+    where mt_id = #{mtId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.ElderlyTcmRecordDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.ElderlyTcmRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="exam_id" jdbcType="VARCHAR" property="examId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="test_date" jdbcType="VARCHAR" property="testDate" />
+    <result column="answer_result" jdbcType="VARCHAR" property="answerResult" />
+    <result column="qixuzhi_score" jdbcType="INTEGER" property="qixuzhiScore" />
+    <result column="qixuzhi_result" jdbcType="INTEGER" property="qixuzhiResult" />
+    <result column="yangxuzhi_score" jdbcType="INTEGER" property="yangxuzhiScore" />
+    <result column="yangxuzhi_result" jdbcType="INTEGER" property="yangxuzhiResult" />
+    <result column="yinxuzhi_score" jdbcType="INTEGER" property="yinxuzhiScore" />
+    <result column="yinxuzhi_result" jdbcType="INTEGER" property="yinxuzhiResult" />
+    <result column="tanshizhi_score" jdbcType="INTEGER" property="tanshizhiScore" />
+    <result column="tanshizhi_result" jdbcType="INTEGER" property="tanshizhiResult" />
+    <result column="shirezhi_score" jdbcType="INTEGER" property="shirezhiScore" />
+    <result column="shirezhi_result" jdbcType="INTEGER" property="shirezhiResult" />
+    <result column="xueyuzhi_score" jdbcType="INTEGER" property="xueyuzhiScore" />
+    <result column="xueyuzhi_result" jdbcType="INTEGER" property="xueyuzhiResult" />
+    <result column="qiyuzhi_score" jdbcType="INTEGER" property="qiyuzhiScore" />
+    <result column="qiyuzhi_result" jdbcType="INTEGER" property="qiyuzhiResult" />
+    <result column="tebingzhi_sorce" jdbcType="INTEGER" property="tebingzhiSorce" />
+    <result column="tebingzhi_result" jdbcType="INTEGER" property="tebingzhiResult" />
+    <result column="pinghezhi_sorce" jdbcType="INTEGER" property="pinghezhiSorce" />
+    <result column="pinghezhi_result" jdbcType="INTEGER" property="pinghezhiResult" />
+    <result column="test_doctor" jdbcType="VARCHAR" property="testDoctor" />
+    <result column="tcm_guidance" jdbcType="VARCHAR" property="tcmGuidance" />
+    <result column="guidance_other" jdbcType="VARCHAR" property="guidanceOther" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_org" jdbcType="VARCHAR" property="createOrg" />
+    <result column="create_org_name" jdbcType="VARCHAR" property="createOrgName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+    <result column="upload_result" jdbcType="VARCHAR" property="uploadResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, exam_id, name, archive_no, id_number, test_date, answer_result, qixuzhi_score, 
+    qixuzhi_result, yangxuzhi_score, yangxuzhi_result, yinxuzhi_score, yinxuzhi_result, 
+    tanshizhi_score, tanshizhi_result, shirezhi_score, shirezhi_result, xueyuzhi_score, 
+    xueyuzhi_result, qiyuzhi_score, qiyuzhi_result, tebingzhi_sorce, tebingzhi_result, 
+    pinghezhi_sorce, pinghezhi_result, test_doctor, tcm_guidance, guidance_other, create_user, 
+    create_name, create_org, create_org_name, create_time, update_user, update_name, 
+    update_time, upload_status, upload_time, upload_result
+  </sql>
+  
+  <!-- 老年人中医体质辨识人数 -->
+	<select id="statForRecord" parameterType="com.zkhw.stat.query.ResidentQuery" resultType="com.zkhw.stat.vo.ElderlyRecordVo">
+		SELECT COUNT(1) as recordNum FROM elderly_tcm_record e JOIN resident_base_info r ON e.id_number = r.id_number
+		where 1 = 1
+		<if test="provinceCode != null and provinceCode != ''">
+			and r.province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and r.city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and r.county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and r.towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and r.village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+	</select>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from elderly_tcm_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findTcmListByExamId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from elderly_tcm_record
+    where exam_id = #{examId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getRecordByArchiveNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from elderly_tcm_record
+    where archive_no = #{archiveNo,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="shanxiSyncList"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from elderly_tcm_record r
+ 	where ifnull(upload_status,0) = 0 and EXISTS(select 1 from ltd_organization o where o.organ_code = r.create_org and o.province_code = '61')
+  </select> 
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from elderly_tcm_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.pub.entity.ElderlyTcmRecord">
+    insert into elderly_tcm_record (id, exam_id, name, 
+      archive_no, id_number, test_date, 
+      answer_result, qixuzhi_score, qixuzhi_result, 
+      yangxuzhi_score, yangxuzhi_result, yinxuzhi_score, 
+      yinxuzhi_result, tanshizhi_score, tanshizhi_result, 
+      shirezhi_score, shirezhi_result, xueyuzhi_score, 
+      xueyuzhi_result, qiyuzhi_score, qiyuzhi_result, 
+      tebingzhi_sorce, tebingzhi_result, pinghezhi_sorce, 
+      pinghezhi_result, test_doctor, tcm_guidance, 
+      guidance_other, create_user, create_name, 
+      create_org, create_org_name, create_time, 
+      update_user, update_name, update_time, 
+      upload_status, upload_time, upload_result
+      )
+    values (#{id,jdbcType=VARCHAR}, #{examId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{archiveNo,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, #{testDate,jdbcType=VARCHAR}, 
+      #{answerResult,jdbcType=VARCHAR}, #{qixuzhiScore,jdbcType=INTEGER}, #{qixuzhiResult,jdbcType=INTEGER}, 
+      #{yangxuzhiScore,jdbcType=INTEGER}, #{yangxuzhiResult,jdbcType=INTEGER}, #{yinxuzhiScore,jdbcType=INTEGER}, 
+      #{yinxuzhiResult,jdbcType=INTEGER}, #{tanshizhiScore,jdbcType=INTEGER}, #{tanshizhiResult,jdbcType=INTEGER}, 
+      #{shirezhiScore,jdbcType=INTEGER}, #{shirezhiResult,jdbcType=INTEGER}, #{xueyuzhiScore,jdbcType=INTEGER}, 
+      #{xueyuzhiResult,jdbcType=INTEGER}, #{qiyuzhiScore,jdbcType=INTEGER}, #{qiyuzhiResult,jdbcType=INTEGER}, 
+      #{tebingzhiSorce,jdbcType=INTEGER}, #{tebingzhiResult,jdbcType=INTEGER}, #{pinghezhiSorce,jdbcType=INTEGER}, 
+      #{pinghezhiResult,jdbcType=INTEGER}, #{testDoctor,jdbcType=VARCHAR}, #{tcmGuidance,jdbcType=VARCHAR}, 
+      #{guidanceOther,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, 
+      #{createOrg,jdbcType=VARCHAR}, #{createOrgName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{uploadStatus,jdbcType=INTEGER}, #{uploadTime,jdbcType=TIMESTAMP}, #{uploadResult,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.ElderlyTcmRecord">
+    insert into elderly_tcm_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="examId != null">
+        exam_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="testDate != null">
+        test_date,
+      </if>
+      <if test="answerResult != null">
+        answer_result,
+      </if>
+      <if test="qixuzhiScore != null">
+        qixuzhi_score,
+      </if>
+      <if test="qixuzhiResult != null">
+        qixuzhi_result,
+      </if>
+      <if test="yangxuzhiScore != null">
+        yangxuzhi_score,
+      </if>
+      <if test="yangxuzhiResult != null">
+        yangxuzhi_result,
+      </if>
+      <if test="yinxuzhiScore != null">
+        yinxuzhi_score,
+      </if>
+      <if test="yinxuzhiResult != null">
+        yinxuzhi_result,
+      </if>
+      <if test="tanshizhiScore != null">
+        tanshizhi_score,
+      </if>
+      <if test="tanshizhiResult != null">
+        tanshizhi_result,
+      </if>
+      <if test="shirezhiScore != null">
+        shirezhi_score,
+      </if>
+      <if test="shirezhiResult != null">
+        shirezhi_result,
+      </if>
+      <if test="xueyuzhiScore != null">
+        xueyuzhi_score,
+      </if>
+      <if test="xueyuzhiResult != null">
+        xueyuzhi_result,
+      </if>
+      <if test="qiyuzhiScore != null">
+        qiyuzhi_score,
+      </if>
+      <if test="qiyuzhiResult != null">
+        qiyuzhi_result,
+      </if>
+      <if test="tebingzhiSorce != null">
+        tebingzhi_sorce,
+      </if>
+      <if test="tebingzhiResult != null">
+        tebingzhi_result,
+      </if>
+      <if test="pinghezhiSorce != null">
+        pinghezhi_sorce,
+      </if>
+      <if test="pinghezhiResult != null">
+        pinghezhi_result,
+      </if>
+      <if test="testDoctor != null">
+        test_doctor,
+      </if>
+      <if test="tcmGuidance != null">
+        tcm_guidance,
+      </if>
+      <if test="guidanceOther != null">
+        guidance_other,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createOrg != null">
+        create_org,
+      </if>
+      <if test="createOrgName != null">
+        create_org_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="uploadStatus != null">
+        upload_status,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+      <if test="uploadResult != null">
+        upload_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="examId != null">
+        #{examId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="testDate != null">
+        #{testDate,jdbcType=VARCHAR},
+      </if>
+      <if test="answerResult != null">
+        #{answerResult,jdbcType=VARCHAR},
+      </if>
+      <if test="qixuzhiScore != null">
+        #{qixuzhiScore,jdbcType=INTEGER},
+      </if>
+      <if test="qixuzhiResult != null">
+        #{qixuzhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="yangxuzhiScore != null">
+        #{yangxuzhiScore,jdbcType=INTEGER},
+      </if>
+      <if test="yangxuzhiResult != null">
+        #{yangxuzhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="yinxuzhiScore != null">
+        #{yinxuzhiScore,jdbcType=INTEGER},
+      </if>
+      <if test="yinxuzhiResult != null">
+        #{yinxuzhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="tanshizhiScore != null">
+        #{tanshizhiScore,jdbcType=INTEGER},
+      </if>
+      <if test="tanshizhiResult != null">
+        #{tanshizhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="shirezhiScore != null">
+        #{shirezhiScore,jdbcType=INTEGER},
+      </if>
+      <if test="shirezhiResult != null">
+        #{shirezhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="xueyuzhiScore != null">
+        #{xueyuzhiScore,jdbcType=INTEGER},
+      </if>
+      <if test="xueyuzhiResult != null">
+        #{xueyuzhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="qiyuzhiScore != null">
+        #{qiyuzhiScore,jdbcType=INTEGER},
+      </if>
+      <if test="qiyuzhiResult != null">
+        #{qiyuzhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="tebingzhiSorce != null">
+        #{tebingzhiSorce,jdbcType=INTEGER},
+      </if>
+      <if test="tebingzhiResult != null">
+        #{tebingzhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="pinghezhiSorce != null">
+        #{pinghezhiSorce,jdbcType=INTEGER},
+      </if>
+      <if test="pinghezhiResult != null">
+        #{pinghezhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="testDoctor != null">
+        #{testDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="tcmGuidance != null">
+        #{tcmGuidance,jdbcType=VARCHAR},
+      </if>
+      <if test="guidanceOther != null">
+        #{guidanceOther,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.ElderlyTcmRecord">
+    update elderly_tcm_record
+    <set>
+      <if test="examId != null">
+        exam_id = #{examId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="testDate != null">
+        test_date = #{testDate,jdbcType=VARCHAR},
+      </if>
+      <if test="answerResult != null">
+        answer_result = #{answerResult,jdbcType=VARCHAR},
+      </if>
+      <if test="qixuzhiScore != null">
+        qixuzhi_score = #{qixuzhiScore,jdbcType=INTEGER},
+      </if>
+      <if test="qixuzhiResult != null">
+        qixuzhi_result = #{qixuzhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="yangxuzhiScore != null">
+        yangxuzhi_score = #{yangxuzhiScore,jdbcType=INTEGER},
+      </if>
+      <if test="yangxuzhiResult != null">
+        yangxuzhi_result = #{yangxuzhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="yinxuzhiScore != null">
+        yinxuzhi_score = #{yinxuzhiScore,jdbcType=INTEGER},
+      </if>
+      <if test="yinxuzhiResult != null">
+        yinxuzhi_result = #{yinxuzhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="tanshizhiScore != null">
+        tanshizhi_score = #{tanshizhiScore,jdbcType=INTEGER},
+      </if>
+      <if test="tanshizhiResult != null">
+        tanshizhi_result = #{tanshizhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="shirezhiScore != null">
+        shirezhi_score = #{shirezhiScore,jdbcType=INTEGER},
+      </if>
+      <if test="shirezhiResult != null">
+        shirezhi_result = #{shirezhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="xueyuzhiScore != null">
+        xueyuzhi_score = #{xueyuzhiScore,jdbcType=INTEGER},
+      </if>
+      <if test="xueyuzhiResult != null">
+        xueyuzhi_result = #{xueyuzhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="qiyuzhiScore != null">
+        qiyuzhi_score = #{qiyuzhiScore,jdbcType=INTEGER},
+      </if>
+      <if test="qiyuzhiResult != null">
+        qiyuzhi_result = #{qiyuzhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="tebingzhiSorce != null">
+        tebingzhi_sorce = #{tebingzhiSorce,jdbcType=INTEGER},
+      </if>
+      <if test="tebingzhiResult != null">
+        tebingzhi_result = #{tebingzhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="pinghezhiSorce != null">
+        pinghezhi_sorce = #{pinghezhiSorce,jdbcType=INTEGER},
+      </if>
+      <if test="pinghezhiResult != null">
+        pinghezhi_result = #{pinghezhiResult,jdbcType=INTEGER},
+      </if>
+      <if test="testDoctor != null">
+        test_doctor = #{testDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="tcmGuidance != null">
+        tcm_guidance = #{tcmGuidance,jdbcType=VARCHAR},
+      </if>
+      <if test="guidanceOther != null">
+        guidance_other = #{guidanceOther,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        create_org = #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        upload_status = #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        upload_result = #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.ElderlyTcmRecord">
+    update elderly_tcm_record
+    set exam_id = #{examId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      archive_no = #{archiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      test_date = #{testDate,jdbcType=VARCHAR},
+      answer_result = #{answerResult,jdbcType=VARCHAR},
+      qixuzhi_score = #{qixuzhiScore,jdbcType=INTEGER},
+      qixuzhi_result = #{qixuzhiResult,jdbcType=INTEGER},
+      yangxuzhi_score = #{yangxuzhiScore,jdbcType=INTEGER},
+      yangxuzhi_result = #{yangxuzhiResult,jdbcType=INTEGER},
+      yinxuzhi_score = #{yinxuzhiScore,jdbcType=INTEGER},
+      yinxuzhi_result = #{yinxuzhiResult,jdbcType=INTEGER},
+      tanshizhi_score = #{tanshizhiScore,jdbcType=INTEGER},
+      tanshizhi_result = #{tanshizhiResult,jdbcType=INTEGER},
+      shirezhi_score = #{shirezhiScore,jdbcType=INTEGER},
+      shirezhi_result = #{shirezhiResult,jdbcType=INTEGER},
+      xueyuzhi_score = #{xueyuzhiScore,jdbcType=INTEGER},
+      xueyuzhi_result = #{xueyuzhiResult,jdbcType=INTEGER},
+      qiyuzhi_score = #{qiyuzhiScore,jdbcType=INTEGER},
+      qiyuzhi_result = #{qiyuzhiResult,jdbcType=INTEGER},
+      tebingzhi_sorce = #{tebingzhiSorce,jdbcType=INTEGER},
+      tebingzhi_result = #{tebingzhiResult,jdbcType=INTEGER},
+      pinghezhi_sorce = #{pinghezhiSorce,jdbcType=INTEGER},
+      pinghezhi_result = #{pinghezhiResult,jdbcType=INTEGER},
+      test_doctor = #{testDoctor,jdbcType=VARCHAR},
+      tcm_guidance = #{tcmGuidance,jdbcType=VARCHAR},
+      guidance_other = #{guidanceOther,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_org = #{createOrg,jdbcType=VARCHAR},
+      create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      upload_status = #{uploadStatus,jdbcType=INTEGER},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      upload_result = #{uploadResult,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateArchiveNo" parameterType="com.zkhw.pub.vo.ArchiveId">
+  	update elderly_tcm_record
+  	set archive_no = #{archiveNo,jdbcType=VARCHAR}
+  	where archive_no = #{oldArchiveNo,jdbcType=VARCHAR}
+  </update>  
+</mapper>

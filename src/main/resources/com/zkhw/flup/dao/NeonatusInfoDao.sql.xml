@@ -1,0 +1,1248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.flup.dao.NeonatusInfoDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.flup.entity.NeonatusInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="home_address" jdbcType="VARCHAR" property="homeAddress" />
+    <result column="father_name" jdbcType="VARCHAR" property="fatherName" />
+    <result column="father_profession" jdbcType="VARCHAR" property="fatherProfession" />
+    <result column="father_phone" jdbcType="VARCHAR" property="fatherPhone" />
+    <result column="father_birthday" jdbcType="VARCHAR" property="fatherBirthday" />
+    <result column="mother_name" jdbcType="VARCHAR" property="motherName" />
+    <result column="mother_profession" jdbcType="VARCHAR" property="motherProfession" />
+    <result column="mother_phone" jdbcType="VARCHAR" property="motherPhone" />
+    <result column="mother_birthday" jdbcType="VARCHAR" property="motherBirthday" />
+    <result column="gestational_weeks" jdbcType="INTEGER" property="gestationalWeeks" />
+    <result column="sicken_stasus" jdbcType="VARCHAR" property="sickenStasus" />
+    <result column="sicken_other" jdbcType="VARCHAR" property="sickenOther" />
+    <result column="midwife_org" jdbcType="VARCHAR" property="midwifeOrg" />
+    <result column="birth_situation" jdbcType="VARCHAR" property="birthSituation" />
+    <result column="birth_other" jdbcType="VARCHAR" property="birthOther" />
+    <result column="asphyxia_neonatorum" jdbcType="VARCHAR" property="asphyxiaNeonatorum" />
+    <result column="asphyxia_time" jdbcType="VARCHAR" property="asphyxiaTime" />
+    <result column="deformity" jdbcType="VARCHAR" property="deformity" />
+    <result column="deformity_other" jdbcType="VARCHAR" property="deformityOther" />
+    <result column="hearing" jdbcType="VARCHAR" property="hearing" />
+    <result column="disease" jdbcType="VARCHAR" property="disease" />
+    <result column="disease_other" jdbcType="VARCHAR" property="diseaseOther" />
+    <result column="birth_weight" jdbcType="VARCHAR" property="birthWeight" />
+    <result column="weight" jdbcType="VARCHAR" property="weight" />
+    <result column="birth_height" jdbcType="VARCHAR" property="birthHeight" />
+    <result column="feeding_patterns" jdbcType="VARCHAR" property="feedingPatterns" />
+    <result column="milk_num" jdbcType="INTEGER" property="milkNum" />
+    <result column="milk_intake" jdbcType="INTEGER" property="milkIntake" />
+    <result column="vomit" jdbcType="VARCHAR" property="vomit" />
+    <result column="shit" jdbcType="VARCHAR" property="shit" />
+    <result column="defecation_num" jdbcType="INTEGER" property="defecationNum" />
+    <result column="temperature" jdbcType="VARCHAR" property="temperature" />
+    <result column="heart_rate" jdbcType="INTEGER" property="heartRate" />
+    <result column="breathing_rate" jdbcType="INTEGER" property="breathingRate" />
+    <result column="complexion" jdbcType="VARCHAR" property="complexion" />
+    <result column="complexion_other" jdbcType="VARCHAR" property="complexionOther" />
+    <result column="aurigo" jdbcType="VARCHAR" property="aurigo" />
+    <result column="aurigo_other" jdbcType="VARCHAR" property="aurigoOther" />
+    <result column="anterior_fontanelle_wide" jdbcType="VARCHAR" property="anteriorFontanelleWide" />
+    <result column="anterior_fontanelle_high" jdbcType="VARCHAR" property="anteriorFontanelleHigh" />
+    <result column="anterior_fontanelle" jdbcType="VARCHAR" property="anteriorFontanelle" />
+    <result column="anterior_fontanelle_other" jdbcType="VARCHAR" property="anteriorFontanelleOther" />
+    <result column="eye" jdbcType="VARCHAR" property="eye" />
+    <result column="extremity_mobility" jdbcType="VARCHAR" property="extremityMobility" />
+    <result column="ear" jdbcType="VARCHAR" property="ear" />
+    <result column="neck_mass" jdbcType="VARCHAR" property="neckMass" />
+    <result column="nose" jdbcType="VARCHAR" property="nose" />
+    <result column="skin" jdbcType="VARCHAR" property="skin" />
+    <result column="skin_other" jdbcType="VARCHAR" property="skinOther" />
+    <result column="oral_cavity" jdbcType="VARCHAR" property="oralCavity" />
+    <result column="anus" jdbcType="VARCHAR" property="anus" />
+    <result column="heart_lung" jdbcType="VARCHAR" property="heartLung" />
+    <result column="breast" jdbcType="VARCHAR" property="breast" />
+    <result column="abdominal_touch" jdbcType="VARCHAR" property="abdominalTouch" />
+    <result column="spine" jdbcType="VARCHAR" property="spine" />
+    <result column="aedea" jdbcType="VARCHAR" property="aedea" />
+    <result column="umbilical_cord" jdbcType="VARCHAR" property="umbilicalCord" />
+    <result column="umbilical_cord_other" jdbcType="VARCHAR" property="umbilicalCordOther" />
+    <result column="transfer_treatment" jdbcType="VARCHAR" property="transferTreatment" />
+    <result column="transfer_treatment_reason" jdbcType="VARCHAR" property="transferTreatmentReason" />
+    <result column="transfer_treatment_department" jdbcType="VARCHAR" property="transferTreatmentDepartment" />
+    <result column="guidance" jdbcType="VARCHAR" property="guidance" />
+    <result column="guidance_other" jdbcType="VARCHAR" property="guidanceOther" />
+    <result column="visit_date" jdbcType="VARCHAR" property="visitDate" />
+    <result column="next_visit_date" jdbcType="VARCHAR" property="nextVisitDate" />
+    <result column="next_visit_address" jdbcType="VARCHAR" property="nextVisitAddress" />
+    <result column="visit_doctor" jdbcType="VARCHAR" property="visitDoctor" />
+    <result column="province_code" jdbcType="VARCHAR" property="provinceCode" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="county_code" jdbcType="VARCHAR" property="countyCode" />
+    <result column="county_name" jdbcType="VARCHAR" property="countyName" />
+    <result column="towns_code" jdbcType="VARCHAR" property="townsCode" />
+    <result column="towns_name" jdbcType="VARCHAR" property="townsName" />
+    <result column="village_code" jdbcType="VARCHAR" property="villageCode" />
+    <result column="village_name" jdbcType="VARCHAR" property="villageName" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_org" jdbcType="VARCHAR" property="createOrg" />
+    <result column="create_org_name" jdbcType="VARCHAR" property="createOrgName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+    <result column="upload_result" jdbcType="VARCHAR" property="uploadResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, archive_no, id_number, sex, birthday, home_address, father_name, father_profession, 
+    father_phone, father_birthday, mother_name, mother_profession, mother_phone, mother_birthday, 
+    gestational_weeks, sicken_stasus, sicken_other, midwife_org, birth_situation, birth_other, 
+    asphyxia_neonatorum, asphyxia_time, deformity, deformity_other, hearing, disease, 
+    disease_other, birth_weight, weight, birth_height, feeding_patterns, milk_num, milk_intake, 
+    vomit, shit, defecation_num, temperature, heart_rate, breathing_rate, complexion, 
+    complexion_other, aurigo, aurigo_other, anterior_fontanelle_wide, anterior_fontanelle_high, 
+    anterior_fontanelle, anterior_fontanelle_other, eye, extremity_mobility, ear, neck_mass, 
+    nose, skin, skin_other, oral_cavity, anus, heart_lung, breast, abdominal_touch, spine, 
+    aedea, umbilical_cord, umbilical_cord_other, transfer_treatment, transfer_treatment_reason, 
+    transfer_treatment_department, guidance, guidance_other, visit_date, next_visit_date, 
+    next_visit_address, visit_doctor, province_code, province_name, city_code, city_name, 
+    county_code, county_name, towns_code, towns_name, village_code, village_name, create_user, 
+    create_name, create_org, create_org_name, create_time, update_user, update_name, 
+    update_time, upload_status, upload_time, upload_result
+  </sql>
+  
+  <!-- 新生儿人数 -->
+	<select id="statForChild" parameterType="com.zkhw.stat.query.ResidentQuery" resultType="com.zkhw.stat.vo.ChildVo">
+	SELECT (SELECT COUNT(1) FROM neonatus_info
+	where 1 = 1
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+	) AS neonatusNum,
+	(SELECT COUNT(1) FROM neonatus_info n JOIN
+	children_health_record c ON n.archive_no = c.archive_no
+	where 1 = 1
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+	) AS childrenHealthNum,
+	(SELECT COUNT(1) FROM neonatus_info n JOIN
+	children_tcm_record c ON n.archive_no = c.archive_no
+	where 1 = 1
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+	) AS childrenTcmNum
+</select>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from neonatus_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getNeonatusByArchiveNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from neonatus_info
+    where archive_no = #{archiveNo,jdbcType=VARCHAR}
+  </select>
+    
+  <select id="findNeonatusList" parameterType="com.zkhw.flup.entity.NeonatusInfo" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from neonatus_info
+    where 1 = 1
+     <if test="provinceCode != null and provinceCode != ''">
+       and  province_code = #{provinceCode,jdbcType=VARCHAR}
+     </if>   
+     <if test="cityCode != null and cityCode != ''">
+       and  city_code = #{cityCode,jdbcType=VARCHAR}
+     </if> 
+     <if test="countyCode != null and countyCode != ''">
+       and  county_code = #{countyCode,jdbcType=VARCHAR}
+     </if>  
+     <if test="townsCode != null and townsCode != ''">
+       and  towns_code = #{townsCode,jdbcType=VARCHAR}
+     </if>  
+     <if test="villageCode != null and villageCode != ''">
+       and  village_code = #{villageCode,jdbcType=VARCHAR}
+     </if> 
+     <if test="sex != null and sex != ''">
+       and  sex = #{sex,jdbcType=VARCHAR}
+     </if>
+	<if test="name != null and name != ''">
+		and (name like concat(concat('%',#{name,jdbcType=VARCHAR}),'%')
+		or id_number like concat(concat('%',#{name,jdbcType=VARCHAR}),'%')
+		or archive_no like concat(concat('%',#{name,jdbcType=VARCHAR}),'%'))
+	</if>           
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from neonatus_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.flup.entity.NeonatusInfo">
+    insert into neonatus_info (id, name, archive_no, 
+      id_number, sex, birthday, 
+      home_address, father_name, father_profession, 
+      father_phone, father_birthday, mother_name, 
+      mother_profession, mother_phone, mother_birthday, 
+      gestational_weeks, sicken_stasus, sicken_other, 
+      midwife_org, birth_situation, birth_other, 
+      asphyxia_neonatorum, asphyxia_time, deformity, 
+      deformity_other, hearing, disease, 
+      disease_other, birth_weight, weight, 
+      birth_height, feeding_patterns, milk_num, 
+      milk_intake, vomit, shit, 
+      defecation_num, temperature, heart_rate, 
+      breathing_rate, complexion, complexion_other, 
+      aurigo, aurigo_other, anterior_fontanelle_wide, 
+      anterior_fontanelle_high, anterior_fontanelle, 
+      anterior_fontanelle_other, eye, extremity_mobility, 
+      ear, neck_mass, nose, 
+      skin, skin_other, oral_cavity, 
+      anus, heart_lung, breast, 
+      abdominal_touch, spine, aedea, 
+      umbilical_cord, umbilical_cord_other, transfer_treatment, 
+      transfer_treatment_reason, transfer_treatment_department, 
+      guidance, guidance_other, visit_date, 
+      next_visit_date, next_visit_address, visit_doctor, 
+      province_code, province_name, city_code, 
+      city_name, county_code, county_name, 
+      towns_code, towns_name, village_code, 
+      village_name, create_user, create_name, 
+      create_org, create_org_name, create_time, 
+      update_user, update_name, update_time, 
+      upload_status, upload_time, upload_result
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{archiveNo,jdbcType=VARCHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{homeAddress,jdbcType=VARCHAR}, #{fatherName,jdbcType=VARCHAR}, #{fatherProfession,jdbcType=VARCHAR}, 
+      #{fatherPhone,jdbcType=VARCHAR}, #{fatherBirthday,jdbcType=VARCHAR}, #{motherName,jdbcType=VARCHAR}, 
+      #{motherProfession,jdbcType=VARCHAR}, #{motherPhone,jdbcType=VARCHAR}, #{motherBirthday,jdbcType=VARCHAR}, 
+      #{gestationalWeeks,jdbcType=INTEGER}, #{sickenStasus,jdbcType=VARCHAR}, #{sickenOther,jdbcType=VARCHAR}, 
+      #{midwifeOrg,jdbcType=VARCHAR}, #{birthSituation,jdbcType=VARCHAR}, #{birthOther,jdbcType=VARCHAR}, 
+      #{asphyxiaNeonatorum,jdbcType=VARCHAR}, #{asphyxiaTime,jdbcType=VARCHAR}, #{deformity,jdbcType=VARCHAR}, 
+      #{deformityOther,jdbcType=VARCHAR}, #{hearing,jdbcType=VARCHAR}, #{disease,jdbcType=VARCHAR}, 
+      #{diseaseOther,jdbcType=VARCHAR}, #{birthWeight,jdbcType=VARCHAR}, #{weight,jdbcType=VARCHAR}, 
+      #{birthHeight,jdbcType=VARCHAR}, #{feedingPatterns,jdbcType=VARCHAR}, #{milkNum,jdbcType=INTEGER}, 
+      #{milkIntake,jdbcType=INTEGER}, #{vomit,jdbcType=VARCHAR}, #{shit,jdbcType=VARCHAR}, 
+      #{defecationNum,jdbcType=INTEGER}, #{temperature,jdbcType=VARCHAR}, #{heartRate,jdbcType=INTEGER}, 
+      #{breathingRate,jdbcType=INTEGER}, #{complexion,jdbcType=VARCHAR}, #{complexionOther,jdbcType=VARCHAR}, 
+      #{aurigo,jdbcType=VARCHAR}, #{aurigoOther,jdbcType=VARCHAR}, #{anteriorFontanelleWide,jdbcType=VARCHAR}, 
+      #{anteriorFontanelleHigh,jdbcType=VARCHAR}, #{anteriorFontanelle,jdbcType=VARCHAR}, 
+      #{anteriorFontanelleOther,jdbcType=VARCHAR}, #{eye,jdbcType=VARCHAR}, #{extremityMobility,jdbcType=VARCHAR}, 
+      #{ear,jdbcType=VARCHAR}, #{neckMass,jdbcType=VARCHAR}, #{nose,jdbcType=VARCHAR}, 
+      #{skin,jdbcType=VARCHAR}, #{skinOther,jdbcType=VARCHAR}, #{oralCavity,jdbcType=VARCHAR}, 
+      #{anus,jdbcType=VARCHAR}, #{heartLung,jdbcType=VARCHAR}, #{breast,jdbcType=VARCHAR}, 
+      #{abdominalTouch,jdbcType=VARCHAR}, #{spine,jdbcType=VARCHAR}, #{aedea,jdbcType=VARCHAR}, 
+      #{umbilicalCord,jdbcType=VARCHAR}, #{umbilicalCordOther,jdbcType=VARCHAR}, #{transferTreatment,jdbcType=VARCHAR}, 
+      #{transferTreatmentReason,jdbcType=VARCHAR}, #{transferTreatmentDepartment,jdbcType=VARCHAR}, 
+      #{guidance,jdbcType=VARCHAR}, #{guidanceOther,jdbcType=VARCHAR}, #{visitDate,jdbcType=VARCHAR}, 
+      #{nextVisitDate,jdbcType=VARCHAR}, #{nextVisitAddress,jdbcType=VARCHAR}, #{visitDoctor,jdbcType=VARCHAR}, 
+      #{provinceCode,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{cityName,jdbcType=VARCHAR}, #{countyCode,jdbcType=VARCHAR}, #{countyName,jdbcType=VARCHAR}, 
+      #{townsCode,jdbcType=VARCHAR}, #{townsName,jdbcType=VARCHAR}, #{villageCode,jdbcType=VARCHAR}, 
+      #{villageName,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, 
+      #{createOrg,jdbcType=VARCHAR}, #{createOrgName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{uploadStatus,jdbcType=INTEGER}, #{uploadTime,jdbcType=TIMESTAMP}, #{uploadResult,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.flup.entity.NeonatusInfo">
+    insert into neonatus_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="homeAddress != null">
+        home_address,
+      </if>
+      <if test="fatherName != null">
+        father_name,
+      </if>
+      <if test="fatherProfession != null">
+        father_profession,
+      </if>
+      <if test="fatherPhone != null">
+        father_phone,
+      </if>
+      <if test="fatherBirthday != null">
+        father_birthday,
+      </if>
+      <if test="motherName != null">
+        mother_name,
+      </if>
+      <if test="motherProfession != null">
+        mother_profession,
+      </if>
+      <if test="motherPhone != null">
+        mother_phone,
+      </if>
+      <if test="motherBirthday != null">
+        mother_birthday,
+      </if>
+      <if test="gestationalWeeks != null">
+        gestational_weeks,
+      </if>
+      <if test="sickenStasus != null">
+        sicken_stasus,
+      </if>
+      <if test="sickenOther != null">
+        sicken_other,
+      </if>
+      <if test="midwifeOrg != null">
+        midwife_org,
+      </if>
+      <if test="birthSituation != null">
+        birth_situation,
+      </if>
+      <if test="birthOther != null">
+        birth_other,
+      </if>
+      <if test="asphyxiaNeonatorum != null">
+        asphyxia_neonatorum,
+      </if>
+      <if test="asphyxiaTime != null">
+        asphyxia_time,
+      </if>
+      <if test="deformity != null">
+        deformity,
+      </if>
+      <if test="deformityOther != null">
+        deformity_other,
+      </if>
+      <if test="hearing != null">
+        hearing,
+      </if>
+      <if test="disease != null">
+        disease,
+      </if>
+      <if test="diseaseOther != null">
+        disease_other,
+      </if>
+      <if test="birthWeight != null">
+        birth_weight,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="birthHeight != null">
+        birth_height,
+      </if>
+      <if test="feedingPatterns != null">
+        feeding_patterns,
+      </if>
+      <if test="milkNum != null">
+        milk_num,
+      </if>
+      <if test="milkIntake != null">
+        milk_intake,
+      </if>
+      <if test="vomit != null">
+        vomit,
+      </if>
+      <if test="shit != null">
+        shit,
+      </if>
+      <if test="defecationNum != null">
+        defecation_num,
+      </if>
+      <if test="temperature != null">
+        temperature,
+      </if>
+      <if test="heartRate != null">
+        heart_rate,
+      </if>
+      <if test="breathingRate != null">
+        breathing_rate,
+      </if>
+      <if test="complexion != null">
+        complexion,
+      </if>
+      <if test="complexionOther != null">
+        complexion_other,
+      </if>
+      <if test="aurigo != null">
+        aurigo,
+      </if>
+      <if test="aurigoOther != null">
+        aurigo_other,
+      </if>
+      <if test="anteriorFontanelleWide != null">
+        anterior_fontanelle_wide,
+      </if>
+      <if test="anteriorFontanelleHigh != null">
+        anterior_fontanelle_high,
+      </if>
+      <if test="anteriorFontanelle != null">
+        anterior_fontanelle,
+      </if>
+      <if test="anteriorFontanelleOther != null">
+        anterior_fontanelle_other,
+      </if>
+      <if test="eye != null">
+        eye,
+      </if>
+      <if test="extremityMobility != null">
+        extremity_mobility,
+      </if>
+      <if test="ear != null">
+        ear,
+      </if>
+      <if test="neckMass != null">
+        neck_mass,
+      </if>
+      <if test="nose != null">
+        nose,
+      </if>
+      <if test="skin != null">
+        skin,
+      </if>
+      <if test="skinOther != null">
+        skin_other,
+      </if>
+      <if test="oralCavity != null">
+        oral_cavity,
+      </if>
+      <if test="anus != null">
+        anus,
+      </if>
+      <if test="heartLung != null">
+        heart_lung,
+      </if>
+      <if test="breast != null">
+        breast,
+      </if>
+      <if test="abdominalTouch != null">
+        abdominal_touch,
+      </if>
+      <if test="spine != null">
+        spine,
+      </if>
+      <if test="aedea != null">
+        aedea,
+      </if>
+      <if test="umbilicalCord != null">
+        umbilical_cord,
+      </if>
+      <if test="umbilicalCordOther != null">
+        umbilical_cord_other,
+      </if>
+      <if test="transferTreatment != null">
+        transfer_treatment,
+      </if>
+      <if test="transferTreatmentReason != null">
+        transfer_treatment_reason,
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        transfer_treatment_department,
+      </if>
+      <if test="guidance != null">
+        guidance,
+      </if>
+      <if test="guidanceOther != null">
+        guidance_other,
+      </if>
+      <if test="visitDate != null">
+        visit_date,
+      </if>
+      <if test="nextVisitDate != null">
+        next_visit_date,
+      </if>
+      <if test="nextVisitAddress != null">
+        next_visit_address,
+      </if>
+      <if test="visitDoctor != null">
+        visit_doctor,
+      </if>
+      <if test="provinceCode != null">
+        province_code,
+      </if>
+      <if test="provinceName != null">
+        province_name,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="cityName != null">
+        city_name,
+      </if>
+      <if test="countyCode != null">
+        county_code,
+      </if>
+      <if test="countyName != null">
+        county_name,
+      </if>
+      <if test="townsCode != null">
+        towns_code,
+      </if>
+      <if test="townsName != null">
+        towns_name,
+      </if>
+      <if test="villageCode != null">
+        village_code,
+      </if>
+      <if test="villageName != null">
+        village_name,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createOrg != null">
+        create_org,
+      </if>
+      <if test="createOrgName != null">
+        create_org_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="uploadStatus != null">
+        upload_status,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+      <if test="uploadResult != null">
+        upload_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null">
+        #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherName != null">
+        #{fatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherProfession != null">
+        #{fatherProfession,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherPhone != null">
+        #{fatherPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherBirthday != null">
+        #{fatherBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="motherName != null">
+        #{motherName,jdbcType=VARCHAR},
+      </if>
+      <if test="motherProfession != null">
+        #{motherProfession,jdbcType=VARCHAR},
+      </if>
+      <if test="motherPhone != null">
+        #{motherPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="motherBirthday != null">
+        #{motherBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="gestationalWeeks != null">
+        #{gestationalWeeks,jdbcType=INTEGER},
+      </if>
+      <if test="sickenStasus != null">
+        #{sickenStasus,jdbcType=VARCHAR},
+      </if>
+      <if test="sickenOther != null">
+        #{sickenOther,jdbcType=VARCHAR},
+      </if>
+      <if test="midwifeOrg != null">
+        #{midwifeOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="birthSituation != null">
+        #{birthSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthOther != null">
+        #{birthOther,jdbcType=VARCHAR},
+      </if>
+      <if test="asphyxiaNeonatorum != null">
+        #{asphyxiaNeonatorum,jdbcType=VARCHAR},
+      </if>
+      <if test="asphyxiaTime != null">
+        #{asphyxiaTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deformity != null">
+        #{deformity,jdbcType=VARCHAR},
+      </if>
+      <if test="deformityOther != null">
+        #{deformityOther,jdbcType=VARCHAR},
+      </if>
+      <if test="hearing != null">
+        #{hearing,jdbcType=VARCHAR},
+      </if>
+      <if test="disease != null">
+        #{disease,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseOther != null">
+        #{diseaseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="birthWeight != null">
+        #{birthWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="birthHeight != null">
+        #{birthHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="feedingPatterns != null">
+        #{feedingPatterns,jdbcType=VARCHAR},
+      </if>
+      <if test="milkNum != null">
+        #{milkNum,jdbcType=INTEGER},
+      </if>
+      <if test="milkIntake != null">
+        #{milkIntake,jdbcType=INTEGER},
+      </if>
+      <if test="vomit != null">
+        #{vomit,jdbcType=VARCHAR},
+      </if>
+      <if test="shit != null">
+        #{shit,jdbcType=VARCHAR},
+      </if>
+      <if test="defecationNum != null">
+        #{defecationNum,jdbcType=INTEGER},
+      </if>
+      <if test="temperature != null">
+        #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="heartRate != null">
+        #{heartRate,jdbcType=INTEGER},
+      </if>
+      <if test="breathingRate != null">
+        #{breathingRate,jdbcType=INTEGER},
+      </if>
+      <if test="complexion != null">
+        #{complexion,jdbcType=VARCHAR},
+      </if>
+      <if test="complexionOther != null">
+        #{complexionOther,jdbcType=VARCHAR},
+      </if>
+      <if test="aurigo != null">
+        #{aurigo,jdbcType=VARCHAR},
+      </if>
+      <if test="aurigoOther != null">
+        #{aurigoOther,jdbcType=VARCHAR},
+      </if>
+      <if test="anteriorFontanelleWide != null">
+        #{anteriorFontanelleWide,jdbcType=VARCHAR},
+      </if>
+      <if test="anteriorFontanelleHigh != null">
+        #{anteriorFontanelleHigh,jdbcType=VARCHAR},
+      </if>
+      <if test="anteriorFontanelle != null">
+        #{anteriorFontanelle,jdbcType=VARCHAR},
+      </if>
+      <if test="anteriorFontanelleOther != null">
+        #{anteriorFontanelleOther,jdbcType=VARCHAR},
+      </if>
+      <if test="eye != null">
+        #{eye,jdbcType=VARCHAR},
+      </if>
+      <if test="extremityMobility != null">
+        #{extremityMobility,jdbcType=VARCHAR},
+      </if>
+      <if test="ear != null">
+        #{ear,jdbcType=VARCHAR},
+      </if>
+      <if test="neckMass != null">
+        #{neckMass,jdbcType=VARCHAR},
+      </if>
+      <if test="nose != null">
+        #{nose,jdbcType=VARCHAR},
+      </if>
+      <if test="skin != null">
+        #{skin,jdbcType=VARCHAR},
+      </if>
+      <if test="skinOther != null">
+        #{skinOther,jdbcType=VARCHAR},
+      </if>
+      <if test="oralCavity != null">
+        #{oralCavity,jdbcType=VARCHAR},
+      </if>
+      <if test="anus != null">
+        #{anus,jdbcType=VARCHAR},
+      </if>
+      <if test="heartLung != null">
+        #{heartLung,jdbcType=VARCHAR},
+      </if>
+      <if test="breast != null">
+        #{breast,jdbcType=VARCHAR},
+      </if>
+      <if test="abdominalTouch != null">
+        #{abdominalTouch,jdbcType=VARCHAR},
+      </if>
+      <if test="spine != null">
+        #{spine,jdbcType=VARCHAR},
+      </if>
+      <if test="aedea != null">
+        #{aedea,jdbcType=VARCHAR},
+      </if>
+      <if test="umbilicalCord != null">
+        #{umbilicalCord,jdbcType=VARCHAR},
+      </if>
+      <if test="umbilicalCordOther != null">
+        #{umbilicalCordOther,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatment != null">
+        #{transferTreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentReason != null">
+        #{transferTreatmentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="guidance != null">
+        #{guidance,jdbcType=VARCHAR},
+      </if>
+      <if test="guidanceOther != null">
+        #{guidanceOther,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null">
+        #{visitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="nextVisitDate != null">
+        #{nextVisitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="nextVisitAddress != null">
+        #{nextVisitAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDoctor != null">
+        #{visitDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsCode != null">
+        #{townsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townsName != null">
+        #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null">
+        #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.flup.entity.NeonatusInfo">
+    update neonatus_info
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null">
+        home_address = #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherName != null">
+        father_name = #{fatherName,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherProfession != null">
+        father_profession = #{fatherProfession,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherPhone != null">
+        father_phone = #{fatherPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherBirthday != null">
+        father_birthday = #{fatherBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="motherName != null">
+        mother_name = #{motherName,jdbcType=VARCHAR},
+      </if>
+      <if test="motherProfession != null">
+        mother_profession = #{motherProfession,jdbcType=VARCHAR},
+      </if>
+      <if test="motherPhone != null">
+        mother_phone = #{motherPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="motherBirthday != null">
+        mother_birthday = #{motherBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="gestationalWeeks != null">
+        gestational_weeks = #{gestationalWeeks,jdbcType=INTEGER},
+      </if>
+      <if test="sickenStasus != null">
+        sicken_stasus = #{sickenStasus,jdbcType=VARCHAR},
+      </if>
+      <if test="sickenOther != null">
+        sicken_other = #{sickenOther,jdbcType=VARCHAR},
+      </if>
+      <if test="midwifeOrg != null">
+        midwife_org = #{midwifeOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="birthSituation != null">
+        birth_situation = #{birthSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthOther != null">
+        birth_other = #{birthOther,jdbcType=VARCHAR},
+      </if>
+      <if test="asphyxiaNeonatorum != null">
+        asphyxia_neonatorum = #{asphyxiaNeonatorum,jdbcType=VARCHAR},
+      </if>
+      <if test="asphyxiaTime != null">
+        asphyxia_time = #{asphyxiaTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deformity != null">
+        deformity = #{deformity,jdbcType=VARCHAR},
+      </if>
+      <if test="deformityOther != null">
+        deformity_other = #{deformityOther,jdbcType=VARCHAR},
+      </if>
+      <if test="hearing != null">
+        hearing = #{hearing,jdbcType=VARCHAR},
+      </if>
+      <if test="disease != null">
+        disease = #{disease,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseOther != null">
+        disease_other = #{diseaseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="birthWeight != null">
+        birth_weight = #{birthWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="birthHeight != null">
+        birth_height = #{birthHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="feedingPatterns != null">
+        feeding_patterns = #{feedingPatterns,jdbcType=VARCHAR},
+      </if>
+      <if test="milkNum != null">
+        milk_num = #{milkNum,jdbcType=INTEGER},
+      </if>
+      <if test="milkIntake != null">
+        milk_intake = #{milkIntake,jdbcType=INTEGER},
+      </if>
+      <if test="vomit != null">
+        vomit = #{vomit,jdbcType=VARCHAR},
+      </if>
+      <if test="shit != null">
+        shit = #{shit,jdbcType=VARCHAR},
+      </if>
+      <if test="defecationNum != null">
+        defecation_num = #{defecationNum,jdbcType=INTEGER},
+      </if>
+      <if test="temperature != null">
+        temperature = #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="heartRate != null">
+        heart_rate = #{heartRate,jdbcType=INTEGER},
+      </if>
+      <if test="breathingRate != null">
+        breathing_rate = #{breathingRate,jdbcType=INTEGER},
+      </if>
+      <if test="complexion != null">
+        complexion = #{complexion,jdbcType=VARCHAR},
+      </if>
+      <if test="complexionOther != null">
+        complexion_other = #{complexionOther,jdbcType=VARCHAR},
+      </if>
+      <if test="aurigo != null">
+        aurigo = #{aurigo,jdbcType=VARCHAR},
+      </if>
+      <if test="aurigoOther != null">
+        aurigo_other = #{aurigoOther,jdbcType=VARCHAR},
+      </if>
+      <if test="anteriorFontanelleWide != null">
+        anterior_fontanelle_wide = #{anteriorFontanelleWide,jdbcType=VARCHAR},
+      </if>
+      <if test="anteriorFontanelleHigh != null">
+        anterior_fontanelle_high = #{anteriorFontanelleHigh,jdbcType=VARCHAR},
+      </if>
+      <if test="anteriorFontanelle != null">
+        anterior_fontanelle = #{anteriorFontanelle,jdbcType=VARCHAR},
+      </if>
+      <if test="anteriorFontanelleOther != null">
+        anterior_fontanelle_other = #{anteriorFontanelleOther,jdbcType=VARCHAR},
+      </if>
+      <if test="eye != null">
+        eye = #{eye,jdbcType=VARCHAR},
+      </if>
+      <if test="extremityMobility != null">
+        extremity_mobility = #{extremityMobility,jdbcType=VARCHAR},
+      </if>
+      <if test="ear != null">
+        ear = #{ear,jdbcType=VARCHAR},
+      </if>
+      <if test="neckMass != null">
+        neck_mass = #{neckMass,jdbcType=VARCHAR},
+      </if>
+      <if test="nose != null">
+        nose = #{nose,jdbcType=VARCHAR},
+      </if>
+      <if test="skin != null">
+        skin = #{skin,jdbcType=VARCHAR},
+      </if>
+      <if test="skinOther != null">
+        skin_other = #{skinOther,jdbcType=VARCHAR},
+      </if>
+      <if test="oralCavity != null">
+        oral_cavity = #{oralCavity,jdbcType=VARCHAR},
+      </if>
+      <if test="anus != null">
+        anus = #{anus,jdbcType=VARCHAR},
+      </if>
+      <if test="heartLung != null">
+        heart_lung = #{heartLung,jdbcType=VARCHAR},
+      </if>
+      <if test="breast != null">
+        breast = #{breast,jdbcType=VARCHAR},
+      </if>
+      <if test="abdominalTouch != null">
+        abdominal_touch = #{abdominalTouch,jdbcType=VARCHAR},
+      </if>
+      <if test="spine != null">
+        spine = #{spine,jdbcType=VARCHAR},
+      </if>
+      <if test="aedea != null">
+        aedea = #{aedea,jdbcType=VARCHAR},
+      </if>
+      <if test="umbilicalCord != null">
+        umbilical_cord = #{umbilicalCord,jdbcType=VARCHAR},
+      </if>
+      <if test="umbilicalCordOther != null">
+        umbilical_cord_other = #{umbilicalCordOther,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatment != null">
+        transfer_treatment = #{transferTreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentReason != null">
+        transfer_treatment_reason = #{transferTreatmentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        transfer_treatment_department = #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="guidance != null">
+        guidance = #{guidance,jdbcType=VARCHAR},
+      </if>
+      <if test="guidanceOther != null">
+        guidance_other = #{guidanceOther,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null">
+        visit_date = #{visitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="nextVisitDate != null">
+        next_visit_date = #{nextVisitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="nextVisitAddress != null">
+        next_visit_address = #{nextVisitAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDoctor != null">
+        visit_doctor = #{visitDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        county_code = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        county_name = #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsCode != null">
+        towns_code = #{townsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townsName != null">
+        towns_name = #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null">
+        village_code = #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        village_name = #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        create_org = #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        upload_status = #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        upload_result = #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.flup.entity.NeonatusInfo">
+    update neonatus_info
+    set name = #{name,jdbcType=VARCHAR},
+      archive_no = #{archiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      home_address = #{homeAddress,jdbcType=VARCHAR},
+      father_name = #{fatherName,jdbcType=VARCHAR},
+      father_profession = #{fatherProfession,jdbcType=VARCHAR},
+      father_phone = #{fatherPhone,jdbcType=VARCHAR},
+      father_birthday = #{fatherBirthday,jdbcType=VARCHAR},
+      mother_name = #{motherName,jdbcType=VARCHAR},
+      mother_profession = #{motherProfession,jdbcType=VARCHAR},
+      mother_phone = #{motherPhone,jdbcType=VARCHAR},
+      mother_birthday = #{motherBirthday,jdbcType=VARCHAR},
+      gestational_weeks = #{gestationalWeeks,jdbcType=INTEGER},
+      sicken_stasus = #{sickenStasus,jdbcType=VARCHAR},
+      sicken_other = #{sickenOther,jdbcType=VARCHAR},
+      midwife_org = #{midwifeOrg,jdbcType=VARCHAR},
+      birth_situation = #{birthSituation,jdbcType=VARCHAR},
+      birth_other = #{birthOther,jdbcType=VARCHAR},
+      asphyxia_neonatorum = #{asphyxiaNeonatorum,jdbcType=VARCHAR},
+      asphyxia_time = #{asphyxiaTime,jdbcType=VARCHAR},
+      deformity = #{deformity,jdbcType=VARCHAR},
+      deformity_other = #{deformityOther,jdbcType=VARCHAR},
+      hearing = #{hearing,jdbcType=VARCHAR},
+      disease = #{disease,jdbcType=VARCHAR},
+      disease_other = #{diseaseOther,jdbcType=VARCHAR},
+      birth_weight = #{birthWeight,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=VARCHAR},
+      birth_height = #{birthHeight,jdbcType=VARCHAR},
+      feeding_patterns = #{feedingPatterns,jdbcType=VARCHAR},
+      milk_num = #{milkNum,jdbcType=INTEGER},
+      milk_intake = #{milkIntake,jdbcType=INTEGER},
+      vomit = #{vomit,jdbcType=VARCHAR},
+      shit = #{shit,jdbcType=VARCHAR},
+      defecation_num = #{defecationNum,jdbcType=INTEGER},
+      temperature = #{temperature,jdbcType=VARCHAR},
+      heart_rate = #{heartRate,jdbcType=INTEGER},
+      breathing_rate = #{breathingRate,jdbcType=INTEGER},
+      complexion = #{complexion,jdbcType=VARCHAR},
+      complexion_other = #{complexionOther,jdbcType=VARCHAR},
+      aurigo = #{aurigo,jdbcType=VARCHAR},
+      aurigo_other = #{aurigoOther,jdbcType=VARCHAR},
+      anterior_fontanelle_wide = #{anteriorFontanelleWide,jdbcType=VARCHAR},
+      anterior_fontanelle_high = #{anteriorFontanelleHigh,jdbcType=VARCHAR},
+      anterior_fontanelle = #{anteriorFontanelle,jdbcType=VARCHAR},
+      anterior_fontanelle_other = #{anteriorFontanelleOther,jdbcType=VARCHAR},
+      eye = #{eye,jdbcType=VARCHAR},
+      extremity_mobility = #{extremityMobility,jdbcType=VARCHAR},
+      ear = #{ear,jdbcType=VARCHAR},
+      neck_mass = #{neckMass,jdbcType=VARCHAR},
+      nose = #{nose,jdbcType=VARCHAR},
+      skin = #{skin,jdbcType=VARCHAR},
+      skin_other = #{skinOther,jdbcType=VARCHAR},
+      oral_cavity = #{oralCavity,jdbcType=VARCHAR},
+      anus = #{anus,jdbcType=VARCHAR},
+      heart_lung = #{heartLung,jdbcType=VARCHAR},
+      breast = #{breast,jdbcType=VARCHAR},
+      abdominal_touch = #{abdominalTouch,jdbcType=VARCHAR},
+      spine = #{spine,jdbcType=VARCHAR},
+      aedea = #{aedea,jdbcType=VARCHAR},
+      umbilical_cord = #{umbilicalCord,jdbcType=VARCHAR},
+      umbilical_cord_other = #{umbilicalCordOther,jdbcType=VARCHAR},
+      transfer_treatment = #{transferTreatment,jdbcType=VARCHAR},
+      transfer_treatment_reason = #{transferTreatmentReason,jdbcType=VARCHAR},
+      transfer_treatment_department = #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      guidance = #{guidance,jdbcType=VARCHAR},
+      guidance_other = #{guidanceOther,jdbcType=VARCHAR},
+      visit_date = #{visitDate,jdbcType=VARCHAR},
+      next_visit_date = #{nextVisitDate,jdbcType=VARCHAR},
+      next_visit_address = #{nextVisitAddress,jdbcType=VARCHAR},
+      visit_doctor = #{visitDoctor,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      county_code = #{countyCode,jdbcType=VARCHAR},
+      county_name = #{countyName,jdbcType=VARCHAR},
+      towns_code = #{townsCode,jdbcType=VARCHAR},
+      towns_name = #{townsName,jdbcType=VARCHAR},
+      village_code = #{villageCode,jdbcType=VARCHAR},
+      village_name = #{villageName,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_org = #{createOrg,jdbcType=VARCHAR},
+      create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      upload_status = #{uploadStatus,jdbcType=INTEGER},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      upload_result = #{uploadResult,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

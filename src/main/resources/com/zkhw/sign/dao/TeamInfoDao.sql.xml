@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.sign.dao.TeamInfoDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.sign.entity.TeamInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="team_no" jdbcType="VARCHAR" property="teamNo" />
+    <result column="team_name" jdbcType="VARCHAR" property="teamName" />
+    <result column="team_lead_doctor" jdbcType="VARCHAR" property="teamLeadDoctor" />
+    <result column="team_lead_name" jdbcType="VARCHAR" property="teamLeadName" />
+    <result column="team_lead_phone" jdbcType="VARCHAR" property="teamLeadPhone" />
+    <result column="team_type" jdbcType="VARCHAR" property="teamType" />
+    <result column="member_num" jdbcType="INTEGER" property="memberNum" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="org_code" jdbcType="VARCHAR" property="orgCode" />
+    <result column="province_code" jdbcType="VARCHAR" property="provinceCode" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="county_code" jdbcType="VARCHAR" property="countyCode" />
+    <result column="county_name" jdbcType="VARCHAR" property="countyName" />
+    <result column="towns_code" jdbcType="VARCHAR" property="townsCode" />
+    <result column="towns_name" jdbcType="VARCHAR" property="townsName" />
+    <result column="village_code" jdbcType="VARCHAR" property="villageCode" />
+    <result column="village_name" jdbcType="VARCHAR" property="villageName" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, team_no, team_name, team_lead_doctor, team_lead_name, team_lead_phone, team_type, 
+    member_num, status, remark, org_code, province_code, province_name, city_code, city_name, 
+    county_code, county_name, towns_code, towns_name, village_code, village_name, create_user, 
+    create_name, create_time, update_user, update_name, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from team_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getTeamByTeamNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from team_info
+    where team_no = #{teamNo,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findTeamList" parameterType="com.zkhw.sign.entity.TeamInfo" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from team_info
+    where status = '1'
+     <if test="teamName != null and teamName != ''">
+       and  team_name = #{teamName,jdbcType=VARCHAR}
+     </if> 
+     <if test="teamNo != null and teamNo != ''">
+       and  team_no = #{teamNo,jdbcType=VARCHAR}
+     </if> 
+     <if test="orgCode != null and orgCode != ''">
+       and  org_code = #{orgCode,jdbcType=VARCHAR}
+     </if>               
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from team_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.sign.entity.TeamInfo">
+    insert into team_info (id, team_no, team_name, 
+      team_lead_doctor, team_lead_name, team_lead_phone, 
+      team_type, member_num, status, 
+      remark, org_code, province_code, 
+      province_name, city_code, city_name, 
+      county_code, county_name, towns_code, 
+      towns_name, village_code, village_name, 
+      create_user, create_name, create_time, 
+      update_user, update_name, update_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{teamNo,jdbcType=VARCHAR}, #{teamName,jdbcType=VARCHAR}, 
+      #{teamLeadDoctor,jdbcType=VARCHAR}, #{teamLeadName,jdbcType=VARCHAR}, #{teamLeadPhone,jdbcType=VARCHAR}, 
+      #{teamType,jdbcType=VARCHAR}, #{memberNum,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
+      #{provinceName,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{countyCode,jdbcType=VARCHAR}, #{countyName,jdbcType=VARCHAR}, #{townsCode,jdbcType=VARCHAR}, 
+      #{townsName,jdbcType=VARCHAR}, #{villageCode,jdbcType=VARCHAR}, #{villageName,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.sign.entity.TeamInfo">
+    insert into team_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="teamNo != null">
+        team_no,
+      </if>
+      <if test="teamName != null">
+        team_name,
+      </if>
+      <if test="teamLeadDoctor != null">
+        team_lead_doctor,
+      </if>
+      <if test="teamLeadName != null">
+        team_lead_name,
+      </if>
+      <if test="teamLeadPhone != null">
+        team_lead_phone,
+      </if>
+      <if test="teamType != null">
+        team_type,
+      </if>
+      <if test="memberNum != null">
+        member_num,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="orgCode != null">
+        org_code,
+      </if>
+      <if test="provinceCode != null">
+        province_code,
+      </if>
+      <if test="provinceName != null">
+        province_name,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="cityName != null">
+        city_name,
+      </if>
+      <if test="countyCode != null">
+        county_code,
+      </if>
+      <if test="countyName != null">
+        county_name,
+      </if>
+      <if test="townsCode != null">
+        towns_code,
+      </if>
+      <if test="townsName != null">
+        towns_name,
+      </if>
+      <if test="villageCode != null">
+        village_code,
+      </if>
+      <if test="villageName != null">
+        village_name,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="teamNo != null">
+        #{teamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="teamName != null">
+        #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamLeadDoctor != null">
+        #{teamLeadDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="teamLeadName != null">
+        #{teamLeadName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamLeadPhone != null">
+        #{teamLeadPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="teamType != null">
+        #{teamType,jdbcType=VARCHAR},
+      </if>
+      <if test="memberNum != null">
+        #{memberNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsCode != null">
+        #{townsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townsName != null">
+        #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null">
+        #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.sign.entity.TeamInfo">
+    update team_info
+    <set>
+      <if test="teamNo != null">
+        team_no = #{teamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="teamName != null">
+        team_name = #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamLeadDoctor != null">
+        team_lead_doctor = #{teamLeadDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="teamLeadName != null">
+        team_lead_name = #{teamLeadName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamLeadPhone != null">
+        team_lead_phone = #{teamLeadPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="teamType != null">
+        team_type = #{teamType,jdbcType=VARCHAR},
+      </if>
+      <if test="memberNum != null">
+        member_num = #{memberNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        county_code = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        county_name = #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsCode != null">
+        towns_code = #{townsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townsName != null">
+        towns_name = #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null">
+        village_code = #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        village_name = #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.sign.entity.TeamInfo">
+    update team_info
+    set team_no = #{teamNo,jdbcType=VARCHAR},
+      team_name = #{teamName,jdbcType=VARCHAR},
+      team_lead_doctor = #{teamLeadDoctor,jdbcType=VARCHAR},
+      team_lead_name = #{teamLeadName,jdbcType=VARCHAR},
+      team_lead_phone = #{teamLeadPhone,jdbcType=VARCHAR},
+      team_type = #{teamType,jdbcType=VARCHAR},
+      member_num = #{memberNum,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      county_code = #{countyCode,jdbcType=VARCHAR},
+      county_name = #{countyName,jdbcType=VARCHAR},
+      towns_code = #{townsCode,jdbcType=VARCHAR},
+      towns_name = #{townsName,jdbcType=VARCHAR},
+      village_code = #{villageCode,jdbcType=VARCHAR},
+      village_name = #{villageName,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

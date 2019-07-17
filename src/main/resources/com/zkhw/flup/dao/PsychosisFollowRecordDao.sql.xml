@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.flup.dao.PsychosisFollowRecordDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.flup.entity.PsychosisFollowRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="visit_date" jdbcType="VARCHAR" property="visitDate" />
+    <result column="visit_type" jdbcType="VARCHAR" property="visitType" />
+    <result column="miss_reason" jdbcType="VARCHAR" property="missReason" />
+    <result column="miss_reason_other" jdbcType="VARCHAR" property="missReasonOther" />
+    <result column="die_date" jdbcType="VARCHAR" property="dieDate" />
+    <result column="die_reason" jdbcType="VARCHAR" property="dieReason" />
+    <result column="physical_disease" jdbcType="VARCHAR" property="physicalDisease" />
+    <result column="die_reason_other" jdbcType="VARCHAR" property="dieReasonOther" />
+    <result column="fatalness" jdbcType="VARCHAR" property="fatalness" />
+    <result column="symptom" jdbcType="VARCHAR" property="symptom" />
+    <result column="symptom_other" jdbcType="VARCHAR" property="symptomOther" />
+    <result column="insight" jdbcType="VARCHAR" property="insight" />
+    <result column="sleep_status" jdbcType="VARCHAR" property="sleepStatus" />
+    <result column="dietary_status" jdbcType="VARCHAR" property="dietaryStatus" />
+    <result column="self_help" jdbcType="VARCHAR" property="selfHelp" />
+    <result column="housework" jdbcType="VARCHAR" property="housework" />
+    <result column="work" jdbcType="VARCHAR" property="work" />
+    <result column="learning_ability" jdbcType="VARCHAR" property="learningAbility" />
+    <result column="interpersonal" jdbcType="VARCHAR" property="interpersonal" />
+    <result column="dangerous_act" jdbcType="VARCHAR" property="dangerousAct" />
+    <result column="slight_trouble_num" jdbcType="INTEGER" property="slightTroubleNum" />
+    <result column="cause_trouble_num" jdbcType="INTEGER" property="causeTroubleNum" />
+    <result column="cause_accident_num" jdbcType="INTEGER" property="causeAccidentNum" />
+    <result column="harm_other_num" jdbcType="INTEGER" property="harmOtherNum" />
+    <result column="autolesion_num" jdbcType="INTEGER" property="autolesionNum" />
+    <result column="attempted_suicide_num" jdbcType="INTEGER" property="attemptedSuicideNum" />
+    <result column="isolation" jdbcType="VARCHAR" property="isolation" />
+    <result column="hospitalized_status" jdbcType="VARCHAR" property="hospitalizedStatus" />
+    <result column="out_hospital_date" jdbcType="VARCHAR" property="outHospitalDate" />
+    <result column="laboratory_examination" jdbcType="VARCHAR" property="laboratoryExamination" />
+    <result column="compliance" jdbcType="VARCHAR" property="compliance" />
+    <result column="untoward_effect" jdbcType="VARCHAR" property="untowardEffect" />
+    <result column="untoward_effect_info" jdbcType="VARCHAR" property="untowardEffectInfo" />
+    <result column="treatment_effect" jdbcType="VARCHAR" property="treatmentEffect" />
+    <result column="transfer_treatment" jdbcType="VARCHAR" property="transferTreatment" />
+    <result column="transfer_treatment_reason" jdbcType="VARCHAR" property="transferTreatmentReason" />
+    <result column="transfer_treatment_department" jdbcType="VARCHAR" property="transferTreatmentDepartment" />
+    <result column="rehabilitation_measure" jdbcType="VARCHAR" property="rehabilitationMeasure" />
+    <result column="rehabilitation_measure_other" jdbcType="VARCHAR" property="rehabilitationMeasureOther" />
+    <result column="next_visit_classify" jdbcType="VARCHAR" property="nextVisitClassify" />
+    <result column="next_visit_date" jdbcType="VARCHAR" property="nextVisitDate" />
+    <result column="visit_doctor" jdbcType="VARCHAR" property="visitDoctor" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_org" jdbcType="VARCHAR" property="createOrg" />
+    <result column="create_org_name" jdbcType="VARCHAR" property="createOrgName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+    <result column="upload_result" jdbcType="VARCHAR" property="uploadResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, archive_no, id_number, visit_date, visit_type, miss_reason, miss_reason_other, 
+    die_date, die_reason, physical_disease, die_reason_other, fatalness, symptom, symptom_other, 
+    insight, sleep_status, dietary_status, self_help, housework, work, learning_ability, 
+    interpersonal, dangerous_act, slight_trouble_num, cause_trouble_num, cause_accident_num, 
+    harm_other_num, autolesion_num, attempted_suicide_num, isolation, hospitalized_status, 
+    out_hospital_date, laboratory_examination, compliance, untoward_effect, untoward_effect_info, 
+    treatment_effect, transfer_treatment, transfer_treatment_reason, transfer_treatment_department, 
+    rehabilitation_measure, rehabilitation_measure_other, next_visit_classify, next_visit_date, 
+    visit_doctor, create_user, create_name, create_org, create_org_name, create_time, 
+    update_user, update_name, update_time, upload_status, upload_time, upload_result
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from psychosis_follow_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findLastFollowRecord" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from psychosis_follow_record
+    where archive_no = #{archiveNo,jdbcType=VARCHAR} 
+     order by create_time desc limit 1
+  </select>
+    
+  <select id="findFollowRecordList" parameterType="com.zkhw.flup.entity.PsychosisFollowRecord" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from psychosis_follow_record
+    where 1 = 1
+     <if test="archiveNo != null">
+       and  archive_no = #{archiveNo,jdbcType=VARCHAR}
+     </if>  
+     order by create_time desc
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from psychosis_follow_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.flup.entity.PsychosisFollowRecord">
+    insert into psychosis_follow_record (id, name, archive_no, 
+      id_number, visit_date, visit_type, 
+      miss_reason, miss_reason_other, die_date, 
+      die_reason, physical_disease, die_reason_other, 
+      fatalness, symptom, symptom_other, 
+      insight, sleep_status, dietary_status, 
+      self_help, housework, work, 
+      learning_ability, interpersonal, dangerous_act, 
+      slight_trouble_num, cause_trouble_num, cause_accident_num, 
+      harm_other_num, autolesion_num, attempted_suicide_num, 
+      isolation, hospitalized_status, out_hospital_date, 
+      laboratory_examination, compliance, untoward_effect, 
+      untoward_effect_info, treatment_effect, transfer_treatment, 
+      transfer_treatment_reason, transfer_treatment_department, 
+      rehabilitation_measure, rehabilitation_measure_other, 
+      next_visit_classify, next_visit_date, visit_doctor, 
+      create_user, create_name, create_org, 
+      create_org_name, create_time, update_user, 
+      update_name, update_time, upload_status, 
+      upload_time, upload_result)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{archiveNo,jdbcType=VARCHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{visitDate,jdbcType=VARCHAR}, #{visitType,jdbcType=VARCHAR}, 
+      #{missReason,jdbcType=VARCHAR}, #{missReasonOther,jdbcType=VARCHAR}, #{dieDate,jdbcType=VARCHAR}, 
+      #{dieReason,jdbcType=VARCHAR}, #{physicalDisease,jdbcType=VARCHAR}, #{dieReasonOther,jdbcType=VARCHAR}, 
+      #{fatalness,jdbcType=VARCHAR}, #{symptom,jdbcType=VARCHAR}, #{symptomOther,jdbcType=VARCHAR}, 
+      #{insight,jdbcType=VARCHAR}, #{sleepStatus,jdbcType=VARCHAR}, #{dietaryStatus,jdbcType=VARCHAR}, 
+      #{selfHelp,jdbcType=VARCHAR}, #{housework,jdbcType=VARCHAR}, #{work,jdbcType=VARCHAR}, 
+      #{learningAbility,jdbcType=VARCHAR}, #{interpersonal,jdbcType=VARCHAR}, #{dangerousAct,jdbcType=VARCHAR}, 
+      #{slightTroubleNum,jdbcType=INTEGER}, #{causeTroubleNum,jdbcType=INTEGER}, #{causeAccidentNum,jdbcType=INTEGER}, 
+      #{harmOtherNum,jdbcType=INTEGER}, #{autolesionNum,jdbcType=INTEGER}, #{attemptedSuicideNum,jdbcType=INTEGER}, 
+      #{isolation,jdbcType=VARCHAR}, #{hospitalizedStatus,jdbcType=VARCHAR}, #{outHospitalDate,jdbcType=VARCHAR}, 
+      #{laboratoryExamination,jdbcType=VARCHAR}, #{compliance,jdbcType=VARCHAR}, #{untowardEffect,jdbcType=VARCHAR}, 
+      #{untowardEffectInfo,jdbcType=VARCHAR}, #{treatmentEffect,jdbcType=VARCHAR}, #{transferTreatment,jdbcType=VARCHAR}, 
+      #{transferTreatmentReason,jdbcType=VARCHAR}, #{transferTreatmentDepartment,jdbcType=VARCHAR}, 
+      #{rehabilitationMeasure,jdbcType=VARCHAR}, #{rehabilitationMeasureOther,jdbcType=VARCHAR}, 
+      #{nextVisitClassify,jdbcType=VARCHAR}, #{nextVisitDate,jdbcType=VARCHAR}, #{visitDoctor,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, #{createOrg,jdbcType=VARCHAR}, 
+      #{createOrgName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, 
+      #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{uploadStatus,jdbcType=INTEGER}, 
+      #{uploadTime,jdbcType=TIMESTAMP}, #{uploadResult,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.flup.entity.PsychosisFollowRecord">
+    insert into psychosis_follow_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="visitDate != null">
+        visit_date,
+      </if>
+      <if test="visitType != null">
+        visit_type,
+      </if>
+      <if test="missReason != null">
+        miss_reason,
+      </if>
+      <if test="missReasonOther != null">
+        miss_reason_other,
+      </if>
+      <if test="dieDate != null">
+        die_date,
+      </if>
+      <if test="dieReason != null">
+        die_reason,
+      </if>
+      <if test="physicalDisease != null">
+        physical_disease,
+      </if>
+      <if test="dieReasonOther != null">
+        die_reason_other,
+      </if>
+      <if test="fatalness != null">
+        fatalness,
+      </if>
+      <if test="symptom != null">
+        symptom,
+      </if>
+      <if test="symptomOther != null">
+        symptom_other,
+      </if>
+      <if test="insight != null">
+        insight,
+      </if>
+      <if test="sleepStatus != null">
+        sleep_status,
+      </if>
+      <if test="dietaryStatus != null">
+        dietary_status,
+      </if>
+      <if test="selfHelp != null">
+        self_help,
+      </if>
+      <if test="housework != null">
+        housework,
+      </if>
+      <if test="work != null">
+        work,
+      </if>
+      <if test="learningAbility != null">
+        learning_ability,
+      </if>
+      <if test="interpersonal != null">
+        interpersonal,
+      </if>
+      <if test="dangerousAct != null">
+        dangerous_act,
+      </if>
+      <if test="slightTroubleNum != null">
+        slight_trouble_num,
+      </if>
+      <if test="causeTroubleNum != null">
+        cause_trouble_num,
+      </if>
+      <if test="causeAccidentNum != null">
+        cause_accident_num,
+      </if>
+      <if test="harmOtherNum != null">
+        harm_other_num,
+      </if>
+      <if test="autolesionNum != null">
+        autolesion_num,
+      </if>
+      <if test="attemptedSuicideNum != null">
+        attempted_suicide_num,
+      </if>
+      <if test="isolation != null">
+        isolation,
+      </if>
+      <if test="hospitalizedStatus != null">
+        hospitalized_status,
+      </if>
+      <if test="outHospitalDate != null">
+        out_hospital_date,
+      </if>
+      <if test="laboratoryExamination != null">
+        laboratory_examination,
+      </if>
+      <if test="compliance != null">
+        compliance,
+      </if>
+      <if test="untowardEffect != null">
+        untoward_effect,
+      </if>
+      <if test="untowardEffectInfo != null">
+        untoward_effect_info,
+      </if>
+      <if test="treatmentEffect != null">
+        treatment_effect,
+      </if>
+      <if test="transferTreatment != null">
+        transfer_treatment,
+      </if>
+      <if test="transferTreatmentReason != null">
+        transfer_treatment_reason,
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        transfer_treatment_department,
+      </if>
+      <if test="rehabilitationMeasure != null">
+        rehabilitation_measure,
+      </if>
+      <if test="rehabilitationMeasureOther != null">
+        rehabilitation_measure_other,
+      </if>
+      <if test="nextVisitClassify != null">
+        next_visit_classify,
+      </if>
+      <if test="nextVisitDate != null">
+        next_visit_date,
+      </if>
+      <if test="visitDoctor != null">
+        visit_doctor,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createOrg != null">
+        create_org,
+      </if>
+      <if test="createOrgName != null">
+        create_org_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="uploadStatus != null">
+        upload_status,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+      <if test="uploadResult != null">
+        upload_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null">
+        #{visitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="visitType != null">
+        #{visitType,jdbcType=VARCHAR},
+      </if>
+      <if test="missReason != null">
+        #{missReason,jdbcType=VARCHAR},
+      </if>
+      <if test="missReasonOther != null">
+        #{missReasonOther,jdbcType=VARCHAR},
+      </if>
+      <if test="dieDate != null">
+        #{dieDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dieReason != null">
+        #{dieReason,jdbcType=VARCHAR},
+      </if>
+      <if test="physicalDisease != null">
+        #{physicalDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="dieReasonOther != null">
+        #{dieReasonOther,jdbcType=VARCHAR},
+      </if>
+      <if test="fatalness != null">
+        #{fatalness,jdbcType=VARCHAR},
+      </if>
+      <if test="symptom != null">
+        #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="symptomOther != null">
+        #{symptomOther,jdbcType=VARCHAR},
+      </if>
+      <if test="insight != null">
+        #{insight,jdbcType=VARCHAR},
+      </if>
+      <if test="sleepStatus != null">
+        #{sleepStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="dietaryStatus != null">
+        #{dietaryStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="selfHelp != null">
+        #{selfHelp,jdbcType=VARCHAR},
+      </if>
+      <if test="housework != null">
+        #{housework,jdbcType=VARCHAR},
+      </if>
+      <if test="work != null">
+        #{work,jdbcType=VARCHAR},
+      </if>
+      <if test="learningAbility != null">
+        #{learningAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="interpersonal != null">
+        #{interpersonal,jdbcType=VARCHAR},
+      </if>
+      <if test="dangerousAct != null">
+        #{dangerousAct,jdbcType=VARCHAR},
+      </if>
+      <if test="slightTroubleNum != null">
+        #{slightTroubleNum,jdbcType=INTEGER},
+      </if>
+      <if test="causeTroubleNum != null">
+        #{causeTroubleNum,jdbcType=INTEGER},
+      </if>
+      <if test="causeAccidentNum != null">
+        #{causeAccidentNum,jdbcType=INTEGER},
+      </if>
+      <if test="harmOtherNum != null">
+        #{harmOtherNum,jdbcType=INTEGER},
+      </if>
+      <if test="autolesionNum != null">
+        #{autolesionNum,jdbcType=INTEGER},
+      </if>
+      <if test="attemptedSuicideNum != null">
+        #{attemptedSuicideNum,jdbcType=INTEGER},
+      </if>
+      <if test="isolation != null">
+        #{isolation,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalizedStatus != null">
+        #{hospitalizedStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="outHospitalDate != null">
+        #{outHospitalDate,jdbcType=VARCHAR},
+      </if>
+      <if test="laboratoryExamination != null">
+        #{laboratoryExamination,jdbcType=VARCHAR},
+      </if>
+      <if test="compliance != null">
+        #{compliance,jdbcType=VARCHAR},
+      </if>
+      <if test="untowardEffect != null">
+        #{untowardEffect,jdbcType=VARCHAR},
+      </if>
+      <if test="untowardEffectInfo != null">
+        #{untowardEffectInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="treatmentEffect != null">
+        #{treatmentEffect,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatment != null">
+        #{transferTreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentReason != null">
+        #{transferTreatmentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="rehabilitationMeasure != null">
+        #{rehabilitationMeasure,jdbcType=VARCHAR},
+      </if>
+      <if test="rehabilitationMeasureOther != null">
+        #{rehabilitationMeasureOther,jdbcType=VARCHAR},
+      </if>
+      <if test="nextVisitClassify != null">
+        #{nextVisitClassify,jdbcType=VARCHAR},
+      </if>
+      <if test="nextVisitDate != null">
+        #{nextVisitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDoctor != null">
+        #{visitDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.flup.entity.PsychosisFollowRecord">
+    update psychosis_follow_record
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null">
+        visit_date = #{visitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="visitType != null">
+        visit_type = #{visitType,jdbcType=VARCHAR},
+      </if>
+      <if test="missReason != null">
+        miss_reason = #{missReason,jdbcType=VARCHAR},
+      </if>
+      <if test="missReasonOther != null">
+        miss_reason_other = #{missReasonOther,jdbcType=VARCHAR},
+      </if>
+      <if test="dieDate != null">
+        die_date = #{dieDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dieReason != null">
+        die_reason = #{dieReason,jdbcType=VARCHAR},
+      </if>
+      <if test="physicalDisease != null">
+        physical_disease = #{physicalDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="dieReasonOther != null">
+        die_reason_other = #{dieReasonOther,jdbcType=VARCHAR},
+      </if>
+      <if test="fatalness != null">
+        fatalness = #{fatalness,jdbcType=VARCHAR},
+      </if>
+      <if test="symptom != null">
+        symptom = #{symptom,jdbcType=VARCHAR},
+      </if>
+      <if test="symptomOther != null">
+        symptom_other = #{symptomOther,jdbcType=VARCHAR},
+      </if>
+      <if test="insight != null">
+        insight = #{insight,jdbcType=VARCHAR},
+      </if>
+      <if test="sleepStatus != null">
+        sleep_status = #{sleepStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="dietaryStatus != null">
+        dietary_status = #{dietaryStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="selfHelp != null">
+        self_help = #{selfHelp,jdbcType=VARCHAR},
+      </if>
+      <if test="housework != null">
+        housework = #{housework,jdbcType=VARCHAR},
+      </if>
+      <if test="work != null">
+        work = #{work,jdbcType=VARCHAR},
+      </if>
+      <if test="learningAbility != null">
+        learning_ability = #{learningAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="interpersonal != null">
+        interpersonal = #{interpersonal,jdbcType=VARCHAR},
+      </if>
+      <if test="dangerousAct != null">
+        dangerous_act = #{dangerousAct,jdbcType=VARCHAR},
+      </if>
+      <if test="slightTroubleNum != null">
+        slight_trouble_num = #{slightTroubleNum,jdbcType=INTEGER},
+      </if>
+      <if test="causeTroubleNum != null">
+        cause_trouble_num = #{causeTroubleNum,jdbcType=INTEGER},
+      </if>
+      <if test="causeAccidentNum != null">
+        cause_accident_num = #{causeAccidentNum,jdbcType=INTEGER},
+      </if>
+      <if test="harmOtherNum != null">
+        harm_other_num = #{harmOtherNum,jdbcType=INTEGER},
+      </if>
+      <if test="autolesionNum != null">
+        autolesion_num = #{autolesionNum,jdbcType=INTEGER},
+      </if>
+      <if test="attemptedSuicideNum != null">
+        attempted_suicide_num = #{attemptedSuicideNum,jdbcType=INTEGER},
+      </if>
+      <if test="isolation != null">
+        isolation = #{isolation,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalizedStatus != null">
+        hospitalized_status = #{hospitalizedStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="outHospitalDate != null">
+        out_hospital_date = #{outHospitalDate,jdbcType=VARCHAR},
+      </if>
+      <if test="laboratoryExamination != null">
+        laboratory_examination = #{laboratoryExamination,jdbcType=VARCHAR},
+      </if>
+      <if test="compliance != null">
+        compliance = #{compliance,jdbcType=VARCHAR},
+      </if>
+      <if test="untowardEffect != null">
+        untoward_effect = #{untowardEffect,jdbcType=VARCHAR},
+      </if>
+      <if test="untowardEffectInfo != null">
+        untoward_effect_info = #{untowardEffectInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="treatmentEffect != null">
+        treatment_effect = #{treatmentEffect,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatment != null">
+        transfer_treatment = #{transferTreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentReason != null">
+        transfer_treatment_reason = #{transferTreatmentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        transfer_treatment_department = #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="rehabilitationMeasure != null">
+        rehabilitation_measure = #{rehabilitationMeasure,jdbcType=VARCHAR},
+      </if>
+      <if test="rehabilitationMeasureOther != null">
+        rehabilitation_measure_other = #{rehabilitationMeasureOther,jdbcType=VARCHAR},
+      </if>
+      <if test="nextVisitClassify != null">
+        next_visit_classify = #{nextVisitClassify,jdbcType=VARCHAR},
+      </if>
+      <if test="nextVisitDate != null">
+        next_visit_date = #{nextVisitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDoctor != null">
+        visit_doctor = #{visitDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        create_org = #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        upload_status = #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        upload_result = #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.flup.entity.PsychosisFollowRecord">
+    update psychosis_follow_record
+    set name = #{name,jdbcType=VARCHAR},
+      archive_no = #{archiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      visit_date = #{visitDate,jdbcType=VARCHAR},
+      visit_type = #{visitType,jdbcType=VARCHAR},
+      miss_reason = #{missReason,jdbcType=VARCHAR},
+      miss_reason_other = #{missReasonOther,jdbcType=VARCHAR},
+      die_date = #{dieDate,jdbcType=VARCHAR},
+      die_reason = #{dieReason,jdbcType=VARCHAR},
+      physical_disease = #{physicalDisease,jdbcType=VARCHAR},
+      die_reason_other = #{dieReasonOther,jdbcType=VARCHAR},
+      fatalness = #{fatalness,jdbcType=VARCHAR},
+      symptom = #{symptom,jdbcType=VARCHAR},
+      symptom_other = #{symptomOther,jdbcType=VARCHAR},
+      insight = #{insight,jdbcType=VARCHAR},
+      sleep_status = #{sleepStatus,jdbcType=VARCHAR},
+      dietary_status = #{dietaryStatus,jdbcType=VARCHAR},
+      self_help = #{selfHelp,jdbcType=VARCHAR},
+      housework = #{housework,jdbcType=VARCHAR},
+      work = #{work,jdbcType=VARCHAR},
+      learning_ability = #{learningAbility,jdbcType=VARCHAR},
+      interpersonal = #{interpersonal,jdbcType=VARCHAR},
+      dangerous_act = #{dangerousAct,jdbcType=VARCHAR},
+      slight_trouble_num = #{slightTroubleNum,jdbcType=INTEGER},
+      cause_trouble_num = #{causeTroubleNum,jdbcType=INTEGER},
+      cause_accident_num = #{causeAccidentNum,jdbcType=INTEGER},
+      harm_other_num = #{harmOtherNum,jdbcType=INTEGER},
+      autolesion_num = #{autolesionNum,jdbcType=INTEGER},
+      attempted_suicide_num = #{attemptedSuicideNum,jdbcType=INTEGER},
+      isolation = #{isolation,jdbcType=VARCHAR},
+      hospitalized_status = #{hospitalizedStatus,jdbcType=VARCHAR},
+      out_hospital_date = #{outHospitalDate,jdbcType=VARCHAR},
+      laboratory_examination = #{laboratoryExamination,jdbcType=VARCHAR},
+      compliance = #{compliance,jdbcType=VARCHAR},
+      untoward_effect = #{untowardEffect,jdbcType=VARCHAR},
+      untoward_effect_info = #{untowardEffectInfo,jdbcType=VARCHAR},
+      treatment_effect = #{treatmentEffect,jdbcType=VARCHAR},
+      transfer_treatment = #{transferTreatment,jdbcType=VARCHAR},
+      transfer_treatment_reason = #{transferTreatmentReason,jdbcType=VARCHAR},
+      transfer_treatment_department = #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      rehabilitation_measure = #{rehabilitationMeasure,jdbcType=VARCHAR},
+      rehabilitation_measure_other = #{rehabilitationMeasureOther,jdbcType=VARCHAR},
+      next_visit_classify = #{nextVisitClassify,jdbcType=VARCHAR},
+      next_visit_date = #{nextVisitDate,jdbcType=VARCHAR},
+      visit_doctor = #{visitDoctor,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_org = #{createOrg,jdbcType=VARCHAR},
+      create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      upload_status = #{uploadStatus,jdbcType=INTEGER},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      upload_result = #{uploadResult,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd" default-lazy-init="true" default-autowire="byName">
+   	<!-- 属性文件读取 -->
+	<bean id="jdbcPropertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+			 
+				<value>classpath*:config/develop/jdbc.properties</value>
+				<value>classpath*:config/develop/redis.properties</value>
+				<value>classpath*:config/develop/wuzhou.properties</value>
+			 
+<!-- 				<value>classpath*:config/product/jdbc.properties</value>
+				<value>classpath*:config/product/redis.properties</value> -->
+			
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 使Spring支持自动检测组件 -->
+	<context:component-scan base-package="com.*"> 
+		<!-- 扫描符合@Service @Repository的类,不扫描@Controller -->
+  		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" /> 
+	</context:component-scan>
+</beans>

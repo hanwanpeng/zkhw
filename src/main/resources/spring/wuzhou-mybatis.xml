@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd" default-lazy-init="true" default-autowire="byName">
+	
+	<bean id="wuzhouSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="wuzhouDynamicDataSource"/>
+		<property name="configLocation" value="classpath:config/sqlMapConfig.xml" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath*:com/wuzhou/*/dao/*.sql.xml</value>
+			</list>
+		</property>
+	</bean>
+
+    <!-- 定义SqlSessionTemplate，个别涉及大数据量操作需要保证性能的dao，可以直接用SqlSessionTemplate来操作,比Mapper接口灵活方便 -->  
+    <bean id="wuzhouSqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">  
+        <constructor-arg index="0" ref="wuzhouSqlSessionFactory"></constructor-arg>  
+    </bean>
+
+	<!--
+		配置每个Dao所需的公共属性sqlSessionFactory
+	 -->
+	<bean id="wuzhouBaseDao">    
+		<property name="sqlSessionFactory" ref="wuzhouSqlSessionFactory" />  
+	</bean>	
+
+	<!-- 体检表主表 -->
+	<bean id="healthExamDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
+		<property name="mapperInterface" value="com.wuzhou.pub.dao.HealthExamDao" />  
+	</bean>
+	
+	<!-- 个人健康体检住院治疗情况 -->
+	<bean id="healthExamInhosDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
+		<property name="mapperInterface" value="com.wuzhou.pub.dao.HealthExamInhosDao" />  
+	</bean>
+
+	<!-- 个人健康体检用药情况 -->
+	<bean id="healthExamDrugDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
+		<property name="mapperInterface" value="com.wuzhou.pub.dao.HealthExamDrugDao" />  
+	</bean>
+
+	<!-- 个人健康体检非免疫规划预防接种史-->
+	<bean id="healthExamNoplanvaccDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
+		<property name="mapperInterface" value="com.wuzhou.pub.dao.HealthExamNoplanvaccDao" />  
+	</bean>
+
+	<!-- 老年人认知功能量表-->
+	<bean id="elderCognitionDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
+		<property name="mapperInterface" value="com.wuzhou.pub.dao.ElderCognitionDao" />  
+	</bean>
+
+	<!-- 老年抑郁量表-->
+	<bean id="elderDepressedDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
+		<property name="mapperInterface" value="com.wuzhou.pub.dao.ElderDepressedDao" />  
+	</bean>
+	
+	<!-- 老年人自理能力评估表-->
+	<bean id="elderSelfcareAbilityDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
+		<property name="mapperInterface" value="com.wuzhou.pub.dao.ElderSelfcareAbilityDao" />  
+	</bean>
+	
+	<!-- 老年人中医药健康表-->	
+	<bean id="elderTcmHealthDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
+		<property name="mapperInterface" value="com.wuzhou.pub.dao.ElderTcmHealthDao" />  
+	</bean>	
+
+	<!-- 卫生机构表（由冠新提供）-->	
+	<bean id="posDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
+		<property name="mapperInterface" value="com.wuzhou.pub.dao.PosDao" />  
+	</bean>	
+
+	<!-- 机构职工表（由冠新提供）-->	
+	<bean id="posEmpDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
+		<property name="mapperInterface" value="com.wuzhou.pub.dao.PosEmpDao" />  
+	</bean>		
+
+	<!-- 个人档案信息表（由冠新提供）-->	
+	<bean id="personInfoDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
+		<property name="mapperInterface" value="com.wuzhou.pub.dao.PersonInfoDao" />  
+	</bean>																					
+</beans>

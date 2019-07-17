@@ -1,0 +1,6 @@
+package com.wuzhou.pub.service;
+
+
+public interface WuzhouSynService {
+	void sync();
+}

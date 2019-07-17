@@ -1,0 +1,875 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhou.pub.dao.ElderTcmHealthDao">
+  <resultMap id="BaseResultMap" type="com.wuzhou.pub.entity.ElderTcmHealth">
+    <id column="ELDER_TCM_HEALTH_ID" jdbcType="VARCHAR" property="elderTcmHealthId" />
+    <result column="PERSON_INFO_ID" jdbcType="VARCHAR" property="personInfoId" />
+    <result column="ELDER_TCM_HEALTH_NO" jdbcType="VARCHAR" property="elderTcmHealthNo" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ENERGY" jdbcType="VARCHAR" property="energy" />
+    <result column="FATIGUE" jdbcType="VARCHAR" property="fatigue" />
+    <result column="BREATHE" jdbcType="VARCHAR" property="breathe" />
+    <result column="SPEAK" jdbcType="VARCHAR" property="speak" />
+    <result column="UNPLEASANT" jdbcType="VARCHAR" property="unpleasant" />
+    <result column="NERVOUS" jdbcType="VARCHAR" property="nervous" />
+    <result column="SOLITARY" jdbcType="VARCHAR" property="solitary" />
+    <result column="SCARE" jdbcType="VARCHAR" property="scare" />
+    <result column="WEIGHT" jdbcType="VARCHAR" property="weight" />
+    <result column="EYE" jdbcType="VARCHAR" property="eye" />
+    <result column="HAND" jdbcType="VARCHAR" property="hand" />
+    <result column="CRAW" jdbcType="VARCHAR" property="craw" />
+    <result column="COLD" jdbcType="VARCHAR" property="cold" />
+    <result column="CATCHACOLD" jdbcType="VARCHAR" property="catchacold" />
+    <result column="RUNATHENOSE" jdbcType="VARCHAR" property="runathenose" />
+    <result column="MOUTH" jdbcType="VARCHAR" property="mouth" />
+    <result column="FOOD" jdbcType="VARCHAR" property="food" />
+    <result column="DERMA" jdbcType="VARCHAR" property="derma" />
+    <result column="BLEEDING" jdbcType="VARCHAR" property="bleeding" />
+    <result column="FINGERMAIL" jdbcType="VARCHAR" property="fingermail" />
+    <result column="ORALDRY" jdbcType="VARCHAR" property="oraldry" />
+    <result column="ACHE" jdbcType="VARCHAR" property="ache" />
+    <result column="FACE" jdbcType="VARCHAR" property="face" />
+    <result column="SPOT" jdbcType="VARCHAR" property="spot" />
+    <result column="SORE" jdbcType="VARCHAR" property="sore" />
+    <result column="DRINKING" jdbcType="VARCHAR" property="drinking" />
+    <result column="BITTERTASTE" jdbcType="VARCHAR" property="bittertaste" />
+    <result column="ABDOMEN" jdbcType="VARCHAR" property="abdomen" />
+    <result column="UNCOMFORTABLE" jdbcType="VARCHAR" property="uncomfortable" />
+    <result column="UNWELL" jdbcType="VARCHAR" property="unwell" />
+    <result column="MALAISE" jdbcType="VARCHAR" property="malaise" />
+    <result column="TONGUE" jdbcType="VARCHAR" property="tongue" />
+    <result column="VEIN" jdbcType="VARCHAR" property="vein" />
+    <result column="QI_DEFICIENCY_SCORE" jdbcType="DECIMAL" property="qiDeficiencyScore" />
+    <result column="QI_DEFICIENCY_CODE" jdbcType="VARCHAR" property="qiDeficiencyCode" />
+    <result column="YANG_DEFICIENCY_SCORE" jdbcType="DECIMAL" property="yangDeficiencyScore" />
+    <result column="YANG_DEFICIENCY_CODE" jdbcType="VARCHAR" property="yangDeficiencyCode" />
+    <result column="YIN_DEFICIENCY_SCORE" jdbcType="DECIMAL" property="yinDeficiencyScore" />
+    <result column="YIN_DEFICIENCY_CODE" jdbcType="VARCHAR" property="yinDeficiencyCode" />
+    <result column="PHLEGM_WET_SCORE" jdbcType="DECIMAL" property="phlegmWetScore" />
+    <result column="PHLEGM_WET_CODE" jdbcType="VARCHAR" property="phlegmWetCode" />
+    <result column="DAMP_HEAT_SCORE" jdbcType="DECIMAL" property="dampHeatScore" />
+    <result column="DAMP_HEAT_CODE" jdbcType="VARCHAR" property="dampHeatCode" />
+    <result column="BLOOD_STASIS_SCORE" jdbcType="DECIMAL" property="bloodStasisScore" />
+    <result column="BLOOD_STASIS_CODE" jdbcType="VARCHAR" property="bloodStasisCode" />
+    <result column="QI_DEPRESSION_SCORE" jdbcType="DECIMAL" property="qiDepressionScore" />
+    <result column="QI_DEPRESSION_CODE" jdbcType="VARCHAR" property="qiDepressionCode" />
+    <result column="SPECIAL_DIATHSIS_SCORE" jdbcType="DECIMAL" property="specialDiathsisScore" />
+    <result column="SPECIAL_DIATHSIS_CODE" jdbcType="VARCHAR" property="specialDiathsisCode" />
+    <result column="GENTLE_QUALITY_SCORE" jdbcType="DECIMAL" property="gentleQualityScore" />
+    <result column="GENTLE_QUALITY_CODE" jdbcType="VARCHAR" property="gentleQualityCode" />
+    <result column="DOCTOR_ID" jdbcType="VARCHAR" property="doctorId" />
+    <result column="DOCTOR_NAME" jdbcType="VARCHAR" property="doctorName" />
+    <result column="FILL_DATE" jdbcType="TIMESTAMP" property="fillDate" />
+    <result column="CREATE_ORG_ID" jdbcType="VARCHAR" property="createOrgId" />
+    <result column="ORG_NAME" jdbcType="VARCHAR" property="orgName" />
+    <result column="CREATOR_ID" jdbcType="VARCHAR" property="creatorId" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFIED_ORG_ID" jdbcType="VARCHAR" property="modifiedOrgId" />
+    <result column="MODIFIED_ORG_NAME" jdbcType="VARCHAR" property="modifiedOrgName" />
+    <result column="MODIFIER_ID" jdbcType="VARCHAR" property="modifierId" />
+    <result column="MODIFIER" jdbcType="VARCHAR" property="modifier" />
+    <result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="IS_APP_CREATE" jdbcType="DECIMAL" property="isAppCreate" />
+    <result column="ERR_CODE" jdbcType="DECIMAL" property="errCode" />
+    <result column="ERR_STR" jdbcType="VARCHAR" property="errStr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ELDER_TCM_HEALTH_ID, PERSON_INFO_ID, ELDER_TCM_HEALTH_NO, NAME, ENERGY, FATIGUE, 
+    BREATHE, SPEAK, UNPLEASANT, NERVOUS, SOLITARY, SCARE, WEIGHT, EYE, HAND, CRAW, COLD, 
+    CATCHACOLD, RUNATHENOSE, MOUTH, FOOD, DERMA, BLEEDING, FINGERMAIL, ORALDRY, ACHE, 
+    FACE, SPOT, SORE, DRINKING, BITTERTASTE, ABDOMEN, UNCOMFORTABLE, UNWELL, MALAISE, 
+    TONGUE, VEIN, QI_DEFICIENCY_SCORE, QI_DEFICIENCY_CODE, YANG_DEFICIENCY_SCORE, YANG_DEFICIENCY_CODE, 
+    YIN_DEFICIENCY_SCORE, YIN_DEFICIENCY_CODE, PHLEGM_WET_SCORE, PHLEGM_WET_CODE, DAMP_HEAT_SCORE, 
+    DAMP_HEAT_CODE, BLOOD_STASIS_SCORE, BLOOD_STASIS_CODE, QI_DEPRESSION_SCORE, QI_DEPRESSION_CODE, 
+    SPECIAL_DIATHSIS_SCORE, SPECIAL_DIATHSIS_CODE, GENTLE_QUALITY_SCORE, GENTLE_QUALITY_CODE, 
+    DOCTOR_ID, DOCTOR_NAME, FILL_DATE, CREATE_ORG_ID, ORG_NAME, CREATOR_ID, CREATOR, 
+    CREATE_TIME, MODIFIED_ORG_ID, MODIFIED_ORG_NAME, MODIFIER_ID, MODIFIER, MODIFIED_TIME, 
+    IS_APP_CREATE, ERR_CODE, ERR_STR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ELDER_TCM_HEALTH
+    where ELDER_TCM_HEALTH_ID = #{elderTcmHealthId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ELDER_TCM_HEALTH
+    where ELDER_TCM_HEALTH_ID = #{elderTcmHealthId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuzhou.pub.entity.ElderTcmHealth">
+    insert into ELDER_TCM_HEALTH (ELDER_TCM_HEALTH_ID, PERSON_INFO_ID, ELDER_TCM_HEALTH_NO, 
+      NAME, ENERGY, FATIGUE, 
+      BREATHE, SPEAK, UNPLEASANT, 
+      NERVOUS, SOLITARY, SCARE, 
+      WEIGHT, EYE, HAND, 
+      CRAW, COLD, CATCHACOLD, 
+      RUNATHENOSE, MOUTH, FOOD, 
+      DERMA, BLEEDING, FINGERMAIL, 
+      ORALDRY, ACHE, FACE, 
+      SPOT, SORE, DRINKING, 
+      BITTERTASTE, ABDOMEN, UNCOMFORTABLE, 
+      UNWELL, MALAISE, TONGUE, 
+      VEIN, QI_DEFICIENCY_SCORE, QI_DEFICIENCY_CODE, 
+      YANG_DEFICIENCY_SCORE, YANG_DEFICIENCY_CODE, 
+      YIN_DEFICIENCY_SCORE, YIN_DEFICIENCY_CODE, 
+      PHLEGM_WET_SCORE, PHLEGM_WET_CODE, DAMP_HEAT_SCORE, 
+      DAMP_HEAT_CODE, BLOOD_STASIS_SCORE, BLOOD_STASIS_CODE, 
+      QI_DEPRESSION_SCORE, QI_DEPRESSION_CODE, SPECIAL_DIATHSIS_SCORE, 
+      SPECIAL_DIATHSIS_CODE, GENTLE_QUALITY_SCORE, 
+      GENTLE_QUALITY_CODE, DOCTOR_ID, DOCTOR_NAME, 
+      FILL_DATE, CREATE_ORG_ID, ORG_NAME, 
+      CREATOR_ID, CREATOR, CREATE_TIME, 
+      MODIFIED_ORG_ID, MODIFIED_ORG_NAME, MODIFIER_ID, 
+      MODIFIER, MODIFIED_TIME, IS_APP_CREATE, 
+      ERR_CODE, ERR_STR)
+    values (#{elderTcmHealthId,jdbcType=VARCHAR}, #{personInfoId,jdbcType=VARCHAR}, #{elderTcmHealthNo,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{energy,jdbcType=VARCHAR}, #{fatigue,jdbcType=VARCHAR}, 
+      #{breathe,jdbcType=VARCHAR}, #{speak,jdbcType=VARCHAR}, #{unpleasant,jdbcType=VARCHAR}, 
+      #{nervous,jdbcType=VARCHAR}, #{solitary,jdbcType=VARCHAR}, #{scare,jdbcType=VARCHAR}, 
+      #{weight,jdbcType=VARCHAR}, #{eye,jdbcType=VARCHAR}, #{hand,jdbcType=VARCHAR}, 
+      #{craw,jdbcType=VARCHAR}, #{cold,jdbcType=VARCHAR}, #{catchacold,jdbcType=VARCHAR}, 
+      #{runathenose,jdbcType=VARCHAR}, #{mouth,jdbcType=VARCHAR}, #{food,jdbcType=VARCHAR}, 
+      #{derma,jdbcType=VARCHAR}, #{bleeding,jdbcType=VARCHAR}, #{fingermail,jdbcType=VARCHAR}, 
+      #{oraldry,jdbcType=VARCHAR}, #{ache,jdbcType=VARCHAR}, #{face,jdbcType=VARCHAR}, 
+      #{spot,jdbcType=VARCHAR}, #{sore,jdbcType=VARCHAR}, #{drinking,jdbcType=VARCHAR}, 
+      #{bittertaste,jdbcType=VARCHAR}, #{abdomen,jdbcType=VARCHAR}, #{uncomfortable,jdbcType=VARCHAR}, 
+      #{unwell,jdbcType=VARCHAR}, #{malaise,jdbcType=VARCHAR}, #{tongue,jdbcType=VARCHAR}, 
+      #{vein,jdbcType=VARCHAR}, #{qiDeficiencyScore,jdbcType=DECIMAL}, #{qiDeficiencyCode,jdbcType=VARCHAR}, 
+      #{yangDeficiencyScore,jdbcType=DECIMAL}, #{yangDeficiencyCode,jdbcType=VARCHAR}, 
+      #{yinDeficiencyScore,jdbcType=DECIMAL}, #{yinDeficiencyCode,jdbcType=VARCHAR}, 
+      #{phlegmWetScore,jdbcType=DECIMAL}, #{phlegmWetCode,jdbcType=VARCHAR}, #{dampHeatScore,jdbcType=DECIMAL}, 
+      #{dampHeatCode,jdbcType=VARCHAR}, #{bloodStasisScore,jdbcType=DECIMAL}, #{bloodStasisCode,jdbcType=VARCHAR}, 
+      #{qiDepressionScore,jdbcType=DECIMAL}, #{qiDepressionCode,jdbcType=VARCHAR}, #{specialDiathsisScore,jdbcType=DECIMAL}, 
+      #{specialDiathsisCode,jdbcType=VARCHAR}, #{gentleQualityScore,jdbcType=DECIMAL}, 
+      #{gentleQualityCode,jdbcType=VARCHAR}, #{doctorId,jdbcType=VARCHAR}, #{doctorName,jdbcType=VARCHAR}, 
+      #{fillDate,jdbcType=TIMESTAMP}, #{createOrgId,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, 
+      #{creatorId,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifiedOrgId,jdbcType=VARCHAR}, #{modifiedOrgName,jdbcType=VARCHAR}, #{modifierId,jdbcType=VARCHAR}, 
+      #{modifier,jdbcType=VARCHAR}, #{modifiedTime,jdbcType=TIMESTAMP}, #{isAppCreate,jdbcType=DECIMAL}, 
+      #{errCode,jdbcType=DECIMAL}, #{errStr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuzhou.pub.entity.ElderTcmHealth">
+    insert into ELDER_TCM_HEALTH
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="elderTcmHealthId != null">
+        ELDER_TCM_HEALTH_ID,
+      </if>
+      <if test="personInfoId != null">
+        PERSON_INFO_ID,
+      </if>
+      <if test="elderTcmHealthNo != null">
+        ELDER_TCM_HEALTH_NO,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="energy != null">
+        ENERGY,
+      </if>
+      <if test="fatigue != null">
+        FATIGUE,
+      </if>
+      <if test="breathe != null">
+        BREATHE,
+      </if>
+      <if test="speak != null">
+        SPEAK,
+      </if>
+      <if test="unpleasant != null">
+        UNPLEASANT,
+      </if>
+      <if test="nervous != null">
+        NERVOUS,
+      </if>
+      <if test="solitary != null">
+        SOLITARY,
+      </if>
+      <if test="scare != null">
+        SCARE,
+      </if>
+      <if test="weight != null">
+        WEIGHT,
+      </if>
+      <if test="eye != null">
+        EYE,
+      </if>
+      <if test="hand != null">
+        HAND,
+      </if>
+      <if test="craw != null">
+        CRAW,
+      </if>
+      <if test="cold != null">
+        COLD,
+      </if>
+      <if test="catchacold != null">
+        CATCHACOLD,
+      </if>
+      <if test="runathenose != null">
+        RUNATHENOSE,
+      </if>
+      <if test="mouth != null">
+        MOUTH,
+      </if>
+      <if test="food != null">
+        FOOD,
+      </if>
+      <if test="derma != null">
+        DERMA,
+      </if>
+      <if test="bleeding != null">
+        BLEEDING,
+      </if>
+      <if test="fingermail != null">
+        FINGERMAIL,
+      </if>
+      <if test="oraldry != null">
+        ORALDRY,
+      </if>
+      <if test="ache != null">
+        ACHE,
+      </if>
+      <if test="face != null">
+        FACE,
+      </if>
+      <if test="spot != null">
+        SPOT,
+      </if>
+      <if test="sore != null">
+        SORE,
+      </if>
+      <if test="drinking != null">
+        DRINKING,
+      </if>
+      <if test="bittertaste != null">
+        BITTERTASTE,
+      </if>
+      <if test="abdomen != null">
+        ABDOMEN,
+      </if>
+      <if test="uncomfortable != null">
+        UNCOMFORTABLE,
+      </if>
+      <if test="unwell != null">
+        UNWELL,
+      </if>
+      <if test="malaise != null">
+        MALAISE,
+      </if>
+      <if test="tongue != null">
+        TONGUE,
+      </if>
+      <if test="vein != null">
+        VEIN,
+      </if>
+      <if test="qiDeficiencyScore != null">
+        QI_DEFICIENCY_SCORE,
+      </if>
+      <if test="qiDeficiencyCode != null">
+        QI_DEFICIENCY_CODE,
+      </if>
+      <if test="yangDeficiencyScore != null">
+        YANG_DEFICIENCY_SCORE,
+      </if>
+      <if test="yangDeficiencyCode != null">
+        YANG_DEFICIENCY_CODE,
+      </if>
+      <if test="yinDeficiencyScore != null">
+        YIN_DEFICIENCY_SCORE,
+      </if>
+      <if test="yinDeficiencyCode != null">
+        YIN_DEFICIENCY_CODE,
+      </if>
+      <if test="phlegmWetScore != null">
+        PHLEGM_WET_SCORE,
+      </if>
+      <if test="phlegmWetCode != null">
+        PHLEGM_WET_CODE,
+      </if>
+      <if test="dampHeatScore != null">
+        DAMP_HEAT_SCORE,
+      </if>
+      <if test="dampHeatCode != null">
+        DAMP_HEAT_CODE,
+      </if>
+      <if test="bloodStasisScore != null">
+        BLOOD_STASIS_SCORE,
+      </if>
+      <if test="bloodStasisCode != null">
+        BLOOD_STASIS_CODE,
+      </if>
+      <if test="qiDepressionScore != null">
+        QI_DEPRESSION_SCORE,
+      </if>
+      <if test="qiDepressionCode != null">
+        QI_DEPRESSION_CODE,
+      </if>
+      <if test="specialDiathsisScore != null">
+        SPECIAL_DIATHSIS_SCORE,
+      </if>
+      <if test="specialDiathsisCode != null">
+        SPECIAL_DIATHSIS_CODE,
+      </if>
+      <if test="gentleQualityScore != null">
+        GENTLE_QUALITY_SCORE,
+      </if>
+      <if test="gentleQualityCode != null">
+        GENTLE_QUALITY_CODE,
+      </if>
+      <if test="doctorId != null">
+        DOCTOR_ID,
+      </if>
+      <if test="doctorName != null">
+        DOCTOR_NAME,
+      </if>
+      <if test="fillDate != null">
+        FILL_DATE,
+      </if>
+      <if test="createOrgId != null">
+        CREATE_ORG_ID,
+      </if>
+      <if test="orgName != null">
+        ORG_NAME,
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifiedOrgId != null">
+        MODIFIED_ORG_ID,
+      </if>
+      <if test="modifiedOrgName != null">
+        MODIFIED_ORG_NAME,
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID,
+      </if>
+      <if test="modifier != null">
+        MODIFIER,
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME,
+      </if>
+      <if test="isAppCreate != null">
+        IS_APP_CREATE,
+      </if>
+      <if test="errCode != null">
+        ERR_CODE,
+      </if>
+      <if test="errStr != null">
+        ERR_STR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="elderTcmHealthId != null">
+        #{elderTcmHealthId,jdbcType=VARCHAR},
+      </if>
+      <if test="personInfoId != null">
+        #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="elderTcmHealthNo != null">
+        #{elderTcmHealthNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="energy != null">
+        #{energy,jdbcType=VARCHAR},
+      </if>
+      <if test="fatigue != null">
+        #{fatigue,jdbcType=VARCHAR},
+      </if>
+      <if test="breathe != null">
+        #{breathe,jdbcType=VARCHAR},
+      </if>
+      <if test="speak != null">
+        #{speak,jdbcType=VARCHAR},
+      </if>
+      <if test="unpleasant != null">
+        #{unpleasant,jdbcType=VARCHAR},
+      </if>
+      <if test="nervous != null">
+        #{nervous,jdbcType=VARCHAR},
+      </if>
+      <if test="solitary != null">
+        #{solitary,jdbcType=VARCHAR},
+      </if>
+      <if test="scare != null">
+        #{scare,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="eye != null">
+        #{eye,jdbcType=VARCHAR},
+      </if>
+      <if test="hand != null">
+        #{hand,jdbcType=VARCHAR},
+      </if>
+      <if test="craw != null">
+        #{craw,jdbcType=VARCHAR},
+      </if>
+      <if test="cold != null">
+        #{cold,jdbcType=VARCHAR},
+      </if>
+      <if test="catchacold != null">
+        #{catchacold,jdbcType=VARCHAR},
+      </if>
+      <if test="runathenose != null">
+        #{runathenose,jdbcType=VARCHAR},
+      </if>
+      <if test="mouth != null">
+        #{mouth,jdbcType=VARCHAR},
+      </if>
+      <if test="food != null">
+        #{food,jdbcType=VARCHAR},
+      </if>
+      <if test="derma != null">
+        #{derma,jdbcType=VARCHAR},
+      </if>
+      <if test="bleeding != null">
+        #{bleeding,jdbcType=VARCHAR},
+      </if>
+      <if test="fingermail != null">
+        #{fingermail,jdbcType=VARCHAR},
+      </if>
+      <if test="oraldry != null">
+        #{oraldry,jdbcType=VARCHAR},
+      </if>
+      <if test="ache != null">
+        #{ache,jdbcType=VARCHAR},
+      </if>
+      <if test="face != null">
+        #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="spot != null">
+        #{spot,jdbcType=VARCHAR},
+      </if>
+      <if test="sore != null">
+        #{sore,jdbcType=VARCHAR},
+      </if>
+      <if test="drinking != null">
+        #{drinking,jdbcType=VARCHAR},
+      </if>
+      <if test="bittertaste != null">
+        #{bittertaste,jdbcType=VARCHAR},
+      </if>
+      <if test="abdomen != null">
+        #{abdomen,jdbcType=VARCHAR},
+      </if>
+      <if test="uncomfortable != null">
+        #{uncomfortable,jdbcType=VARCHAR},
+      </if>
+      <if test="unwell != null">
+        #{unwell,jdbcType=VARCHAR},
+      </if>
+      <if test="malaise != null">
+        #{malaise,jdbcType=VARCHAR},
+      </if>
+      <if test="tongue != null">
+        #{tongue,jdbcType=VARCHAR},
+      </if>
+      <if test="vein != null">
+        #{vein,jdbcType=VARCHAR},
+      </if>
+      <if test="qiDeficiencyScore != null">
+        #{qiDeficiencyScore,jdbcType=DECIMAL},
+      </if>
+      <if test="qiDeficiencyCode != null">
+        #{qiDeficiencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="yangDeficiencyScore != null">
+        #{yangDeficiencyScore,jdbcType=DECIMAL},
+      </if>
+      <if test="yangDeficiencyCode != null">
+        #{yangDeficiencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="yinDeficiencyScore != null">
+        #{yinDeficiencyScore,jdbcType=DECIMAL},
+      </if>
+      <if test="yinDeficiencyCode != null">
+        #{yinDeficiencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phlegmWetScore != null">
+        #{phlegmWetScore,jdbcType=DECIMAL},
+      </if>
+      <if test="phlegmWetCode != null">
+        #{phlegmWetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dampHeatScore != null">
+        #{dampHeatScore,jdbcType=DECIMAL},
+      </if>
+      <if test="dampHeatCode != null">
+        #{dampHeatCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodStasisScore != null">
+        #{bloodStasisScore,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodStasisCode != null">
+        #{bloodStasisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qiDepressionScore != null">
+        #{qiDepressionScore,jdbcType=DECIMAL},
+      </if>
+      <if test="qiDepressionCode != null">
+        #{qiDepressionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specialDiathsisScore != null">
+        #{specialDiathsisScore,jdbcType=DECIMAL},
+      </if>
+      <if test="specialDiathsisCode != null">
+        #{specialDiathsisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gentleQualityScore != null">
+        #{gentleQualityScore,jdbcType=DECIMAL},
+      </if>
+      <if test="gentleQualityCode != null">
+        #{gentleQualityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null">
+        #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null">
+        #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="fillDate != null">
+        #{fillDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOrgId != null">
+        #{createOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedOrgId != null">
+        #{modifiedOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgName != null">
+        #{modifiedOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null">
+        #{modifierId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAppCreate != null">
+        #{isAppCreate,jdbcType=DECIMAL},
+      </if>
+      <if test="errCode != null">
+        #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        #{errStr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuzhou.pub.entity.ElderTcmHealth">
+    update ELDER_TCM_HEALTH
+    <set>
+      <if test="personInfoId != null">
+        PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="elderTcmHealthNo != null">
+        ELDER_TCM_HEALTH_NO = #{elderTcmHealthNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="energy != null">
+        ENERGY = #{energy,jdbcType=VARCHAR},
+      </if>
+      <if test="fatigue != null">
+        FATIGUE = #{fatigue,jdbcType=VARCHAR},
+      </if>
+      <if test="breathe != null">
+        BREATHE = #{breathe,jdbcType=VARCHAR},
+      </if>
+      <if test="speak != null">
+        SPEAK = #{speak,jdbcType=VARCHAR},
+      </if>
+      <if test="unpleasant != null">
+        UNPLEASANT = #{unpleasant,jdbcType=VARCHAR},
+      </if>
+      <if test="nervous != null">
+        NERVOUS = #{nervous,jdbcType=VARCHAR},
+      </if>
+      <if test="solitary != null">
+        SOLITARY = #{solitary,jdbcType=VARCHAR},
+      </if>
+      <if test="scare != null">
+        SCARE = #{scare,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        WEIGHT = #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="eye != null">
+        EYE = #{eye,jdbcType=VARCHAR},
+      </if>
+      <if test="hand != null">
+        HAND = #{hand,jdbcType=VARCHAR},
+      </if>
+      <if test="craw != null">
+        CRAW = #{craw,jdbcType=VARCHAR},
+      </if>
+      <if test="cold != null">
+        COLD = #{cold,jdbcType=VARCHAR},
+      </if>
+      <if test="catchacold != null">
+        CATCHACOLD = #{catchacold,jdbcType=VARCHAR},
+      </if>
+      <if test="runathenose != null">
+        RUNATHENOSE = #{runathenose,jdbcType=VARCHAR},
+      </if>
+      <if test="mouth != null">
+        MOUTH = #{mouth,jdbcType=VARCHAR},
+      </if>
+      <if test="food != null">
+        FOOD = #{food,jdbcType=VARCHAR},
+      </if>
+      <if test="derma != null">
+        DERMA = #{derma,jdbcType=VARCHAR},
+      </if>
+      <if test="bleeding != null">
+        BLEEDING = #{bleeding,jdbcType=VARCHAR},
+      </if>
+      <if test="fingermail != null">
+        FINGERMAIL = #{fingermail,jdbcType=VARCHAR},
+      </if>
+      <if test="oraldry != null">
+        ORALDRY = #{oraldry,jdbcType=VARCHAR},
+      </if>
+      <if test="ache != null">
+        ACHE = #{ache,jdbcType=VARCHAR},
+      </if>
+      <if test="face != null">
+        FACE = #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="spot != null">
+        SPOT = #{spot,jdbcType=VARCHAR},
+      </if>
+      <if test="sore != null">
+        SORE = #{sore,jdbcType=VARCHAR},
+      </if>
+      <if test="drinking != null">
+        DRINKING = #{drinking,jdbcType=VARCHAR},
+      </if>
+      <if test="bittertaste != null">
+        BITTERTASTE = #{bittertaste,jdbcType=VARCHAR},
+      </if>
+      <if test="abdomen != null">
+        ABDOMEN = #{abdomen,jdbcType=VARCHAR},
+      </if>
+      <if test="uncomfortable != null">
+        UNCOMFORTABLE = #{uncomfortable,jdbcType=VARCHAR},
+      </if>
+      <if test="unwell != null">
+        UNWELL = #{unwell,jdbcType=VARCHAR},
+      </if>
+      <if test="malaise != null">
+        MALAISE = #{malaise,jdbcType=VARCHAR},
+      </if>
+      <if test="tongue != null">
+        TONGUE = #{tongue,jdbcType=VARCHAR},
+      </if>
+      <if test="vein != null">
+        VEIN = #{vein,jdbcType=VARCHAR},
+      </if>
+      <if test="qiDeficiencyScore != null">
+        QI_DEFICIENCY_SCORE = #{qiDeficiencyScore,jdbcType=DECIMAL},
+      </if>
+      <if test="qiDeficiencyCode != null">
+        QI_DEFICIENCY_CODE = #{qiDeficiencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="yangDeficiencyScore != null">
+        YANG_DEFICIENCY_SCORE = #{yangDeficiencyScore,jdbcType=DECIMAL},
+      </if>
+      <if test="yangDeficiencyCode != null">
+        YANG_DEFICIENCY_CODE = #{yangDeficiencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="yinDeficiencyScore != null">
+        YIN_DEFICIENCY_SCORE = #{yinDeficiencyScore,jdbcType=DECIMAL},
+      </if>
+      <if test="yinDeficiencyCode != null">
+        YIN_DEFICIENCY_CODE = #{yinDeficiencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phlegmWetScore != null">
+        PHLEGM_WET_SCORE = #{phlegmWetScore,jdbcType=DECIMAL},
+      </if>
+      <if test="phlegmWetCode != null">
+        PHLEGM_WET_CODE = #{phlegmWetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dampHeatScore != null">
+        DAMP_HEAT_SCORE = #{dampHeatScore,jdbcType=DECIMAL},
+      </if>
+      <if test="dampHeatCode != null">
+        DAMP_HEAT_CODE = #{dampHeatCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodStasisScore != null">
+        BLOOD_STASIS_SCORE = #{bloodStasisScore,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodStasisCode != null">
+        BLOOD_STASIS_CODE = #{bloodStasisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qiDepressionScore != null">
+        QI_DEPRESSION_SCORE = #{qiDepressionScore,jdbcType=DECIMAL},
+      </if>
+      <if test="qiDepressionCode != null">
+        QI_DEPRESSION_CODE = #{qiDepressionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specialDiathsisScore != null">
+        SPECIAL_DIATHSIS_SCORE = #{specialDiathsisScore,jdbcType=DECIMAL},
+      </if>
+      <if test="specialDiathsisCode != null">
+        SPECIAL_DIATHSIS_CODE = #{specialDiathsisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gentleQualityScore != null">
+        GENTLE_QUALITY_SCORE = #{gentleQualityScore,jdbcType=DECIMAL},
+      </if>
+      <if test="gentleQualityCode != null">
+        GENTLE_QUALITY_CODE = #{gentleQualityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null">
+        DOCTOR_ID = #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null">
+        DOCTOR_NAME = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="fillDate != null">
+        FILL_DATE = #{fillDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOrgId != null">
+        CREATE_ORG_ID = #{createOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedOrgId != null">
+        MODIFIED_ORG_ID = #{modifiedOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgName != null">
+        MODIFIED_ORG_NAME = #{modifiedOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        MODIFIER = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAppCreate != null">
+        IS_APP_CREATE = #{isAppCreate,jdbcType=DECIMAL},
+      </if>
+      <if test="errCode != null">
+        ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        ERR_STR = #{errStr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ELDER_TCM_HEALTH_ID = #{elderTcmHealthId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuzhou.pub.entity.ElderTcmHealth">
+    update ELDER_TCM_HEALTH
+    set PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR},
+      ELDER_TCM_HEALTH_NO = #{elderTcmHealthNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      ENERGY = #{energy,jdbcType=VARCHAR},
+      FATIGUE = #{fatigue,jdbcType=VARCHAR},
+      BREATHE = #{breathe,jdbcType=VARCHAR},
+      SPEAK = #{speak,jdbcType=VARCHAR},
+      UNPLEASANT = #{unpleasant,jdbcType=VARCHAR},
+      NERVOUS = #{nervous,jdbcType=VARCHAR},
+      SOLITARY = #{solitary,jdbcType=VARCHAR},
+      SCARE = #{scare,jdbcType=VARCHAR},
+      WEIGHT = #{weight,jdbcType=VARCHAR},
+      EYE = #{eye,jdbcType=VARCHAR},
+      HAND = #{hand,jdbcType=VARCHAR},
+      CRAW = #{craw,jdbcType=VARCHAR},
+      COLD = #{cold,jdbcType=VARCHAR},
+      CATCHACOLD = #{catchacold,jdbcType=VARCHAR},
+      RUNATHENOSE = #{runathenose,jdbcType=VARCHAR},
+      MOUTH = #{mouth,jdbcType=VARCHAR},
+      FOOD = #{food,jdbcType=VARCHAR},
+      DERMA = #{derma,jdbcType=VARCHAR},
+      BLEEDING = #{bleeding,jdbcType=VARCHAR},
+      FINGERMAIL = #{fingermail,jdbcType=VARCHAR},
+      ORALDRY = #{oraldry,jdbcType=VARCHAR},
+      ACHE = #{ache,jdbcType=VARCHAR},
+      FACE = #{face,jdbcType=VARCHAR},
+      SPOT = #{spot,jdbcType=VARCHAR},
+      SORE = #{sore,jdbcType=VARCHAR},
+      DRINKING = #{drinking,jdbcType=VARCHAR},
+      BITTERTASTE = #{bittertaste,jdbcType=VARCHAR},
+      ABDOMEN = #{abdomen,jdbcType=VARCHAR},
+      UNCOMFORTABLE = #{uncomfortable,jdbcType=VARCHAR},
+      UNWELL = #{unwell,jdbcType=VARCHAR},
+      MALAISE = #{malaise,jdbcType=VARCHAR},
+      TONGUE = #{tongue,jdbcType=VARCHAR},
+      VEIN = #{vein,jdbcType=VARCHAR},
+      QI_DEFICIENCY_SCORE = #{qiDeficiencyScore,jdbcType=DECIMAL},
+      QI_DEFICIENCY_CODE = #{qiDeficiencyCode,jdbcType=VARCHAR},
+      YANG_DEFICIENCY_SCORE = #{yangDeficiencyScore,jdbcType=DECIMAL},
+      YANG_DEFICIENCY_CODE = #{yangDeficiencyCode,jdbcType=VARCHAR},
+      YIN_DEFICIENCY_SCORE = #{yinDeficiencyScore,jdbcType=DECIMAL},
+      YIN_DEFICIENCY_CODE = #{yinDeficiencyCode,jdbcType=VARCHAR},
+      PHLEGM_WET_SCORE = #{phlegmWetScore,jdbcType=DECIMAL},
+      PHLEGM_WET_CODE = #{phlegmWetCode,jdbcType=VARCHAR},
+      DAMP_HEAT_SCORE = #{dampHeatScore,jdbcType=DECIMAL},
+      DAMP_HEAT_CODE = #{dampHeatCode,jdbcType=VARCHAR},
+      BLOOD_STASIS_SCORE = #{bloodStasisScore,jdbcType=DECIMAL},
+      BLOOD_STASIS_CODE = #{bloodStasisCode,jdbcType=VARCHAR},
+      QI_DEPRESSION_SCORE = #{qiDepressionScore,jdbcType=DECIMAL},
+      QI_DEPRESSION_CODE = #{qiDepressionCode,jdbcType=VARCHAR},
+      SPECIAL_DIATHSIS_SCORE = #{specialDiathsisScore,jdbcType=DECIMAL},
+      SPECIAL_DIATHSIS_CODE = #{specialDiathsisCode,jdbcType=VARCHAR},
+      GENTLE_QUALITY_SCORE = #{gentleQualityScore,jdbcType=DECIMAL},
+      GENTLE_QUALITY_CODE = #{gentleQualityCode,jdbcType=VARCHAR},
+      DOCTOR_ID = #{doctorId,jdbcType=VARCHAR},
+      DOCTOR_NAME = #{doctorName,jdbcType=VARCHAR},
+      FILL_DATE = #{fillDate,jdbcType=TIMESTAMP},
+      CREATE_ORG_ID = #{createOrgId,jdbcType=VARCHAR},
+      ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFIED_ORG_ID = #{modifiedOrgId,jdbcType=VARCHAR},
+      MODIFIED_ORG_NAME = #{modifiedOrgName,jdbcType=VARCHAR},
+      MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      MODIFIER = #{modifier,jdbcType=VARCHAR},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      IS_APP_CREATE = #{isAppCreate,jdbcType=DECIMAL},
+      ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      ERR_STR = #{errStr,jdbcType=VARCHAR}
+    where ELDER_TCM_HEALTH_ID = #{elderTcmHealthId,jdbcType=VARCHAR}
+  </update>
+</mapper>

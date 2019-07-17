@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.TjXyDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.TjXy">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="aichive_no" jdbcType="VARCHAR" property="aichiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
+    <result column="DBP" jdbcType="VARCHAR" property="dbp" />
+    <result column="SBP" jdbcType="VARCHAR" property="sbp" />
+    <result column="Pulse" jdbcType="VARCHAR" property="pulse" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, aichive_no, id_number, bar_code, DBP, SBP, Pulse, createtime, upload_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zkhw_tj_xy
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findListByAichiveNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zkhw_tj_xy
+    where aichive_no = #{aichiveNo,jdbcType=VARCHAR}
+    order by createtime desc
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from zkhw_tj_xy
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.pub.entity.TjXy">
+    insert into zkhw_tj_xy (ID, aichive_no, id_number, 
+      bar_code, DBP, SBP, 
+      Pulse, createtime, upload_status
+      )
+    values (#{id,jdbcType=VARCHAR}, #{aichiveNo,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, 
+      #{barCode,jdbcType=VARCHAR}, #{dbp,jdbcType=VARCHAR}, #{sbp,jdbcType=VARCHAR}, 
+      #{pulse,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{uploadStatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.TjXy">
+    insert into zkhw_tj_xy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="aichiveNo != null">
+        aichive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="barCode != null">
+        bar_code,
+      </if>
+      <if test="dbp != null">
+        DBP,
+      </if>
+      <if test="sbp != null">
+        SBP,
+      </if>
+      <if test="pulse != null">
+        Pulse,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="uploadStatus != null">
+        upload_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="aichiveNo != null">
+        #{aichiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dbp != null">
+        #{dbp,jdbcType=VARCHAR},
+      </if>
+      <if test="sbp != null">
+        #{sbp,jdbcType=VARCHAR},
+      </if>
+      <if test="pulse != null">
+        #{pulse,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        #{uploadStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.TjXy">
+    update zkhw_tj_xy
+    <set>
+      <if test="aichiveNo != null">
+        aichive_no = #{aichiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        bar_code = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dbp != null">
+        DBP = #{dbp,jdbcType=VARCHAR},
+      </if>
+      <if test="sbp != null">
+        SBP = #{sbp,jdbcType=VARCHAR},
+      </if>
+      <if test="pulse != null">
+        Pulse = #{pulse,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        upload_status = #{uploadStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.TjXy">
+    update zkhw_tj_xy
+    set aichive_no = #{aichiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      bar_code = #{barCode,jdbcType=VARCHAR},
+      DBP = #{dbp,jdbcType=VARCHAR},
+      SBP = #{sbp,jdbcType=VARCHAR},
+      Pulse = #{pulse,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      upload_status = #{uploadStatus,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

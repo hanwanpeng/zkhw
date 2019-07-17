@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd" default-lazy-init="true" default-autowire="byName">
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dynamicDataSource"/>
+		<property name="configLocation" value="classpath:config/sqlMapConfig.xml" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath*:com/zkhw/*/dao/*.sql.xml</value>
+			</list>
+		</property>
+	</bean>
+
+    <!-- 定义SqlSessionTemplate，个别涉及大数据量操作需要保证性能的dao，可以直接用SqlSessionTemplate来操作,比Mapper接口灵活方便 -->  
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">  
+        <constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>  
+    </bean>
+
+	<!--
+		配置每个Dao所需的公共属性sqlSessionFactory
+	 -->
+	<bean id="baseDao">    
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />  
+	</bean>
+
+	<!-- 用户dao -->
+	<bean id="sysUserDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.ltd.dao.UserDao" />
+	</bean>
+	
+	<!-- 角色dao -->
+	<bean id="roleDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.ltd.dao.RoleDao" />
+	</bean>
+	
+	<!-- 用户角色dao -->
+	<bean id="userRoleDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.ltd.dao.UserRoleDao" />
+	</bean>
+	
+	<!-- 角色菜单dao -->
+	<bean id="roleMenuDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.ltd.dao.RoleMenuDao" />
+	</bean>
+
+	<!-- 地区dao -->
+	<bean id="areaConfigDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.code.dao.AreaConfigDao" />
+	</bean>
+
+	<!-- 字典表dao -->
+	<bean id="dictionariesDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.code.dao.DictionariesDao" />
+	</bean>
+	
+	
+	<!-- 系统菜单 -->
+ 	<bean id="sysMenuDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.sys.dao.SysMenuDao" />  
+	</bean> 
+
+	<!-- 阈值设置 -->
+ 	<bean id="thresholdValueDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.sys.dao.ThresholdValueDao" />  
+	</bean> 
+
+	<!-- app版本 -->
+ 	<bean id="appVersionsDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.sys.dao.AppVersionsDao" />  
+	</bean> 	
+		
+	<!-- 登录日志 -->
+	<!-- 
+	<bean id="sysLoginLogDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zks.sys.dao.SysLoginLogDao" />  
+	</bean> -->
+	
+	<!-- 组织机构 -->
+	<bean id="organizationDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.ltd.dao.OrganizationDao" />  
+	</bean>
+
+	<!-- 个人基本信息-->
+	<bean id="residentBaseInfoDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.ResidentBaseInfoDao" />  
+	</bean>
+
+	<!-- 手术记录表 -->
+	<bean id="operationRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.OperationRecordDao" />  
+	</bean>	
+
+	<!-- 外伤记录表 -->		
+	<bean id="traumatismRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.TraumatismRecordDao" />  
+	</bean>	
+	
+	<!-- 输血记录表 -->
+	<bean id="mentachysisRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.MentachysisRecordDao" />  
+	</bean>	
+
+	<!--家族病史  -->	
+	<bean id="familyRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.FamilyRecordDao" />  
+	</bean>		
+	<!-- 老年人生活自理能力 -->
+	<bean id="elderlySelfcareEstimateDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.ElderlySelfcareEstimateDao" />  
+	</bean>
+
+	<!-- 老年人中医体质管理-->
+	<bean id="elderlyTcmRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.ElderlyTcmRecordDao" />  
+	</bean>
+		
+	<!-- 住院记录 -->
+	<bean id="hospitalizedRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.HospitalizedRecordDao" />  
+	</bean>
+
+	<!-- 用药历史 -->
+	<bean id="takeMedicineRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.TakeMedicineRecordDao" />  
+	</bean>
+
+	<!-- 预防接种记录 -->	
+	<bean id="vaccinationRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.VaccinationRecordDao" />  
+	</bean>	
+
+	<!-- 新生儿记录 -->
+	<bean id="neonatusInfoDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.flup.dao.NeonatusInfoDao" />  
+	</bean>	
+
+	<!-- 儿童随访记录 -->	
+	<bean id="childrenHealthRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.flup.dao.ChildrenHealthRecordDao" />  
+	</bean>	
+	
+	<!--孕妇第一次记录 -->	
+	<bean id="gravidaInfoDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.flup.dao.GravidaInfoDao" />  
+	</bean>		
+
+	<!-- 孕妇产前随访记录 -->	
+	<bean id="gravidaFollowRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.flup.dao.GravidaFollowRecordDao" />  
+	</bean>	
+
+	<!-- 孕妇产后随访记录 -->	
+	<bean id="gravidaAfterRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.flup.dao.GravidaAfterRecordDao" />  
+	</bean>	
+
+	<!-- 精神障碍者个人信息 -->	
+	<bean id="psychosisInfoDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.flup.dao.PsychosisInfoDao" />  
+	</bean>	
+
+	<!-- 精神障碍者随访记录 -->
+	<bean id="psychosisFollowRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.flup.dao.PsychosisFollowRecordDao" />  
+	</bean>	
+
+	<!-- 肺结核第一次记录 -->
+	<bean id="tuberculosisInfoDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.flup.dao.TuberculosisInfoDao" />  
+	</bean>	
+
+	<!-- 肺结核随访记录 -->
+	<bean id="tuberculosisFollowRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.flup.dao.TuberculosisFollowRecordDao" />  
+	</bean>
+	
+	<!-- 糖尿病随访记录 -->
+	<bean id="diabetesFollowRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.flup.dao.DiabetesFollowRecordDao" />  
+	</bean>	
+		
+	<!-- 高血压随访记录 -->
+	<bean id="hypertensionDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.flup.dao.HypertensionDao" />  
+	</bean>	
+		
+	<!-- 车联网表 -->
+	<bean id="vehicleManageDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.base.dao.VehicleManageDao" />  
+	</bean>	
+	
+	<!-- 居民疾病表 -->
+	<bean id="residentDiseasesDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.ResidentDiseasesDao" />  
+	</bean>									
+	
+	<!--  家庭档案-->
+	<bean id="familyArchiveDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.FamilyArchiveDao" />  
+	</bean>	
+		
+	<!--  家庭档案-->
+	<bean id="familyMemberDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.FamilyMemberDao" />  
+	</bean>	
+	
+	<!-- 体检记录 -->
+	<bean id="physicalExaminationDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.PhysicalExaminationDao" />  
+	</bean>	
+	
+	<bean id="teamInfoDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.sign.dao.TeamInfoDao" />  
+	</bean>	
+	
+	<bean id="doctorInfoDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.sign.dao.DoctorInfoDao" />  
+	</bean>		
+	
+	<bean id="teamDoctorDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.sign.dao.TeamDoctorDao" />  
+	</bean>	
+
+	<bean id="signServiceInfoDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.sign.dao.SignServiceInfoDao" />  
+	</bean>	
+
+	<bean id="signServiceItemDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.sign.dao.SignServiceItemDao" />  
+	</bean>	
+
+	<bean id="serviceItemDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.sign.dao.ServiceItemDao" />  
+	</bean>
+	
+	<bean id="signServiceRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.sign.dao.SignServiceRecordDao" />  
+	</bean>	
+	
+	<!-- 尿常规体检 -->
+	<bean id="tjNcgDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.TjNcgDao" />  
+	</bean>	
+	
+	<!-- 身高体重体检 -->
+	<bean id="tjSgtzDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.TjSgtzDao" />  
+	</bean>		
+
+	<!-- 生化体检 -->
+	<bean id="tjShDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.TjShDao" />  
+	</bean>	
+
+	<!-- 血常规体检 -->
+	<bean id="tjXcgDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.TjXcgDao" />  
+	</bean>		
+
+	<!-- 血压体检 -->
+	<bean id="tjXyDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.TjXyDao" />  
+	</bean>	
+	
+	<!-- B超体检 -->
+	<bean id="tjBcDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.TjBcDao" />  
+	</bean>	
+
+	<!-- 心电图体检 -->
+	<bean id="tjXdtDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.TjXdtDao" />  
+	</bean>
+	
+	<!-- 个人基本信息临时表-->
+	<bean id="residentInfoTempDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.pub.dao.ResidentInfoTempDao" />  
+	</bean>	
+	
+	<!-- 随访用药记录 -->
+	<bean id="followMedicineRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.flup.dao.FollowMedicineRecordDao" />  
+	</bean>	
+	
+	<!-- 贫困人口随访 -->
+	<bean id="poorFollowRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.flup.dao.PoorFollowRecordDao" />  
+	</bean>
+	
+	<!-- 儿童中医健康服务 -->
+	<bean id="childrenTcmRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
+		<property name="mapperInterface" value="com.zkhw.flup.dao.ChildrenTcmRecordDao" />  
+	</bean>
+																					
+</beans>

@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhou.pub.dao.ElderSelfcareAbilityDao">
+  <resultMap id="BaseResultMap" type="com.wuzhou.pub.entity.ElderSelfcareAbility">
+    <id column="ELDER_SELFCARE_ABILITY_ID" jdbcType="VARCHAR" property="elderSelfcareAbilityId" />
+    <result column="PERSON_INFO_ID" jdbcType="VARCHAR" property="personInfoId" />
+    <result column="ELDER_HEALTH_ASSESS_CODE" jdbcType="VARCHAR" property="elderHealthAssessCode" />
+    <result column="DINE_SCORE" jdbcType="DECIMAL" property="dineScore" />
+    <result column="CLEANUP_SCORE" jdbcType="DECIMAL" property="cleanupScore" />
+    <result column="DRESSED_SCORE" jdbcType="DECIMAL" property="dressedScore" />
+    <result column="DEFECATION_SCORE" jdbcType="DECIMAL" property="defecationScore" />
+    <result column="ACTIVITY_SCORE" jdbcType="DECIMAL" property="activityScore" />
+    <result column="TOTAL_SCORE" jdbcType="DECIMAL" property="totalScore" />
+    <result column="FILL_DATE" jdbcType="TIMESTAMP" property="fillDate" />
+    <result column="CREATE_ORG_ID" jdbcType="VARCHAR" property="createOrgId" />
+    <result column="ORG_NAME" jdbcType="VARCHAR" property="orgName" />
+    <result column="CREATOR_ID" jdbcType="VARCHAR" property="creatorId" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFIED_ORG_ID" jdbcType="VARCHAR" property="modifiedOrgId" />
+    <result column="MODIFIED_ORG_NAME" jdbcType="VARCHAR" property="modifiedOrgName" />
+    <result column="MODIFIER_ID" jdbcType="VARCHAR" property="modifierId" />
+    <result column="MODIFIER" jdbcType="VARCHAR" property="modifier" />
+    <result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="ASSESSMENT_COUNT" jdbcType="DECIMAL" property="assessmentCount" />
+    <result column="MISSING_COUNT" jdbcType="DECIMAL" property="missingCount" />
+    <result column="INTACT_RATE" jdbcType="DECIMAL" property="intactRate" />
+    <result column="IS_APP_CREATE" jdbcType="DECIMAL" property="isAppCreate" />
+    <result column="DOCTOR_NAME" jdbcType="VARCHAR" property="doctorName" />
+    <result column="DOCTOR_ID" jdbcType="VARCHAR" property="doctorId" />
+    <result column="ERR_CODE" jdbcType="DECIMAL" property="errCode" />
+    <result column="ERR_STR" jdbcType="VARCHAR" property="errStr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ELDER_SELFCARE_ABILITY_ID, PERSON_INFO_ID, ELDER_HEALTH_ASSESS_CODE, DINE_SCORE, 
+    CLEANUP_SCORE, DRESSED_SCORE, DEFECATION_SCORE, ACTIVITY_SCORE, TOTAL_SCORE, FILL_DATE, 
+    CREATE_ORG_ID, ORG_NAME, CREATOR_ID, CREATOR, CREATE_TIME, MODIFIED_ORG_ID, MODIFIED_ORG_NAME, 
+    MODIFIER_ID, MODIFIER, MODIFIED_TIME, ASSESSMENT_COUNT, MISSING_COUNT, INTACT_RATE, 
+    IS_APP_CREATE, DOCTOR_NAME, DOCTOR_ID, ERR_CODE, ERR_STR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ELDER_SELFCARE_ABILITY
+    where ELDER_SELFCARE_ABILITY_ID = #{elderSelfcareAbilityId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ELDER_SELFCARE_ABILITY
+    where ELDER_SELFCARE_ABILITY_ID = #{elderSelfcareAbilityId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuzhou.pub.entity.ElderSelfcareAbility">
+    insert into ELDER_SELFCARE_ABILITY (ELDER_SELFCARE_ABILITY_ID, PERSON_INFO_ID, 
+      ELDER_HEALTH_ASSESS_CODE, DINE_SCORE, CLEANUP_SCORE, 
+      DRESSED_SCORE, DEFECATION_SCORE, ACTIVITY_SCORE, 
+      TOTAL_SCORE, FILL_DATE, CREATE_ORG_ID, 
+      ORG_NAME, CREATOR_ID, CREATOR, 
+      CREATE_TIME, MODIFIED_ORG_ID, MODIFIED_ORG_NAME, 
+      MODIFIER_ID, MODIFIER, MODIFIED_TIME, 
+      ASSESSMENT_COUNT, MISSING_COUNT, INTACT_RATE, 
+      IS_APP_CREATE, DOCTOR_NAME, DOCTOR_ID, 
+      ERR_CODE, ERR_STR)
+    values (#{elderSelfcareAbilityId,jdbcType=VARCHAR}, #{personInfoId,jdbcType=VARCHAR}, 
+      #{elderHealthAssessCode,jdbcType=VARCHAR}, #{dineScore,jdbcType=DECIMAL}, #{cleanupScore,jdbcType=DECIMAL}, 
+      #{dressedScore,jdbcType=DECIMAL}, #{defecationScore,jdbcType=DECIMAL}, #{activityScore,jdbcType=DECIMAL}, 
+      #{totalScore,jdbcType=DECIMAL}, #{fillDate,jdbcType=TIMESTAMP}, #{createOrgId,jdbcType=VARCHAR}, 
+      #{orgName,jdbcType=VARCHAR}, #{creatorId,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifiedOrgId,jdbcType=VARCHAR}, #{modifiedOrgName,jdbcType=VARCHAR}, 
+      #{modifierId,jdbcType=VARCHAR}, #{modifier,jdbcType=VARCHAR}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{assessmentCount,jdbcType=DECIMAL}, #{missingCount,jdbcType=DECIMAL}, #{intactRate,jdbcType=DECIMAL}, 
+      #{isAppCreate,jdbcType=DECIMAL}, #{doctorName,jdbcType=VARCHAR}, #{doctorId,jdbcType=VARCHAR}, 
+      #{errCode,jdbcType=DECIMAL}, #{errStr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuzhou.pub.entity.ElderSelfcareAbility">
+    insert into ELDER_SELFCARE_ABILITY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="elderSelfcareAbilityId != null">
+        ELDER_SELFCARE_ABILITY_ID,
+      </if>
+      <if test="personInfoId != null">
+        PERSON_INFO_ID,
+      </if>
+      <if test="elderHealthAssessCode != null">
+        ELDER_HEALTH_ASSESS_CODE,
+      </if>
+      <if test="dineScore != null">
+        DINE_SCORE,
+      </if>
+      <if test="cleanupScore != null">
+        CLEANUP_SCORE,
+      </if>
+      <if test="dressedScore != null">
+        DRESSED_SCORE,
+      </if>
+      <if test="defecationScore != null">
+        DEFECATION_SCORE,
+      </if>
+      <if test="activityScore != null">
+        ACTIVITY_SCORE,
+      </if>
+      <if test="totalScore != null">
+        TOTAL_SCORE,
+      </if>
+      <if test="fillDate != null">
+        FILL_DATE,
+      </if>
+      <if test="createOrgId != null">
+        CREATE_ORG_ID,
+      </if>
+      <if test="orgName != null">
+        ORG_NAME,
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifiedOrgId != null">
+        MODIFIED_ORG_ID,
+      </if>
+      <if test="modifiedOrgName != null">
+        MODIFIED_ORG_NAME,
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID,
+      </if>
+      <if test="modifier != null">
+        MODIFIER,
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME,
+      </if>
+      <if test="assessmentCount != null">
+        ASSESSMENT_COUNT,
+      </if>
+      <if test="missingCount != null">
+        MISSING_COUNT,
+      </if>
+      <if test="intactRate != null">
+        INTACT_RATE,
+      </if>
+      <if test="isAppCreate != null">
+        IS_APP_CREATE,
+      </if>
+      <if test="doctorName != null">
+        DOCTOR_NAME,
+      </if>
+      <if test="doctorId != null">
+        DOCTOR_ID,
+      </if>
+      <if test="errCode != null">
+        ERR_CODE,
+      </if>
+      <if test="errStr != null">
+        ERR_STR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="elderSelfcareAbilityId != null">
+        #{elderSelfcareAbilityId,jdbcType=VARCHAR},
+      </if>
+      <if test="personInfoId != null">
+        #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="elderHealthAssessCode != null">
+        #{elderHealthAssessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dineScore != null">
+        #{dineScore,jdbcType=DECIMAL},
+      </if>
+      <if test="cleanupScore != null">
+        #{cleanupScore,jdbcType=DECIMAL},
+      </if>
+      <if test="dressedScore != null">
+        #{dressedScore,jdbcType=DECIMAL},
+      </if>
+      <if test="defecationScore != null">
+        #{defecationScore,jdbcType=DECIMAL},
+      </if>
+      <if test="activityScore != null">
+        #{activityScore,jdbcType=DECIMAL},
+      </if>
+      <if test="totalScore != null">
+        #{totalScore,jdbcType=DECIMAL},
+      </if>
+      <if test="fillDate != null">
+        #{fillDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOrgId != null">
+        #{createOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedOrgId != null">
+        #{modifiedOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgName != null">
+        #{modifiedOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null">
+        #{modifierId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assessmentCount != null">
+        #{assessmentCount,jdbcType=DECIMAL},
+      </if>
+      <if test="missingCount != null">
+        #{missingCount,jdbcType=DECIMAL},
+      </if>
+      <if test="intactRate != null">
+        #{intactRate,jdbcType=DECIMAL},
+      </if>
+      <if test="isAppCreate != null">
+        #{isAppCreate,jdbcType=DECIMAL},
+      </if>
+      <if test="doctorName != null">
+        #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null">
+        #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null">
+        #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        #{errStr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuzhou.pub.entity.ElderSelfcareAbility">
+    update ELDER_SELFCARE_ABILITY
+    <set>
+      <if test="personInfoId != null">
+        PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="elderHealthAssessCode != null">
+        ELDER_HEALTH_ASSESS_CODE = #{elderHealthAssessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dineScore != null">
+        DINE_SCORE = #{dineScore,jdbcType=DECIMAL},
+      </if>
+      <if test="cleanupScore != null">
+        CLEANUP_SCORE = #{cleanupScore,jdbcType=DECIMAL},
+      </if>
+      <if test="dressedScore != null">
+        DRESSED_SCORE = #{dressedScore,jdbcType=DECIMAL},
+      </if>
+      <if test="defecationScore != null">
+        DEFECATION_SCORE = #{defecationScore,jdbcType=DECIMAL},
+      </if>
+      <if test="activityScore != null">
+        ACTIVITY_SCORE = #{activityScore,jdbcType=DECIMAL},
+      </if>
+      <if test="totalScore != null">
+        TOTAL_SCORE = #{totalScore,jdbcType=DECIMAL},
+      </if>
+      <if test="fillDate != null">
+        FILL_DATE = #{fillDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOrgId != null">
+        CREATE_ORG_ID = #{createOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedOrgId != null">
+        MODIFIED_ORG_ID = #{modifiedOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgName != null">
+        MODIFIED_ORG_NAME = #{modifiedOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        MODIFIER = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assessmentCount != null">
+        ASSESSMENT_COUNT = #{assessmentCount,jdbcType=DECIMAL},
+      </if>
+      <if test="missingCount != null">
+        MISSING_COUNT = #{missingCount,jdbcType=DECIMAL},
+      </if>
+      <if test="intactRate != null">
+        INTACT_RATE = #{intactRate,jdbcType=DECIMAL},
+      </if>
+      <if test="isAppCreate != null">
+        IS_APP_CREATE = #{isAppCreate,jdbcType=DECIMAL},
+      </if>
+      <if test="doctorName != null">
+        DOCTOR_NAME = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null">
+        DOCTOR_ID = #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null">
+        ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        ERR_STR = #{errStr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ELDER_SELFCARE_ABILITY_ID = #{elderSelfcareAbilityId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuzhou.pub.entity.ElderSelfcareAbility">
+    update ELDER_SELFCARE_ABILITY
+    set PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR},
+      ELDER_HEALTH_ASSESS_CODE = #{elderHealthAssessCode,jdbcType=VARCHAR},
+      DINE_SCORE = #{dineScore,jdbcType=DECIMAL},
+      CLEANUP_SCORE = #{cleanupScore,jdbcType=DECIMAL},
+      DRESSED_SCORE = #{dressedScore,jdbcType=DECIMAL},
+      DEFECATION_SCORE = #{defecationScore,jdbcType=DECIMAL},
+      ACTIVITY_SCORE = #{activityScore,jdbcType=DECIMAL},
+      TOTAL_SCORE = #{totalScore,jdbcType=DECIMAL},
+      FILL_DATE = #{fillDate,jdbcType=TIMESTAMP},
+      CREATE_ORG_ID = #{createOrgId,jdbcType=VARCHAR},
+      ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFIED_ORG_ID = #{modifiedOrgId,jdbcType=VARCHAR},
+      MODIFIED_ORG_NAME = #{modifiedOrgName,jdbcType=VARCHAR},
+      MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      MODIFIER = #{modifier,jdbcType=VARCHAR},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      ASSESSMENT_COUNT = #{assessmentCount,jdbcType=DECIMAL},
+      MISSING_COUNT = #{missingCount,jdbcType=DECIMAL},
+      INTACT_RATE = #{intactRate,jdbcType=DECIMAL},
+      IS_APP_CREATE = #{isAppCreate,jdbcType=DECIMAL},
+      DOCTOR_NAME = #{doctorName,jdbcType=VARCHAR},
+      DOCTOR_ID = #{doctorId,jdbcType=VARCHAR},
+      ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      ERR_STR = #{errStr,jdbcType=VARCHAR}
+    where ELDER_SELFCARE_ABILITY_ID = #{elderSelfcareAbilityId,jdbcType=VARCHAR}
+  </update>
+</mapper>

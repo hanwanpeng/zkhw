@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.TjXdtDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.TjXdt">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="aichive_no" jdbcType="VARCHAR" property="aichiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
+    <result column="XdtResult" jdbcType="VARCHAR" property="xdtresult" />
+    <result column="XdtDesc" jdbcType="VARCHAR" property="xdtdesc" />
+    <result column="XdtDoctor" jdbcType="VARCHAR" property="xdtdoctor" />
+    <result column="XdtName" jdbcType="VARCHAR" property="xdtname" />
+    <result column="Ventrate" jdbcType="VARCHAR" property="ventrate" />
+    <result column="PR" jdbcType="VARCHAR" property="pr" />
+    <result column="QRS" jdbcType="VARCHAR" property="qrs" />
+    <result column="QT" jdbcType="VARCHAR" property="qt" />
+    <result column="QTc" jdbcType="VARCHAR" property="qtc" />
+    <result column="P_R_T" jdbcType="VARCHAR" property="pRT" />
+    <result column="DOB" jdbcType="VARCHAR" property="dob" />
+    <result column="Age" jdbcType="VARCHAR" property="age" />
+    <result column="Gen" jdbcType="VARCHAR" property="gen" />
+    <result column="Dep" jdbcType="VARCHAR" property="dep" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="synchronize_type" jdbcType="VARCHAR" property="synchronizeType" />
+    <result column="ZrysXDT" jdbcType="VARCHAR" property="zrysxdt" />
+    <result column="imageUrl" jdbcType="VARCHAR" property="imageurl" />
+    <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
+    <result column="hr" jdbcType="VARCHAR" property="hr" />
+    <result column="p" jdbcType="VARCHAR" property="p" />
+    <result column="pqrs" jdbcType="VARCHAR" property="pqrs" />
+    <result column="t" jdbcType="VARCHAR" property="t" />
+    <result column="rv5" jdbcType="VARCHAR" property="rv5" />
+    <result column="sv1" jdbcType="VARCHAR" property="sv1" />
+    <result column="baseline_drift" jdbcType="VARCHAR" property="baselineDrift" />
+    <result column="myoelectricity" jdbcType="VARCHAR" property="myoelectricity" />
+    <result column="frequency" jdbcType="VARCHAR" property="frequency" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, aichive_no, id_number, bar_code, XdtResult, XdtDesc, XdtDoctor, XdtName, Ventrate, 
+    PR, QRS, QT, QTc, P_R_T, DOB, Age, Gen, Dep, createtime, updatetime, synchronize_type, 
+    ZrysXDT, imageUrl, upload_status, hr, p, pqrs, t, rv5, sv1, baseline_drift, myoelectricity, 
+    frequency
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zkhw_tj_xdt
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findListByAichiveNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zkhw_tj_xdt
+    where aichive_no = #{aichiveNo,jdbcType=VARCHAR}
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from zkhw_tj_xdt
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.pub.entity.TjXdt">
+    insert into zkhw_tj_xdt (ID, aichive_no, id_number, 
+      bar_code, XdtResult, XdtDesc, 
+      XdtDoctor, XdtName, Ventrate, 
+      PR, QRS, QT, QTc, 
+      P_R_T, DOB, Age, Gen, 
+      Dep, createtime, updatetime, 
+      synchronize_type, ZrysXDT, imageUrl, 
+      upload_status, hr, p, 
+      pqrs, t, rv5, sv1, 
+      baseline_drift, myoelectricity, frequency
+      )
+    values (#{id,jdbcType=VARCHAR}, #{aichiveNo,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, 
+      #{barCode,jdbcType=VARCHAR}, #{xdtresult,jdbcType=VARCHAR}, #{xdtdesc,jdbcType=VARCHAR}, 
+      #{xdtdoctor,jdbcType=VARCHAR}, #{xdtname,jdbcType=VARCHAR}, #{ventrate,jdbcType=VARCHAR}, 
+      #{pr,jdbcType=VARCHAR}, #{qrs,jdbcType=VARCHAR}, #{qt,jdbcType=VARCHAR}, #{qtc,jdbcType=VARCHAR}, 
+      #{pRT,jdbcType=VARCHAR}, #{dob,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{gen,jdbcType=VARCHAR}, 
+      #{dep,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{synchronizeType,jdbcType=VARCHAR}, #{zrysxdt,jdbcType=VARCHAR}, #{imageurl,jdbcType=VARCHAR}, 
+      #{uploadStatus,jdbcType=INTEGER}, #{hr,jdbcType=VARCHAR}, #{p,jdbcType=VARCHAR}, 
+      #{pqrs,jdbcType=VARCHAR}, #{t,jdbcType=VARCHAR}, #{rv5,jdbcType=VARCHAR}, #{sv1,jdbcType=VARCHAR}, 
+      #{baselineDrift,jdbcType=VARCHAR}, #{myoelectricity,jdbcType=VARCHAR}, #{frequency,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.TjXdt">
+    insert into zkhw_tj_xdt
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="aichiveNo != null">
+        aichive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="barCode != null">
+        bar_code,
+      </if>
+      <if test="xdtresult != null">
+        XdtResult,
+      </if>
+      <if test="xdtdesc != null">
+        XdtDesc,
+      </if>
+      <if test="xdtdoctor != null">
+        XdtDoctor,
+      </if>
+      <if test="xdtname != null">
+        XdtName,
+      </if>
+      <if test="ventrate != null">
+        Ventrate,
+      </if>
+      <if test="pr != null">
+        PR,
+      </if>
+      <if test="qrs != null">
+        QRS,
+      </if>
+      <if test="qt != null">
+        QT,
+      </if>
+      <if test="qtc != null">
+        QTc,
+      </if>
+      <if test="pRT != null">
+        P_R_T,
+      </if>
+      <if test="dob != null">
+        DOB,
+      </if>
+      <if test="age != null">
+        Age,
+      </if>
+      <if test="gen != null">
+        Gen,
+      </if>
+      <if test="dep != null">
+        Dep,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="synchronizeType != null">
+        synchronize_type,
+      </if>
+      <if test="zrysxdt != null">
+        ZrysXDT,
+      </if>
+      <if test="imageurl != null">
+        imageUrl,
+      </if>
+      <if test="uploadStatus != null">
+        upload_status,
+      </if>
+      <if test="hr != null">
+        hr,
+      </if>
+      <if test="p != null">
+        p,
+      </if>
+      <if test="pqrs != null">
+        pqrs,
+      </if>
+      <if test="t != null">
+        t,
+      </if>
+      <if test="rv5 != null">
+        rv5,
+      </if>
+      <if test="sv1 != null">
+        sv1,
+      </if>
+      <if test="baselineDrift != null">
+        baseline_drift,
+      </if>
+      <if test="myoelectricity != null">
+        myoelectricity,
+      </if>
+      <if test="frequency != null">
+        frequency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="aichiveNo != null">
+        #{aichiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="xdtresult != null">
+        #{xdtresult,jdbcType=VARCHAR},
+      </if>
+      <if test="xdtdesc != null">
+        #{xdtdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="xdtdoctor != null">
+        #{xdtdoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="xdtname != null">
+        #{xdtname,jdbcType=VARCHAR},
+      </if>
+      <if test="ventrate != null">
+        #{ventrate,jdbcType=VARCHAR},
+      </if>
+      <if test="pr != null">
+        #{pr,jdbcType=VARCHAR},
+      </if>
+      <if test="qrs != null">
+        #{qrs,jdbcType=VARCHAR},
+      </if>
+      <if test="qt != null">
+        #{qt,jdbcType=VARCHAR},
+      </if>
+      <if test="qtc != null">
+        #{qtc,jdbcType=VARCHAR},
+      </if>
+      <if test="pRT != null">
+        #{pRT,jdbcType=VARCHAR},
+      </if>
+      <if test="dob != null">
+        #{dob,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="gen != null">
+        #{gen,jdbcType=VARCHAR},
+      </if>
+      <if test="dep != null">
+        #{dep,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="synchronizeType != null">
+        #{synchronizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="zrysxdt != null">
+        #{zrysxdt,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl != null">
+        #{imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadStatus != null">
+        #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="hr != null">
+        #{hr,jdbcType=VARCHAR},
+      </if>
+      <if test="p != null">
+        #{p,jdbcType=VARCHAR},
+      </if>
+      <if test="pqrs != null">
+        #{pqrs,jdbcType=VARCHAR},
+      </if>
+      <if test="t != null">
+        #{t,jdbcType=VARCHAR},
+      </if>
+      <if test="rv5 != null">
+        #{rv5,jdbcType=VARCHAR},
+      </if>
+      <if test="sv1 != null">
+        #{sv1,jdbcType=VARCHAR},
+      </if>
+      <if test="baselineDrift != null">
+        #{baselineDrift,jdbcType=VARCHAR},
+      </if>
+      <if test="myoelectricity != null">
+        #{myoelectricity,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null">
+        #{frequency,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.TjXdt">
+    update zkhw_tj_xdt
+    <set>
+      <if test="aichiveNo != null">
+        aichive_no = #{aichiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        bar_code = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="xdtresult != null">
+        XdtResult = #{xdtresult,jdbcType=VARCHAR},
+      </if>
+      <if test="xdtdesc != null">
+        XdtDesc = #{xdtdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="xdtdoctor != null">
+        XdtDoctor = #{xdtdoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="xdtname != null">
+        XdtName = #{xdtname,jdbcType=VARCHAR},
+      </if>
+      <if test="ventrate != null">
+        Ventrate = #{ventrate,jdbcType=VARCHAR},
+      </if>
+      <if test="pr != null">
+        PR = #{pr,jdbcType=VARCHAR},
+      </if>
+      <if test="qrs != null">
+        QRS = #{qrs,jdbcType=VARCHAR},
+      </if>
+      <if test="qt != null">
+        QT = #{qt,jdbcType=VARCHAR},
+      </if>
+      <if test="qtc != null">
+        QTc = #{qtc,jdbcType=VARCHAR},
+      </if>
+      <if test="pRT != null">
+        P_R_T = #{pRT,jdbcType=VARCHAR},
+      </if>
+      <if test="dob != null">
+        DOB = #{dob,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        Age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="gen != null">
+        Gen = #{gen,jdbcType=VARCHAR},
+      </if>
+      <if test="dep != null">
+        Dep = #{dep,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="synchronizeType != null">
+        synchronize_type = #{synchronizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="zrysxdt != null">
+        ZrysXDT = #{zrysxdt,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl != null">
+        imageUrl = #{imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadStatus != null">
+        upload_status = #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="hr != null">
+        hr = #{hr,jdbcType=VARCHAR},
+      </if>
+      <if test="p != null">
+        p = #{p,jdbcType=VARCHAR},
+      </if>
+      <if test="pqrs != null">
+        pqrs = #{pqrs,jdbcType=VARCHAR},
+      </if>
+      <if test="t != null">
+        t = #{t,jdbcType=VARCHAR},
+      </if>
+      <if test="rv5 != null">
+        rv5 = #{rv5,jdbcType=VARCHAR},
+      </if>
+      <if test="sv1 != null">
+        sv1 = #{sv1,jdbcType=VARCHAR},
+      </if>
+      <if test="baselineDrift != null">
+        baseline_drift = #{baselineDrift,jdbcType=VARCHAR},
+      </if>
+      <if test="myoelectricity != null">
+        myoelectricity = #{myoelectricity,jdbcType=VARCHAR},
+      </if>
+      <if test="frequency != null">
+        frequency = #{frequency,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.TjXdt">
+    update zkhw_tj_xdt
+    set aichive_no = #{aichiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      bar_code = #{barCode,jdbcType=VARCHAR},
+      XdtResult = #{xdtresult,jdbcType=VARCHAR},
+      XdtDesc = #{xdtdesc,jdbcType=VARCHAR},
+      XdtDoctor = #{xdtdoctor,jdbcType=VARCHAR},
+      XdtName = #{xdtname,jdbcType=VARCHAR},
+      Ventrate = #{ventrate,jdbcType=VARCHAR},
+      PR = #{pr,jdbcType=VARCHAR},
+      QRS = #{qrs,jdbcType=VARCHAR},
+      QT = #{qt,jdbcType=VARCHAR},
+      QTc = #{qtc,jdbcType=VARCHAR},
+      P_R_T = #{pRT,jdbcType=VARCHAR},
+      DOB = #{dob,jdbcType=VARCHAR},
+      Age = #{age,jdbcType=VARCHAR},
+      Gen = #{gen,jdbcType=VARCHAR},
+      Dep = #{dep,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      synchronize_type = #{synchronizeType,jdbcType=VARCHAR},
+      ZrysXDT = #{zrysxdt,jdbcType=VARCHAR},
+      imageUrl = #{imageurl,jdbcType=VARCHAR},
+      upload_status = #{uploadStatus,jdbcType=INTEGER},
+      hr = #{hr,jdbcType=VARCHAR},
+      p = #{p,jdbcType=VARCHAR},
+      pqrs = #{pqrs,jdbcType=VARCHAR},
+      t = #{t,jdbcType=VARCHAR},
+      rv5 = #{rv5,jdbcType=VARCHAR},
+      sv1 = #{sv1,jdbcType=VARCHAR},
+      baseline_drift = #{baselineDrift,jdbcType=VARCHAR},
+      myoelectricity = #{myoelectricity,jdbcType=VARCHAR},
+      frequency = #{frequency,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

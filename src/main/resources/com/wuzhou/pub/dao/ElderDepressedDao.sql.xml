@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhou.pub.dao.ElderDepressedDao">
+  <resultMap id="BaseResultMap" type="com.wuzhou.pub.entity.ElderDepressed">
+    <id column="ELDER_DEPRESSED_ID" jdbcType="VARCHAR" property="elderDepressedId" />
+    <result column="PERSON_INFO_ID" jdbcType="VARCHAR" property="personInfoId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="SEX_CODE" jdbcType="VARCHAR" property="sexCode" />
+    <result column="BIRTHDAY" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="AGE" jdbcType="DECIMAL" property="age" />
+    <result column="OCCUPATION_CODE" jdbcType="VARCHAR" property="occupationCode" />
+    <result column="EDUCATION_CODE" jdbcType="VARCHAR" property="educationCode" />
+    <result column="ASSESS_DATE" jdbcType="TIMESTAMP" property="assessDate" />
+    <result column="TOTAL_SCORE" jdbcType="VARCHAR" property="totalScore" />
+    <result column="IS_LIFESATISFACTION" jdbcType="VARCHAR" property="isLifesatisfaction" />
+    <result column="IS_JOY" jdbcType="VARCHAR" property="isJoy" />
+    <result column="IS_VOID" jdbcType="VARCHAR" property="isVoid" />
+    <result column="IS_BORED" jdbcType="VARCHAR" property="isBored" />
+    <result column="IS_HOPE" jdbcType="VARCHAR" property="isHope" />
+    <result column="IS_WORRY" jdbcType="VARCHAR" property="isWorry" />
+    <result column="IS_SPIRIT" jdbcType="VARCHAR" property="isSpirit" />
+    <result column="IS_AFRAID" jdbcType="VARCHAR" property="isAfraid" />
+    <result column="IS_HAPPY" jdbcType="VARCHAR" property="isHappy" />
+    <result column="IS_HELPLESS" jdbcType="VARCHAR" property="isHelpless" />
+    <result column="IS_UNSAFE" jdbcType="VARCHAR" property="isUnsafe" />
+    <result column="IS_GOOUT" jdbcType="VARCHAR" property="isGoout" />
+    <result column="IS_FUTURE" jdbcType="VARCHAR" property="isFuture" />
+    <result column="IS_MEMORY" jdbcType="VARCHAR" property="isMemory" />
+    <result column="IS_SPLENDID" jdbcType="VARCHAR" property="isSplendid" />
+    <result column="IS_LAZINESS" jdbcType="VARCHAR" property="isLaziness" />
+    <result column="IS_USELESS" jdbcType="VARCHAR" property="isUseless" />
+    <result column="IS_FORMERLY" jdbcType="VARCHAR" property="isFormerly" />
+    <result column="IS_EXCITE" jdbcType="VARCHAR" property="isExcite" />
+    <result column="IS_LEARNHARD" jdbcType="VARCHAR" property="isLearnhard" />
+    <result column="IS_ENERGYFULL" jdbcType="VARCHAR" property="isEnergyfull" />
+    <result column="IS_NOHOPE" jdbcType="VARCHAR" property="isNohope" />
+    <result column="IS_HAPPYLIFE" jdbcType="VARCHAR" property="isHappylife" />
+    <result column="IS_THINGBAD" jdbcType="VARCHAR" property="isThingbad" />
+    <result column="IS_CRY" jdbcType="VARCHAR" property="isCry" />
+    <result column="IS_MINDHARD" jdbcType="VARCHAR" property="isMindhard" />
+    <result column="IS_GETUP" jdbcType="VARCHAR" property="isGetup" />
+    <result column="IS_EXERCISE" jdbcType="VARCHAR" property="isExercise" />
+    <result column="IS_DECIDEEASY" jdbcType="VARCHAR" property="isDecideeasy" />
+    <result column="IS_CLEARHEAD" jdbcType="VARCHAR" property="isClearhead" />
+    <result column="CREATE_ORG_ID" jdbcType="VARCHAR" property="createOrgId" />
+    <result column="ORG_NAME" jdbcType="VARCHAR" property="orgName" />
+    <result column="CREATOR_ID" jdbcType="VARCHAR" property="creatorId" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFIED_ORG_ID" jdbcType="VARCHAR" property="modifiedOrgId" />
+    <result column="MODIFIED_ORG_NAME" jdbcType="VARCHAR" property="modifiedOrgName" />
+    <result column="MODIFIER_ID" jdbcType="VARCHAR" property="modifierId" />
+    <result column="MODIFIER" jdbcType="VARCHAR" property="modifier" />
+    <result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="ERR_CODE" jdbcType="DECIMAL" property="errCode" />
+    <result column="ERR_STR" jdbcType="VARCHAR" property="errStr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ELDER_DEPRESSED_ID, PERSON_INFO_ID, NAME, SEX_CODE, BIRTHDAY, AGE, OCCUPATION_CODE, 
+    EDUCATION_CODE, ASSESS_DATE, TOTAL_SCORE, IS_LIFESATISFACTION, IS_JOY, IS_VOID, IS_BORED, 
+    IS_HOPE, IS_WORRY, IS_SPIRIT, IS_AFRAID, IS_HAPPY, IS_HELPLESS, IS_UNSAFE, IS_GOOUT, 
+    IS_FUTURE, IS_MEMORY, IS_SPLENDID, IS_LAZINESS, IS_USELESS, IS_FORMERLY, IS_EXCITE, 
+    IS_LEARNHARD, IS_ENERGYFULL, IS_NOHOPE, IS_HAPPYLIFE, IS_THINGBAD, IS_CRY, IS_MINDHARD, 
+    IS_GETUP, IS_EXERCISE, IS_DECIDEEASY, IS_CLEARHEAD, CREATE_ORG_ID, ORG_NAME, CREATOR_ID, 
+    CREATOR, CREATE_TIME, MODIFIED_ORG_ID, MODIFIED_ORG_NAME, MODIFIER_ID, MODIFIER, 
+    MODIFIED_TIME, ERR_CODE, ERR_STR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ELDER_DEPRESSED
+    where ELDER_DEPRESSED_ID = #{elderDepressedId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ELDER_DEPRESSED
+    where ELDER_DEPRESSED_ID = #{elderDepressedId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuzhou.pub.entity.ElderDepressed">
+    insert into ELDER_DEPRESSED (ELDER_DEPRESSED_ID, PERSON_INFO_ID, NAME, 
+      SEX_CODE, BIRTHDAY, AGE, 
+      OCCUPATION_CODE, EDUCATION_CODE, ASSESS_DATE, 
+      TOTAL_SCORE, IS_LIFESATISFACTION, IS_JOY, 
+      IS_VOID, IS_BORED, IS_HOPE, 
+      IS_WORRY, IS_SPIRIT, IS_AFRAID, 
+      IS_HAPPY, IS_HELPLESS, IS_UNSAFE, 
+      IS_GOOUT, IS_FUTURE, IS_MEMORY, 
+      IS_SPLENDID, IS_LAZINESS, IS_USELESS, 
+      IS_FORMERLY, IS_EXCITE, IS_LEARNHARD, 
+      IS_ENERGYFULL, IS_NOHOPE, IS_HAPPYLIFE, 
+      IS_THINGBAD, IS_CRY, IS_MINDHARD, 
+      IS_GETUP, IS_EXERCISE, IS_DECIDEEASY, 
+      IS_CLEARHEAD, CREATE_ORG_ID, ORG_NAME, 
+      CREATOR_ID, CREATOR, CREATE_TIME, 
+      MODIFIED_ORG_ID, MODIFIED_ORG_NAME, MODIFIER_ID, 
+      MODIFIER, MODIFIED_TIME, ERR_CODE, 
+      ERR_STR)
+    values (#{elderDepressedId,jdbcType=VARCHAR}, #{personInfoId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sexCode,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{age,jdbcType=DECIMAL}, 
+      #{occupationCode,jdbcType=VARCHAR}, #{educationCode,jdbcType=VARCHAR}, #{assessDate,jdbcType=TIMESTAMP}, 
+      #{totalScore,jdbcType=VARCHAR}, #{isLifesatisfaction,jdbcType=VARCHAR}, #{isJoy,jdbcType=VARCHAR}, 
+      #{isVoid,jdbcType=VARCHAR}, #{isBored,jdbcType=VARCHAR}, #{isHope,jdbcType=VARCHAR}, 
+      #{isWorry,jdbcType=VARCHAR}, #{isSpirit,jdbcType=VARCHAR}, #{isAfraid,jdbcType=VARCHAR}, 
+      #{isHappy,jdbcType=VARCHAR}, #{isHelpless,jdbcType=VARCHAR}, #{isUnsafe,jdbcType=VARCHAR}, 
+      #{isGoout,jdbcType=VARCHAR}, #{isFuture,jdbcType=VARCHAR}, #{isMemory,jdbcType=VARCHAR}, 
+      #{isSplendid,jdbcType=VARCHAR}, #{isLaziness,jdbcType=VARCHAR}, #{isUseless,jdbcType=VARCHAR}, 
+      #{isFormerly,jdbcType=VARCHAR}, #{isExcite,jdbcType=VARCHAR}, #{isLearnhard,jdbcType=VARCHAR}, 
+      #{isEnergyfull,jdbcType=VARCHAR}, #{isNohope,jdbcType=VARCHAR}, #{isHappylife,jdbcType=VARCHAR}, 
+      #{isThingbad,jdbcType=VARCHAR}, #{isCry,jdbcType=VARCHAR}, #{isMindhard,jdbcType=VARCHAR}, 
+      #{isGetup,jdbcType=VARCHAR}, #{isExercise,jdbcType=VARCHAR}, #{isDecideeasy,jdbcType=VARCHAR}, 
+      #{isClearhead,jdbcType=VARCHAR}, #{createOrgId,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, 
+      #{creatorId,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifiedOrgId,jdbcType=VARCHAR}, #{modifiedOrgName,jdbcType=VARCHAR}, #{modifierId,jdbcType=VARCHAR}, 
+      #{modifier,jdbcType=VARCHAR}, #{modifiedTime,jdbcType=TIMESTAMP}, #{errCode,jdbcType=DECIMAL}, 
+      #{errStr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuzhou.pub.entity.ElderDepressed">
+    insert into ELDER_DEPRESSED
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="elderDepressedId != null">
+        ELDER_DEPRESSED_ID,
+      </if>
+      <if test="personInfoId != null">
+        PERSON_INFO_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="sexCode != null">
+        SEX_CODE,
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY,
+      </if>
+      <if test="age != null">
+        AGE,
+      </if>
+      <if test="occupationCode != null">
+        OCCUPATION_CODE,
+      </if>
+      <if test="educationCode != null">
+        EDUCATION_CODE,
+      </if>
+      <if test="assessDate != null">
+        ASSESS_DATE,
+      </if>
+      <if test="totalScore != null">
+        TOTAL_SCORE,
+      </if>
+      <if test="isLifesatisfaction != null">
+        IS_LIFESATISFACTION,
+      </if>
+      <if test="isJoy != null">
+        IS_JOY,
+      </if>
+      <if test="isVoid != null">
+        IS_VOID,
+      </if>
+      <if test="isBored != null">
+        IS_BORED,
+      </if>
+      <if test="isHope != null">
+        IS_HOPE,
+      </if>
+      <if test="isWorry != null">
+        IS_WORRY,
+      </if>
+      <if test="isSpirit != null">
+        IS_SPIRIT,
+      </if>
+      <if test="isAfraid != null">
+        IS_AFRAID,
+      </if>
+      <if test="isHappy != null">
+        IS_HAPPY,
+      </if>
+      <if test="isHelpless != null">
+        IS_HELPLESS,
+      </if>
+      <if test="isUnsafe != null">
+        IS_UNSAFE,
+      </if>
+      <if test="isGoout != null">
+        IS_GOOUT,
+      </if>
+      <if test="isFuture != null">
+        IS_FUTURE,
+      </if>
+      <if test="isMemory != null">
+        IS_MEMORY,
+      </if>
+      <if test="isSplendid != null">
+        IS_SPLENDID,
+      </if>
+      <if test="isLaziness != null">
+        IS_LAZINESS,
+      </if>
+      <if test="isUseless != null">
+        IS_USELESS,
+      </if>
+      <if test="isFormerly != null">
+        IS_FORMERLY,
+      </if>
+      <if test="isExcite != null">
+        IS_EXCITE,
+      </if>
+      <if test="isLearnhard != null">
+        IS_LEARNHARD,
+      </if>
+      <if test="isEnergyfull != null">
+        IS_ENERGYFULL,
+      </if>
+      <if test="isNohope != null">
+        IS_NOHOPE,
+      </if>
+      <if test="isHappylife != null">
+        IS_HAPPYLIFE,
+      </if>
+      <if test="isThingbad != null">
+        IS_THINGBAD,
+      </if>
+      <if test="isCry != null">
+        IS_CRY,
+      </if>
+      <if test="isMindhard != null">
+        IS_MINDHARD,
+      </if>
+      <if test="isGetup != null">
+        IS_GETUP,
+      </if>
+      <if test="isExercise != null">
+        IS_EXERCISE,
+      </if>
+      <if test="isDecideeasy != null">
+        IS_DECIDEEASY,
+      </if>
+      <if test="isClearhead != null">
+        IS_CLEARHEAD,
+      </if>
+      <if test="createOrgId != null">
+        CREATE_ORG_ID,
+      </if>
+      <if test="orgName != null">
+        ORG_NAME,
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifiedOrgId != null">
+        MODIFIED_ORG_ID,
+      </if>
+      <if test="modifiedOrgName != null">
+        MODIFIED_ORG_NAME,
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID,
+      </if>
+      <if test="modifier != null">
+        MODIFIER,
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME,
+      </if>
+      <if test="errCode != null">
+        ERR_CODE,
+      </if>
+      <if test="errStr != null">
+        ERR_STR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="elderDepressedId != null">
+        #{elderDepressedId,jdbcType=VARCHAR},
+      </if>
+      <if test="personInfoId != null">
+        #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sexCode != null">
+        #{sexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="occupationCode != null">
+        #{occupationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="educationCode != null">
+        #{educationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assessDate != null">
+        #{assessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalScore != null">
+        #{totalScore,jdbcType=VARCHAR},
+      </if>
+      <if test="isLifesatisfaction != null">
+        #{isLifesatisfaction,jdbcType=VARCHAR},
+      </if>
+      <if test="isJoy != null">
+        #{isJoy,jdbcType=VARCHAR},
+      </if>
+      <if test="isVoid != null">
+        #{isVoid,jdbcType=VARCHAR},
+      </if>
+      <if test="isBored != null">
+        #{isBored,jdbcType=VARCHAR},
+      </if>
+      <if test="isHope != null">
+        #{isHope,jdbcType=VARCHAR},
+      </if>
+      <if test="isWorry != null">
+        #{isWorry,jdbcType=VARCHAR},
+      </if>
+      <if test="isSpirit != null">
+        #{isSpirit,jdbcType=VARCHAR},
+      </if>
+      <if test="isAfraid != null">
+        #{isAfraid,jdbcType=VARCHAR},
+      </if>
+      <if test="isHappy != null">
+        #{isHappy,jdbcType=VARCHAR},
+      </if>
+      <if test="isHelpless != null">
+        #{isHelpless,jdbcType=VARCHAR},
+      </if>
+      <if test="isUnsafe != null">
+        #{isUnsafe,jdbcType=VARCHAR},
+      </if>
+      <if test="isGoout != null">
+        #{isGoout,jdbcType=VARCHAR},
+      </if>
+      <if test="isFuture != null">
+        #{isFuture,jdbcType=VARCHAR},
+      </if>
+      <if test="isMemory != null">
+        #{isMemory,jdbcType=VARCHAR},
+      </if>
+      <if test="isSplendid != null">
+        #{isSplendid,jdbcType=VARCHAR},
+      </if>
+      <if test="isLaziness != null">
+        #{isLaziness,jdbcType=VARCHAR},
+      </if>
+      <if test="isUseless != null">
+        #{isUseless,jdbcType=VARCHAR},
+      </if>
+      <if test="isFormerly != null">
+        #{isFormerly,jdbcType=VARCHAR},
+      </if>
+      <if test="isExcite != null">
+        #{isExcite,jdbcType=VARCHAR},
+      </if>
+      <if test="isLearnhard != null">
+        #{isLearnhard,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnergyfull != null">
+        #{isEnergyfull,jdbcType=VARCHAR},
+      </if>
+      <if test="isNohope != null">
+        #{isNohope,jdbcType=VARCHAR},
+      </if>
+      <if test="isHappylife != null">
+        #{isHappylife,jdbcType=VARCHAR},
+      </if>
+      <if test="isThingbad != null">
+        #{isThingbad,jdbcType=VARCHAR},
+      </if>
+      <if test="isCry != null">
+        #{isCry,jdbcType=VARCHAR},
+      </if>
+      <if test="isMindhard != null">
+        #{isMindhard,jdbcType=VARCHAR},
+      </if>
+      <if test="isGetup != null">
+        #{isGetup,jdbcType=VARCHAR},
+      </if>
+      <if test="isExercise != null">
+        #{isExercise,jdbcType=VARCHAR},
+      </if>
+      <if test="isDecideeasy != null">
+        #{isDecideeasy,jdbcType=VARCHAR},
+      </if>
+      <if test="isClearhead != null">
+        #{isClearhead,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgId != null">
+        #{createOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedOrgId != null">
+        #{modifiedOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgName != null">
+        #{modifiedOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null">
+        #{modifierId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errCode != null">
+        #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        #{errStr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuzhou.pub.entity.ElderDepressed">
+    update ELDER_DEPRESSED
+    <set>
+      <if test="personInfoId != null">
+        PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sexCode != null">
+        SEX_CODE = #{sexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null">
+        AGE = #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="occupationCode != null">
+        OCCUPATION_CODE = #{occupationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="educationCode != null">
+        EDUCATION_CODE = #{educationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assessDate != null">
+        ASSESS_DATE = #{assessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalScore != null">
+        TOTAL_SCORE = #{totalScore,jdbcType=VARCHAR},
+      </if>
+      <if test="isLifesatisfaction != null">
+        IS_LIFESATISFACTION = #{isLifesatisfaction,jdbcType=VARCHAR},
+      </if>
+      <if test="isJoy != null">
+        IS_JOY = #{isJoy,jdbcType=VARCHAR},
+      </if>
+      <if test="isVoid != null">
+        IS_VOID = #{isVoid,jdbcType=VARCHAR},
+      </if>
+      <if test="isBored != null">
+        IS_BORED = #{isBored,jdbcType=VARCHAR},
+      </if>
+      <if test="isHope != null">
+        IS_HOPE = #{isHope,jdbcType=VARCHAR},
+      </if>
+      <if test="isWorry != null">
+        IS_WORRY = #{isWorry,jdbcType=VARCHAR},
+      </if>
+      <if test="isSpirit != null">
+        IS_SPIRIT = #{isSpirit,jdbcType=VARCHAR},
+      </if>
+      <if test="isAfraid != null">
+        IS_AFRAID = #{isAfraid,jdbcType=VARCHAR},
+      </if>
+      <if test="isHappy != null">
+        IS_HAPPY = #{isHappy,jdbcType=VARCHAR},
+      </if>
+      <if test="isHelpless != null">
+        IS_HELPLESS = #{isHelpless,jdbcType=VARCHAR},
+      </if>
+      <if test="isUnsafe != null">
+        IS_UNSAFE = #{isUnsafe,jdbcType=VARCHAR},
+      </if>
+      <if test="isGoout != null">
+        IS_GOOUT = #{isGoout,jdbcType=VARCHAR},
+      </if>
+      <if test="isFuture != null">
+        IS_FUTURE = #{isFuture,jdbcType=VARCHAR},
+      </if>
+      <if test="isMemory != null">
+        IS_MEMORY = #{isMemory,jdbcType=VARCHAR},
+      </if>
+      <if test="isSplendid != null">
+        IS_SPLENDID = #{isSplendid,jdbcType=VARCHAR},
+      </if>
+      <if test="isLaziness != null">
+        IS_LAZINESS = #{isLaziness,jdbcType=VARCHAR},
+      </if>
+      <if test="isUseless != null">
+        IS_USELESS = #{isUseless,jdbcType=VARCHAR},
+      </if>
+      <if test="isFormerly != null">
+        IS_FORMERLY = #{isFormerly,jdbcType=VARCHAR},
+      </if>
+      <if test="isExcite != null">
+        IS_EXCITE = #{isExcite,jdbcType=VARCHAR},
+      </if>
+      <if test="isLearnhard != null">
+        IS_LEARNHARD = #{isLearnhard,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnergyfull != null">
+        IS_ENERGYFULL = #{isEnergyfull,jdbcType=VARCHAR},
+      </if>
+      <if test="isNohope != null">
+        IS_NOHOPE = #{isNohope,jdbcType=VARCHAR},
+      </if>
+      <if test="isHappylife != null">
+        IS_HAPPYLIFE = #{isHappylife,jdbcType=VARCHAR},
+      </if>
+      <if test="isThingbad != null">
+        IS_THINGBAD = #{isThingbad,jdbcType=VARCHAR},
+      </if>
+      <if test="isCry != null">
+        IS_CRY = #{isCry,jdbcType=VARCHAR},
+      </if>
+      <if test="isMindhard != null">
+        IS_MINDHARD = #{isMindhard,jdbcType=VARCHAR},
+      </if>
+      <if test="isGetup != null">
+        IS_GETUP = #{isGetup,jdbcType=VARCHAR},
+      </if>
+      <if test="isExercise != null">
+        IS_EXERCISE = #{isExercise,jdbcType=VARCHAR},
+      </if>
+      <if test="isDecideeasy != null">
+        IS_DECIDEEASY = #{isDecideeasy,jdbcType=VARCHAR},
+      </if>
+      <if test="isClearhead != null">
+        IS_CLEARHEAD = #{isClearhead,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgId != null">
+        CREATE_ORG_ID = #{createOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedOrgId != null">
+        MODIFIED_ORG_ID = #{modifiedOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgName != null">
+        MODIFIED_ORG_NAME = #{modifiedOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        MODIFIER = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errCode != null">
+        ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        ERR_STR = #{errStr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ELDER_DEPRESSED_ID = #{elderDepressedId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuzhou.pub.entity.ElderDepressed">
+    update ELDER_DEPRESSED
+    set PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      SEX_CODE = #{sexCode,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      AGE = #{age,jdbcType=DECIMAL},
+      OCCUPATION_CODE = #{occupationCode,jdbcType=VARCHAR},
+      EDUCATION_CODE = #{educationCode,jdbcType=VARCHAR},
+      ASSESS_DATE = #{assessDate,jdbcType=TIMESTAMP},
+      TOTAL_SCORE = #{totalScore,jdbcType=VARCHAR},
+      IS_LIFESATISFACTION = #{isLifesatisfaction,jdbcType=VARCHAR},
+      IS_JOY = #{isJoy,jdbcType=VARCHAR},
+      IS_VOID = #{isVoid,jdbcType=VARCHAR},
+      IS_BORED = #{isBored,jdbcType=VARCHAR},
+      IS_HOPE = #{isHope,jdbcType=VARCHAR},
+      IS_WORRY = #{isWorry,jdbcType=VARCHAR},
+      IS_SPIRIT = #{isSpirit,jdbcType=VARCHAR},
+      IS_AFRAID = #{isAfraid,jdbcType=VARCHAR},
+      IS_HAPPY = #{isHappy,jdbcType=VARCHAR},
+      IS_HELPLESS = #{isHelpless,jdbcType=VARCHAR},
+      IS_UNSAFE = #{isUnsafe,jdbcType=VARCHAR},
+      IS_GOOUT = #{isGoout,jdbcType=VARCHAR},
+      IS_FUTURE = #{isFuture,jdbcType=VARCHAR},
+      IS_MEMORY = #{isMemory,jdbcType=VARCHAR},
+      IS_SPLENDID = #{isSplendid,jdbcType=VARCHAR},
+      IS_LAZINESS = #{isLaziness,jdbcType=VARCHAR},
+      IS_USELESS = #{isUseless,jdbcType=VARCHAR},
+      IS_FORMERLY = #{isFormerly,jdbcType=VARCHAR},
+      IS_EXCITE = #{isExcite,jdbcType=VARCHAR},
+      IS_LEARNHARD = #{isLearnhard,jdbcType=VARCHAR},
+      IS_ENERGYFULL = #{isEnergyfull,jdbcType=VARCHAR},
+      IS_NOHOPE = #{isNohope,jdbcType=VARCHAR},
+      IS_HAPPYLIFE = #{isHappylife,jdbcType=VARCHAR},
+      IS_THINGBAD = #{isThingbad,jdbcType=VARCHAR},
+      IS_CRY = #{isCry,jdbcType=VARCHAR},
+      IS_MINDHARD = #{isMindhard,jdbcType=VARCHAR},
+      IS_GETUP = #{isGetup,jdbcType=VARCHAR},
+      IS_EXERCISE = #{isExercise,jdbcType=VARCHAR},
+      IS_DECIDEEASY = #{isDecideeasy,jdbcType=VARCHAR},
+      IS_CLEARHEAD = #{isClearhead,jdbcType=VARCHAR},
+      CREATE_ORG_ID = #{createOrgId,jdbcType=VARCHAR},
+      ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFIED_ORG_ID = #{modifiedOrgId,jdbcType=VARCHAR},
+      MODIFIED_ORG_NAME = #{modifiedOrgName,jdbcType=VARCHAR},
+      MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      MODIFIER = #{modifier,jdbcType=VARCHAR},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      ERR_STR = #{errStr,jdbcType=VARCHAR}
+    where ELDER_DEPRESSED_ID = #{elderDepressedId,jdbcType=VARCHAR}
+  </update>
+</mapper>

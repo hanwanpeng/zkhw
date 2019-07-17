@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.ltd.dao.UserDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.ltd.entity.User">
+    <id column="user_code" jdbcType="VARCHAR" property="userCode" />
+    <result column="pub_usercode" jdbcType="VARCHAR" property="pubUsercode" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="login_pass" jdbcType="VARCHAR" property="loginPass" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="job_num" jdbcType="VARCHAR" property="jobNum" />
+    <result column="tele_phone" jdbcType="VARCHAR" property="telePhone" />
+    <result column="mail" jdbcType="VARCHAR" property="mail" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="organ_code" jdbcType="VARCHAR" property="organCode" />
+    <result column="parent_organ" jdbcType="VARCHAR" property="parentOrgan" />
+    <result column="depart_code" jdbcType="VARCHAR" property="departCode" />
+    
+    <result column="user_type_code" jdbcType="VARCHAR" property="userTypeCode" />
+    <result column="data_level" jdbcType="INTEGER" property="dataLevel" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_code" jdbcType="VARCHAR" property="createUserCode" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user_code" jdbcType="VARCHAR" property="updateUserCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_code, pub_usercode, user_name, login_name, login_pass, sex, job_num, tele_phone, mail, birthday, 
+    organ_code, parent_organ, depart_code, user_type_code, data_level, status, is_delete, create_time, 
+    create_user_code, update_time, update_user_code
+  </sql>
+  
+    <!-- 根据用户编码查询用户 -->
+  <select id="findUserByCode" parameterType="java.lang.String" resultType="com.zkhw.ltd.entity.User" >
+	   select  <include refid="Base_Column_List" />
+	   from ltd_user where user_code = #{userCode}
+  </select>
+  
+    <!-- 登录 -->
+  <select id="findLoginUser" resultType="com.zkhw.ltd.entity.User" >
+      select   <include refid="Base_Column_List" />
+      from ltd_user where login_name = #{loginName}  and login_pass = #{loginPass}
+  </select>
+  
+  <!-- 根据登录名获取用户信息 -->
+   <select id="findUserByLoginName" resultType="com.zkhw.ltd.entity.User" parameterType="java.lang.String" >
+      select <include refid="Base_Column_List" />
+      from ltd_user where login_name = #{loginName}
+  </select>
+  
+    <!-- app登陆 -->
+   <select id="findAppLoginUser" resultType="com.zkhw.ltd.entity.User" >
+      select  <include refid="Base_Column_List" />
+      from ltd_user where login_name = #{loginName}
+  </select>
+  
+  
+  <select id="findUserBySearch" resultType="com.zkhw.ltd.entity.User" parameterType="com.zkhw.ltd.entity.User"  >
+       select <include refid="Base_Column_List" />
+       from ltd_user where is_delete = 0
+      <if test="userName != null and userName !=''">
+		and user_name like concat(concat('%',#{userName,jdbcType=VARCHAR}),'%')
+	  </if>
+      <if test="loginName != null">
+        and login_name = #{loginName,jdbcType=VARCHAR}
+      </if>
+      <if test="loginPass != null">
+        and login_pass = #{loginPass,jdbcType=VARCHAR}
+      </if>
+      <if test="sex != null">
+        and sex = #{sex,jdbcType=INTEGER}
+      </if>
+      <if test="jobNum != null">
+        and job_num = #{jobNum,jdbcType=VARCHAR}
+      </if>
+       <if test="telePhone != null and telePhone !=''">
+		and tele_phone like concat(concat('%',#{telePhone,jdbcType=VARCHAR}),'%')
+	  </if>
+      <if test="mail != null">
+        and mail = #{mail,jdbcType=VARCHAR}
+      </if>
+      <if test="birthday != null">
+        and birthday = #{birthday,jdbcType=VARCHAR}
+      </if>
+      <if test="organCode != null">
+        and organ_code = #{organCode,jdbcType=VARCHAR}
+      </if>
+      <if test="parentOrgan != null">
+        and parent_organ = #{parentOrgan,jdbcType=VARCHAR}
+      </if>      
+      <if test="departCode != null">
+        and depart_code = #{departCode,jdbcType=VARCHAR}
+      </if>
+      <if test="userTypeCode != null">
+        and and user_type_code = #{userTypeCode,jdbcType=VARCHAR}
+      </if>
+      <if test="dataLevel != null">
+        and and data_level = #{dataLevel,jdbcType=INTEGER}
+      </if>
+      <if test="status != null">
+        and status = #{status,jdbcType=INTEGER}
+      </if>
+  </select>
+ 
+  <insert id="saveUser" parameterType="com.zkhw.ltd.entity.User">
+    insert into ltd_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="pubUsercode != null">
+        pub_usercode,
+      </if>      
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="loginName != null">
+        login_name,
+      </if>
+      <if test="loginPass != null">
+        login_pass,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="jobNum != null">
+        job_num,
+      </if>
+      <if test="telePhone != null">
+        tele_phone,
+      </if>
+      <if test="mail != null">
+        mail,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="organCode != null">
+        organ_code,
+      </if>
+      <if test="parentOrgan != null">
+        parent_organ,
+      </if>      
+      <if test="departCode != null">
+        depart_code,
+      </if>
+      <if test="userTypeCode != null">
+        user_type_code,
+      </if>
+      <if test="dataLevel != null">
+        data_level,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUserCode != null">
+        create_user_code,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUserCode != null">
+        update_user_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userCode != null">
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pubUsercode != null">
+        #{pubUsercode,jdbcType=VARCHAR},
+      </if>      
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPass != null">
+        #{loginPass,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="jobNum != null">
+        #{jobNum,jdbcType=VARCHAR},
+      </if>
+      <if test="telePhone != null">
+        #{telePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null">
+        #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="organCode != null">
+        #{organCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentOrgan != null">
+        #{parentOrgan,jdbcType=VARCHAR},
+      </if>      
+      <if test="departCode != null">
+        #{departCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userTypeCode != null">
+        #{userTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataLevel != null">
+        #{dataLevel,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserCode != null">
+        #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserCode != null">
+        #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateUserByCode" parameterType="com.zkhw.ltd.entity.User">
+    update ltd_user
+    <set>
+      <if test="pubUsercode != null">
+        pub_usercode = #{pubUsercode,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>      
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPass != null">
+        login_pass = #{loginPass,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="jobNum != null">
+        job_num = #{jobNum,jdbcType=VARCHAR},
+      </if>
+      <if test="telePhone != null">
+        tele_phone = #{telePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null">
+        mail = #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="organCode != null">
+        organ_code = #{organCode,jdbcType=VARCHAR},
+      </if>
+      <if test="departCode != null">
+        depart_code = #{departCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userTypeCode != null">
+        user_type_code = #{userTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataLevel != null">
+        data_level = #{dataLevel,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserCode != null">
+        create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserCode != null">
+        update_user_code = #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_code = #{userCode,jdbcType=VARCHAR}
+  </update>
+  
+ <select id="findUserByOrgan" resultType="com.zkhw.ltd.entity.User" parameterType="java.lang.String"  >
+        select  <include refid="Base_Column_List" />  from ltd_user where 1=1  and is_delete != 1
+           and organ_code = #{organCode}
+ </select> 
+ 
+</mapper>

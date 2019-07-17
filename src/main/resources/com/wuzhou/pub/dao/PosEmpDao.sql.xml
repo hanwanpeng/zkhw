@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhou.pub.dao.PosEmpDao">
+  <resultMap id="BaseResultMap" type="com.wuzhou.pub.entity.PosEmp">
+    <id column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+    <result column="POS_ID" jdbcType="VARCHAR" property="posId" />
+    <result column="EMP_NAME" jdbcType="VARCHAR" property="empName" />
+    <result column="EMP_RIN" jdbcType="VARCHAR" property="empRin" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    EMP_ID, POS_ID, EMP_NAME, EMP_RIN
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from POS_EMP
+    where EMP_ID = #{empId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from POS_EMP
+    where EMP_ID = #{empId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuzhou.pub.entity.PosEmp">
+    insert into POS_EMP (EMP_ID, POS_ID, EMP_NAME, 
+      EMP_RIN)
+    values (#{empId,jdbcType=VARCHAR}, #{posId,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}, 
+      #{empRin,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuzhou.pub.entity.PosEmp">
+    insert into POS_EMP
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empId != null">
+        EMP_ID,
+      </if>
+      <if test="posId != null">
+        POS_ID,
+      </if>
+      <if test="empName != null">
+        EMP_NAME,
+      </if>
+      <if test="empRin != null">
+        EMP_RIN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empId != null">
+        #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="posId != null">
+        #{posId,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empRin != null">
+        #{empRin,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuzhou.pub.entity.PosEmp">
+    update POS_EMP
+    <set>
+      <if test="posId != null">
+        POS_ID = #{posId,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        EMP_NAME = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empRin != null">
+        EMP_RIN = #{empRin,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EMP_ID = #{empId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuzhou.pub.entity.PosEmp">
+    update POS_EMP
+    set POS_ID = #{posId,jdbcType=VARCHAR},
+      EMP_NAME = #{empName,jdbcType=VARCHAR},
+      EMP_RIN = #{empRin,jdbcType=VARCHAR}
+    where EMP_ID = #{empId,jdbcType=VARCHAR}
+  </update>
+</mapper>

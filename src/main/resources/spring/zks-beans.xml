@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/task 
+           http://www.springframework.org/schema/task/spring-task-4.1.xsd" default-lazy-init="true" default-autowire="byName">
+	<!-- singleton作用域,Spring IOC容器中只会存在一个共享的bean实例 -->
+	<bean id="contextUtils" class="com.zkhw.framework.support.spring.ContextUtils" scope="singleton"/>
+	
+	<bean id="dataSourceAdvice" class="com.zkhw.framework.support.aop.DataSourceAdvice" autowire="byName"/>
+	
+	<!-- 初始化时装载区县数据、权限数据 -->
+	<bean id="initData" class="com.zkhw.common.utils.InitDataUtil" init-method="process" lazy-init="false"/>
+	<task:annotation-driven scheduler="myScheduler" />
+	<task:scheduler id="myScheduler" pool-size="5"/> 		
+	
+</beans>

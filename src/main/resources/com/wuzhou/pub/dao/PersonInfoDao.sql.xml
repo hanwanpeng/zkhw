@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhou.pub.dao.PersonInfoDao">
+  <resultMap id="BaseResultMap" type="com.wuzhou.pub.entity.PersonInfo">
+    <id column="PERSON_INFO_ID" jdbcType="VARCHAR" property="personInfoId" />
+    <result column="ABO_CODE" jdbcType="VARCHAR" property="aboCode" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="BIRTHDAY" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="ID_NO" jdbcType="VARCHAR" property="idNo" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NATIONALITY_VALUE" jdbcType="VARCHAR" property="nationalityValue" />
+    <result column="RH_CODE" jdbcType="VARCHAR" property="rhCode" />
+    <result column="SEX_VALUE" jdbcType="VARCHAR" property="sexValue" />
+    <result column="DRUG_ALLERGY_VALUE" jdbcType="VARCHAR" property="drugAllergyValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PERSON_INFO_ID, ABO_CODE, ADDRESS, BIRTHDAY, ID_NO, NAME, NATIONALITY_VALUE, RH_CODE, 
+    SEX_VALUE, DRUG_ALLERGY_VALUE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PERSON_INFO
+    where PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from PERSON_INFO
+    where PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuzhou.pub.entity.PersonInfo">
+    insert into PERSON_INFO (PERSON_INFO_ID, ABO_CODE, ADDRESS, 
+      BIRTHDAY, ID_NO, NAME, 
+      NATIONALITY_VALUE, RH_CODE, SEX_VALUE, 
+      DRUG_ALLERGY_VALUE)
+    values (#{personInfoId,jdbcType=VARCHAR}, #{aboCode,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=TIMESTAMP}, #{idNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{nationalityValue,jdbcType=VARCHAR}, #{rhCode,jdbcType=VARCHAR}, #{sexValue,jdbcType=VARCHAR}, 
+      #{drugAllergyValue,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuzhou.pub.entity.PersonInfo">
+    insert into PERSON_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="personInfoId != null">
+        PERSON_INFO_ID,
+      </if>
+      <if test="aboCode != null">
+        ABO_CODE,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY,
+      </if>
+      <if test="idNo != null">
+        ID_NO,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="nationalityValue != null">
+        NATIONALITY_VALUE,
+      </if>
+      <if test="rhCode != null">
+        RH_CODE,
+      </if>
+      <if test="sexValue != null">
+        SEX_VALUE,
+      </if>
+      <if test="drugAllergyValue != null">
+        DRUG_ALLERGY_VALUE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="personInfoId != null">
+        #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="aboCode != null">
+        #{aboCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idNo != null">
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalityValue != null">
+        #{nationalityValue,jdbcType=VARCHAR},
+      </if>
+      <if test="rhCode != null">
+        #{rhCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sexValue != null">
+        #{sexValue,jdbcType=VARCHAR},
+      </if>
+      <if test="drugAllergyValue != null">
+        #{drugAllergyValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuzhou.pub.entity.PersonInfo">
+    update PERSON_INFO
+    <set>
+      <if test="aboCode != null">
+        ABO_CODE = #{aboCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idNo != null">
+        ID_NO = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nationalityValue != null">
+        NATIONALITY_VALUE = #{nationalityValue,jdbcType=VARCHAR},
+      </if>
+      <if test="rhCode != null">
+        RH_CODE = #{rhCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sexValue != null">
+        SEX_VALUE = #{sexValue,jdbcType=VARCHAR},
+      </if>
+      <if test="drugAllergyValue != null">
+        DRUG_ALLERGY_VALUE = #{drugAllergyValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuzhou.pub.entity.PersonInfo">
+    update PERSON_INFO
+    set ABO_CODE = #{aboCode,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      ID_NO = #{idNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      NATIONALITY_VALUE = #{nationalityValue,jdbcType=VARCHAR},
+      RH_CODE = #{rhCode,jdbcType=VARCHAR},
+      SEX_VALUE = #{sexValue,jdbcType=VARCHAR},
+      DRUG_ALLERGY_VALUE = #{drugAllergyValue,jdbcType=VARCHAR}
+    where PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR}
+  </update>
+</mapper>

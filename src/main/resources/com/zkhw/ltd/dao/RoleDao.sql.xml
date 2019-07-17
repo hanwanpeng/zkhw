@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.ltd.dao.RoleDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.ltd.entity.Role">
+    <id column="role_code" jdbcType="VARCHAR" property="roleCode" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="role_note" jdbcType="VARCHAR" property="roleNote" />
+    <result column="organ_code" jdbcType="VARCHAR" property="organCode" />
+    <result column="parent_organ" jdbcType="VARCHAR" property="parentOrgan" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_code" jdbcType="VARCHAR" property="createUserCode" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user_code" jdbcType="VARCHAR" property="updateUserCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_code, role_name, role_note, organ_code, parent_organ, create_time, create_user_code, update_time, 
+    update_user_code
+  </sql>
+  
+  <!-- 根据组织机构编码获取角色 -->
+	<select id="findRoleByOrgan" parameterType="java.lang.String" resultType="com.zkhw.ltd.entity.Role">
+		select
+		<include refid="Base_Column_List" />
+		from ltd_role where organ_code = #{organCode}
+	</select>
+
+	<select id="findAllRole" parameterType="java.lang.String" resultType="com.zkhw.ltd.entity.Role">
+		select
+		<include refid="Base_Column_List" />
+		from ltd_role
+	</select>  
+  
+  	<!-- 根据角色编码获取角色 -->
+	<select id="findRoleByCode" resultType="com.zkhw.ltd.entity.Role" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from ltd_role where role_code=#{roleCode}
+	</select>
+  
+  	<!-- 角色搜索 -->
+	<select id="findRoleBySearch" resultType="com.zkhw.ltd.entity.Role"	parameterType="com.zkhw.ltd.entity.Role">
+		select
+		<include refid="Base_Column_List" />
+		from ltd_role where 1=1
+		<if test="roleCode != null">
+		   and role_code != #{roleCode}
+		</if>
+		<if test="organCode != null and organCode !=''">
+		   and organ_code = #{organCode}
+		</if>
+      <if test="parentOrgan != null">
+        and parent_organ = #{parentOrgan,jdbcType=VARCHAR}
+      </if> 		
+	</select>
+  
+  
+     <!-- 保存角色   -->
+    <insert id="saveRole" parameterType="com.zkhw.ltd.entity.Role">
+    insert into ltd_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="roleNote != null">
+        role_note,
+      </if>
+      <if test="organCode != null">
+        organ_code,
+      </if>
+      <if test="parentOrgan != null">
+        parent_organ,
+      </if>       
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUserCode != null">
+        create_user_code,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUserCode != null">
+        update_user_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleNote != null">
+        #{roleNote,jdbcType=VARCHAR},
+      </if>
+      <if test="organCode != null">
+        #{organCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentOrgan != null">
+        #{parentOrgan,jdbcType=VARCHAR},
+      </if>       
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserCode != null">
+        #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserCode != null">
+        #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+   <!--  根据角色编码修改角色 -->
+    <update id="updateRoleByCode" parameterType="com.zkhw.ltd.entity.Role">
+    update ltd_role
+    <set>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleNote != null">
+        role_note = #{roleNote,jdbcType=VARCHAR},
+      </if>
+      <if test="organCode != null">
+        organ_code = #{organCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentOrgan != null">
+        parent_organ = #{parentOrgan,jdbcType=VARCHAR},
+      </if>      
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserCode != null">
+        create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserCode != null">
+        update_user_code = #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where role_code = #{roleCode,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据code删除角色 -->
+   <delete id="deleteRoleByCode" parameterType="java.lang.String">
+    delete from ltd_role
+    where role_code = #{roleCode,jdbcType=VARCHAR}
+  </delete>
+  
+</mapper>

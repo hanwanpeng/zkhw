@@ -1,0 +1,3127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhou.pub.dao.HealthExamDao">
+  <resultMap id="BaseResultMap" type="com.wuzhou.pub.entity.HealthExam">
+    <id column="HEALTH_EXAM_ID" jdbcType="VARCHAR" property="healthExamId" />
+    <result column="PERSON_INFO_ID" jdbcType="VARCHAR" property="personInfoId" />
+    <result column="CREATE_ORG_ID" jdbcType="VARCHAR" property="createOrgId" />
+    <result column="ORG_ID" jdbcType="VARCHAR" property="orgId" />
+    <result column="ORG_NAME" jdbcType="VARCHAR" property="orgName" />
+    <result column="ABDOMINAL_DULLNESS_CODE" jdbcType="VARCHAR" property="abdominalDullnessCode" />
+    <result column="ABDOMINAL_MASS_CODE" jdbcType="VARCHAR" property="abdominalMassCode" />
+    <result column="ABDOMINAL_TEND_CODE" jdbcType="VARCHAR" property="abdominalTendCode" />
+    <result column="ADNEXA_ABNORM_DESC" jdbcType="VARCHAR" property="adnexaAbnormDesc" />
+    <result column="ADNEXA_CODE" jdbcType="VARCHAR" property="adnexaCode" />
+    <result column="ALL_FALSE_TEETH" jdbcType="DECIMAL" property="allFalseTeeth" />
+    <result column="ALL_LOSE_TEETH" jdbcType="DECIMAL" property="allLoseTeeth" />
+    <result column="AST" jdbcType="DECIMAL" property="ast" />
+    <result column="BARREL_CHEST_CODE" jdbcType="VARCHAR" property="barrelChestCode" />
+    <result column="BLOOD_STASIS_CODE" jdbcType="VARCHAR" property="bloodStasisCode" />
+    <result column="BMI" jdbcType="DECIMAL" property="bmi" />
+    <result column="BODY_TEMPERATURE" jdbcType="DECIMAL" property="bodyTemperature" />
+    <result column="BREATHING_RATE" jdbcType="DECIMAL" property="breathingRate" />
+    <result column="BSCAN_ABDOMEN_ABNORM_DESC" jdbcType="VARCHAR" property="bscanAbdomenAbnormDesc" />
+    <result column="BSCAN_ABDOMEN_CODE" jdbcType="VARCHAR" property="bscanAbdomenCode" />
+    <result column="BSCAN_OTHERS_ABNORM_DESC" jdbcType="VARCHAR" property="bscanOthersAbnormDesc" />
+    <result column="BSCAN_OTHERS_CODE" jdbcType="VARCHAR" property="bscanOthersCode" />
+    <result column="CBC_OTHERS" jdbcType="VARCHAR" property="cbcOthers" />
+    <result column="CERVIX_ABNORM_DESC" jdbcType="VARCHAR" property="cervixAbnormDesc" />
+    <result column="CERVIX_CODE" jdbcType="VARCHAR" property="cervixCode" />
+    <result column="CORPUSUTERI_ABNORM_DESC" jdbcType="VARCHAR" property="corpusuteriAbnormDesc" />
+    <result column="CORPUSUTERI_CODE" jdbcType="VARCHAR" property="corpusuteriCode" />
+    <result column="CPS_ABNORM_DESC" jdbcType="VARCHAR" property="cpsAbnormDesc" />
+    <result column="CPS_CODE" jdbcType="VARCHAR" property="cpsCode" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATOR_ID" jdbcType="VARCHAR" property="creatorId" />
+    <result column="DAILY_DRINKING" jdbcType="DECIMAL" property="dailyDrinking" />
+    <result column="DAILY_SMOKING" jdbcType="DECIMAL" property="dailySmoking" />
+    <result column="DAMP_HEAT_CODE" jdbcType="VARCHAR" property="dampHeatCode" />
+    <result column="DECAYED_BL_TOOTH_NUM" jdbcType="DECIMAL" property="decayedBlToothNum" />
+    <result column="DECAYED_BR_TOOTH_NUM" jdbcType="DECIMAL" property="decayedBrToothNum" />
+    <result column="DECAYED_UL_TOOTH_NUM" jdbcType="DECIMAL" property="decayedUlToothNum" />
+    <result column="DECAYED_UR_TOOTH_NUM" jdbcType="DECIMAL" property="decayedUrToothNum" />
+    <result column="DENTITION_TYPE_CODE" jdbcType="VARCHAR" property="dentitionTypeCode" />
+    <result column="DISE_NERVOUS_ABNORM_DESC" jdbcType="VARCHAR" property="diseNervousAbnormDesc" />
+    <result column="DISE_NERVOUS_CODE" jdbcType="VARCHAR" property="diseNervousCode" />
+    <result column="DISE_OTHERS_ABNORM_DESC" jdbcType="VARCHAR" property="diseOthersAbnormDesc" />
+    <result column="DISE_OTHERS_CODE" jdbcType="VARCHAR" property="diseOthersCode" />
+    <result column="DRE_CODE" jdbcType="VARCHAR" property="dreCode" />
+    <result column="DRE_OTHERS_DESC" jdbcType="VARCHAR" property="dreOthersDesc" />
+    <result column="DRINKING_FREQ_CODE" jdbcType="VARCHAR" property="drinkingFreqCode" />
+    <result column="DRUNK_CODE" jdbcType="VARCHAR" property="drunkCode" />
+    <result column="ECG_ABNORM_CODE" jdbcType="VARCHAR" property="ecgAbnormCode" />
+    <result column="ECG_ABNORM_DESC" jdbcType="VARCHAR" property="ecgAbnormDesc" />
+    <result column="ELDER_BRAIN_SCORE" jdbcType="DECIMAL" property="elderBrainScore" />
+    <result column="ELDER_COGNITION_ID" jdbcType="VARCHAR" property="elderCognitionId" />
+    <result column="ELDER_COGNITION_RESULT_CODE" jdbcType="VARCHAR" property="elderCognitionResultCode" />
+    <result column="ELDER_DEPRESSED_ID" jdbcType="VARCHAR" property="elderDepressedId" />
+    <result column="ELDER_DEPRESSION_SCORE" jdbcType="DECIMAL" property="elderDepressionScore" />
+    <result column="ELDER_EMOTIONAL_RESULT_CODE" jdbcType="VARCHAR" property="elderEmotionalResultCode" />
+    <result column="ELDER_HEALTH_ASSESS_CODE" jdbcType="VARCHAR" property="elderHealthAssessCode" />
+    <result column="ELDER_SELF_CARE_ASSESS_CODE" jdbcType="VARCHAR" property="elderSelfCareAssessCode" />
+    <result column="ELDER_SELFCARE_ABILITY_ID" jdbcType="VARCHAR" property="elderSelfcareAbilityId" />
+    <result column="ELDER_TCM_HEALTH_ID" jdbcType="VARCHAR" property="elderTcmHealthId" />
+    <result column="EOLE_CODE" jdbcType="VARCHAR" property="eoleCode" />
+    <result column="EXERCISE_DURATION_MINS" jdbcType="DECIMAL" property="exerciseDurationMins" />
+    <result column="EXERCISE_FREQ_CODE" jdbcType="VARCHAR" property="exerciseFreqCode" />
+    <result column="EXERCISE_WAY" jdbcType="VARCHAR" property="exerciseWay" />
+    <result column="EXERCISE_YEAR" jdbcType="DECIMAL" property="exerciseYear" />
+    <result column="EYEGROUND_ABNORM_DESC" jdbcType="VARCHAR" property="eyegroundAbnormDesc" />
+    <result column="EYEGROUND_CODE" jdbcType="VARCHAR" property="eyegroundCode" />
+    <result column="FALSE_BL_TEETH_NUM" jdbcType="DECIMAL" property="falseBlTeethNum" />
+    <result column="FALSE_BR_TEETH_NUM" jdbcType="DECIMAL" property="falseBrTeethNum" />
+    <result column="FALSE_UL_TEETH_NUM" jdbcType="DECIMAL" property="falseUlTeethNum" />
+    <result column="FALSE_UR_TEETH_NUM" jdbcType="DECIMAL" property="falseUrTeethNum" />
+    <result column="FBG_MG" jdbcType="DECIMAL" property="fbgMg" />
+    <result column="FBG_MMOL" jdbcType="DECIMAL" property="fbgMmol" />
+    <result column="FOB_CODE" jdbcType="VARCHAR" property="fobCode" />
+    <result column="GENTLE_QUALITY_CODE" jdbcType="VARCHAR" property="gentleQualityCode" />
+    <result column="GLU_QUAL_RESULT_CODE" jdbcType="VARCHAR" property="gluQualResultCode" />
+    <result column="HAS_ABDOMINAL_DULLNESS_DESC" jdbcType="VARCHAR" property="hasAbdominalDullnessDesc" />
+    <result column="HAS_ABDOMINAL_MASS_DESC" jdbcType="VARCHAR" property="hasAbdominalMassDesc" />
+    <result column="HAS_ABDOMINAL_TEND_DESC" jdbcType="VARCHAR" property="hasAbdominalTendDesc" />
+    <result column="HAS_HEPATAUXE_DESC" jdbcType="VARCHAR" property="hasHepatauxeDesc" />
+    <result column="HAS_SPLENOMEGALY_DESC" jdbcType="VARCHAR" property="hasSplenomegalyDesc" />
+    <result column="HBCAB_TEST_RESULT_CODE" jdbcType="VARCHAR" property="hbcabTestResultCode" />
+    <result column="HBEAB_TEST_RESULT_CODE" jdbcType="VARCHAR" property="hbeabTestResultCode" />
+    <result column="HBEAG_TEST_RESULT_CODE" jdbcType="VARCHAR" property="hbeagTestResultCode" />
+    <result column="HBSAB_TEST_RESULT_CODE" jdbcType="VARCHAR" property="hbsabTestResultCode" />
+    <result column="HBSAG_TEST_RESULT_CODE" jdbcType="VARCHAR" property="hbsagTestResultCode" />
+    <result column="HDLC" jdbcType="DECIMAL" property="hdlc" />
+    <result column="HEALTH_ABNORM_CODE" jdbcType="VARCHAR" property="healthAbnormCode" />
+    <result column="HEALTH_ABNORM_DESC1" jdbcType="VARCHAR" property="healthAbnormDesc1" />
+    <result column="HEALTH_ABNORM_DESC2" jdbcType="VARCHAR" property="healthAbnormDesc2" />
+    <result column="HEALTH_ABNORM_DESC3" jdbcType="VARCHAR" property="healthAbnormDesc3" />
+    <result column="HEALTH_ABNORM_DESC4" jdbcType="VARCHAR" property="healthAbnormDesc4" />
+    <result column="HEALTH_EXAM_DATE" jdbcType="TIMESTAMP" property="healthExamDate" />
+    <result column="HEALTH_EXAM_NO" jdbcType="VARCHAR" property="healthExamNo" />
+    <result column="HEARING_CODE" jdbcType="VARCHAR" property="hearingCode" />
+    <result column="HEART_MURMUR_CODE" jdbcType="VARCHAR" property="heartMurmurCode" />
+    <result column="HEART_MURMUR_DESC" jdbcType="VARCHAR" property="heartMurmurDesc" />
+    <result column="HEART_RATE" jdbcType="DECIMAL" property="heartRate" />
+    <result column="HEART_RHYTHM_TYPE_CODE" jdbcType="VARCHAR" property="heartRhythmTypeCode" />
+    <result column="HEPATAUXE_CODE" jdbcType="VARCHAR" property="hepatauxeCode" />
+    <result column="HGB" jdbcType="DECIMAL" property="hgb" />
+    <result column="IS_BIG_EXAM" jdbcType="DECIMAL" property="isBigExam" />
+    <result column="IS_DECAYED_TOOTH" jdbcType="DECIMAL" property="isDecayedTooth" />
+    <result column="IS_FALSE_TEETH" jdbcType="DECIMAL" property="isFalseTeeth" />
+    <result column="IS_LOSET_TEETH" jdbcType="DECIMAL" property="isLosetTeeth" />
+    <result column="KET_QUAL_RESULT_CODE" jdbcType="VARCHAR" property="ketQualResultCode" />
+    <result column="LDBP" jdbcType="DECIMAL" property="ldbp" />
+    <result column="LDLC" jdbcType="DECIMAL" property="ldlc" />
+    <result column="LEFT_CORRECT_EYESIGHT" jdbcType="DECIMAL" property="leftCorrectEyesight" />
+    <result column="LEFT_ORIGINAL_EYESIGHT" jdbcType="DECIMAL" property="leftOriginalEyesight" />
+    <result column="LIP_EXAM_RESULT_CODE" jdbcType="VARCHAR" property="lipExamResultCode" />
+    <result column="LOSE_BL_TEETH_NUM" jdbcType="DECIMAL" property="loseBlTeethNum" />
+    <result column="LOSE_BR_TEETH_NUM" jdbcType="DECIMAL" property="loseBrTeethNum" />
+    <result column="LOSE_UL_TEETH_NUM" jdbcType="DECIMAL" property="loseUlTeethNum" />
+    <result column="LOSE_UR_TEETH_NUM" jdbcType="DECIMAL" property="loseUrTeethNum" />
+    <result column="LSBP" jdbcType="DECIMAL" property="lsbp" />
+    <result column="LUNG_RALE_CODE" jdbcType="VARCHAR" property="lungRaleCode" />
+    <result column="LUNG_RALE_OTHERS_DESC" jdbcType="VARCHAR" property="lungRaleOthersDesc" />
+    <result column="LUNG_SOUND_ABNORM_DESC" jdbcType="VARCHAR" property="lungSoundAbnormDesc" />
+    <result column="LUNG_SOUND_CODE" jdbcType="VARCHAR" property="lungSoundCode" />
+    <result column="LYMPH_CODE" jdbcType="VARCHAR" property="lymphCode" />
+    <result column="LYMPH_OTHERS_DESC" jdbcType="VARCHAR" property="lymphOthersDesc" />
+    <result column="MODIFIED_ORG_ID" jdbcType="VARCHAR" property="modifiedOrgId" />
+    <result column="MODIFIED_ORG_NAME" jdbcType="VARCHAR" property="modifiedOrgName" />
+    <result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="MODIFIER" jdbcType="VARCHAR" property="modifier" />
+    <result column="MODIFIER_ID" jdbcType="VARCHAR" property="modifierId" />
+    <result column="MOVEMENT_FUNCTION_CODE" jdbcType="VARCHAR" property="movementFunctionCode" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="OCCUP_EXPOSURE_CODE" jdbcType="VARCHAR" property="occupExposureCode" />
+    <result column="OCCUP_EXPOSURE_WORK" jdbcType="VARCHAR" property="occupExposureWork" />
+    <result column="OCCUP_EXPOSURE_WORK_YEAR" jdbcType="DECIMAL" property="occupExposureWorkYear" />
+    <result column="OTHER_ASSIST_EXAM" jdbcType="VARCHAR" property="otherAssistExam" />
+    <result column="OTHER_HEALTH_EXAM_RESULT" jdbcType="VARCHAR" property="otherHealthExamResult" />
+    <result column="PHARYNX_EXAM_RESULT_CODE" jdbcType="VARCHAR" property="pharynxExamResultCode" />
+    <result column="PHLEGM_WET_CODE" jdbcType="VARCHAR" property="phlegmWetCode" />
+    <result column="PLT" jdbcType="DECIMAL" property="plt" />
+    <result column="POFDA_CODE" jdbcType="VARCHAR" property="pofdaCode" />
+    <result column="POISON_CHEMICAL" jdbcType="VARCHAR" property="poisonChemical" />
+    <result column="POISON_CHEMICAL_PROTECT_CODE" jdbcType="VARCHAR" property="poisonChemicalProtectCode" />
+    <result column="POISON_DUST" jdbcType="VARCHAR" property="poisonDust" />
+    <result column="POISON_DUST_PROTECT_CODE" jdbcType="VARCHAR" property="poisonDustProtectCode" />
+    <result column="POISON_OTHERS" jdbcType="VARCHAR" property="poisonOthers" />
+    <result column="POISON_OTHERS_PROTECT_CODE" jdbcType="VARCHAR" property="poisonOthersProtectCode" />
+    <result column="POISON_PHYSICAL" jdbcType="VARCHAR" property="poisonPhysical" />
+    <result column="POISON_PHYSICAL_PROTECT_CODE" jdbcType="VARCHAR" property="poisonPhysicalProtectCode" />
+    <result column="POISON_RADIOGEN" jdbcType="VARCHAR" property="poisonRadiogen" />
+    <result column="POISON_RADIOGEN_PROTECT_CODE" jdbcType="VARCHAR" property="poisonRadiogenProtectCode" />
+    <result column="PRO_QUAL_RESULT_CODE" jdbcType="VARCHAR" property="proQualResultCode" />
+    <result column="PULSE_RATE" jdbcType="DECIMAL" property="pulseRate" />
+    <result column="QI_DEFICIENCY_CODE" jdbcType="VARCHAR" property="qiDeficiencyCode" />
+    <result column="QI_DEPRESSION_CODE" jdbcType="VARCHAR" property="qiDepressionCode" />
+    <result column="RDBP" jdbcType="DECIMAL" property="rdbp" />
+    <result column="RESP_DOCTOR_ID" jdbcType="VARCHAR" property="respDoctorId" />
+    <result column="RESP_DOCTOR_NAME" jdbcType="VARCHAR" property="respDoctorName" />
+    <result column="RIGHT_CORRECT_EYESIGHT" jdbcType="DECIMAL" property="rightCorrectEyesight" />
+    <result column="RIGHT_ORIGINAL_EYESIGHT" jdbcType="DECIMAL" property="rightOriginalEyesight" />
+    <result column="RSBP" jdbcType="DECIMAL" property="rsbp" />
+    <result column="SCLERAL_CODE" jdbcType="VARCHAR" property="scleralCode" />
+    <result column="SCLERAL_OTHERS_DESC" jdbcType="VARCHAR" property="scleralOthersDesc" />
+    <result column="SCR" jdbcType="DECIMAL" property="scr" />
+    <result column="SGPT" jdbcType="DECIMAL" property="sgpt" />
+    <result column="SKIN_CODE" jdbcType="VARCHAR" property="skinCode" />
+    <result column="SKIN_OTHERS_DESC" jdbcType="VARCHAR" property="skinOthersDesc" />
+    <result column="SMOKING_STATUS_CODE" jdbcType="VARCHAR" property="smokingStatusCode" />
+    <result column="SPECIAL_DIATHSIS_CODE" jdbcType="VARCHAR" property="specialDiathsisCode" />
+    <result column="SPLENOMEGALY_CODE" jdbcType="VARCHAR" property="splenomegalyCode" />
+    <result column="START_DRINKING_AGE" jdbcType="DECIMAL" property="startDrinkingAge" />
+    <result column="START_SMOKING_AGE" jdbcType="DECIMAL" property="startSmokingAge" />
+    <result column="STOP_DRINKING_AGE" jdbcType="DECIMAL" property="stopDrinkingAge" />
+    <result column="STOP_DRINKING_CODE" jdbcType="VARCHAR" property="stopDrinkingCode" />
+    <result column="STOP_SMOKING_AGE" jdbcType="DECIMAL" property="stopSmokingAge" />
+    <result column="TBI" jdbcType="DECIMAL" property="tbi" />
+    <result column="TCHO" jdbcType="DECIMAL" property="tcho" />
+    <result column="TG" jdbcType="DECIMAL" property="tg" />
+    <result column="UOB_TEST_RESULT_CODE" jdbcType="VARCHAR" property="uobTestResultCode" />
+    <result column="URINE_MALB" jdbcType="DECIMAL" property="urineMalb" />
+    <result column="URINE_OTHERS" jdbcType="VARCHAR" property="urineOthers" />
+    <result column="URINE_SG" jdbcType="DECIMAL" property="urineSg" />
+    <result column="VAGINA_ABNORM_DESC" jdbcType="VARCHAR" property="vaginaAbnormDesc" />
+    <result column="VAGINA_CODE" jdbcType="VARCHAR" property="vaginaCode" />
+    <result column="VULVA_ABNORM_DESC" jdbcType="VARCHAR" property="vulvaAbnormDesc" />
+    <result column="VULVA_CODE" jdbcType="VARCHAR" property="vulvaCode" />
+    <result column="XRAY_CHEST_ABNORM_DESC" jdbcType="VARCHAR" property="xrayChestAbnormDesc" />
+    <result column="XRAY_CHEST_CODE" jdbcType="VARCHAR" property="xrayChestCode" />
+    <result column="YANG_DEFICIENCY_CODE" jdbcType="VARCHAR" property="yangDeficiencyCode" />
+    <result column="YIN_DEFICIENCY_CODE" jdbcType="VARCHAR" property="yinDeficiencyCode" />
+    <result column="POISON_RADIOGEN_PROTECT_VALUE" jdbcType="VARCHAR" property="poisonRadiogenProtectValue" />
+    <result column="POISON_PHYSICAL_PROTECT_VALUE" jdbcType="VARCHAR" property="poisonPhysicalProtectValue" />
+    <result column="POISON_OTHERS_PROTECT_VALUE" jdbcType="VARCHAR" property="poisonOthersProtectValue" />
+    <result column="POISON_DUST_PROTECT_VALUE" jdbcType="VARCHAR" property="poisonDustProtectValue" />
+    <result column="POISON_CHEMICAL_PROTECT_VALUE" jdbcType="VARCHAR" property="poisonChemicalProtectValue" />
+    <result column="HEIGHT" jdbcType="DECIMAL" property="height" />
+    <result column="WEIGHT" jdbcType="DECIMAL" property="weight" />
+    <result column="WAIST" jdbcType="DECIMAL" property="waist" />
+    <result column="WBC" jdbcType="DECIMAL" property="wbc" />
+    <result column="PRO_QUAN_TEST_VALUE" jdbcType="DECIMAL" property="proQuanTestValue" />
+    <result column="GLU_QUAN_TEST_VALUE" jdbcType="DECIMAL" property="gluQuanTestValue" />
+    <result column="KET_QUAL_RESULT_VALUE" jdbcType="DECIMAL" property="ketQualResultValue" />
+    <result column="UOB_TEST_RESULT_VALUE" jdbcType="DECIMAL" property="uobTestResultValue" />
+    <result column="URINE_PH" jdbcType="DECIMAL" property="urinePh" />
+    <result column="PBG_MG" jdbcType="DECIMAL" property="pbgMg" />
+    <result column="PBG_MMOL" jdbcType="DECIMAL" property="pbgMmol" />
+    <result column="DBIL" jdbcType="DECIMAL" property="dbil" />
+    <result column="BUN" jdbcType="DECIMAL" property="bun" />
+    <result column="BLOODK" jdbcType="DECIMAL" property="bloodk" />
+    <result column="BLOOD_NA" jdbcType="DECIMAL" property="bloodNa" />
+    <result column="CEA" jdbcType="DECIMAL" property="cea" />
+    <result column="ALB" jdbcType="DECIMAL" property="alb" />
+    <result column="GHB" jdbcType="DECIMAL" property="ghb" />
+    <result column="IS_ELDER" jdbcType="DECIMAL" property="isElder" />
+    <result column="IS_HYPER" jdbcType="DECIMAL" property="isHyper" />
+    <result column="IS_DIABETES" jdbcType="DECIMAL" property="isDiabetes" />
+    <result column="IS_SMI" jdbcType="DECIMAL" property="isSmi" />
+    <result column="IS_TUBERCULOSIS" jdbcType="DECIMAL" property="isTuberculosis" />
+    <result column="IS_CHD" jdbcType="DECIMAL" property="isChd" />
+    <result column="IS_CA" jdbcType="DECIMAL" property="isCa" />
+    <result column="HEALTH_ABNORM_DESC5" jdbcType="VARCHAR" property="healthAbnormDesc5" />
+    <result column="HEALTH_ABNORM_DESC6" jdbcType="VARCHAR" property="healthAbnormDesc6" />
+    <result column="IS_APPLY" jdbcType="DECIMAL" property="isApply" />
+    <result column="IS_MATERNAL" jdbcType="DECIMAL" property="isMaternal" />
+    <result column="IS_CHILD" jdbcType="DECIMAL" property="isChild" />
+    <result column="IS_APP_CREATE" jdbcType="DECIMAL" property="isAppCreate" />
+    <result column="PERSON_GROUP" jdbcType="VARCHAR" property="personGroup" />
+    <result column="STANDARD" jdbcType="VARCHAR" property="standard" />
+    <result column="SOURCE_TYPE" jdbcType="DECIMAL" property="sourceType" />
+    <result column="ABO_VALUE" jdbcType="VARCHAR" property="aboValue" />
+    <result column="RH_VALUE" jdbcType="VARCHAR" property="rhValue" />
+    <result column="HOMOCYSTEINE" jdbcType="DECIMAL" property="homocysteine" />
+    <result column="HEALTH_EXAM_SYMPTOM_CODE" jdbcType="VARCHAR" property="healthExamSymptomCode" />
+    <result column="HEALTH_EXAM_SYMPTOM_VALUE" jdbcType="VARCHAR" property="healthExamSymptomValue" />
+    <result column="EATING_HABIT_CODE" jdbcType="VARCHAR" property="eatingHabitCode" />
+    <result column="EATING_HABIT_VALUE" jdbcType="VARCHAR" property="eatingHabitValue" />
+    <result column="DRINKING_TYPE_CODE" jdbcType="VARCHAR" property="drinkingTypeCode" />
+    <result column="DRINKING_TYPE_VALUE" jdbcType="VARCHAR" property="drinkingTypeValue" />
+    <result column="BREAST_CODE" jdbcType="VARCHAR" property="breastCode" />
+    <result column="BREAST_VALUE" jdbcType="VARCHAR" property="breastValue" />
+    <result column="ELECTROCARDIOGRAM_CODE" jdbcType="VARCHAR" property="electrocardiogramCode" />
+    <result column="ELECTROCARDIOGRAM_VALUE" jdbcType="VARCHAR" property="electrocardiogramValue" />
+    <result column="DISE_BRAIN_VESSEL_CODE" jdbcType="VARCHAR" property="diseBrainVesselCode" />
+    <result column="DISE_BRAIN_VESSEL_VALUE" jdbcType="VARCHAR" property="diseBrainVesselValue" />
+    <result column="DISE_KIDNEY_CODE" jdbcType="VARCHAR" property="diseKidneyCode" />
+    <result column="DISE_KIDNEY_VALUE" jdbcType="VARCHAR" property="diseKidneyValue" />
+    <result column="DISE_HEART_CODE" jdbcType="VARCHAR" property="diseHeartCode" />
+    <result column="DISE_HEART_VALUE" jdbcType="VARCHAR" property="diseHeartValue" />
+    <result column="DISE_BLOOD_VESSEL_CODE" jdbcType="VARCHAR" property="diseBloodVesselCode" />
+    <result column="DISE_BLOOD_VESSEL_VALUE" jdbcType="VARCHAR" property="diseBloodVesselValue" />
+    <result column="DISE_EYE_CODE" jdbcType="VARCHAR" property="diseEyeCode" />
+    <result column="DISE_EYE_VALUE" jdbcType="VARCHAR" property="diseEyeValue" />
+    <result column="NERVE_OTHER_DISEASE_CODE" jdbcType="VARCHAR" property="nerveOtherDiseaseCode" />
+    <result column="NERVE_OTHER_DISEASE_VALUE" jdbcType="VARCHAR" property="nerveOtherDiseaseValue" />
+    <result column="DISEASE_OTHERS_CODE" jdbcType="VARCHAR" property="diseaseOthersCode" />
+    <result column="DISEASE_OTHERS_VALUE" jdbcType="VARCHAR" property="diseaseOthersValue" />
+    <result column="HEALTH_GUIDANCE_CODE" jdbcType="VARCHAR" property="healthGuidanceCode" />
+    <result column="HEALTH_GUIDANCE_VALUE" jdbcType="VARCHAR" property="healthGuidanceValue" />
+    <result column="RISK_FACTOR_CONTROL_CODE" jdbcType="VARCHAR" property="riskFactorControlCode" />
+    <result column="RISK_FACTOR_CONTROL_VALUE" jdbcType="VARCHAR" property="riskFactorControlValue" />
+    <result column="ERR_CODE" jdbcType="DECIMAL" property="errCode" />
+    <result column="ERR_STR" jdbcType="VARCHAR" property="errStr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    HEALTH_EXAM_ID, PERSON_INFO_ID, CREATE_ORG_ID, ORG_ID, ORG_NAME, ABDOMINAL_DULLNESS_CODE, 
+    ABDOMINAL_MASS_CODE, ABDOMINAL_TEND_CODE, ADNEXA_ABNORM_DESC, ADNEXA_CODE, ALL_FALSE_TEETH, 
+    ALL_LOSE_TEETH, AST, BARREL_CHEST_CODE, BLOOD_STASIS_CODE, BMI, BODY_TEMPERATURE, 
+    BREATHING_RATE, BSCAN_ABDOMEN_ABNORM_DESC, BSCAN_ABDOMEN_CODE, BSCAN_OTHERS_ABNORM_DESC, 
+    BSCAN_OTHERS_CODE, CBC_OTHERS, CERVIX_ABNORM_DESC, CERVIX_CODE, CORPUSUTERI_ABNORM_DESC, 
+    CORPUSUTERI_CODE, CPS_ABNORM_DESC, CPS_CODE, CREATE_TIME, CREATOR, CREATOR_ID, DAILY_DRINKING, 
+    DAILY_SMOKING, DAMP_HEAT_CODE, DECAYED_BL_TOOTH_NUM, DECAYED_BR_TOOTH_NUM, DECAYED_UL_TOOTH_NUM, 
+    DECAYED_UR_TOOTH_NUM, DENTITION_TYPE_CODE, DISE_NERVOUS_ABNORM_DESC, DISE_NERVOUS_CODE, 
+    DISE_OTHERS_ABNORM_DESC, DISE_OTHERS_CODE, DRE_CODE, DRE_OTHERS_DESC, DRINKING_FREQ_CODE, 
+    DRUNK_CODE, ECG_ABNORM_CODE, ECG_ABNORM_DESC, ELDER_BRAIN_SCORE, ELDER_COGNITION_ID, 
+    ELDER_COGNITION_RESULT_CODE, ELDER_DEPRESSED_ID, ELDER_DEPRESSION_SCORE, ELDER_EMOTIONAL_RESULT_CODE, 
+    ELDER_HEALTH_ASSESS_CODE, ELDER_SELF_CARE_ASSESS_CODE, ELDER_SELFCARE_ABILITY_ID, 
+    ELDER_TCM_HEALTH_ID, EOLE_CODE, EXERCISE_DURATION_MINS, EXERCISE_FREQ_CODE, EXERCISE_WAY, 
+    EXERCISE_YEAR, EYEGROUND_ABNORM_DESC, EYEGROUND_CODE, FALSE_BL_TEETH_NUM, FALSE_BR_TEETH_NUM, 
+    FALSE_UL_TEETH_NUM, FALSE_UR_TEETH_NUM, FBG_MG, FBG_MMOL, FOB_CODE, GENTLE_QUALITY_CODE, 
+    GLU_QUAL_RESULT_CODE, HAS_ABDOMINAL_DULLNESS_DESC, HAS_ABDOMINAL_MASS_DESC, HAS_ABDOMINAL_TEND_DESC, 
+    HAS_HEPATAUXE_DESC, HAS_SPLENOMEGALY_DESC, HBCAB_TEST_RESULT_CODE, HBEAB_TEST_RESULT_CODE, 
+    HBEAG_TEST_RESULT_CODE, HBSAB_TEST_RESULT_CODE, HBSAG_TEST_RESULT_CODE, HDLC, HEALTH_ABNORM_CODE, 
+    HEALTH_ABNORM_DESC1, HEALTH_ABNORM_DESC2, HEALTH_ABNORM_DESC3, HEALTH_ABNORM_DESC4, 
+    HEALTH_EXAM_DATE, HEALTH_EXAM_NO, HEARING_CODE, HEART_MURMUR_CODE, HEART_MURMUR_DESC, 
+    HEART_RATE, HEART_RHYTHM_TYPE_CODE, HEPATAUXE_CODE, HGB, IS_BIG_EXAM, IS_DECAYED_TOOTH, 
+    IS_FALSE_TEETH, IS_LOSET_TEETH, KET_QUAL_RESULT_CODE, LDBP, LDLC, LEFT_CORRECT_EYESIGHT, 
+    LEFT_ORIGINAL_EYESIGHT, LIP_EXAM_RESULT_CODE, LOSE_BL_TEETH_NUM, LOSE_BR_TEETH_NUM, 
+    LOSE_UL_TEETH_NUM, LOSE_UR_TEETH_NUM, LSBP, LUNG_RALE_CODE, LUNG_RALE_OTHERS_DESC, 
+    LUNG_SOUND_ABNORM_DESC, LUNG_SOUND_CODE, LYMPH_CODE, LYMPH_OTHERS_DESC, MODIFIED_ORG_ID, 
+    MODIFIED_ORG_NAME, MODIFIED_TIME, MODIFIER, MODIFIER_ID, MOVEMENT_FUNCTION_CODE, 
+    NAME, OCCUP_EXPOSURE_CODE, OCCUP_EXPOSURE_WORK, OCCUP_EXPOSURE_WORK_YEAR, OTHER_ASSIST_EXAM, 
+    OTHER_HEALTH_EXAM_RESULT, PHARYNX_EXAM_RESULT_CODE, PHLEGM_WET_CODE, PLT, POFDA_CODE, 
+    POISON_CHEMICAL, POISON_CHEMICAL_PROTECT_CODE, POISON_DUST, POISON_DUST_PROTECT_CODE, 
+    POISON_OTHERS, POISON_OTHERS_PROTECT_CODE, POISON_PHYSICAL, POISON_PHYSICAL_PROTECT_CODE, 
+    POISON_RADIOGEN, POISON_RADIOGEN_PROTECT_CODE, PRO_QUAL_RESULT_CODE, PULSE_RATE, 
+    QI_DEFICIENCY_CODE, QI_DEPRESSION_CODE, RDBP, RESP_DOCTOR_ID, RESP_DOCTOR_NAME, RIGHT_CORRECT_EYESIGHT, 
+    RIGHT_ORIGINAL_EYESIGHT, RSBP, SCLERAL_CODE, SCLERAL_OTHERS_DESC, SCR, SGPT, SKIN_CODE, 
+    SKIN_OTHERS_DESC, SMOKING_STATUS_CODE, SPECIAL_DIATHSIS_CODE, SPLENOMEGALY_CODE, 
+    START_DRINKING_AGE, START_SMOKING_AGE, STOP_DRINKING_AGE, STOP_DRINKING_CODE, STOP_SMOKING_AGE, 
+    TBI, TCHO, TG, UOB_TEST_RESULT_CODE, URINE_MALB, URINE_OTHERS, URINE_SG, VAGINA_ABNORM_DESC, 
+    VAGINA_CODE, VULVA_ABNORM_DESC, VULVA_CODE, XRAY_CHEST_ABNORM_DESC, XRAY_CHEST_CODE, 
+    YANG_DEFICIENCY_CODE, YIN_DEFICIENCY_CODE, POISON_RADIOGEN_PROTECT_VALUE, POISON_PHYSICAL_PROTECT_VALUE, 
+    POISON_OTHERS_PROTECT_VALUE, POISON_DUST_PROTECT_VALUE, POISON_CHEMICAL_PROTECT_VALUE, 
+    HEIGHT, WEIGHT, WAIST, WBC, PRO_QUAN_TEST_VALUE, GLU_QUAN_TEST_VALUE, KET_QUAL_RESULT_VALUE, 
+    UOB_TEST_RESULT_VALUE, URINE_PH, PBG_MG, PBG_MMOL, DBIL, BUN, BLOODK, BLOOD_NA, CEA, 
+    ALB, GHB, IS_ELDER, IS_HYPER, IS_DIABETES, IS_SMI, IS_TUBERCULOSIS, IS_CHD, IS_CA, 
+    HEALTH_ABNORM_DESC5, HEALTH_ABNORM_DESC6, IS_APPLY, IS_MATERNAL, IS_CHILD, IS_APP_CREATE, 
+    PERSON_GROUP, STANDARD, SOURCE_TYPE, ABO_VALUE, RH_VALUE, HOMOCYSTEINE, HEALTH_EXAM_SYMPTOM_CODE, 
+    HEALTH_EXAM_SYMPTOM_VALUE, EATING_HABIT_CODE, EATING_HABIT_VALUE, DRINKING_TYPE_CODE, 
+    DRINKING_TYPE_VALUE, BREAST_CODE, BREAST_VALUE, ELECTROCARDIOGRAM_CODE, ELECTROCARDIOGRAM_VALUE, 
+    DISE_BRAIN_VESSEL_CODE, DISE_BRAIN_VESSEL_VALUE, DISE_KIDNEY_CODE, DISE_KIDNEY_VALUE, 
+    DISE_HEART_CODE, DISE_HEART_VALUE, DISE_BLOOD_VESSEL_CODE, DISE_BLOOD_VESSEL_VALUE, 
+    DISE_EYE_CODE, DISE_EYE_VALUE, NERVE_OTHER_DISEASE_CODE, NERVE_OTHER_DISEASE_VALUE, 
+    DISEASE_OTHERS_CODE, DISEASE_OTHERS_VALUE, HEALTH_GUIDANCE_CODE, HEALTH_GUIDANCE_VALUE, 
+    RISK_FACTOR_CONTROL_CODE, RISK_FACTOR_CONTROL_VALUE, ERR_CODE, ERR_STR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HEALTH_EXAM
+    where HEALTH_EXAM_ID = #{healthExamId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HEALTH_EXAM
+    where HEALTH_EXAM_ID = #{healthExamId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuzhou.pub.entity.HealthExam">
+    insert into HEALTH_EXAM (HEALTH_EXAM_ID, PERSON_INFO_ID, CREATE_ORG_ID, 
+      ORG_ID, ORG_NAME, ABDOMINAL_DULLNESS_CODE, 
+      ABDOMINAL_MASS_CODE, ABDOMINAL_TEND_CODE, ADNEXA_ABNORM_DESC, 
+      ADNEXA_CODE, ALL_FALSE_TEETH, ALL_LOSE_TEETH, 
+      AST, BARREL_CHEST_CODE, BLOOD_STASIS_CODE, 
+      BMI, BODY_TEMPERATURE, BREATHING_RATE, 
+      BSCAN_ABDOMEN_ABNORM_DESC, BSCAN_ABDOMEN_CODE, 
+      BSCAN_OTHERS_ABNORM_DESC, BSCAN_OTHERS_CODE, 
+      CBC_OTHERS, CERVIX_ABNORM_DESC, CERVIX_CODE, 
+      CORPUSUTERI_ABNORM_DESC, CORPUSUTERI_CODE, 
+      CPS_ABNORM_DESC, CPS_CODE, CREATE_TIME, 
+      CREATOR, CREATOR_ID, DAILY_DRINKING, 
+      DAILY_SMOKING, DAMP_HEAT_CODE, DECAYED_BL_TOOTH_NUM, 
+      DECAYED_BR_TOOTH_NUM, DECAYED_UL_TOOTH_NUM, DECAYED_UR_TOOTH_NUM, 
+      DENTITION_TYPE_CODE, DISE_NERVOUS_ABNORM_DESC, 
+      DISE_NERVOUS_CODE, DISE_OTHERS_ABNORM_DESC, 
+      DISE_OTHERS_CODE, DRE_CODE, DRE_OTHERS_DESC, 
+      DRINKING_FREQ_CODE, DRUNK_CODE, ECG_ABNORM_CODE, 
+      ECG_ABNORM_DESC, ELDER_BRAIN_SCORE, ELDER_COGNITION_ID, 
+      ELDER_COGNITION_RESULT_CODE, ELDER_DEPRESSED_ID, 
+      ELDER_DEPRESSION_SCORE, ELDER_EMOTIONAL_RESULT_CODE, 
+      ELDER_HEALTH_ASSESS_CODE, ELDER_SELF_CARE_ASSESS_CODE, 
+      ELDER_SELFCARE_ABILITY_ID, ELDER_TCM_HEALTH_ID, 
+      EOLE_CODE, EXERCISE_DURATION_MINS, EXERCISE_FREQ_CODE, 
+      EXERCISE_WAY, EXERCISE_YEAR, EYEGROUND_ABNORM_DESC, 
+      EYEGROUND_CODE, FALSE_BL_TEETH_NUM, FALSE_BR_TEETH_NUM, 
+      FALSE_UL_TEETH_NUM, FALSE_UR_TEETH_NUM, FBG_MG, 
+      FBG_MMOL, FOB_CODE, GENTLE_QUALITY_CODE, 
+      GLU_QUAL_RESULT_CODE, HAS_ABDOMINAL_DULLNESS_DESC, 
+      HAS_ABDOMINAL_MASS_DESC, HAS_ABDOMINAL_TEND_DESC, 
+      HAS_HEPATAUXE_DESC, HAS_SPLENOMEGALY_DESC, 
+      HBCAB_TEST_RESULT_CODE, HBEAB_TEST_RESULT_CODE, 
+      HBEAG_TEST_RESULT_CODE, HBSAB_TEST_RESULT_CODE, 
+      HBSAG_TEST_RESULT_CODE, HDLC, HEALTH_ABNORM_CODE, 
+      HEALTH_ABNORM_DESC1, HEALTH_ABNORM_DESC2, HEALTH_ABNORM_DESC3, 
+      HEALTH_ABNORM_DESC4, HEALTH_EXAM_DATE, HEALTH_EXAM_NO, 
+      HEARING_CODE, HEART_MURMUR_CODE, HEART_MURMUR_DESC, 
+      HEART_RATE, HEART_RHYTHM_TYPE_CODE, HEPATAUXE_CODE, 
+      HGB, IS_BIG_EXAM, IS_DECAYED_TOOTH, 
+      IS_FALSE_TEETH, IS_LOSET_TEETH, KET_QUAL_RESULT_CODE, 
+      LDBP, LDLC, LEFT_CORRECT_EYESIGHT, 
+      LEFT_ORIGINAL_EYESIGHT, LIP_EXAM_RESULT_CODE, 
+      LOSE_BL_TEETH_NUM, LOSE_BR_TEETH_NUM, LOSE_UL_TEETH_NUM, 
+      LOSE_UR_TEETH_NUM, LSBP, LUNG_RALE_CODE, 
+      LUNG_RALE_OTHERS_DESC, LUNG_SOUND_ABNORM_DESC, 
+      LUNG_SOUND_CODE, LYMPH_CODE, LYMPH_OTHERS_DESC, 
+      MODIFIED_ORG_ID, MODIFIED_ORG_NAME, MODIFIED_TIME, 
+      MODIFIER, MODIFIER_ID, MOVEMENT_FUNCTION_CODE, 
+      NAME, OCCUP_EXPOSURE_CODE, OCCUP_EXPOSURE_WORK, 
+      OCCUP_EXPOSURE_WORK_YEAR, OTHER_ASSIST_EXAM, 
+      OTHER_HEALTH_EXAM_RESULT, PHARYNX_EXAM_RESULT_CODE, 
+      PHLEGM_WET_CODE, PLT, POFDA_CODE, 
+      POISON_CHEMICAL, POISON_CHEMICAL_PROTECT_CODE, 
+      POISON_DUST, POISON_DUST_PROTECT_CODE, POISON_OTHERS, 
+      POISON_OTHERS_PROTECT_CODE, POISON_PHYSICAL, 
+      POISON_PHYSICAL_PROTECT_CODE, POISON_RADIOGEN, 
+      POISON_RADIOGEN_PROTECT_CODE, PRO_QUAL_RESULT_CODE, 
+      PULSE_RATE, QI_DEFICIENCY_CODE, QI_DEPRESSION_CODE, 
+      RDBP, RESP_DOCTOR_ID, RESP_DOCTOR_NAME, 
+      RIGHT_CORRECT_EYESIGHT, RIGHT_ORIGINAL_EYESIGHT, 
+      RSBP, SCLERAL_CODE, SCLERAL_OTHERS_DESC, 
+      SCR, SGPT, SKIN_CODE, 
+      SKIN_OTHERS_DESC, SMOKING_STATUS_CODE, SPECIAL_DIATHSIS_CODE, 
+      SPLENOMEGALY_CODE, START_DRINKING_AGE, START_SMOKING_AGE, 
+      STOP_DRINKING_AGE, STOP_DRINKING_CODE, STOP_SMOKING_AGE, 
+      TBI, TCHO, TG, UOB_TEST_RESULT_CODE, 
+      URINE_MALB, URINE_OTHERS, URINE_SG, 
+      VAGINA_ABNORM_DESC, VAGINA_CODE, VULVA_ABNORM_DESC, 
+      VULVA_CODE, XRAY_CHEST_ABNORM_DESC, XRAY_CHEST_CODE, 
+      YANG_DEFICIENCY_CODE, YIN_DEFICIENCY_CODE, 
+      POISON_RADIOGEN_PROTECT_VALUE, POISON_PHYSICAL_PROTECT_VALUE, 
+      POISON_OTHERS_PROTECT_VALUE, POISON_DUST_PROTECT_VALUE, 
+      POISON_CHEMICAL_PROTECT_VALUE, HEIGHT, WEIGHT, 
+      WAIST, WBC, PRO_QUAN_TEST_VALUE, 
+      GLU_QUAN_TEST_VALUE, KET_QUAL_RESULT_VALUE, UOB_TEST_RESULT_VALUE, 
+      URINE_PH, PBG_MG, PBG_MMOL, 
+      DBIL, BUN, BLOODK, 
+      BLOOD_NA, CEA, ALB, 
+      GHB, IS_ELDER, IS_HYPER, 
+      IS_DIABETES, IS_SMI, IS_TUBERCULOSIS, 
+      IS_CHD, IS_CA, HEALTH_ABNORM_DESC5, 
+      HEALTH_ABNORM_DESC6, IS_APPLY, IS_MATERNAL, 
+      IS_CHILD, IS_APP_CREATE, PERSON_GROUP, 
+      STANDARD, SOURCE_TYPE, ABO_VALUE, 
+      RH_VALUE, HOMOCYSTEINE, HEALTH_EXAM_SYMPTOM_CODE, 
+      HEALTH_EXAM_SYMPTOM_VALUE, EATING_HABIT_CODE, 
+      EATING_HABIT_VALUE, DRINKING_TYPE_CODE, DRINKING_TYPE_VALUE, 
+      BREAST_CODE, BREAST_VALUE, ELECTROCARDIOGRAM_CODE, 
+      ELECTROCARDIOGRAM_VALUE, DISE_BRAIN_VESSEL_CODE, 
+      DISE_BRAIN_VESSEL_VALUE, DISE_KIDNEY_CODE, DISE_KIDNEY_VALUE, 
+      DISE_HEART_CODE, DISE_HEART_VALUE, DISE_BLOOD_VESSEL_CODE, 
+      DISE_BLOOD_VESSEL_VALUE, DISE_EYE_CODE, DISE_EYE_VALUE, 
+      NERVE_OTHER_DISEASE_CODE, NERVE_OTHER_DISEASE_VALUE, 
+      DISEASE_OTHERS_CODE, DISEASE_OTHERS_VALUE, 
+      HEALTH_GUIDANCE_CODE, HEALTH_GUIDANCE_VALUE, 
+      RISK_FACTOR_CONTROL_CODE, RISK_FACTOR_CONTROL_VALUE, 
+      ERR_CODE, ERR_STR)
+    values (#{healthExamId,jdbcType=VARCHAR}, #{personInfoId,jdbcType=VARCHAR}, #{createOrgId,jdbcType=VARCHAR}, 
+      #{orgId,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, #{abdominalDullnessCode,jdbcType=VARCHAR}, 
+      #{abdominalMassCode,jdbcType=VARCHAR}, #{abdominalTendCode,jdbcType=VARCHAR}, #{adnexaAbnormDesc,jdbcType=VARCHAR}, 
+      #{adnexaCode,jdbcType=VARCHAR}, #{allFalseTeeth,jdbcType=DECIMAL}, #{allLoseTeeth,jdbcType=DECIMAL}, 
+      #{ast,jdbcType=DECIMAL}, #{barrelChestCode,jdbcType=VARCHAR}, #{bloodStasisCode,jdbcType=VARCHAR}, 
+      #{bmi,jdbcType=DECIMAL}, #{bodyTemperature,jdbcType=DECIMAL}, #{breathingRate,jdbcType=DECIMAL}, 
+      #{bscanAbdomenAbnormDesc,jdbcType=VARCHAR}, #{bscanAbdomenCode,jdbcType=VARCHAR}, 
+      #{bscanOthersAbnormDesc,jdbcType=VARCHAR}, #{bscanOthersCode,jdbcType=VARCHAR}, 
+      #{cbcOthers,jdbcType=VARCHAR}, #{cervixAbnormDesc,jdbcType=VARCHAR}, #{cervixCode,jdbcType=VARCHAR}, 
+      #{corpusuteriAbnormDesc,jdbcType=VARCHAR}, #{corpusuteriCode,jdbcType=VARCHAR}, 
+      #{cpsAbnormDesc,jdbcType=VARCHAR}, #{cpsCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{creator,jdbcType=VARCHAR}, #{creatorId,jdbcType=VARCHAR}, #{dailyDrinking,jdbcType=DECIMAL}, 
+      #{dailySmoking,jdbcType=DECIMAL}, #{dampHeatCode,jdbcType=VARCHAR}, #{decayedBlToothNum,jdbcType=DECIMAL}, 
+      #{decayedBrToothNum,jdbcType=DECIMAL}, #{decayedUlToothNum,jdbcType=DECIMAL}, #{decayedUrToothNum,jdbcType=DECIMAL}, 
+      #{dentitionTypeCode,jdbcType=VARCHAR}, #{diseNervousAbnormDesc,jdbcType=VARCHAR}, 
+      #{diseNervousCode,jdbcType=VARCHAR}, #{diseOthersAbnormDesc,jdbcType=VARCHAR}, 
+      #{diseOthersCode,jdbcType=VARCHAR}, #{dreCode,jdbcType=VARCHAR}, #{dreOthersDesc,jdbcType=VARCHAR}, 
+      #{drinkingFreqCode,jdbcType=VARCHAR}, #{drunkCode,jdbcType=VARCHAR}, #{ecgAbnormCode,jdbcType=VARCHAR}, 
+      #{ecgAbnormDesc,jdbcType=VARCHAR}, #{elderBrainScore,jdbcType=DECIMAL}, #{elderCognitionId,jdbcType=VARCHAR}, 
+      #{elderCognitionResultCode,jdbcType=VARCHAR}, #{elderDepressedId,jdbcType=VARCHAR}, 
+      #{elderDepressionScore,jdbcType=DECIMAL}, #{elderEmotionalResultCode,jdbcType=VARCHAR}, 
+      #{elderHealthAssessCode,jdbcType=VARCHAR}, #{elderSelfCareAssessCode,jdbcType=VARCHAR}, 
+      #{elderSelfcareAbilityId,jdbcType=VARCHAR}, #{elderTcmHealthId,jdbcType=VARCHAR}, 
+      #{eoleCode,jdbcType=VARCHAR}, #{exerciseDurationMins,jdbcType=DECIMAL}, #{exerciseFreqCode,jdbcType=VARCHAR}, 
+      #{exerciseWay,jdbcType=VARCHAR}, #{exerciseYear,jdbcType=DECIMAL}, #{eyegroundAbnormDesc,jdbcType=VARCHAR}, 
+      #{eyegroundCode,jdbcType=VARCHAR}, #{falseBlTeethNum,jdbcType=DECIMAL}, #{falseBrTeethNum,jdbcType=DECIMAL}, 
+      #{falseUlTeethNum,jdbcType=DECIMAL}, #{falseUrTeethNum,jdbcType=DECIMAL}, #{fbgMg,jdbcType=DECIMAL}, 
+      #{fbgMmol,jdbcType=DECIMAL}, #{fobCode,jdbcType=VARCHAR}, #{gentleQualityCode,jdbcType=VARCHAR}, 
+      #{gluQualResultCode,jdbcType=VARCHAR}, #{hasAbdominalDullnessDesc,jdbcType=VARCHAR}, 
+      #{hasAbdominalMassDesc,jdbcType=VARCHAR}, #{hasAbdominalTendDesc,jdbcType=VARCHAR}, 
+      #{hasHepatauxeDesc,jdbcType=VARCHAR}, #{hasSplenomegalyDesc,jdbcType=VARCHAR}, 
+      #{hbcabTestResultCode,jdbcType=VARCHAR}, #{hbeabTestResultCode,jdbcType=VARCHAR}, 
+      #{hbeagTestResultCode,jdbcType=VARCHAR}, #{hbsabTestResultCode,jdbcType=VARCHAR}, 
+      #{hbsagTestResultCode,jdbcType=VARCHAR}, #{hdlc,jdbcType=DECIMAL}, #{healthAbnormCode,jdbcType=VARCHAR}, 
+      #{healthAbnormDesc1,jdbcType=VARCHAR}, #{healthAbnormDesc2,jdbcType=VARCHAR}, #{healthAbnormDesc3,jdbcType=VARCHAR}, 
+      #{healthAbnormDesc4,jdbcType=VARCHAR}, #{healthExamDate,jdbcType=TIMESTAMP}, #{healthExamNo,jdbcType=VARCHAR}, 
+      #{hearingCode,jdbcType=VARCHAR}, #{heartMurmurCode,jdbcType=VARCHAR}, #{heartMurmurDesc,jdbcType=VARCHAR}, 
+      #{heartRate,jdbcType=DECIMAL}, #{heartRhythmTypeCode,jdbcType=VARCHAR}, #{hepatauxeCode,jdbcType=VARCHAR}, 
+      #{hgb,jdbcType=DECIMAL}, #{isBigExam,jdbcType=DECIMAL}, #{isDecayedTooth,jdbcType=DECIMAL}, 
+      #{isFalseTeeth,jdbcType=DECIMAL}, #{isLosetTeeth,jdbcType=DECIMAL}, #{ketQualResultCode,jdbcType=VARCHAR}, 
+      #{ldbp,jdbcType=DECIMAL}, #{ldlc,jdbcType=DECIMAL}, #{leftCorrectEyesight,jdbcType=DECIMAL}, 
+      #{leftOriginalEyesight,jdbcType=DECIMAL}, #{lipExamResultCode,jdbcType=VARCHAR}, 
+      #{loseBlTeethNum,jdbcType=DECIMAL}, #{loseBrTeethNum,jdbcType=DECIMAL}, #{loseUlTeethNum,jdbcType=DECIMAL}, 
+      #{loseUrTeethNum,jdbcType=DECIMAL}, #{lsbp,jdbcType=DECIMAL}, #{lungRaleCode,jdbcType=VARCHAR}, 
+      #{lungRaleOthersDesc,jdbcType=VARCHAR}, #{lungSoundAbnormDesc,jdbcType=VARCHAR}, 
+      #{lungSoundCode,jdbcType=VARCHAR}, #{lymphCode,jdbcType=VARCHAR}, #{lymphOthersDesc,jdbcType=VARCHAR}, 
+      #{modifiedOrgId,jdbcType=VARCHAR}, #{modifiedOrgName,jdbcType=VARCHAR}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{modifier,jdbcType=VARCHAR}, #{modifierId,jdbcType=VARCHAR}, #{movementFunctionCode,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{occupExposureCode,jdbcType=VARCHAR}, #{occupExposureWork,jdbcType=VARCHAR}, 
+      #{occupExposureWorkYear,jdbcType=DECIMAL}, #{otherAssistExam,jdbcType=VARCHAR}, 
+      #{otherHealthExamResult,jdbcType=VARCHAR}, #{pharynxExamResultCode,jdbcType=VARCHAR}, 
+      #{phlegmWetCode,jdbcType=VARCHAR}, #{plt,jdbcType=DECIMAL}, #{pofdaCode,jdbcType=VARCHAR}, 
+      #{poisonChemical,jdbcType=VARCHAR}, #{poisonChemicalProtectCode,jdbcType=VARCHAR}, 
+      #{poisonDust,jdbcType=VARCHAR}, #{poisonDustProtectCode,jdbcType=VARCHAR}, #{poisonOthers,jdbcType=VARCHAR}, 
+      #{poisonOthersProtectCode,jdbcType=VARCHAR}, #{poisonPhysical,jdbcType=VARCHAR}, 
+      #{poisonPhysicalProtectCode,jdbcType=VARCHAR}, #{poisonRadiogen,jdbcType=VARCHAR}, 
+      #{poisonRadiogenProtectCode,jdbcType=VARCHAR}, #{proQualResultCode,jdbcType=VARCHAR}, 
+      #{pulseRate,jdbcType=DECIMAL}, #{qiDeficiencyCode,jdbcType=VARCHAR}, #{qiDepressionCode,jdbcType=VARCHAR}, 
+      #{rdbp,jdbcType=DECIMAL}, #{respDoctorId,jdbcType=VARCHAR}, #{respDoctorName,jdbcType=VARCHAR}, 
+      #{rightCorrectEyesight,jdbcType=DECIMAL}, #{rightOriginalEyesight,jdbcType=DECIMAL}, 
+      #{rsbp,jdbcType=DECIMAL}, #{scleralCode,jdbcType=VARCHAR}, #{scleralOthersDesc,jdbcType=VARCHAR}, 
+      #{scr,jdbcType=DECIMAL}, #{sgpt,jdbcType=DECIMAL}, #{skinCode,jdbcType=VARCHAR}, 
+      #{skinOthersDesc,jdbcType=VARCHAR}, #{smokingStatusCode,jdbcType=VARCHAR}, #{specialDiathsisCode,jdbcType=VARCHAR}, 
+      #{splenomegalyCode,jdbcType=VARCHAR}, #{startDrinkingAge,jdbcType=DECIMAL}, #{startSmokingAge,jdbcType=DECIMAL}, 
+      #{stopDrinkingAge,jdbcType=DECIMAL}, #{stopDrinkingCode,jdbcType=VARCHAR}, #{stopSmokingAge,jdbcType=DECIMAL}, 
+      #{tbi,jdbcType=DECIMAL}, #{tcho,jdbcType=DECIMAL}, #{tg,jdbcType=DECIMAL}, #{uobTestResultCode,jdbcType=VARCHAR}, 
+      #{urineMalb,jdbcType=DECIMAL}, #{urineOthers,jdbcType=VARCHAR}, #{urineSg,jdbcType=DECIMAL}, 
+      #{vaginaAbnormDesc,jdbcType=VARCHAR}, #{vaginaCode,jdbcType=VARCHAR}, #{vulvaAbnormDesc,jdbcType=VARCHAR}, 
+      #{vulvaCode,jdbcType=VARCHAR}, #{xrayChestAbnormDesc,jdbcType=VARCHAR}, #{xrayChestCode,jdbcType=VARCHAR}, 
+      #{yangDeficiencyCode,jdbcType=VARCHAR}, #{yinDeficiencyCode,jdbcType=VARCHAR}, 
+      #{poisonRadiogenProtectValue,jdbcType=VARCHAR}, #{poisonPhysicalProtectValue,jdbcType=VARCHAR}, 
+      #{poisonOthersProtectValue,jdbcType=VARCHAR}, #{poisonDustProtectValue,jdbcType=VARCHAR}, 
+      #{poisonChemicalProtectValue,jdbcType=VARCHAR}, #{height,jdbcType=DECIMAL}, #{weight,jdbcType=DECIMAL}, 
+      #{waist,jdbcType=DECIMAL}, #{wbc,jdbcType=DECIMAL}, #{proQuanTestValue,jdbcType=DECIMAL}, 
+      #{gluQuanTestValue,jdbcType=DECIMAL}, #{ketQualResultValue,jdbcType=DECIMAL}, #{uobTestResultValue,jdbcType=DECIMAL}, 
+      #{urinePh,jdbcType=DECIMAL}, #{pbgMg,jdbcType=DECIMAL}, #{pbgMmol,jdbcType=DECIMAL}, 
+      #{dbil,jdbcType=DECIMAL}, #{bun,jdbcType=DECIMAL}, #{bloodk,jdbcType=DECIMAL}, 
+      #{bloodNa,jdbcType=DECIMAL}, #{cea,jdbcType=DECIMAL}, #{alb,jdbcType=DECIMAL}, 
+      #{ghb,jdbcType=DECIMAL}, #{isElder,jdbcType=DECIMAL}, #{isHyper,jdbcType=DECIMAL}, 
+      #{isDiabetes,jdbcType=DECIMAL}, #{isSmi,jdbcType=DECIMAL}, #{isTuberculosis,jdbcType=DECIMAL}, 
+      #{isChd,jdbcType=DECIMAL}, #{isCa,jdbcType=DECIMAL}, #{healthAbnormDesc5,jdbcType=VARCHAR}, 
+      #{healthAbnormDesc6,jdbcType=VARCHAR}, #{isApply,jdbcType=DECIMAL}, #{isMaternal,jdbcType=DECIMAL}, 
+      #{isChild,jdbcType=DECIMAL}, #{isAppCreate,jdbcType=DECIMAL}, #{personGroup,jdbcType=VARCHAR}, 
+      #{standard,jdbcType=VARCHAR}, #{sourceType,jdbcType=DECIMAL}, #{aboValue,jdbcType=VARCHAR}, 
+      #{rhValue,jdbcType=VARCHAR}, #{homocysteine,jdbcType=DECIMAL}, #{healthExamSymptomCode,jdbcType=VARCHAR}, 
+      #{healthExamSymptomValue,jdbcType=VARCHAR}, #{eatingHabitCode,jdbcType=VARCHAR}, 
+      #{eatingHabitValue,jdbcType=VARCHAR}, #{drinkingTypeCode,jdbcType=VARCHAR}, #{drinkingTypeValue,jdbcType=VARCHAR}, 
+      #{breastCode,jdbcType=VARCHAR}, #{breastValue,jdbcType=VARCHAR}, #{electrocardiogramCode,jdbcType=VARCHAR}, 
+      #{electrocardiogramValue,jdbcType=VARCHAR}, #{diseBrainVesselCode,jdbcType=VARCHAR}, 
+      #{diseBrainVesselValue,jdbcType=VARCHAR}, #{diseKidneyCode,jdbcType=VARCHAR}, #{diseKidneyValue,jdbcType=VARCHAR}, 
+      #{diseHeartCode,jdbcType=VARCHAR}, #{diseHeartValue,jdbcType=VARCHAR}, #{diseBloodVesselCode,jdbcType=VARCHAR}, 
+      #{diseBloodVesselValue,jdbcType=VARCHAR}, #{diseEyeCode,jdbcType=VARCHAR}, #{diseEyeValue,jdbcType=VARCHAR}, 
+      #{nerveOtherDiseaseCode,jdbcType=VARCHAR}, #{nerveOtherDiseaseValue,jdbcType=VARCHAR}, 
+      #{diseaseOthersCode,jdbcType=VARCHAR}, #{diseaseOthersValue,jdbcType=VARCHAR}, 
+      #{healthGuidanceCode,jdbcType=VARCHAR}, #{healthGuidanceValue,jdbcType=VARCHAR}, 
+      #{riskFactorControlCode,jdbcType=VARCHAR}, #{riskFactorControlValue,jdbcType=VARCHAR}, 
+      #{errCode,jdbcType=DECIMAL}, #{errStr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuzhou.pub.entity.HealthExam">
+    insert into HEALTH_EXAM
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="healthExamId != null">
+        HEALTH_EXAM_ID,
+      </if>
+      <if test="personInfoId != null">
+        PERSON_INFO_ID,
+      </if>
+      <if test="createOrgId != null">
+        CREATE_ORG_ID,
+      </if>
+      <if test="orgId != null">
+        ORG_ID,
+      </if>
+      <if test="orgName != null">
+        ORG_NAME,
+      </if>
+      <if test="abdominalDullnessCode != null">
+        ABDOMINAL_DULLNESS_CODE,
+      </if>
+      <if test="abdominalMassCode != null">
+        ABDOMINAL_MASS_CODE,
+      </if>
+      <if test="abdominalTendCode != null">
+        ABDOMINAL_TEND_CODE,
+      </if>
+      <if test="adnexaAbnormDesc != null">
+        ADNEXA_ABNORM_DESC,
+      </if>
+      <if test="adnexaCode != null">
+        ADNEXA_CODE,
+      </if>
+      <if test="allFalseTeeth != null">
+        ALL_FALSE_TEETH,
+      </if>
+      <if test="allLoseTeeth != null">
+        ALL_LOSE_TEETH,
+      </if>
+      <if test="ast != null">
+        AST,
+      </if>
+      <if test="barrelChestCode != null">
+        BARREL_CHEST_CODE,
+      </if>
+      <if test="bloodStasisCode != null">
+        BLOOD_STASIS_CODE,
+      </if>
+      <if test="bmi != null">
+        BMI,
+      </if>
+      <if test="bodyTemperature != null">
+        BODY_TEMPERATURE,
+      </if>
+      <if test="breathingRate != null">
+        BREATHING_RATE,
+      </if>
+      <if test="bscanAbdomenAbnormDesc != null">
+        BSCAN_ABDOMEN_ABNORM_DESC,
+      </if>
+      <if test="bscanAbdomenCode != null">
+        BSCAN_ABDOMEN_CODE,
+      </if>
+      <if test="bscanOthersAbnormDesc != null">
+        BSCAN_OTHERS_ABNORM_DESC,
+      </if>
+      <if test="bscanOthersCode != null">
+        BSCAN_OTHERS_CODE,
+      </if>
+      <if test="cbcOthers != null">
+        CBC_OTHERS,
+      </if>
+      <if test="cervixAbnormDesc != null">
+        CERVIX_ABNORM_DESC,
+      </if>
+      <if test="cervixCode != null">
+        CERVIX_CODE,
+      </if>
+      <if test="corpusuteriAbnormDesc != null">
+        CORPUSUTERI_ABNORM_DESC,
+      </if>
+      <if test="corpusuteriCode != null">
+        CORPUSUTERI_CODE,
+      </if>
+      <if test="cpsAbnormDesc != null">
+        CPS_ABNORM_DESC,
+      </if>
+      <if test="cpsCode != null">
+        CPS_CODE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID,
+      </if>
+      <if test="dailyDrinking != null">
+        DAILY_DRINKING,
+      </if>
+      <if test="dailySmoking != null">
+        DAILY_SMOKING,
+      </if>
+      <if test="dampHeatCode != null">
+        DAMP_HEAT_CODE,
+      </if>
+      <if test="decayedBlToothNum != null">
+        DECAYED_BL_TOOTH_NUM,
+      </if>
+      <if test="decayedBrToothNum != null">
+        DECAYED_BR_TOOTH_NUM,
+      </if>
+      <if test="decayedUlToothNum != null">
+        DECAYED_UL_TOOTH_NUM,
+      </if>
+      <if test="decayedUrToothNum != null">
+        DECAYED_UR_TOOTH_NUM,
+      </if>
+      <if test="dentitionTypeCode != null">
+        DENTITION_TYPE_CODE,
+      </if>
+      <if test="diseNervousAbnormDesc != null">
+        DISE_NERVOUS_ABNORM_DESC,
+      </if>
+      <if test="diseNervousCode != null">
+        DISE_NERVOUS_CODE,
+      </if>
+      <if test="diseOthersAbnormDesc != null">
+        DISE_OTHERS_ABNORM_DESC,
+      </if>
+      <if test="diseOthersCode != null">
+        DISE_OTHERS_CODE,
+      </if>
+      <if test="dreCode != null">
+        DRE_CODE,
+      </if>
+      <if test="dreOthersDesc != null">
+        DRE_OTHERS_DESC,
+      </if>
+      <if test="drinkingFreqCode != null">
+        DRINKING_FREQ_CODE,
+      </if>
+      <if test="drunkCode != null">
+        DRUNK_CODE,
+      </if>
+      <if test="ecgAbnormCode != null">
+        ECG_ABNORM_CODE,
+      </if>
+      <if test="ecgAbnormDesc != null">
+        ECG_ABNORM_DESC,
+      </if>
+      <if test="elderBrainScore != null">
+        ELDER_BRAIN_SCORE,
+      </if>
+      <if test="elderCognitionId != null">
+        ELDER_COGNITION_ID,
+      </if>
+      <if test="elderCognitionResultCode != null">
+        ELDER_COGNITION_RESULT_CODE,
+      </if>
+      <if test="elderDepressedId != null">
+        ELDER_DEPRESSED_ID,
+      </if>
+      <if test="elderDepressionScore != null">
+        ELDER_DEPRESSION_SCORE,
+      </if>
+      <if test="elderEmotionalResultCode != null">
+        ELDER_EMOTIONAL_RESULT_CODE,
+      </if>
+      <if test="elderHealthAssessCode != null">
+        ELDER_HEALTH_ASSESS_CODE,
+      </if>
+      <if test="elderSelfCareAssessCode != null">
+        ELDER_SELF_CARE_ASSESS_CODE,
+      </if>
+      <if test="elderSelfcareAbilityId != null">
+        ELDER_SELFCARE_ABILITY_ID,
+      </if>
+      <if test="elderTcmHealthId != null">
+        ELDER_TCM_HEALTH_ID,
+      </if>
+      <if test="eoleCode != null">
+        EOLE_CODE,
+      </if>
+      <if test="exerciseDurationMins != null">
+        EXERCISE_DURATION_MINS,
+      </if>
+      <if test="exerciseFreqCode != null">
+        EXERCISE_FREQ_CODE,
+      </if>
+      <if test="exerciseWay != null">
+        EXERCISE_WAY,
+      </if>
+      <if test="exerciseYear != null">
+        EXERCISE_YEAR,
+      </if>
+      <if test="eyegroundAbnormDesc != null">
+        EYEGROUND_ABNORM_DESC,
+      </if>
+      <if test="eyegroundCode != null">
+        EYEGROUND_CODE,
+      </if>
+      <if test="falseBlTeethNum != null">
+        FALSE_BL_TEETH_NUM,
+      </if>
+      <if test="falseBrTeethNum != null">
+        FALSE_BR_TEETH_NUM,
+      </if>
+      <if test="falseUlTeethNum != null">
+        FALSE_UL_TEETH_NUM,
+      </if>
+      <if test="falseUrTeethNum != null">
+        FALSE_UR_TEETH_NUM,
+      </if>
+      <if test="fbgMg != null">
+        FBG_MG,
+      </if>
+      <if test="fbgMmol != null">
+        FBG_MMOL,
+      </if>
+      <if test="fobCode != null">
+        FOB_CODE,
+      </if>
+      <if test="gentleQualityCode != null">
+        GENTLE_QUALITY_CODE,
+      </if>
+      <if test="gluQualResultCode != null">
+        GLU_QUAL_RESULT_CODE,
+      </if>
+      <if test="hasAbdominalDullnessDesc != null">
+        HAS_ABDOMINAL_DULLNESS_DESC,
+      </if>
+      <if test="hasAbdominalMassDesc != null">
+        HAS_ABDOMINAL_MASS_DESC,
+      </if>
+      <if test="hasAbdominalTendDesc != null">
+        HAS_ABDOMINAL_TEND_DESC,
+      </if>
+      <if test="hasHepatauxeDesc != null">
+        HAS_HEPATAUXE_DESC,
+      </if>
+      <if test="hasSplenomegalyDesc != null">
+        HAS_SPLENOMEGALY_DESC,
+      </if>
+      <if test="hbcabTestResultCode != null">
+        HBCAB_TEST_RESULT_CODE,
+      </if>
+      <if test="hbeabTestResultCode != null">
+        HBEAB_TEST_RESULT_CODE,
+      </if>
+      <if test="hbeagTestResultCode != null">
+        HBEAG_TEST_RESULT_CODE,
+      </if>
+      <if test="hbsabTestResultCode != null">
+        HBSAB_TEST_RESULT_CODE,
+      </if>
+      <if test="hbsagTestResultCode != null">
+        HBSAG_TEST_RESULT_CODE,
+      </if>
+      <if test="hdlc != null">
+        HDLC,
+      </if>
+      <if test="healthAbnormCode != null">
+        HEALTH_ABNORM_CODE,
+      </if>
+      <if test="healthAbnormDesc1 != null">
+        HEALTH_ABNORM_DESC1,
+      </if>
+      <if test="healthAbnormDesc2 != null">
+        HEALTH_ABNORM_DESC2,
+      </if>
+      <if test="healthAbnormDesc3 != null">
+        HEALTH_ABNORM_DESC3,
+      </if>
+      <if test="healthAbnormDesc4 != null">
+        HEALTH_ABNORM_DESC4,
+      </if>
+      <if test="healthExamDate != null">
+        HEALTH_EXAM_DATE,
+      </if>
+      <if test="healthExamNo != null">
+        HEALTH_EXAM_NO,
+      </if>
+      <if test="hearingCode != null">
+        HEARING_CODE,
+      </if>
+      <if test="heartMurmurCode != null">
+        HEART_MURMUR_CODE,
+      </if>
+      <if test="heartMurmurDesc != null">
+        HEART_MURMUR_DESC,
+      </if>
+      <if test="heartRate != null">
+        HEART_RATE,
+      </if>
+      <if test="heartRhythmTypeCode != null">
+        HEART_RHYTHM_TYPE_CODE,
+      </if>
+      <if test="hepatauxeCode != null">
+        HEPATAUXE_CODE,
+      </if>
+      <if test="hgb != null">
+        HGB,
+      </if>
+      <if test="isBigExam != null">
+        IS_BIG_EXAM,
+      </if>
+      <if test="isDecayedTooth != null">
+        IS_DECAYED_TOOTH,
+      </if>
+      <if test="isFalseTeeth != null">
+        IS_FALSE_TEETH,
+      </if>
+      <if test="isLosetTeeth != null">
+        IS_LOSET_TEETH,
+      </if>
+      <if test="ketQualResultCode != null">
+        KET_QUAL_RESULT_CODE,
+      </if>
+      <if test="ldbp != null">
+        LDBP,
+      </if>
+      <if test="ldlc != null">
+        LDLC,
+      </if>
+      <if test="leftCorrectEyesight != null">
+        LEFT_CORRECT_EYESIGHT,
+      </if>
+      <if test="leftOriginalEyesight != null">
+        LEFT_ORIGINAL_EYESIGHT,
+      </if>
+      <if test="lipExamResultCode != null">
+        LIP_EXAM_RESULT_CODE,
+      </if>
+      <if test="loseBlTeethNum != null">
+        LOSE_BL_TEETH_NUM,
+      </if>
+      <if test="loseBrTeethNum != null">
+        LOSE_BR_TEETH_NUM,
+      </if>
+      <if test="loseUlTeethNum != null">
+        LOSE_UL_TEETH_NUM,
+      </if>
+      <if test="loseUrTeethNum != null">
+        LOSE_UR_TEETH_NUM,
+      </if>
+      <if test="lsbp != null">
+        LSBP,
+      </if>
+      <if test="lungRaleCode != null">
+        LUNG_RALE_CODE,
+      </if>
+      <if test="lungRaleOthersDesc != null">
+        LUNG_RALE_OTHERS_DESC,
+      </if>
+      <if test="lungSoundAbnormDesc != null">
+        LUNG_SOUND_ABNORM_DESC,
+      </if>
+      <if test="lungSoundCode != null">
+        LUNG_SOUND_CODE,
+      </if>
+      <if test="lymphCode != null">
+        LYMPH_CODE,
+      </if>
+      <if test="lymphOthersDesc != null">
+        LYMPH_OTHERS_DESC,
+      </if>
+      <if test="modifiedOrgId != null">
+        MODIFIED_ORG_ID,
+      </if>
+      <if test="modifiedOrgName != null">
+        MODIFIED_ORG_NAME,
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME,
+      </if>
+      <if test="modifier != null">
+        MODIFIER,
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID,
+      </if>
+      <if test="movementFunctionCode != null">
+        MOVEMENT_FUNCTION_CODE,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="occupExposureCode != null">
+        OCCUP_EXPOSURE_CODE,
+      </if>
+      <if test="occupExposureWork != null">
+        OCCUP_EXPOSURE_WORK,
+      </if>
+      <if test="occupExposureWorkYear != null">
+        OCCUP_EXPOSURE_WORK_YEAR,
+      </if>
+      <if test="otherAssistExam != null">
+        OTHER_ASSIST_EXAM,
+      </if>
+      <if test="otherHealthExamResult != null">
+        OTHER_HEALTH_EXAM_RESULT,
+      </if>
+      <if test="pharynxExamResultCode != null">
+        PHARYNX_EXAM_RESULT_CODE,
+      </if>
+      <if test="phlegmWetCode != null">
+        PHLEGM_WET_CODE,
+      </if>
+      <if test="plt != null">
+        PLT,
+      </if>
+      <if test="pofdaCode != null">
+        POFDA_CODE,
+      </if>
+      <if test="poisonChemical != null">
+        POISON_CHEMICAL,
+      </if>
+      <if test="poisonChemicalProtectCode != null">
+        POISON_CHEMICAL_PROTECT_CODE,
+      </if>
+      <if test="poisonDust != null">
+        POISON_DUST,
+      </if>
+      <if test="poisonDustProtectCode != null">
+        POISON_DUST_PROTECT_CODE,
+      </if>
+      <if test="poisonOthers != null">
+        POISON_OTHERS,
+      </if>
+      <if test="poisonOthersProtectCode != null">
+        POISON_OTHERS_PROTECT_CODE,
+      </if>
+      <if test="poisonPhysical != null">
+        POISON_PHYSICAL,
+      </if>
+      <if test="poisonPhysicalProtectCode != null">
+        POISON_PHYSICAL_PROTECT_CODE,
+      </if>
+      <if test="poisonRadiogen != null">
+        POISON_RADIOGEN,
+      </if>
+      <if test="poisonRadiogenProtectCode != null">
+        POISON_RADIOGEN_PROTECT_CODE,
+      </if>
+      <if test="proQualResultCode != null">
+        PRO_QUAL_RESULT_CODE,
+      </if>
+      <if test="pulseRate != null">
+        PULSE_RATE,
+      </if>
+      <if test="qiDeficiencyCode != null">
+        QI_DEFICIENCY_CODE,
+      </if>
+      <if test="qiDepressionCode != null">
+        QI_DEPRESSION_CODE,
+      </if>
+      <if test="rdbp != null">
+        RDBP,
+      </if>
+      <if test="respDoctorId != null">
+        RESP_DOCTOR_ID,
+      </if>
+      <if test="respDoctorName != null">
+        RESP_DOCTOR_NAME,
+      </if>
+      <if test="rightCorrectEyesight != null">
+        RIGHT_CORRECT_EYESIGHT,
+      </if>
+      <if test="rightOriginalEyesight != null">
+        RIGHT_ORIGINAL_EYESIGHT,
+      </if>
+      <if test="rsbp != null">
+        RSBP,
+      </if>
+      <if test="scleralCode != null">
+        SCLERAL_CODE,
+      </if>
+      <if test="scleralOthersDesc != null">
+        SCLERAL_OTHERS_DESC,
+      </if>
+      <if test="scr != null">
+        SCR,
+      </if>
+      <if test="sgpt != null">
+        SGPT,
+      </if>
+      <if test="skinCode != null">
+        SKIN_CODE,
+      </if>
+      <if test="skinOthersDesc != null">
+        SKIN_OTHERS_DESC,
+      </if>
+      <if test="smokingStatusCode != null">
+        SMOKING_STATUS_CODE,
+      </if>
+      <if test="specialDiathsisCode != null">
+        SPECIAL_DIATHSIS_CODE,
+      </if>
+      <if test="splenomegalyCode != null">
+        SPLENOMEGALY_CODE,
+      </if>
+      <if test="startDrinkingAge != null">
+        START_DRINKING_AGE,
+      </if>
+      <if test="startSmokingAge != null">
+        START_SMOKING_AGE,
+      </if>
+      <if test="stopDrinkingAge != null">
+        STOP_DRINKING_AGE,
+      </if>
+      <if test="stopDrinkingCode != null">
+        STOP_DRINKING_CODE,
+      </if>
+      <if test="stopSmokingAge != null">
+        STOP_SMOKING_AGE,
+      </if>
+      <if test="tbi != null">
+        TBI,
+      </if>
+      <if test="tcho != null">
+        TCHO,
+      </if>
+      <if test="tg != null">
+        TG,
+      </if>
+      <if test="uobTestResultCode != null">
+        UOB_TEST_RESULT_CODE,
+      </if>
+      <if test="urineMalb != null">
+        URINE_MALB,
+      </if>
+      <if test="urineOthers != null">
+        URINE_OTHERS,
+      </if>
+      <if test="urineSg != null">
+        URINE_SG,
+      </if>
+      <if test="vaginaAbnormDesc != null">
+        VAGINA_ABNORM_DESC,
+      </if>
+      <if test="vaginaCode != null">
+        VAGINA_CODE,
+      </if>
+      <if test="vulvaAbnormDesc != null">
+        VULVA_ABNORM_DESC,
+      </if>
+      <if test="vulvaCode != null">
+        VULVA_CODE,
+      </if>
+      <if test="xrayChestAbnormDesc != null">
+        XRAY_CHEST_ABNORM_DESC,
+      </if>
+      <if test="xrayChestCode != null">
+        XRAY_CHEST_CODE,
+      </if>
+      <if test="yangDeficiencyCode != null">
+        YANG_DEFICIENCY_CODE,
+      </if>
+      <if test="yinDeficiencyCode != null">
+        YIN_DEFICIENCY_CODE,
+      </if>
+      <if test="poisonRadiogenProtectValue != null">
+        POISON_RADIOGEN_PROTECT_VALUE,
+      </if>
+      <if test="poisonPhysicalProtectValue != null">
+        POISON_PHYSICAL_PROTECT_VALUE,
+      </if>
+      <if test="poisonOthersProtectValue != null">
+        POISON_OTHERS_PROTECT_VALUE,
+      </if>
+      <if test="poisonDustProtectValue != null">
+        POISON_DUST_PROTECT_VALUE,
+      </if>
+      <if test="poisonChemicalProtectValue != null">
+        POISON_CHEMICAL_PROTECT_VALUE,
+      </if>
+      <if test="height != null">
+        HEIGHT,
+      </if>
+      <if test="weight != null">
+        WEIGHT,
+      </if>
+      <if test="waist != null">
+        WAIST,
+      </if>
+      <if test="wbc != null">
+        WBC,
+      </if>
+      <if test="proQuanTestValue != null">
+        PRO_QUAN_TEST_VALUE,
+      </if>
+      <if test="gluQuanTestValue != null">
+        GLU_QUAN_TEST_VALUE,
+      </if>
+      <if test="ketQualResultValue != null">
+        KET_QUAL_RESULT_VALUE,
+      </if>
+      <if test="uobTestResultValue != null">
+        UOB_TEST_RESULT_VALUE,
+      </if>
+      <if test="urinePh != null">
+        URINE_PH,
+      </if>
+      <if test="pbgMg != null">
+        PBG_MG,
+      </if>
+      <if test="pbgMmol != null">
+        PBG_MMOL,
+      </if>
+      <if test="dbil != null">
+        DBIL,
+      </if>
+      <if test="bun != null">
+        BUN,
+      </if>
+      <if test="bloodk != null">
+        BLOODK,
+      </if>
+      <if test="bloodNa != null">
+        BLOOD_NA,
+      </if>
+      <if test="cea != null">
+        CEA,
+      </if>
+      <if test="alb != null">
+        ALB,
+      </if>
+      <if test="ghb != null">
+        GHB,
+      </if>
+      <if test="isElder != null">
+        IS_ELDER,
+      </if>
+      <if test="isHyper != null">
+        IS_HYPER,
+      </if>
+      <if test="isDiabetes != null">
+        IS_DIABETES,
+      </if>
+      <if test="isSmi != null">
+        IS_SMI,
+      </if>
+      <if test="isTuberculosis != null">
+        IS_TUBERCULOSIS,
+      </if>
+      <if test="isChd != null">
+        IS_CHD,
+      </if>
+      <if test="isCa != null">
+        IS_CA,
+      </if>
+      <if test="healthAbnormDesc5 != null">
+        HEALTH_ABNORM_DESC5,
+      </if>
+      <if test="healthAbnormDesc6 != null">
+        HEALTH_ABNORM_DESC6,
+      </if>
+      <if test="isApply != null">
+        IS_APPLY,
+      </if>
+      <if test="isMaternal != null">
+        IS_MATERNAL,
+      </if>
+      <if test="isChild != null">
+        IS_CHILD,
+      </if>
+      <if test="isAppCreate != null">
+        IS_APP_CREATE,
+      </if>
+      <if test="personGroup != null">
+        PERSON_GROUP,
+      </if>
+      <if test="standard != null">
+        STANDARD,
+      </if>
+      <if test="sourceType != null">
+        SOURCE_TYPE,
+      </if>
+      <if test="aboValue != null">
+        ABO_VALUE,
+      </if>
+      <if test="rhValue != null">
+        RH_VALUE,
+      </if>
+      <if test="homocysteine != null">
+        HOMOCYSTEINE,
+      </if>
+      <if test="healthExamSymptomCode != null">
+        HEALTH_EXAM_SYMPTOM_CODE,
+      </if>
+      <if test="healthExamSymptomValue != null">
+        HEALTH_EXAM_SYMPTOM_VALUE,
+      </if>
+      <if test="eatingHabitCode != null">
+        EATING_HABIT_CODE,
+      </if>
+      <if test="eatingHabitValue != null">
+        EATING_HABIT_VALUE,
+      </if>
+      <if test="drinkingTypeCode != null">
+        DRINKING_TYPE_CODE,
+      </if>
+      <if test="drinkingTypeValue != null">
+        DRINKING_TYPE_VALUE,
+      </if>
+      <if test="breastCode != null">
+        BREAST_CODE,
+      </if>
+      <if test="breastValue != null">
+        BREAST_VALUE,
+      </if>
+      <if test="electrocardiogramCode != null">
+        ELECTROCARDIOGRAM_CODE,
+      </if>
+      <if test="electrocardiogramValue != null">
+        ELECTROCARDIOGRAM_VALUE,
+      </if>
+      <if test="diseBrainVesselCode != null">
+        DISE_BRAIN_VESSEL_CODE,
+      </if>
+      <if test="diseBrainVesselValue != null">
+        DISE_BRAIN_VESSEL_VALUE,
+      </if>
+      <if test="diseKidneyCode != null">
+        DISE_KIDNEY_CODE,
+      </if>
+      <if test="diseKidneyValue != null">
+        DISE_KIDNEY_VALUE,
+      </if>
+      <if test="diseHeartCode != null">
+        DISE_HEART_CODE,
+      </if>
+      <if test="diseHeartValue != null">
+        DISE_HEART_VALUE,
+      </if>
+      <if test="diseBloodVesselCode != null">
+        DISE_BLOOD_VESSEL_CODE,
+      </if>
+      <if test="diseBloodVesselValue != null">
+        DISE_BLOOD_VESSEL_VALUE,
+      </if>
+      <if test="diseEyeCode != null">
+        DISE_EYE_CODE,
+      </if>
+      <if test="diseEyeValue != null">
+        DISE_EYE_VALUE,
+      </if>
+      <if test="nerveOtherDiseaseCode != null">
+        NERVE_OTHER_DISEASE_CODE,
+      </if>
+      <if test="nerveOtherDiseaseValue != null">
+        NERVE_OTHER_DISEASE_VALUE,
+      </if>
+      <if test="diseaseOthersCode != null">
+        DISEASE_OTHERS_CODE,
+      </if>
+      <if test="diseaseOthersValue != null">
+        DISEASE_OTHERS_VALUE,
+      </if>
+      <if test="healthGuidanceCode != null">
+        HEALTH_GUIDANCE_CODE,
+      </if>
+      <if test="healthGuidanceValue != null">
+        HEALTH_GUIDANCE_VALUE,
+      </if>
+      <if test="riskFactorControlCode != null">
+        RISK_FACTOR_CONTROL_CODE,
+      </if>
+      <if test="riskFactorControlValue != null">
+        RISK_FACTOR_CONTROL_VALUE,
+      </if>
+      <if test="errCode != null">
+        ERR_CODE,
+      </if>
+      <if test="errStr != null">
+        ERR_STR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="healthExamId != null">
+        #{healthExamId,jdbcType=VARCHAR},
+      </if>
+      <if test="personInfoId != null">
+        #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgId != null">
+        #{createOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="abdominalDullnessCode != null">
+        #{abdominalDullnessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="abdominalMassCode != null">
+        #{abdominalMassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="abdominalTendCode != null">
+        #{abdominalTendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="adnexaAbnormDesc != null">
+        #{adnexaAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="adnexaCode != null">
+        #{adnexaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="allFalseTeeth != null">
+        #{allFalseTeeth,jdbcType=DECIMAL},
+      </if>
+      <if test="allLoseTeeth != null">
+        #{allLoseTeeth,jdbcType=DECIMAL},
+      </if>
+      <if test="ast != null">
+        #{ast,jdbcType=DECIMAL},
+      </if>
+      <if test="barrelChestCode != null">
+        #{barrelChestCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodStasisCode != null">
+        #{bloodStasisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bmi != null">
+        #{bmi,jdbcType=DECIMAL},
+      </if>
+      <if test="bodyTemperature != null">
+        #{bodyTemperature,jdbcType=DECIMAL},
+      </if>
+      <if test="breathingRate != null">
+        #{breathingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="bscanAbdomenAbnormDesc != null">
+        #{bscanAbdomenAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="bscanAbdomenCode != null">
+        #{bscanAbdomenCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bscanOthersAbnormDesc != null">
+        #{bscanOthersAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="bscanOthersCode != null">
+        #{bscanOthersCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cbcOthers != null">
+        #{cbcOthers,jdbcType=VARCHAR},
+      </if>
+      <if test="cervixAbnormDesc != null">
+        #{cervixAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="cervixCode != null">
+        #{cervixCode,jdbcType=VARCHAR},
+      </if>
+      <if test="corpusuteriAbnormDesc != null">
+        #{corpusuteriAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="corpusuteriCode != null">
+        #{corpusuteriCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cpsAbnormDesc != null">
+        #{cpsAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="cpsCode != null">
+        #{cpsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="dailyDrinking != null">
+        #{dailyDrinking,jdbcType=DECIMAL},
+      </if>
+      <if test="dailySmoking != null">
+        #{dailySmoking,jdbcType=DECIMAL},
+      </if>
+      <if test="dampHeatCode != null">
+        #{dampHeatCode,jdbcType=VARCHAR},
+      </if>
+      <if test="decayedBlToothNum != null">
+        #{decayedBlToothNum,jdbcType=DECIMAL},
+      </if>
+      <if test="decayedBrToothNum != null">
+        #{decayedBrToothNum,jdbcType=DECIMAL},
+      </if>
+      <if test="decayedUlToothNum != null">
+        #{decayedUlToothNum,jdbcType=DECIMAL},
+      </if>
+      <if test="decayedUrToothNum != null">
+        #{decayedUrToothNum,jdbcType=DECIMAL},
+      </if>
+      <if test="dentitionTypeCode != null">
+        #{dentitionTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseNervousAbnormDesc != null">
+        #{diseNervousAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="diseNervousCode != null">
+        #{diseNervousCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseOthersAbnormDesc != null">
+        #{diseOthersAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="diseOthersCode != null">
+        #{diseOthersCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dreCode != null">
+        #{dreCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dreOthersDesc != null">
+        #{dreOthersDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="drinkingFreqCode != null">
+        #{drinkingFreqCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drunkCode != null">
+        #{drunkCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ecgAbnormCode != null">
+        #{ecgAbnormCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ecgAbnormDesc != null">
+        #{ecgAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="elderBrainScore != null">
+        #{elderBrainScore,jdbcType=DECIMAL},
+      </if>
+      <if test="elderCognitionId != null">
+        #{elderCognitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="elderCognitionResultCode != null">
+        #{elderCognitionResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="elderDepressedId != null">
+        #{elderDepressedId,jdbcType=VARCHAR},
+      </if>
+      <if test="elderDepressionScore != null">
+        #{elderDepressionScore,jdbcType=DECIMAL},
+      </if>
+      <if test="elderEmotionalResultCode != null">
+        #{elderEmotionalResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="elderHealthAssessCode != null">
+        #{elderHealthAssessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="elderSelfCareAssessCode != null">
+        #{elderSelfCareAssessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="elderSelfcareAbilityId != null">
+        #{elderSelfcareAbilityId,jdbcType=VARCHAR},
+      </if>
+      <if test="elderTcmHealthId != null">
+        #{elderTcmHealthId,jdbcType=VARCHAR},
+      </if>
+      <if test="eoleCode != null">
+        #{eoleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="exerciseDurationMins != null">
+        #{exerciseDurationMins,jdbcType=DECIMAL},
+      </if>
+      <if test="exerciseFreqCode != null">
+        #{exerciseFreqCode,jdbcType=VARCHAR},
+      </if>
+      <if test="exerciseWay != null">
+        #{exerciseWay,jdbcType=VARCHAR},
+      </if>
+      <if test="exerciseYear != null">
+        #{exerciseYear,jdbcType=DECIMAL},
+      </if>
+      <if test="eyegroundAbnormDesc != null">
+        #{eyegroundAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="eyegroundCode != null">
+        #{eyegroundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="falseBlTeethNum != null">
+        #{falseBlTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="falseBrTeethNum != null">
+        #{falseBrTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="falseUlTeethNum != null">
+        #{falseUlTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="falseUrTeethNum != null">
+        #{falseUrTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="fbgMg != null">
+        #{fbgMg,jdbcType=DECIMAL},
+      </if>
+      <if test="fbgMmol != null">
+        #{fbgMmol,jdbcType=DECIMAL},
+      </if>
+      <if test="fobCode != null">
+        #{fobCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gentleQualityCode != null">
+        #{gentleQualityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gluQualResultCode != null">
+        #{gluQualResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hasAbdominalDullnessDesc != null">
+        #{hasAbdominalDullnessDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hasAbdominalMassDesc != null">
+        #{hasAbdominalMassDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hasAbdominalTendDesc != null">
+        #{hasAbdominalTendDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hasHepatauxeDesc != null">
+        #{hasHepatauxeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hasSplenomegalyDesc != null">
+        #{hasSplenomegalyDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hbcabTestResultCode != null">
+        #{hbcabTestResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hbeabTestResultCode != null">
+        #{hbeabTestResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hbeagTestResultCode != null">
+        #{hbeagTestResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hbsabTestResultCode != null">
+        #{hbsabTestResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hbsagTestResultCode != null">
+        #{hbsagTestResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hdlc != null">
+        #{hdlc,jdbcType=DECIMAL},
+      </if>
+      <if test="healthAbnormCode != null">
+        #{healthAbnormCode,jdbcType=VARCHAR},
+      </if>
+      <if test="healthAbnormDesc1 != null">
+        #{healthAbnormDesc1,jdbcType=VARCHAR},
+      </if>
+      <if test="healthAbnormDesc2 != null">
+        #{healthAbnormDesc2,jdbcType=VARCHAR},
+      </if>
+      <if test="healthAbnormDesc3 != null">
+        #{healthAbnormDesc3,jdbcType=VARCHAR},
+      </if>
+      <if test="healthAbnormDesc4 != null">
+        #{healthAbnormDesc4,jdbcType=VARCHAR},
+      </if>
+      <if test="healthExamDate != null">
+        #{healthExamDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="healthExamNo != null">
+        #{healthExamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hearingCode != null">
+        #{hearingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="heartMurmurCode != null">
+        #{heartMurmurCode,jdbcType=VARCHAR},
+      </if>
+      <if test="heartMurmurDesc != null">
+        #{heartMurmurDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="heartRate != null">
+        #{heartRate,jdbcType=DECIMAL},
+      </if>
+      <if test="heartRhythmTypeCode != null">
+        #{heartRhythmTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hepatauxeCode != null">
+        #{hepatauxeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hgb != null">
+        #{hgb,jdbcType=DECIMAL},
+      </if>
+      <if test="isBigExam != null">
+        #{isBigExam,jdbcType=DECIMAL},
+      </if>
+      <if test="isDecayedTooth != null">
+        #{isDecayedTooth,jdbcType=DECIMAL},
+      </if>
+      <if test="isFalseTeeth != null">
+        #{isFalseTeeth,jdbcType=DECIMAL},
+      </if>
+      <if test="isLosetTeeth != null">
+        #{isLosetTeeth,jdbcType=DECIMAL},
+      </if>
+      <if test="ketQualResultCode != null">
+        #{ketQualResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ldbp != null">
+        #{ldbp,jdbcType=DECIMAL},
+      </if>
+      <if test="ldlc != null">
+        #{ldlc,jdbcType=DECIMAL},
+      </if>
+      <if test="leftCorrectEyesight != null">
+        #{leftCorrectEyesight,jdbcType=DECIMAL},
+      </if>
+      <if test="leftOriginalEyesight != null">
+        #{leftOriginalEyesight,jdbcType=DECIMAL},
+      </if>
+      <if test="lipExamResultCode != null">
+        #{lipExamResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loseBlTeethNum != null">
+        #{loseBlTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="loseBrTeethNum != null">
+        #{loseBrTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="loseUlTeethNum != null">
+        #{loseUlTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="loseUrTeethNum != null">
+        #{loseUrTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="lsbp != null">
+        #{lsbp,jdbcType=DECIMAL},
+      </if>
+      <if test="lungRaleCode != null">
+        #{lungRaleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lungRaleOthersDesc != null">
+        #{lungRaleOthersDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="lungSoundAbnormDesc != null">
+        #{lungSoundAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="lungSoundCode != null">
+        #{lungSoundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lymphCode != null">
+        #{lymphCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lymphOthersDesc != null">
+        #{lymphOthersDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgId != null">
+        #{modifiedOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgName != null">
+        #{modifiedOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null">
+        #{modifierId,jdbcType=VARCHAR},
+      </if>
+      <if test="movementFunctionCode != null">
+        #{movementFunctionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="occupExposureCode != null">
+        #{occupExposureCode,jdbcType=VARCHAR},
+      </if>
+      <if test="occupExposureWork != null">
+        #{occupExposureWork,jdbcType=VARCHAR},
+      </if>
+      <if test="occupExposureWorkYear != null">
+        #{occupExposureWorkYear,jdbcType=DECIMAL},
+      </if>
+      <if test="otherAssistExam != null">
+        #{otherAssistExam,jdbcType=VARCHAR},
+      </if>
+      <if test="otherHealthExamResult != null">
+        #{otherHealthExamResult,jdbcType=VARCHAR},
+      </if>
+      <if test="pharynxExamResultCode != null">
+        #{pharynxExamResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phlegmWetCode != null">
+        #{phlegmWetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="plt != null">
+        #{plt,jdbcType=DECIMAL},
+      </if>
+      <if test="pofdaCode != null">
+        #{pofdaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonChemical != null">
+        #{poisonChemical,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonChemicalProtectCode != null">
+        #{poisonChemicalProtectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonDust != null">
+        #{poisonDust,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonDustProtectCode != null">
+        #{poisonDustProtectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonOthers != null">
+        #{poisonOthers,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonOthersProtectCode != null">
+        #{poisonOthersProtectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonPhysical != null">
+        #{poisonPhysical,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonPhysicalProtectCode != null">
+        #{poisonPhysicalProtectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonRadiogen != null">
+        #{poisonRadiogen,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonRadiogenProtectCode != null">
+        #{poisonRadiogenProtectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="proQualResultCode != null">
+        #{proQualResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pulseRate != null">
+        #{pulseRate,jdbcType=DECIMAL},
+      </if>
+      <if test="qiDeficiencyCode != null">
+        #{qiDeficiencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qiDepressionCode != null">
+        #{qiDepressionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rdbp != null">
+        #{rdbp,jdbcType=DECIMAL},
+      </if>
+      <if test="respDoctorId != null">
+        #{respDoctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="respDoctorName != null">
+        #{respDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="rightCorrectEyesight != null">
+        #{rightCorrectEyesight,jdbcType=DECIMAL},
+      </if>
+      <if test="rightOriginalEyesight != null">
+        #{rightOriginalEyesight,jdbcType=DECIMAL},
+      </if>
+      <if test="rsbp != null">
+        #{rsbp,jdbcType=DECIMAL},
+      </if>
+      <if test="scleralCode != null">
+        #{scleralCode,jdbcType=VARCHAR},
+      </if>
+      <if test="scleralOthersDesc != null">
+        #{scleralOthersDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="scr != null">
+        #{scr,jdbcType=DECIMAL},
+      </if>
+      <if test="sgpt != null">
+        #{sgpt,jdbcType=DECIMAL},
+      </if>
+      <if test="skinCode != null">
+        #{skinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="skinOthersDesc != null">
+        #{skinOthersDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="smokingStatusCode != null">
+        #{smokingStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specialDiathsisCode != null">
+        #{specialDiathsisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="splenomegalyCode != null">
+        #{splenomegalyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="startDrinkingAge != null">
+        #{startDrinkingAge,jdbcType=DECIMAL},
+      </if>
+      <if test="startSmokingAge != null">
+        #{startSmokingAge,jdbcType=DECIMAL},
+      </if>
+      <if test="stopDrinkingAge != null">
+        #{stopDrinkingAge,jdbcType=DECIMAL},
+      </if>
+      <if test="stopDrinkingCode != null">
+        #{stopDrinkingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stopSmokingAge != null">
+        #{stopSmokingAge,jdbcType=DECIMAL},
+      </if>
+      <if test="tbi != null">
+        #{tbi,jdbcType=DECIMAL},
+      </if>
+      <if test="tcho != null">
+        #{tcho,jdbcType=DECIMAL},
+      </if>
+      <if test="tg != null">
+        #{tg,jdbcType=DECIMAL},
+      </if>
+      <if test="uobTestResultCode != null">
+        #{uobTestResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="urineMalb != null">
+        #{urineMalb,jdbcType=DECIMAL},
+      </if>
+      <if test="urineOthers != null">
+        #{urineOthers,jdbcType=VARCHAR},
+      </if>
+      <if test="urineSg != null">
+        #{urineSg,jdbcType=DECIMAL},
+      </if>
+      <if test="vaginaAbnormDesc != null">
+        #{vaginaAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="vaginaCode != null">
+        #{vaginaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="vulvaAbnormDesc != null">
+        #{vulvaAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="vulvaCode != null">
+        #{vulvaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="xrayChestAbnormDesc != null">
+        #{xrayChestAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="xrayChestCode != null">
+        #{xrayChestCode,jdbcType=VARCHAR},
+      </if>
+      <if test="yangDeficiencyCode != null">
+        #{yangDeficiencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="yinDeficiencyCode != null">
+        #{yinDeficiencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonRadiogenProtectValue != null">
+        #{poisonRadiogenProtectValue,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonPhysicalProtectValue != null">
+        #{poisonPhysicalProtectValue,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonOthersProtectValue != null">
+        #{poisonOthersProtectValue,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonDustProtectValue != null">
+        #{poisonDustProtectValue,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonChemicalProtectValue != null">
+        #{poisonChemicalProtectValue,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="waist != null">
+        #{waist,jdbcType=DECIMAL},
+      </if>
+      <if test="wbc != null">
+        #{wbc,jdbcType=DECIMAL},
+      </if>
+      <if test="proQuanTestValue != null">
+        #{proQuanTestValue,jdbcType=DECIMAL},
+      </if>
+      <if test="gluQuanTestValue != null">
+        #{gluQuanTestValue,jdbcType=DECIMAL},
+      </if>
+      <if test="ketQualResultValue != null">
+        #{ketQualResultValue,jdbcType=DECIMAL},
+      </if>
+      <if test="uobTestResultValue != null">
+        #{uobTestResultValue,jdbcType=DECIMAL},
+      </if>
+      <if test="urinePh != null">
+        #{urinePh,jdbcType=DECIMAL},
+      </if>
+      <if test="pbgMg != null">
+        #{pbgMg,jdbcType=DECIMAL},
+      </if>
+      <if test="pbgMmol != null">
+        #{pbgMmol,jdbcType=DECIMAL},
+      </if>
+      <if test="dbil != null">
+        #{dbil,jdbcType=DECIMAL},
+      </if>
+      <if test="bun != null">
+        #{bun,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodk != null">
+        #{bloodk,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodNa != null">
+        #{bloodNa,jdbcType=DECIMAL},
+      </if>
+      <if test="cea != null">
+        #{cea,jdbcType=DECIMAL},
+      </if>
+      <if test="alb != null">
+        #{alb,jdbcType=DECIMAL},
+      </if>
+      <if test="ghb != null">
+        #{ghb,jdbcType=DECIMAL},
+      </if>
+      <if test="isElder != null">
+        #{isElder,jdbcType=DECIMAL},
+      </if>
+      <if test="isHyper != null">
+        #{isHyper,jdbcType=DECIMAL},
+      </if>
+      <if test="isDiabetes != null">
+        #{isDiabetes,jdbcType=DECIMAL},
+      </if>
+      <if test="isSmi != null">
+        #{isSmi,jdbcType=DECIMAL},
+      </if>
+      <if test="isTuberculosis != null">
+        #{isTuberculosis,jdbcType=DECIMAL},
+      </if>
+      <if test="isChd != null">
+        #{isChd,jdbcType=DECIMAL},
+      </if>
+      <if test="isCa != null">
+        #{isCa,jdbcType=DECIMAL},
+      </if>
+      <if test="healthAbnormDesc5 != null">
+        #{healthAbnormDesc5,jdbcType=VARCHAR},
+      </if>
+      <if test="healthAbnormDesc6 != null">
+        #{healthAbnormDesc6,jdbcType=VARCHAR},
+      </if>
+      <if test="isApply != null">
+        #{isApply,jdbcType=DECIMAL},
+      </if>
+      <if test="isMaternal != null">
+        #{isMaternal,jdbcType=DECIMAL},
+      </if>
+      <if test="isChild != null">
+        #{isChild,jdbcType=DECIMAL},
+      </if>
+      <if test="isAppCreate != null">
+        #{isAppCreate,jdbcType=DECIMAL},
+      </if>
+      <if test="personGroup != null">
+        #{personGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="standard != null">
+        #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null">
+        #{sourceType,jdbcType=DECIMAL},
+      </if>
+      <if test="aboValue != null">
+        #{aboValue,jdbcType=VARCHAR},
+      </if>
+      <if test="rhValue != null">
+        #{rhValue,jdbcType=VARCHAR},
+      </if>
+      <if test="homocysteine != null">
+        #{homocysteine,jdbcType=DECIMAL},
+      </if>
+      <if test="healthExamSymptomCode != null">
+        #{healthExamSymptomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="healthExamSymptomValue != null">
+        #{healthExamSymptomValue,jdbcType=VARCHAR},
+      </if>
+      <if test="eatingHabitCode != null">
+        #{eatingHabitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="eatingHabitValue != null">
+        #{eatingHabitValue,jdbcType=VARCHAR},
+      </if>
+      <if test="drinkingTypeCode != null">
+        #{drinkingTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drinkingTypeValue != null">
+        #{drinkingTypeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="breastCode != null">
+        #{breastCode,jdbcType=VARCHAR},
+      </if>
+      <if test="breastValue != null">
+        #{breastValue,jdbcType=VARCHAR},
+      </if>
+      <if test="electrocardiogramCode != null">
+        #{electrocardiogramCode,jdbcType=VARCHAR},
+      </if>
+      <if test="electrocardiogramValue != null">
+        #{electrocardiogramValue,jdbcType=VARCHAR},
+      </if>
+      <if test="diseBrainVesselCode != null">
+        #{diseBrainVesselCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseBrainVesselValue != null">
+        #{diseBrainVesselValue,jdbcType=VARCHAR},
+      </if>
+      <if test="diseKidneyCode != null">
+        #{diseKidneyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseKidneyValue != null">
+        #{diseKidneyValue,jdbcType=VARCHAR},
+      </if>
+      <if test="diseHeartCode != null">
+        #{diseHeartCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseHeartValue != null">
+        #{diseHeartValue,jdbcType=VARCHAR},
+      </if>
+      <if test="diseBloodVesselCode != null">
+        #{diseBloodVesselCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseBloodVesselValue != null">
+        #{diseBloodVesselValue,jdbcType=VARCHAR},
+      </if>
+      <if test="diseEyeCode != null">
+        #{diseEyeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseEyeValue != null">
+        #{diseEyeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="nerveOtherDiseaseCode != null">
+        #{nerveOtherDiseaseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nerveOtherDiseaseValue != null">
+        #{nerveOtherDiseaseValue,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseOthersCode != null">
+        #{diseaseOthersCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseOthersValue != null">
+        #{diseaseOthersValue,jdbcType=VARCHAR},
+      </if>
+      <if test="healthGuidanceCode != null">
+        #{healthGuidanceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="healthGuidanceValue != null">
+        #{healthGuidanceValue,jdbcType=VARCHAR},
+      </if>
+      <if test="riskFactorControlCode != null">
+        #{riskFactorControlCode,jdbcType=VARCHAR},
+      </if>
+      <if test="riskFactorControlValue != null">
+        #{riskFactorControlValue,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null">
+        #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        #{errStr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuzhou.pub.entity.HealthExam">
+    update HEALTH_EXAM
+    <set>
+      <if test="personInfoId != null">
+        PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgId != null">
+        CREATE_ORG_ID = #{createOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="abdominalDullnessCode != null">
+        ABDOMINAL_DULLNESS_CODE = #{abdominalDullnessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="abdominalMassCode != null">
+        ABDOMINAL_MASS_CODE = #{abdominalMassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="abdominalTendCode != null">
+        ABDOMINAL_TEND_CODE = #{abdominalTendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="adnexaAbnormDesc != null">
+        ADNEXA_ABNORM_DESC = #{adnexaAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="adnexaCode != null">
+        ADNEXA_CODE = #{adnexaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="allFalseTeeth != null">
+        ALL_FALSE_TEETH = #{allFalseTeeth,jdbcType=DECIMAL},
+      </if>
+      <if test="allLoseTeeth != null">
+        ALL_LOSE_TEETH = #{allLoseTeeth,jdbcType=DECIMAL},
+      </if>
+      <if test="ast != null">
+        AST = #{ast,jdbcType=DECIMAL},
+      </if>
+      <if test="barrelChestCode != null">
+        BARREL_CHEST_CODE = #{barrelChestCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodStasisCode != null">
+        BLOOD_STASIS_CODE = #{bloodStasisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bmi != null">
+        BMI = #{bmi,jdbcType=DECIMAL},
+      </if>
+      <if test="bodyTemperature != null">
+        BODY_TEMPERATURE = #{bodyTemperature,jdbcType=DECIMAL},
+      </if>
+      <if test="breathingRate != null">
+        BREATHING_RATE = #{breathingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="bscanAbdomenAbnormDesc != null">
+        BSCAN_ABDOMEN_ABNORM_DESC = #{bscanAbdomenAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="bscanAbdomenCode != null">
+        BSCAN_ABDOMEN_CODE = #{bscanAbdomenCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bscanOthersAbnormDesc != null">
+        BSCAN_OTHERS_ABNORM_DESC = #{bscanOthersAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="bscanOthersCode != null">
+        BSCAN_OTHERS_CODE = #{bscanOthersCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cbcOthers != null">
+        CBC_OTHERS = #{cbcOthers,jdbcType=VARCHAR},
+      </if>
+      <if test="cervixAbnormDesc != null">
+        CERVIX_ABNORM_DESC = #{cervixAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="cervixCode != null">
+        CERVIX_CODE = #{cervixCode,jdbcType=VARCHAR},
+      </if>
+      <if test="corpusuteriAbnormDesc != null">
+        CORPUSUTERI_ABNORM_DESC = #{corpusuteriAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="corpusuteriCode != null">
+        CORPUSUTERI_CODE = #{corpusuteriCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cpsAbnormDesc != null">
+        CPS_ABNORM_DESC = #{cpsAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="cpsCode != null">
+        CPS_CODE = #{cpsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="dailyDrinking != null">
+        DAILY_DRINKING = #{dailyDrinking,jdbcType=DECIMAL},
+      </if>
+      <if test="dailySmoking != null">
+        DAILY_SMOKING = #{dailySmoking,jdbcType=DECIMAL},
+      </if>
+      <if test="dampHeatCode != null">
+        DAMP_HEAT_CODE = #{dampHeatCode,jdbcType=VARCHAR},
+      </if>
+      <if test="decayedBlToothNum != null">
+        DECAYED_BL_TOOTH_NUM = #{decayedBlToothNum,jdbcType=DECIMAL},
+      </if>
+      <if test="decayedBrToothNum != null">
+        DECAYED_BR_TOOTH_NUM = #{decayedBrToothNum,jdbcType=DECIMAL},
+      </if>
+      <if test="decayedUlToothNum != null">
+        DECAYED_UL_TOOTH_NUM = #{decayedUlToothNum,jdbcType=DECIMAL},
+      </if>
+      <if test="decayedUrToothNum != null">
+        DECAYED_UR_TOOTH_NUM = #{decayedUrToothNum,jdbcType=DECIMAL},
+      </if>
+      <if test="dentitionTypeCode != null">
+        DENTITION_TYPE_CODE = #{dentitionTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseNervousAbnormDesc != null">
+        DISE_NERVOUS_ABNORM_DESC = #{diseNervousAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="diseNervousCode != null">
+        DISE_NERVOUS_CODE = #{diseNervousCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseOthersAbnormDesc != null">
+        DISE_OTHERS_ABNORM_DESC = #{diseOthersAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="diseOthersCode != null">
+        DISE_OTHERS_CODE = #{diseOthersCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dreCode != null">
+        DRE_CODE = #{dreCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dreOthersDesc != null">
+        DRE_OTHERS_DESC = #{dreOthersDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="drinkingFreqCode != null">
+        DRINKING_FREQ_CODE = #{drinkingFreqCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drunkCode != null">
+        DRUNK_CODE = #{drunkCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ecgAbnormCode != null">
+        ECG_ABNORM_CODE = #{ecgAbnormCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ecgAbnormDesc != null">
+        ECG_ABNORM_DESC = #{ecgAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="elderBrainScore != null">
+        ELDER_BRAIN_SCORE = #{elderBrainScore,jdbcType=DECIMAL},
+      </if>
+      <if test="elderCognitionId != null">
+        ELDER_COGNITION_ID = #{elderCognitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="elderCognitionResultCode != null">
+        ELDER_COGNITION_RESULT_CODE = #{elderCognitionResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="elderDepressedId != null">
+        ELDER_DEPRESSED_ID = #{elderDepressedId,jdbcType=VARCHAR},
+      </if>
+      <if test="elderDepressionScore != null">
+        ELDER_DEPRESSION_SCORE = #{elderDepressionScore,jdbcType=DECIMAL},
+      </if>
+      <if test="elderEmotionalResultCode != null">
+        ELDER_EMOTIONAL_RESULT_CODE = #{elderEmotionalResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="elderHealthAssessCode != null">
+        ELDER_HEALTH_ASSESS_CODE = #{elderHealthAssessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="elderSelfCareAssessCode != null">
+        ELDER_SELF_CARE_ASSESS_CODE = #{elderSelfCareAssessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="elderSelfcareAbilityId != null">
+        ELDER_SELFCARE_ABILITY_ID = #{elderSelfcareAbilityId,jdbcType=VARCHAR},
+      </if>
+      <if test="elderTcmHealthId != null">
+        ELDER_TCM_HEALTH_ID = #{elderTcmHealthId,jdbcType=VARCHAR},
+      </if>
+      <if test="eoleCode != null">
+        EOLE_CODE = #{eoleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="exerciseDurationMins != null">
+        EXERCISE_DURATION_MINS = #{exerciseDurationMins,jdbcType=DECIMAL},
+      </if>
+      <if test="exerciseFreqCode != null">
+        EXERCISE_FREQ_CODE = #{exerciseFreqCode,jdbcType=VARCHAR},
+      </if>
+      <if test="exerciseWay != null">
+        EXERCISE_WAY = #{exerciseWay,jdbcType=VARCHAR},
+      </if>
+      <if test="exerciseYear != null">
+        EXERCISE_YEAR = #{exerciseYear,jdbcType=DECIMAL},
+      </if>
+      <if test="eyegroundAbnormDesc != null">
+        EYEGROUND_ABNORM_DESC = #{eyegroundAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="eyegroundCode != null">
+        EYEGROUND_CODE = #{eyegroundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="falseBlTeethNum != null">
+        FALSE_BL_TEETH_NUM = #{falseBlTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="falseBrTeethNum != null">
+        FALSE_BR_TEETH_NUM = #{falseBrTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="falseUlTeethNum != null">
+        FALSE_UL_TEETH_NUM = #{falseUlTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="falseUrTeethNum != null">
+        FALSE_UR_TEETH_NUM = #{falseUrTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="fbgMg != null">
+        FBG_MG = #{fbgMg,jdbcType=DECIMAL},
+      </if>
+      <if test="fbgMmol != null">
+        FBG_MMOL = #{fbgMmol,jdbcType=DECIMAL},
+      </if>
+      <if test="fobCode != null">
+        FOB_CODE = #{fobCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gentleQualityCode != null">
+        GENTLE_QUALITY_CODE = #{gentleQualityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gluQualResultCode != null">
+        GLU_QUAL_RESULT_CODE = #{gluQualResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hasAbdominalDullnessDesc != null">
+        HAS_ABDOMINAL_DULLNESS_DESC = #{hasAbdominalDullnessDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hasAbdominalMassDesc != null">
+        HAS_ABDOMINAL_MASS_DESC = #{hasAbdominalMassDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hasAbdominalTendDesc != null">
+        HAS_ABDOMINAL_TEND_DESC = #{hasAbdominalTendDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hasHepatauxeDesc != null">
+        HAS_HEPATAUXE_DESC = #{hasHepatauxeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hasSplenomegalyDesc != null">
+        HAS_SPLENOMEGALY_DESC = #{hasSplenomegalyDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hbcabTestResultCode != null">
+        HBCAB_TEST_RESULT_CODE = #{hbcabTestResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hbeabTestResultCode != null">
+        HBEAB_TEST_RESULT_CODE = #{hbeabTestResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hbeagTestResultCode != null">
+        HBEAG_TEST_RESULT_CODE = #{hbeagTestResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hbsabTestResultCode != null">
+        HBSAB_TEST_RESULT_CODE = #{hbsabTestResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hbsagTestResultCode != null">
+        HBSAG_TEST_RESULT_CODE = #{hbsagTestResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hdlc != null">
+        HDLC = #{hdlc,jdbcType=DECIMAL},
+      </if>
+      <if test="healthAbnormCode != null">
+        HEALTH_ABNORM_CODE = #{healthAbnormCode,jdbcType=VARCHAR},
+      </if>
+      <if test="healthAbnormDesc1 != null">
+        HEALTH_ABNORM_DESC1 = #{healthAbnormDesc1,jdbcType=VARCHAR},
+      </if>
+      <if test="healthAbnormDesc2 != null">
+        HEALTH_ABNORM_DESC2 = #{healthAbnormDesc2,jdbcType=VARCHAR},
+      </if>
+      <if test="healthAbnormDesc3 != null">
+        HEALTH_ABNORM_DESC3 = #{healthAbnormDesc3,jdbcType=VARCHAR},
+      </if>
+      <if test="healthAbnormDesc4 != null">
+        HEALTH_ABNORM_DESC4 = #{healthAbnormDesc4,jdbcType=VARCHAR},
+      </if>
+      <if test="healthExamDate != null">
+        HEALTH_EXAM_DATE = #{healthExamDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="healthExamNo != null">
+        HEALTH_EXAM_NO = #{healthExamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hearingCode != null">
+        HEARING_CODE = #{hearingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="heartMurmurCode != null">
+        HEART_MURMUR_CODE = #{heartMurmurCode,jdbcType=VARCHAR},
+      </if>
+      <if test="heartMurmurDesc != null">
+        HEART_MURMUR_DESC = #{heartMurmurDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="heartRate != null">
+        HEART_RATE = #{heartRate,jdbcType=DECIMAL},
+      </if>
+      <if test="heartRhythmTypeCode != null">
+        HEART_RHYTHM_TYPE_CODE = #{heartRhythmTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hepatauxeCode != null">
+        HEPATAUXE_CODE = #{hepatauxeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hgb != null">
+        HGB = #{hgb,jdbcType=DECIMAL},
+      </if>
+      <if test="isBigExam != null">
+        IS_BIG_EXAM = #{isBigExam,jdbcType=DECIMAL},
+      </if>
+      <if test="isDecayedTooth != null">
+        IS_DECAYED_TOOTH = #{isDecayedTooth,jdbcType=DECIMAL},
+      </if>
+      <if test="isFalseTeeth != null">
+        IS_FALSE_TEETH = #{isFalseTeeth,jdbcType=DECIMAL},
+      </if>
+      <if test="isLosetTeeth != null">
+        IS_LOSET_TEETH = #{isLosetTeeth,jdbcType=DECIMAL},
+      </if>
+      <if test="ketQualResultCode != null">
+        KET_QUAL_RESULT_CODE = #{ketQualResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ldbp != null">
+        LDBP = #{ldbp,jdbcType=DECIMAL},
+      </if>
+      <if test="ldlc != null">
+        LDLC = #{ldlc,jdbcType=DECIMAL},
+      </if>
+      <if test="leftCorrectEyesight != null">
+        LEFT_CORRECT_EYESIGHT = #{leftCorrectEyesight,jdbcType=DECIMAL},
+      </if>
+      <if test="leftOriginalEyesight != null">
+        LEFT_ORIGINAL_EYESIGHT = #{leftOriginalEyesight,jdbcType=DECIMAL},
+      </if>
+      <if test="lipExamResultCode != null">
+        LIP_EXAM_RESULT_CODE = #{lipExamResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loseBlTeethNum != null">
+        LOSE_BL_TEETH_NUM = #{loseBlTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="loseBrTeethNum != null">
+        LOSE_BR_TEETH_NUM = #{loseBrTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="loseUlTeethNum != null">
+        LOSE_UL_TEETH_NUM = #{loseUlTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="loseUrTeethNum != null">
+        LOSE_UR_TEETH_NUM = #{loseUrTeethNum,jdbcType=DECIMAL},
+      </if>
+      <if test="lsbp != null">
+        LSBP = #{lsbp,jdbcType=DECIMAL},
+      </if>
+      <if test="lungRaleCode != null">
+        LUNG_RALE_CODE = #{lungRaleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lungRaleOthersDesc != null">
+        LUNG_RALE_OTHERS_DESC = #{lungRaleOthersDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="lungSoundAbnormDesc != null">
+        LUNG_SOUND_ABNORM_DESC = #{lungSoundAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="lungSoundCode != null">
+        LUNG_SOUND_CODE = #{lungSoundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lymphCode != null">
+        LYMPH_CODE = #{lymphCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lymphOthersDesc != null">
+        LYMPH_OTHERS_DESC = #{lymphOthersDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgId != null">
+        MODIFIED_ORG_ID = #{modifiedOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgName != null">
+        MODIFIED_ORG_NAME = #{modifiedOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        MODIFIER = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+      <if test="movementFunctionCode != null">
+        MOVEMENT_FUNCTION_CODE = #{movementFunctionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="occupExposureCode != null">
+        OCCUP_EXPOSURE_CODE = #{occupExposureCode,jdbcType=VARCHAR},
+      </if>
+      <if test="occupExposureWork != null">
+        OCCUP_EXPOSURE_WORK = #{occupExposureWork,jdbcType=VARCHAR},
+      </if>
+      <if test="occupExposureWorkYear != null">
+        OCCUP_EXPOSURE_WORK_YEAR = #{occupExposureWorkYear,jdbcType=DECIMAL},
+      </if>
+      <if test="otherAssistExam != null">
+        OTHER_ASSIST_EXAM = #{otherAssistExam,jdbcType=VARCHAR},
+      </if>
+      <if test="otherHealthExamResult != null">
+        OTHER_HEALTH_EXAM_RESULT = #{otherHealthExamResult,jdbcType=VARCHAR},
+      </if>
+      <if test="pharynxExamResultCode != null">
+        PHARYNX_EXAM_RESULT_CODE = #{pharynxExamResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phlegmWetCode != null">
+        PHLEGM_WET_CODE = #{phlegmWetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="plt != null">
+        PLT = #{plt,jdbcType=DECIMAL},
+      </if>
+      <if test="pofdaCode != null">
+        POFDA_CODE = #{pofdaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonChemical != null">
+        POISON_CHEMICAL = #{poisonChemical,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonChemicalProtectCode != null">
+        POISON_CHEMICAL_PROTECT_CODE = #{poisonChemicalProtectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonDust != null">
+        POISON_DUST = #{poisonDust,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonDustProtectCode != null">
+        POISON_DUST_PROTECT_CODE = #{poisonDustProtectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonOthers != null">
+        POISON_OTHERS = #{poisonOthers,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonOthersProtectCode != null">
+        POISON_OTHERS_PROTECT_CODE = #{poisonOthersProtectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonPhysical != null">
+        POISON_PHYSICAL = #{poisonPhysical,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonPhysicalProtectCode != null">
+        POISON_PHYSICAL_PROTECT_CODE = #{poisonPhysicalProtectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonRadiogen != null">
+        POISON_RADIOGEN = #{poisonRadiogen,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonRadiogenProtectCode != null">
+        POISON_RADIOGEN_PROTECT_CODE = #{poisonRadiogenProtectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="proQualResultCode != null">
+        PRO_QUAL_RESULT_CODE = #{proQualResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pulseRate != null">
+        PULSE_RATE = #{pulseRate,jdbcType=DECIMAL},
+      </if>
+      <if test="qiDeficiencyCode != null">
+        QI_DEFICIENCY_CODE = #{qiDeficiencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qiDepressionCode != null">
+        QI_DEPRESSION_CODE = #{qiDepressionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rdbp != null">
+        RDBP = #{rdbp,jdbcType=DECIMAL},
+      </if>
+      <if test="respDoctorId != null">
+        RESP_DOCTOR_ID = #{respDoctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="respDoctorName != null">
+        RESP_DOCTOR_NAME = #{respDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="rightCorrectEyesight != null">
+        RIGHT_CORRECT_EYESIGHT = #{rightCorrectEyesight,jdbcType=DECIMAL},
+      </if>
+      <if test="rightOriginalEyesight != null">
+        RIGHT_ORIGINAL_EYESIGHT = #{rightOriginalEyesight,jdbcType=DECIMAL},
+      </if>
+      <if test="rsbp != null">
+        RSBP = #{rsbp,jdbcType=DECIMAL},
+      </if>
+      <if test="scleralCode != null">
+        SCLERAL_CODE = #{scleralCode,jdbcType=VARCHAR},
+      </if>
+      <if test="scleralOthersDesc != null">
+        SCLERAL_OTHERS_DESC = #{scleralOthersDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="scr != null">
+        SCR = #{scr,jdbcType=DECIMAL},
+      </if>
+      <if test="sgpt != null">
+        SGPT = #{sgpt,jdbcType=DECIMAL},
+      </if>
+      <if test="skinCode != null">
+        SKIN_CODE = #{skinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="skinOthersDesc != null">
+        SKIN_OTHERS_DESC = #{skinOthersDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="smokingStatusCode != null">
+        SMOKING_STATUS_CODE = #{smokingStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specialDiathsisCode != null">
+        SPECIAL_DIATHSIS_CODE = #{specialDiathsisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="splenomegalyCode != null">
+        SPLENOMEGALY_CODE = #{splenomegalyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="startDrinkingAge != null">
+        START_DRINKING_AGE = #{startDrinkingAge,jdbcType=DECIMAL},
+      </if>
+      <if test="startSmokingAge != null">
+        START_SMOKING_AGE = #{startSmokingAge,jdbcType=DECIMAL},
+      </if>
+      <if test="stopDrinkingAge != null">
+        STOP_DRINKING_AGE = #{stopDrinkingAge,jdbcType=DECIMAL},
+      </if>
+      <if test="stopDrinkingCode != null">
+        STOP_DRINKING_CODE = #{stopDrinkingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stopSmokingAge != null">
+        STOP_SMOKING_AGE = #{stopSmokingAge,jdbcType=DECIMAL},
+      </if>
+      <if test="tbi != null">
+        TBI = #{tbi,jdbcType=DECIMAL},
+      </if>
+      <if test="tcho != null">
+        TCHO = #{tcho,jdbcType=DECIMAL},
+      </if>
+      <if test="tg != null">
+        TG = #{tg,jdbcType=DECIMAL},
+      </if>
+      <if test="uobTestResultCode != null">
+        UOB_TEST_RESULT_CODE = #{uobTestResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="urineMalb != null">
+        URINE_MALB = #{urineMalb,jdbcType=DECIMAL},
+      </if>
+      <if test="urineOthers != null">
+        URINE_OTHERS = #{urineOthers,jdbcType=VARCHAR},
+      </if>
+      <if test="urineSg != null">
+        URINE_SG = #{urineSg,jdbcType=DECIMAL},
+      </if>
+      <if test="vaginaAbnormDesc != null">
+        VAGINA_ABNORM_DESC = #{vaginaAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="vaginaCode != null">
+        VAGINA_CODE = #{vaginaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="vulvaAbnormDesc != null">
+        VULVA_ABNORM_DESC = #{vulvaAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="vulvaCode != null">
+        VULVA_CODE = #{vulvaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="xrayChestAbnormDesc != null">
+        XRAY_CHEST_ABNORM_DESC = #{xrayChestAbnormDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="xrayChestCode != null">
+        XRAY_CHEST_CODE = #{xrayChestCode,jdbcType=VARCHAR},
+      </if>
+      <if test="yangDeficiencyCode != null">
+        YANG_DEFICIENCY_CODE = #{yangDeficiencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="yinDeficiencyCode != null">
+        YIN_DEFICIENCY_CODE = #{yinDeficiencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonRadiogenProtectValue != null">
+        POISON_RADIOGEN_PROTECT_VALUE = #{poisonRadiogenProtectValue,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonPhysicalProtectValue != null">
+        POISON_PHYSICAL_PROTECT_VALUE = #{poisonPhysicalProtectValue,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonOthersProtectValue != null">
+        POISON_OTHERS_PROTECT_VALUE = #{poisonOthersProtectValue,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonDustProtectValue != null">
+        POISON_DUST_PROTECT_VALUE = #{poisonDustProtectValue,jdbcType=VARCHAR},
+      </if>
+      <if test="poisonChemicalProtectValue != null">
+        POISON_CHEMICAL_PROTECT_VALUE = #{poisonChemicalProtectValue,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        HEIGHT = #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null">
+        WEIGHT = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="waist != null">
+        WAIST = #{waist,jdbcType=DECIMAL},
+      </if>
+      <if test="wbc != null">
+        WBC = #{wbc,jdbcType=DECIMAL},
+      </if>
+      <if test="proQuanTestValue != null">
+        PRO_QUAN_TEST_VALUE = #{proQuanTestValue,jdbcType=DECIMAL},
+      </if>
+      <if test="gluQuanTestValue != null">
+        GLU_QUAN_TEST_VALUE = #{gluQuanTestValue,jdbcType=DECIMAL},
+      </if>
+      <if test="ketQualResultValue != null">
+        KET_QUAL_RESULT_VALUE = #{ketQualResultValue,jdbcType=DECIMAL},
+      </if>
+      <if test="uobTestResultValue != null">
+        UOB_TEST_RESULT_VALUE = #{uobTestResultValue,jdbcType=DECIMAL},
+      </if>
+      <if test="urinePh != null">
+        URINE_PH = #{urinePh,jdbcType=DECIMAL},
+      </if>
+      <if test="pbgMg != null">
+        PBG_MG = #{pbgMg,jdbcType=DECIMAL},
+      </if>
+      <if test="pbgMmol != null">
+        PBG_MMOL = #{pbgMmol,jdbcType=DECIMAL},
+      </if>
+      <if test="dbil != null">
+        DBIL = #{dbil,jdbcType=DECIMAL},
+      </if>
+      <if test="bun != null">
+        BUN = #{bun,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodk != null">
+        BLOODK = #{bloodk,jdbcType=DECIMAL},
+      </if>
+      <if test="bloodNa != null">
+        BLOOD_NA = #{bloodNa,jdbcType=DECIMAL},
+      </if>
+      <if test="cea != null">
+        CEA = #{cea,jdbcType=DECIMAL},
+      </if>
+      <if test="alb != null">
+        ALB = #{alb,jdbcType=DECIMAL},
+      </if>
+      <if test="ghb != null">
+        GHB = #{ghb,jdbcType=DECIMAL},
+      </if>
+      <if test="isElder != null">
+        IS_ELDER = #{isElder,jdbcType=DECIMAL},
+      </if>
+      <if test="isHyper != null">
+        IS_HYPER = #{isHyper,jdbcType=DECIMAL},
+      </if>
+      <if test="isDiabetes != null">
+        IS_DIABETES = #{isDiabetes,jdbcType=DECIMAL},
+      </if>
+      <if test="isSmi != null">
+        IS_SMI = #{isSmi,jdbcType=DECIMAL},
+      </if>
+      <if test="isTuberculosis != null">
+        IS_TUBERCULOSIS = #{isTuberculosis,jdbcType=DECIMAL},
+      </if>
+      <if test="isChd != null">
+        IS_CHD = #{isChd,jdbcType=DECIMAL},
+      </if>
+      <if test="isCa != null">
+        IS_CA = #{isCa,jdbcType=DECIMAL},
+      </if>
+      <if test="healthAbnormDesc5 != null">
+        HEALTH_ABNORM_DESC5 = #{healthAbnormDesc5,jdbcType=VARCHAR},
+      </if>
+      <if test="healthAbnormDesc6 != null">
+        HEALTH_ABNORM_DESC6 = #{healthAbnormDesc6,jdbcType=VARCHAR},
+      </if>
+      <if test="isApply != null">
+        IS_APPLY = #{isApply,jdbcType=DECIMAL},
+      </if>
+      <if test="isMaternal != null">
+        IS_MATERNAL = #{isMaternal,jdbcType=DECIMAL},
+      </if>
+      <if test="isChild != null">
+        IS_CHILD = #{isChild,jdbcType=DECIMAL},
+      </if>
+      <if test="isAppCreate != null">
+        IS_APP_CREATE = #{isAppCreate,jdbcType=DECIMAL},
+      </if>
+      <if test="personGroup != null">
+        PERSON_GROUP = #{personGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="standard != null">
+        STANDARD = #{standard,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null">
+        SOURCE_TYPE = #{sourceType,jdbcType=DECIMAL},
+      </if>
+      <if test="aboValue != null">
+        ABO_VALUE = #{aboValue,jdbcType=VARCHAR},
+      </if>
+      <if test="rhValue != null">
+        RH_VALUE = #{rhValue,jdbcType=VARCHAR},
+      </if>
+      <if test="homocysteine != null">
+        HOMOCYSTEINE = #{homocysteine,jdbcType=DECIMAL},
+      </if>
+      <if test="healthExamSymptomCode != null">
+        HEALTH_EXAM_SYMPTOM_CODE = #{healthExamSymptomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="healthExamSymptomValue != null">
+        HEALTH_EXAM_SYMPTOM_VALUE = #{healthExamSymptomValue,jdbcType=VARCHAR},
+      </if>
+      <if test="eatingHabitCode != null">
+        EATING_HABIT_CODE = #{eatingHabitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="eatingHabitValue != null">
+        EATING_HABIT_VALUE = #{eatingHabitValue,jdbcType=VARCHAR},
+      </if>
+      <if test="drinkingTypeCode != null">
+        DRINKING_TYPE_CODE = #{drinkingTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drinkingTypeValue != null">
+        DRINKING_TYPE_VALUE = #{drinkingTypeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="breastCode != null">
+        BREAST_CODE = #{breastCode,jdbcType=VARCHAR},
+      </if>
+      <if test="breastValue != null">
+        BREAST_VALUE = #{breastValue,jdbcType=VARCHAR},
+      </if>
+      <if test="electrocardiogramCode != null">
+        ELECTROCARDIOGRAM_CODE = #{electrocardiogramCode,jdbcType=VARCHAR},
+      </if>
+      <if test="electrocardiogramValue != null">
+        ELECTROCARDIOGRAM_VALUE = #{electrocardiogramValue,jdbcType=VARCHAR},
+      </if>
+      <if test="diseBrainVesselCode != null">
+        DISE_BRAIN_VESSEL_CODE = #{diseBrainVesselCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseBrainVesselValue != null">
+        DISE_BRAIN_VESSEL_VALUE = #{diseBrainVesselValue,jdbcType=VARCHAR},
+      </if>
+      <if test="diseKidneyCode != null">
+        DISE_KIDNEY_CODE = #{diseKidneyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseKidneyValue != null">
+        DISE_KIDNEY_VALUE = #{diseKidneyValue,jdbcType=VARCHAR},
+      </if>
+      <if test="diseHeartCode != null">
+        DISE_HEART_CODE = #{diseHeartCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseHeartValue != null">
+        DISE_HEART_VALUE = #{diseHeartValue,jdbcType=VARCHAR},
+      </if>
+      <if test="diseBloodVesselCode != null">
+        DISE_BLOOD_VESSEL_CODE = #{diseBloodVesselCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseBloodVesselValue != null">
+        DISE_BLOOD_VESSEL_VALUE = #{diseBloodVesselValue,jdbcType=VARCHAR},
+      </if>
+      <if test="diseEyeCode != null">
+        DISE_EYE_CODE = #{diseEyeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseEyeValue != null">
+        DISE_EYE_VALUE = #{diseEyeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="nerveOtherDiseaseCode != null">
+        NERVE_OTHER_DISEASE_CODE = #{nerveOtherDiseaseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nerveOtherDiseaseValue != null">
+        NERVE_OTHER_DISEASE_VALUE = #{nerveOtherDiseaseValue,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseOthersCode != null">
+        DISEASE_OTHERS_CODE = #{diseaseOthersCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseOthersValue != null">
+        DISEASE_OTHERS_VALUE = #{diseaseOthersValue,jdbcType=VARCHAR},
+      </if>
+      <if test="healthGuidanceCode != null">
+        HEALTH_GUIDANCE_CODE = #{healthGuidanceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="healthGuidanceValue != null">
+        HEALTH_GUIDANCE_VALUE = #{healthGuidanceValue,jdbcType=VARCHAR},
+      </if>
+      <if test="riskFactorControlCode != null">
+        RISK_FACTOR_CONTROL_CODE = #{riskFactorControlCode,jdbcType=VARCHAR},
+      </if>
+      <if test="riskFactorControlValue != null">
+        RISK_FACTOR_CONTROL_VALUE = #{riskFactorControlValue,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null">
+        ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        ERR_STR = #{errStr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HEALTH_EXAM_ID = #{healthExamId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuzhou.pub.entity.HealthExam">
+    update HEALTH_EXAM
+    set PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR},
+      CREATE_ORG_ID = #{createOrgId,jdbcType=VARCHAR},
+      ORG_ID = #{orgId,jdbcType=VARCHAR},
+      ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      ABDOMINAL_DULLNESS_CODE = #{abdominalDullnessCode,jdbcType=VARCHAR},
+      ABDOMINAL_MASS_CODE = #{abdominalMassCode,jdbcType=VARCHAR},
+      ABDOMINAL_TEND_CODE = #{abdominalTendCode,jdbcType=VARCHAR},
+      ADNEXA_ABNORM_DESC = #{adnexaAbnormDesc,jdbcType=VARCHAR},
+      ADNEXA_CODE = #{adnexaCode,jdbcType=VARCHAR},
+      ALL_FALSE_TEETH = #{allFalseTeeth,jdbcType=DECIMAL},
+      ALL_LOSE_TEETH = #{allLoseTeeth,jdbcType=DECIMAL},
+      AST = #{ast,jdbcType=DECIMAL},
+      BARREL_CHEST_CODE = #{barrelChestCode,jdbcType=VARCHAR},
+      BLOOD_STASIS_CODE = #{bloodStasisCode,jdbcType=VARCHAR},
+      BMI = #{bmi,jdbcType=DECIMAL},
+      BODY_TEMPERATURE = #{bodyTemperature,jdbcType=DECIMAL},
+      BREATHING_RATE = #{breathingRate,jdbcType=DECIMAL},
+      BSCAN_ABDOMEN_ABNORM_DESC = #{bscanAbdomenAbnormDesc,jdbcType=VARCHAR},
+      BSCAN_ABDOMEN_CODE = #{bscanAbdomenCode,jdbcType=VARCHAR},
+      BSCAN_OTHERS_ABNORM_DESC = #{bscanOthersAbnormDesc,jdbcType=VARCHAR},
+      BSCAN_OTHERS_CODE = #{bscanOthersCode,jdbcType=VARCHAR},
+      CBC_OTHERS = #{cbcOthers,jdbcType=VARCHAR},
+      CERVIX_ABNORM_DESC = #{cervixAbnormDesc,jdbcType=VARCHAR},
+      CERVIX_CODE = #{cervixCode,jdbcType=VARCHAR},
+      CORPUSUTERI_ABNORM_DESC = #{corpusuteriAbnormDesc,jdbcType=VARCHAR},
+      CORPUSUTERI_CODE = #{corpusuteriCode,jdbcType=VARCHAR},
+      CPS_ABNORM_DESC = #{cpsAbnormDesc,jdbcType=VARCHAR},
+      CPS_CODE = #{cpsCode,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      DAILY_DRINKING = #{dailyDrinking,jdbcType=DECIMAL},
+      DAILY_SMOKING = #{dailySmoking,jdbcType=DECIMAL},
+      DAMP_HEAT_CODE = #{dampHeatCode,jdbcType=VARCHAR},
+      DECAYED_BL_TOOTH_NUM = #{decayedBlToothNum,jdbcType=DECIMAL},
+      DECAYED_BR_TOOTH_NUM = #{decayedBrToothNum,jdbcType=DECIMAL},
+      DECAYED_UL_TOOTH_NUM = #{decayedUlToothNum,jdbcType=DECIMAL},
+      DECAYED_UR_TOOTH_NUM = #{decayedUrToothNum,jdbcType=DECIMAL},
+      DENTITION_TYPE_CODE = #{dentitionTypeCode,jdbcType=VARCHAR},
+      DISE_NERVOUS_ABNORM_DESC = #{diseNervousAbnormDesc,jdbcType=VARCHAR},
+      DISE_NERVOUS_CODE = #{diseNervousCode,jdbcType=VARCHAR},
+      DISE_OTHERS_ABNORM_DESC = #{diseOthersAbnormDesc,jdbcType=VARCHAR},
+      DISE_OTHERS_CODE = #{diseOthersCode,jdbcType=VARCHAR},
+      DRE_CODE = #{dreCode,jdbcType=VARCHAR},
+      DRE_OTHERS_DESC = #{dreOthersDesc,jdbcType=VARCHAR},
+      DRINKING_FREQ_CODE = #{drinkingFreqCode,jdbcType=VARCHAR},
+      DRUNK_CODE = #{drunkCode,jdbcType=VARCHAR},
+      ECG_ABNORM_CODE = #{ecgAbnormCode,jdbcType=VARCHAR},
+      ECG_ABNORM_DESC = #{ecgAbnormDesc,jdbcType=VARCHAR},
+      ELDER_BRAIN_SCORE = #{elderBrainScore,jdbcType=DECIMAL},
+      ELDER_COGNITION_ID = #{elderCognitionId,jdbcType=VARCHAR},
+      ELDER_COGNITION_RESULT_CODE = #{elderCognitionResultCode,jdbcType=VARCHAR},
+      ELDER_DEPRESSED_ID = #{elderDepressedId,jdbcType=VARCHAR},
+      ELDER_DEPRESSION_SCORE = #{elderDepressionScore,jdbcType=DECIMAL},
+      ELDER_EMOTIONAL_RESULT_CODE = #{elderEmotionalResultCode,jdbcType=VARCHAR},
+      ELDER_HEALTH_ASSESS_CODE = #{elderHealthAssessCode,jdbcType=VARCHAR},
+      ELDER_SELF_CARE_ASSESS_CODE = #{elderSelfCareAssessCode,jdbcType=VARCHAR},
+      ELDER_SELFCARE_ABILITY_ID = #{elderSelfcareAbilityId,jdbcType=VARCHAR},
+      ELDER_TCM_HEALTH_ID = #{elderTcmHealthId,jdbcType=VARCHAR},
+      EOLE_CODE = #{eoleCode,jdbcType=VARCHAR},
+      EXERCISE_DURATION_MINS = #{exerciseDurationMins,jdbcType=DECIMAL},
+      EXERCISE_FREQ_CODE = #{exerciseFreqCode,jdbcType=VARCHAR},
+      EXERCISE_WAY = #{exerciseWay,jdbcType=VARCHAR},
+      EXERCISE_YEAR = #{exerciseYear,jdbcType=DECIMAL},
+      EYEGROUND_ABNORM_DESC = #{eyegroundAbnormDesc,jdbcType=VARCHAR},
+      EYEGROUND_CODE = #{eyegroundCode,jdbcType=VARCHAR},
+      FALSE_BL_TEETH_NUM = #{falseBlTeethNum,jdbcType=DECIMAL},
+      FALSE_BR_TEETH_NUM = #{falseBrTeethNum,jdbcType=DECIMAL},
+      FALSE_UL_TEETH_NUM = #{falseUlTeethNum,jdbcType=DECIMAL},
+      FALSE_UR_TEETH_NUM = #{falseUrTeethNum,jdbcType=DECIMAL},
+      FBG_MG = #{fbgMg,jdbcType=DECIMAL},
+      FBG_MMOL = #{fbgMmol,jdbcType=DECIMAL},
+      FOB_CODE = #{fobCode,jdbcType=VARCHAR},
+      GENTLE_QUALITY_CODE = #{gentleQualityCode,jdbcType=VARCHAR},
+      GLU_QUAL_RESULT_CODE = #{gluQualResultCode,jdbcType=VARCHAR},
+      HAS_ABDOMINAL_DULLNESS_DESC = #{hasAbdominalDullnessDesc,jdbcType=VARCHAR},
+      HAS_ABDOMINAL_MASS_DESC = #{hasAbdominalMassDesc,jdbcType=VARCHAR},
+      HAS_ABDOMINAL_TEND_DESC = #{hasAbdominalTendDesc,jdbcType=VARCHAR},
+      HAS_HEPATAUXE_DESC = #{hasHepatauxeDesc,jdbcType=VARCHAR},
+      HAS_SPLENOMEGALY_DESC = #{hasSplenomegalyDesc,jdbcType=VARCHAR},
+      HBCAB_TEST_RESULT_CODE = #{hbcabTestResultCode,jdbcType=VARCHAR},
+      HBEAB_TEST_RESULT_CODE = #{hbeabTestResultCode,jdbcType=VARCHAR},
+      HBEAG_TEST_RESULT_CODE = #{hbeagTestResultCode,jdbcType=VARCHAR},
+      HBSAB_TEST_RESULT_CODE = #{hbsabTestResultCode,jdbcType=VARCHAR},
+      HBSAG_TEST_RESULT_CODE = #{hbsagTestResultCode,jdbcType=VARCHAR},
+      HDLC = #{hdlc,jdbcType=DECIMAL},
+      HEALTH_ABNORM_CODE = #{healthAbnormCode,jdbcType=VARCHAR},
+      HEALTH_ABNORM_DESC1 = #{healthAbnormDesc1,jdbcType=VARCHAR},
+      HEALTH_ABNORM_DESC2 = #{healthAbnormDesc2,jdbcType=VARCHAR},
+      HEALTH_ABNORM_DESC3 = #{healthAbnormDesc3,jdbcType=VARCHAR},
+      HEALTH_ABNORM_DESC4 = #{healthAbnormDesc4,jdbcType=VARCHAR},
+      HEALTH_EXAM_DATE = #{healthExamDate,jdbcType=TIMESTAMP},
+      HEALTH_EXAM_NO = #{healthExamNo,jdbcType=VARCHAR},
+      HEARING_CODE = #{hearingCode,jdbcType=VARCHAR},
+      HEART_MURMUR_CODE = #{heartMurmurCode,jdbcType=VARCHAR},
+      HEART_MURMUR_DESC = #{heartMurmurDesc,jdbcType=VARCHAR},
+      HEART_RATE = #{heartRate,jdbcType=DECIMAL},
+      HEART_RHYTHM_TYPE_CODE = #{heartRhythmTypeCode,jdbcType=VARCHAR},
+      HEPATAUXE_CODE = #{hepatauxeCode,jdbcType=VARCHAR},
+      HGB = #{hgb,jdbcType=DECIMAL},
+      IS_BIG_EXAM = #{isBigExam,jdbcType=DECIMAL},
+      IS_DECAYED_TOOTH = #{isDecayedTooth,jdbcType=DECIMAL},
+      IS_FALSE_TEETH = #{isFalseTeeth,jdbcType=DECIMAL},
+      IS_LOSET_TEETH = #{isLosetTeeth,jdbcType=DECIMAL},
+      KET_QUAL_RESULT_CODE = #{ketQualResultCode,jdbcType=VARCHAR},
+      LDBP = #{ldbp,jdbcType=DECIMAL},
+      LDLC = #{ldlc,jdbcType=DECIMAL},
+      LEFT_CORRECT_EYESIGHT = #{leftCorrectEyesight,jdbcType=DECIMAL},
+      LEFT_ORIGINAL_EYESIGHT = #{leftOriginalEyesight,jdbcType=DECIMAL},
+      LIP_EXAM_RESULT_CODE = #{lipExamResultCode,jdbcType=VARCHAR},
+      LOSE_BL_TEETH_NUM = #{loseBlTeethNum,jdbcType=DECIMAL},
+      LOSE_BR_TEETH_NUM = #{loseBrTeethNum,jdbcType=DECIMAL},
+      LOSE_UL_TEETH_NUM = #{loseUlTeethNum,jdbcType=DECIMAL},
+      LOSE_UR_TEETH_NUM = #{loseUrTeethNum,jdbcType=DECIMAL},
+      LSBP = #{lsbp,jdbcType=DECIMAL},
+      LUNG_RALE_CODE = #{lungRaleCode,jdbcType=VARCHAR},
+      LUNG_RALE_OTHERS_DESC = #{lungRaleOthersDesc,jdbcType=VARCHAR},
+      LUNG_SOUND_ABNORM_DESC = #{lungSoundAbnormDesc,jdbcType=VARCHAR},
+      LUNG_SOUND_CODE = #{lungSoundCode,jdbcType=VARCHAR},
+      LYMPH_CODE = #{lymphCode,jdbcType=VARCHAR},
+      LYMPH_OTHERS_DESC = #{lymphOthersDesc,jdbcType=VARCHAR},
+      MODIFIED_ORG_ID = #{modifiedOrgId,jdbcType=VARCHAR},
+      MODIFIED_ORG_NAME = #{modifiedOrgName,jdbcType=VARCHAR},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      MODIFIER = #{modifier,jdbcType=VARCHAR},
+      MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      MOVEMENT_FUNCTION_CODE = #{movementFunctionCode,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      OCCUP_EXPOSURE_CODE = #{occupExposureCode,jdbcType=VARCHAR},
+      OCCUP_EXPOSURE_WORK = #{occupExposureWork,jdbcType=VARCHAR},
+      OCCUP_EXPOSURE_WORK_YEAR = #{occupExposureWorkYear,jdbcType=DECIMAL},
+      OTHER_ASSIST_EXAM = #{otherAssistExam,jdbcType=VARCHAR},
+      OTHER_HEALTH_EXAM_RESULT = #{otherHealthExamResult,jdbcType=VARCHAR},
+      PHARYNX_EXAM_RESULT_CODE = #{pharynxExamResultCode,jdbcType=VARCHAR},
+      PHLEGM_WET_CODE = #{phlegmWetCode,jdbcType=VARCHAR},
+      PLT = #{plt,jdbcType=DECIMAL},
+      POFDA_CODE = #{pofdaCode,jdbcType=VARCHAR},
+      POISON_CHEMICAL = #{poisonChemical,jdbcType=VARCHAR},
+      POISON_CHEMICAL_PROTECT_CODE = #{poisonChemicalProtectCode,jdbcType=VARCHAR},
+      POISON_DUST = #{poisonDust,jdbcType=VARCHAR},
+      POISON_DUST_PROTECT_CODE = #{poisonDustProtectCode,jdbcType=VARCHAR},
+      POISON_OTHERS = #{poisonOthers,jdbcType=VARCHAR},
+      POISON_OTHERS_PROTECT_CODE = #{poisonOthersProtectCode,jdbcType=VARCHAR},
+      POISON_PHYSICAL = #{poisonPhysical,jdbcType=VARCHAR},
+      POISON_PHYSICAL_PROTECT_CODE = #{poisonPhysicalProtectCode,jdbcType=VARCHAR},
+      POISON_RADIOGEN = #{poisonRadiogen,jdbcType=VARCHAR},
+      POISON_RADIOGEN_PROTECT_CODE = #{poisonRadiogenProtectCode,jdbcType=VARCHAR},
+      PRO_QUAL_RESULT_CODE = #{proQualResultCode,jdbcType=VARCHAR},
+      PULSE_RATE = #{pulseRate,jdbcType=DECIMAL},
+      QI_DEFICIENCY_CODE = #{qiDeficiencyCode,jdbcType=VARCHAR},
+      QI_DEPRESSION_CODE = #{qiDepressionCode,jdbcType=VARCHAR},
+      RDBP = #{rdbp,jdbcType=DECIMAL},
+      RESP_DOCTOR_ID = #{respDoctorId,jdbcType=VARCHAR},
+      RESP_DOCTOR_NAME = #{respDoctorName,jdbcType=VARCHAR},
+      RIGHT_CORRECT_EYESIGHT = #{rightCorrectEyesight,jdbcType=DECIMAL},
+      RIGHT_ORIGINAL_EYESIGHT = #{rightOriginalEyesight,jdbcType=DECIMAL},
+      RSBP = #{rsbp,jdbcType=DECIMAL},
+      SCLERAL_CODE = #{scleralCode,jdbcType=VARCHAR},
+      SCLERAL_OTHERS_DESC = #{scleralOthersDesc,jdbcType=VARCHAR},
+      SCR = #{scr,jdbcType=DECIMAL},
+      SGPT = #{sgpt,jdbcType=DECIMAL},
+      SKIN_CODE = #{skinCode,jdbcType=VARCHAR},
+      SKIN_OTHERS_DESC = #{skinOthersDesc,jdbcType=VARCHAR},
+      SMOKING_STATUS_CODE = #{smokingStatusCode,jdbcType=VARCHAR},
+      SPECIAL_DIATHSIS_CODE = #{specialDiathsisCode,jdbcType=VARCHAR},
+      SPLENOMEGALY_CODE = #{splenomegalyCode,jdbcType=VARCHAR},
+      START_DRINKING_AGE = #{startDrinkingAge,jdbcType=DECIMAL},
+      START_SMOKING_AGE = #{startSmokingAge,jdbcType=DECIMAL},
+      STOP_DRINKING_AGE = #{stopDrinkingAge,jdbcType=DECIMAL},
+      STOP_DRINKING_CODE = #{stopDrinkingCode,jdbcType=VARCHAR},
+      STOP_SMOKING_AGE = #{stopSmokingAge,jdbcType=DECIMAL},
+      TBI = #{tbi,jdbcType=DECIMAL},
+      TCHO = #{tcho,jdbcType=DECIMAL},
+      TG = #{tg,jdbcType=DECIMAL},
+      UOB_TEST_RESULT_CODE = #{uobTestResultCode,jdbcType=VARCHAR},
+      URINE_MALB = #{urineMalb,jdbcType=DECIMAL},
+      URINE_OTHERS = #{urineOthers,jdbcType=VARCHAR},
+      URINE_SG = #{urineSg,jdbcType=DECIMAL},
+      VAGINA_ABNORM_DESC = #{vaginaAbnormDesc,jdbcType=VARCHAR},
+      VAGINA_CODE = #{vaginaCode,jdbcType=VARCHAR},
+      VULVA_ABNORM_DESC = #{vulvaAbnormDesc,jdbcType=VARCHAR},
+      VULVA_CODE = #{vulvaCode,jdbcType=VARCHAR},
+      XRAY_CHEST_ABNORM_DESC = #{xrayChestAbnormDesc,jdbcType=VARCHAR},
+      XRAY_CHEST_CODE = #{xrayChestCode,jdbcType=VARCHAR},
+      YANG_DEFICIENCY_CODE = #{yangDeficiencyCode,jdbcType=VARCHAR},
+      YIN_DEFICIENCY_CODE = #{yinDeficiencyCode,jdbcType=VARCHAR},
+      POISON_RADIOGEN_PROTECT_VALUE = #{poisonRadiogenProtectValue,jdbcType=VARCHAR},
+      POISON_PHYSICAL_PROTECT_VALUE = #{poisonPhysicalProtectValue,jdbcType=VARCHAR},
+      POISON_OTHERS_PROTECT_VALUE = #{poisonOthersProtectValue,jdbcType=VARCHAR},
+      POISON_DUST_PROTECT_VALUE = #{poisonDustProtectValue,jdbcType=VARCHAR},
+      POISON_CHEMICAL_PROTECT_VALUE = #{poisonChemicalProtectValue,jdbcType=VARCHAR},
+      HEIGHT = #{height,jdbcType=DECIMAL},
+      WEIGHT = #{weight,jdbcType=DECIMAL},
+      WAIST = #{waist,jdbcType=DECIMAL},
+      WBC = #{wbc,jdbcType=DECIMAL},
+      PRO_QUAN_TEST_VALUE = #{proQuanTestValue,jdbcType=DECIMAL},
+      GLU_QUAN_TEST_VALUE = #{gluQuanTestValue,jdbcType=DECIMAL},
+      KET_QUAL_RESULT_VALUE = #{ketQualResultValue,jdbcType=DECIMAL},
+      UOB_TEST_RESULT_VALUE = #{uobTestResultValue,jdbcType=DECIMAL},
+      URINE_PH = #{urinePh,jdbcType=DECIMAL},
+      PBG_MG = #{pbgMg,jdbcType=DECIMAL},
+      PBG_MMOL = #{pbgMmol,jdbcType=DECIMAL},
+      DBIL = #{dbil,jdbcType=DECIMAL},
+      BUN = #{bun,jdbcType=DECIMAL},
+      BLOODK = #{bloodk,jdbcType=DECIMAL},
+      BLOOD_NA = #{bloodNa,jdbcType=DECIMAL},
+      CEA = #{cea,jdbcType=DECIMAL},
+      ALB = #{alb,jdbcType=DECIMAL},
+      GHB = #{ghb,jdbcType=DECIMAL},
+      IS_ELDER = #{isElder,jdbcType=DECIMAL},
+      IS_HYPER = #{isHyper,jdbcType=DECIMAL},
+      IS_DIABETES = #{isDiabetes,jdbcType=DECIMAL},
+      IS_SMI = #{isSmi,jdbcType=DECIMAL},
+      IS_TUBERCULOSIS = #{isTuberculosis,jdbcType=DECIMAL},
+      IS_CHD = #{isChd,jdbcType=DECIMAL},
+      IS_CA = #{isCa,jdbcType=DECIMAL},
+      HEALTH_ABNORM_DESC5 = #{healthAbnormDesc5,jdbcType=VARCHAR},
+      HEALTH_ABNORM_DESC6 = #{healthAbnormDesc6,jdbcType=VARCHAR},
+      IS_APPLY = #{isApply,jdbcType=DECIMAL},
+      IS_MATERNAL = #{isMaternal,jdbcType=DECIMAL},
+      IS_CHILD = #{isChild,jdbcType=DECIMAL},
+      IS_APP_CREATE = #{isAppCreate,jdbcType=DECIMAL},
+      PERSON_GROUP = #{personGroup,jdbcType=VARCHAR},
+      STANDARD = #{standard,jdbcType=VARCHAR},
+      SOURCE_TYPE = #{sourceType,jdbcType=DECIMAL},
+      ABO_VALUE = #{aboValue,jdbcType=VARCHAR},
+      RH_VALUE = #{rhValue,jdbcType=VARCHAR},
+      HOMOCYSTEINE = #{homocysteine,jdbcType=DECIMAL},
+      HEALTH_EXAM_SYMPTOM_CODE = #{healthExamSymptomCode,jdbcType=VARCHAR},
+      HEALTH_EXAM_SYMPTOM_VALUE = #{healthExamSymptomValue,jdbcType=VARCHAR},
+      EATING_HABIT_CODE = #{eatingHabitCode,jdbcType=VARCHAR},
+      EATING_HABIT_VALUE = #{eatingHabitValue,jdbcType=VARCHAR},
+      DRINKING_TYPE_CODE = #{drinkingTypeCode,jdbcType=VARCHAR},
+      DRINKING_TYPE_VALUE = #{drinkingTypeValue,jdbcType=VARCHAR},
+      BREAST_CODE = #{breastCode,jdbcType=VARCHAR},
+      BREAST_VALUE = #{breastValue,jdbcType=VARCHAR},
+      ELECTROCARDIOGRAM_CODE = #{electrocardiogramCode,jdbcType=VARCHAR},
+      ELECTROCARDIOGRAM_VALUE = #{electrocardiogramValue,jdbcType=VARCHAR},
+      DISE_BRAIN_VESSEL_CODE = #{diseBrainVesselCode,jdbcType=VARCHAR},
+      DISE_BRAIN_VESSEL_VALUE = #{diseBrainVesselValue,jdbcType=VARCHAR},
+      DISE_KIDNEY_CODE = #{diseKidneyCode,jdbcType=VARCHAR},
+      DISE_KIDNEY_VALUE = #{diseKidneyValue,jdbcType=VARCHAR},
+      DISE_HEART_CODE = #{diseHeartCode,jdbcType=VARCHAR},
+      DISE_HEART_VALUE = #{diseHeartValue,jdbcType=VARCHAR},
+      DISE_BLOOD_VESSEL_CODE = #{diseBloodVesselCode,jdbcType=VARCHAR},
+      DISE_BLOOD_VESSEL_VALUE = #{diseBloodVesselValue,jdbcType=VARCHAR},
+      DISE_EYE_CODE = #{diseEyeCode,jdbcType=VARCHAR},
+      DISE_EYE_VALUE = #{diseEyeValue,jdbcType=VARCHAR},
+      NERVE_OTHER_DISEASE_CODE = #{nerveOtherDiseaseCode,jdbcType=VARCHAR},
+      NERVE_OTHER_DISEASE_VALUE = #{nerveOtherDiseaseValue,jdbcType=VARCHAR},
+      DISEASE_OTHERS_CODE = #{diseaseOthersCode,jdbcType=VARCHAR},
+      DISEASE_OTHERS_VALUE = #{diseaseOthersValue,jdbcType=VARCHAR},
+      HEALTH_GUIDANCE_CODE = #{healthGuidanceCode,jdbcType=VARCHAR},
+      HEALTH_GUIDANCE_VALUE = #{healthGuidanceValue,jdbcType=VARCHAR},
+      RISK_FACTOR_CONTROL_CODE = #{riskFactorControlCode,jdbcType=VARCHAR},
+      RISK_FACTOR_CONTROL_VALUE = #{riskFactorControlValue,jdbcType=VARCHAR},
+      ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      ERR_STR = #{errStr,jdbcType=VARCHAR}
+    where HEALTH_EXAM_ID = #{healthExamId,jdbcType=VARCHAR}
+  </update>
+</mapper>

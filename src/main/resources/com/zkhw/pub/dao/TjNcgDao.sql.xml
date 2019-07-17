@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.TjNcgDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.TjNcg">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="aichive_no" jdbcType="VARCHAR" property="aichiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
+    <result column="WBC" jdbcType="VARCHAR" property="wbc" />
+    <result column="LEU" jdbcType="VARCHAR" property="leu" />
+    <result column="NIT" jdbcType="VARCHAR" property="nit" />
+    <result column="URO" jdbcType="VARCHAR" property="uro" />
+    <result column="PRO" jdbcType="VARCHAR" property="pro" />
+    <result column="PH" jdbcType="VARCHAR" property="ph" />
+    <result column="BLD" jdbcType="VARCHAR" property="bld" />
+    <result column="SG" jdbcType="VARCHAR" property="sg" />
+    <result column="KET" jdbcType="VARCHAR" property="ket" />
+    <result column="BIL" jdbcType="VARCHAR" property="bil" />
+    <result column="GLU" jdbcType="VARCHAR" property="glu" />
+    <result column="Vc" jdbcType="VARCHAR" property="vc" />
+    <result column="MA" jdbcType="VARCHAR" property="ma" />
+    <result column="ACR" jdbcType="VARCHAR" property="acr" />
+    <result column="Ca" jdbcType="VARCHAR" property="ca" />
+    <result column="CR" jdbcType="VARCHAR" property="cr" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="synchronize_type" jdbcType="VARCHAR" property="synchronizeType" />
+    <result column="ZrysNCG" jdbcType="VARCHAR" property="zrysncg" />
+    <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, aichive_no, id_number, bar_code, WBC, LEU, NIT, URO, PRO, PH, BLD, SG, KET, BIL, 
+    GLU, Vc, MA, ACR, Ca, CR, type, createtime, updatetime, synchronize_type, ZrysNCG, 
+    upload_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zkhw_tj_ncg
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findListByAichiveNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zkhw_tj_ncg
+    where aichive_no = #{aichiveNo,jdbcType=VARCHAR}
+    order by createtime desc
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from zkhw_tj_ncg
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.pub.entity.TjNcg">
+    insert into zkhw_tj_ncg (ID, aichive_no, id_number, 
+      bar_code, WBC, LEU, 
+      NIT, URO, PRO, PH, 
+      BLD, SG, KET, BIL, 
+      GLU, Vc, MA, ACR, 
+      Ca, CR, type, createtime, 
+      updatetime, synchronize_type, ZrysNCG, 
+      upload_status)
+    values (#{id,jdbcType=VARCHAR}, #{aichiveNo,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, 
+      #{barCode,jdbcType=VARCHAR}, #{wbc,jdbcType=VARCHAR}, #{leu,jdbcType=VARCHAR}, 
+      #{nit,jdbcType=VARCHAR}, #{uro,jdbcType=VARCHAR}, #{pro,jdbcType=VARCHAR}, #{ph,jdbcType=VARCHAR}, 
+      #{bld,jdbcType=VARCHAR}, #{sg,jdbcType=VARCHAR}, #{ket,jdbcType=VARCHAR}, #{bil,jdbcType=VARCHAR}, 
+      #{glu,jdbcType=VARCHAR}, #{vc,jdbcType=VARCHAR}, #{ma,jdbcType=VARCHAR}, #{acr,jdbcType=VARCHAR}, 
+      #{ca,jdbcType=VARCHAR}, #{cr,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{synchronizeType,jdbcType=VARCHAR}, #{zrysncg,jdbcType=VARCHAR}, 
+      #{uploadStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.TjNcg">
+    insert into zkhw_tj_ncg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="aichiveNo != null">
+        aichive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="barCode != null">
+        bar_code,
+      </if>
+      <if test="wbc != null">
+        WBC,
+      </if>
+      <if test="leu != null">
+        LEU,
+      </if>
+      <if test="nit != null">
+        NIT,
+      </if>
+      <if test="uro != null">
+        URO,
+      </if>
+      <if test="pro != null">
+        PRO,
+      </if>
+      <if test="ph != null">
+        PH,
+      </if>
+      <if test="bld != null">
+        BLD,
+      </if>
+      <if test="sg != null">
+        SG,
+      </if>
+      <if test="ket != null">
+        KET,
+      </if>
+      <if test="bil != null">
+        BIL,
+      </if>
+      <if test="glu != null">
+        GLU,
+      </if>
+      <if test="vc != null">
+        Vc,
+      </if>
+      <if test="ma != null">
+        MA,
+      </if>
+      <if test="acr != null">
+        ACR,
+      </if>
+      <if test="ca != null">
+        Ca,
+      </if>
+      <if test="cr != null">
+        CR,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="synchronizeType != null">
+        synchronize_type,
+      </if>
+      <if test="zrysncg != null">
+        ZrysNCG,
+      </if>
+      <if test="uploadStatus != null">
+        upload_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="aichiveNo != null">
+        #{aichiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wbc != null">
+        #{wbc,jdbcType=VARCHAR},
+      </if>
+      <if test="leu != null">
+        #{leu,jdbcType=VARCHAR},
+      </if>
+      <if test="nit != null">
+        #{nit,jdbcType=VARCHAR},
+      </if>
+      <if test="uro != null">
+        #{uro,jdbcType=VARCHAR},
+      </if>
+      <if test="pro != null">
+        #{pro,jdbcType=VARCHAR},
+      </if>
+      <if test="ph != null">
+        #{ph,jdbcType=VARCHAR},
+      </if>
+      <if test="bld != null">
+        #{bld,jdbcType=VARCHAR},
+      </if>
+      <if test="sg != null">
+        #{sg,jdbcType=VARCHAR},
+      </if>
+      <if test="ket != null">
+        #{ket,jdbcType=VARCHAR},
+      </if>
+      <if test="bil != null">
+        #{bil,jdbcType=VARCHAR},
+      </if>
+      <if test="glu != null">
+        #{glu,jdbcType=VARCHAR},
+      </if>
+      <if test="vc != null">
+        #{vc,jdbcType=VARCHAR},
+      </if>
+      <if test="ma != null">
+        #{ma,jdbcType=VARCHAR},
+      </if>
+      <if test="acr != null">
+        #{acr,jdbcType=VARCHAR},
+      </if>
+      <if test="ca != null">
+        #{ca,jdbcType=VARCHAR},
+      </if>
+      <if test="cr != null">
+        #{cr,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="synchronizeType != null">
+        #{synchronizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="zrysncg != null">
+        #{zrysncg,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadStatus != null">
+        #{uploadStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.TjNcg">
+    update zkhw_tj_ncg
+    <set>
+      <if test="aichiveNo != null">
+        aichive_no = #{aichiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        bar_code = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wbc != null">
+        WBC = #{wbc,jdbcType=VARCHAR},
+      </if>
+      <if test="leu != null">
+        LEU = #{leu,jdbcType=VARCHAR},
+      </if>
+      <if test="nit != null">
+        NIT = #{nit,jdbcType=VARCHAR},
+      </if>
+      <if test="uro != null">
+        URO = #{uro,jdbcType=VARCHAR},
+      </if>
+      <if test="pro != null">
+        PRO = #{pro,jdbcType=VARCHAR},
+      </if>
+      <if test="ph != null">
+        PH = #{ph,jdbcType=VARCHAR},
+      </if>
+      <if test="bld != null">
+        BLD = #{bld,jdbcType=VARCHAR},
+      </if>
+      <if test="sg != null">
+        SG = #{sg,jdbcType=VARCHAR},
+      </if>
+      <if test="ket != null">
+        KET = #{ket,jdbcType=VARCHAR},
+      </if>
+      <if test="bil != null">
+        BIL = #{bil,jdbcType=VARCHAR},
+      </if>
+      <if test="glu != null">
+        GLU = #{glu,jdbcType=VARCHAR},
+      </if>
+      <if test="vc != null">
+        Vc = #{vc,jdbcType=VARCHAR},
+      </if>
+      <if test="ma != null">
+        MA = #{ma,jdbcType=VARCHAR},
+      </if>
+      <if test="acr != null">
+        ACR = #{acr,jdbcType=VARCHAR},
+      </if>
+      <if test="ca != null">
+        Ca = #{ca,jdbcType=VARCHAR},
+      </if>
+      <if test="cr != null">
+        CR = #{cr,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="synchronizeType != null">
+        synchronize_type = #{synchronizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="zrysncg != null">
+        ZrysNCG = #{zrysncg,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadStatus != null">
+        upload_status = #{uploadStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.TjNcg">
+    update zkhw_tj_ncg
+    set aichive_no = #{aichiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      bar_code = #{barCode,jdbcType=VARCHAR},
+      WBC = #{wbc,jdbcType=VARCHAR},
+      LEU = #{leu,jdbcType=VARCHAR},
+      NIT = #{nit,jdbcType=VARCHAR},
+      URO = #{uro,jdbcType=VARCHAR},
+      PRO = #{pro,jdbcType=VARCHAR},
+      PH = #{ph,jdbcType=VARCHAR},
+      BLD = #{bld,jdbcType=VARCHAR},
+      SG = #{sg,jdbcType=VARCHAR},
+      KET = #{ket,jdbcType=VARCHAR},
+      BIL = #{bil,jdbcType=VARCHAR},
+      GLU = #{glu,jdbcType=VARCHAR},
+      Vc = #{vc,jdbcType=VARCHAR},
+      MA = #{ma,jdbcType=VARCHAR},
+      ACR = #{acr,jdbcType=VARCHAR},
+      Ca = #{ca,jdbcType=VARCHAR},
+      CR = #{cr,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      synchronize_type = #{synchronizeType,jdbcType=VARCHAR},
+      ZrysNCG = #{zrysncg,jdbcType=VARCHAR},
+      upload_status = #{uploadStatus,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

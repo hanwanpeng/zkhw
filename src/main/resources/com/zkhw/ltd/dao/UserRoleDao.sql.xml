@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.ltd.dao.UserRoleDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.ltd.entity.UserRole">
+    <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+    <result column="role_code" jdbcType="VARCHAR" property="roleCode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <!-- 保存用户角色   -->
+  <insert id="saveUserRole" parameterType="com.zkhw.ltd.entity.UserRole">
+    insert into ltd_user_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userCode != null">
+        user_code,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userCode != null">
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+    <!-- 批量保存用户角色 -->
+  <insert id="saveRoleRightByBatch" parameterType="java.util.List" >
+      <if test=" list != null and list.size != 0 ">
+        insert into ltd_user_role (user_code, role_code, create_time)
+       values 
+        <foreach collection="list" item="item" index="index" separator=",">  
+         (#{item.userCode}, #{item.roleCode},#{item.createTime})
+        </foreach>
+      </if>
+   </insert>
+  
+   <!-- 根据用户编码查询角色列表  -->
+    <select id="findRoleByUser" resultType="java.lang.String" >
+        select role_code from ltd_user_role where user_code=#{userCode} 
+    </select>
+    
+    <!-- 根据角色查询用户编码 -->
+    <select id="findUserByRole" resultType="java.lang.String" parameterType="java.lang.String" >
+        select user_code from ltd_user_role where role_code =#{roleCode}
+    </select>
+    
+    
+      <!-- 根据用户删除用户角色-->
+  <delete id="deleteUserRole" parameterType="java.lang.String">
+    delete from ltd_user_role
+    where user_code = #{userCode}
+  </delete>
+
+  <delete id="deleteByUserCode" parameterType="java.lang.String">
+    delete from ltd_user_role
+    where user_code = #{userCode}
+  </delete>  
+  
+   <delete id="deleteByRoleCode" parameterType="java.lang.String">
+    delete from ltd_user_role
+    where role_code = #{roleCode,jdbcType=VARCHAR}
+  </delete> 
+  
+  
+</mapper>

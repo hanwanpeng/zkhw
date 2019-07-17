@@ -1,0 +1,1463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.ResidentBaseInfoDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.ResidentBaseInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="pb_archive" jdbcType="VARCHAR" property="pbArchive" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="card_pic" jdbcType="VARCHAR" property="cardPic" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="link_name" jdbcType="VARCHAR" property="linkName" />
+    <result column="link_phone" jdbcType="VARCHAR" property="linkPhone" />
+    <result column="resident_type" jdbcType="VARCHAR" property="residentType" />
+    <result column="register_address" jdbcType="VARCHAR" property="registerAddress" />
+    <result column="residence_address" jdbcType="VARCHAR" property="residenceAddress" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="blood_group" jdbcType="VARCHAR" property="bloodGroup" />
+    <result column="blood_rh" jdbcType="VARCHAR" property="bloodRh" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="profession" jdbcType="VARCHAR" property="profession" />
+    <result column="marital_status" jdbcType="VARCHAR" property="maritalStatus" />
+    <result column="pay_type" jdbcType="VARCHAR" property="payType" />
+    <result column="pay_other" jdbcType="VARCHAR" property="payOther" />
+    <result column="drug_allergy" jdbcType="VARCHAR" property="drugAllergy" />
+    <result column="allergy_other" jdbcType="VARCHAR" property="allergyOther" />
+    <result column="exposure" jdbcType="VARCHAR" property="exposure" />
+    <result column="disease_other" jdbcType="VARCHAR" property="diseaseOther" />
+    <result column="is_hypertension" jdbcType="INTEGER" property="isHypertension" />
+    <result column="is_diabetes" jdbcType="INTEGER" property="isDiabetes" />
+    <result column="is_psychosis" jdbcType="INTEGER" property="isPsychosis" />
+    <result column="is_tuberculosis" jdbcType="INTEGER" property="isTuberculosis" />
+    <result column="is_heredity" jdbcType="INTEGER" property="isHeredity" />
+    <result column="heredity_name" jdbcType="VARCHAR" property="heredityName" />
+    <result column="is_deformity" jdbcType="VARCHAR" property="isDeformity" />
+    <result column="deformity_name" jdbcType="VARCHAR" property="deformityName" />
+    <result column="is_poor" jdbcType="INTEGER" property="isPoor" />
+    <result column="kitchen" jdbcType="VARCHAR" property="kitchen" />
+    <result column="fuel" jdbcType="VARCHAR" property="fuel" />
+    <result column="other_fuel" jdbcType="VARCHAR" property="otherFuel" />
+    <result column="drink" jdbcType="VARCHAR" property="drink" />
+    <result column="other_drink" jdbcType="VARCHAR" property="otherDrink" />
+    <result column="toilet" jdbcType="VARCHAR" property="toilet" />
+    <result column="poultry" jdbcType="VARCHAR" property="poultry" />
+    <result column="medical_code" jdbcType="VARCHAR" property="medicalCode" />
+    <result column="photo_code" jdbcType="VARCHAR" property="photoCode" />
+    <result column="aichive_org" jdbcType="VARCHAR" property="aichiveOrg" />
+    <result column="doctor_id" jdbcType="VARCHAR" property="doctorId" />
+    <result column="doctor_name" jdbcType="VARCHAR" property="doctorName" />
+    <result column="is_signing" jdbcType="INTEGER" property="isSigning" />
+    <result column="is_synchro" jdbcType="INTEGER" property="isSynchro" />
+    <result column="synchro_result" jdbcType="VARCHAR" property="synchroResult" />
+    <result column="synchro_time" jdbcType="TIMESTAMP" property="synchroTime" />
+    <result column="province_code" jdbcType="VARCHAR" property="provinceCode" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="county_code" jdbcType="VARCHAR" property="countyCode" />
+    <result column="county_name" jdbcType="VARCHAR" property="countyName" />
+    <result column="towns_code" jdbcType="VARCHAR" property="townsCode" />
+    <result column="towns_name" jdbcType="VARCHAR" property="townsName" />
+    <result column="village_code" jdbcType="VARCHAR" property="villageCode" />
+    <result column="village_name" jdbcType="VARCHAR" property="villageName" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_org" jdbcType="VARCHAR" property="createOrg" />
+    <result column="create_org_name" jdbcType="VARCHAR" property="createOrgName" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, archive_no, pb_archive, name, sex, birthday, age, id_number, card_pic, company, 
+    phone, link_name, link_phone, resident_type, register_address, residence_address, 
+    nation, blood_group, blood_rh, education, profession, marital_status, pay_type, pay_other, 
+    drug_allergy, allergy_other, exposure, disease_other, is_hypertension, is_diabetes, 
+    is_psychosis, is_tuberculosis, is_heredity, heredity_name, is_deformity, deformity_name, 
+    is_poor, kitchen, fuel, other_fuel, drink, other_drink, toilet, poultry, medical_code, 
+    photo_code, aichive_org, doctor_id, doctor_name, is_signing, is_synchro, synchro_result, 
+    synchro_time, province_code, province_name, city_code, city_name, county_code, county_name, 
+    towns_code, towns_name, village_code, village_name, status, remark, create_user, 
+    create_name, create_time, create_org, create_org_name, update_user, update_name, 
+    update_time
+  </sql>
+  
+  
+  
+  <!-- 慢病随访统计人数 -->
+	<select id="statForFlup" parameterType="com.zkhw.stat.query.ResidentQuery" resultType="com.zkhw.stat.vo.FlupVo">
+	SELECT (SELECT COUNT(1) FROM resident_base_info r JOIN physical_examination_record p ON r.id_number = p.id_number WHERE r.is_hypertension = 1
+		<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+	) AS hypertensionNum,
+	(SELECT COUNT(1) FROM resident_base_info r JOIN diabetes_follow_record d ON r.id_number = d.id_number WHERE r.is_diabetes = 1
+		<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+	) AS diabetesNum,
+	(SELECT COUNT(1) FROM resident_base_info r JOIN tuberculosis_follow_record t ON r.id_number = t.id_number WHERE r.is_tuberculosis = 1
+		<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+	) AS tuberculosisNum,
+	(SELECT COUNT(1) FROM resident_base_info r JOIN psychosis_follow_record p ON r.id_number = p.id_number WHERE r.is_psychosis = 1
+		<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+	) AS psychosisNum
+	</select>
+  
+  
+  
+  <!-- 查询老年人体检人数 -->
+	<select id="statForElderly" parameterType="com.zkhw.stat.query.ResidentQuery" resultType="com.zkhw.stat.vo.ElderlyVo">
+		SELECT COUNT(1) AS elderlyYet 
+		FROM resident_base_info r JOIN physical_examination_record p ON r.id_number = p.id_number
+		WHERE YEAR(NOW())-SUBSTRING(r.id_number,7,4) &gt;= 65
+		<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+	<!-- 年龄大于65岁的人数 -->
+	<select id="statForElderlyNnm" parameterType="com.zkhw.stat.query.ResidentQuery" resultType="com.zkhw.stat.vo.ElderlyVo">
+		SELECT COUNT(1) AS elderlyNum
+		FROM resident_base_info r
+		WHERE YEAR(NOW())-SUBSTRING(r.id_number,7,4) &gt;= 65
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+</select>
+	
+	
+  
+  
+  <!--年龄段分布统计(男女）-->
+  <select id="statForAge" parameterType="com.zkhw.stat.query.ResidentQuery" resultMap="BaseResultMap">
+  	SELECT r.name,r.sex,YEAR(NOW())-SUBSTRING(r.id_number,7,4) AS age FROM resident_base_info r 
+  	where 1 = 1
+  	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+  </select>
+  
+  
+  
+  <!-- 档案统计-按人群统计 -->
+  <select id="statResidentForMan" parameterType="com.zkhw.stat.query.ResidentQuery"
+	resultType="com.zkhw.stat.vo.StatResidentVo">
+	SELECT (SELECT COUNT(1) FROM resident_base_info WHERE age &gt; 64
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+	) AS elderNum,
+	(SELECT COUNT(1) FROM resident_base_info WHERE is_hypertension = '1'
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+	) AS hypertensionNum,
+	(SELECT COUNT(1) FROM resident_base_info WHERE is_diabetes = '1'
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+	) AS diabetesNum,
+	(SELECT COUNT(1) FROM resident_base_info WHERE is_tuberculosis = '1'
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+	) AS tuberculosisNum,
+	(SELECT COUNT(1) FROM resident_base_info WHERE is_psychosis = '1'
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+	) AS psychosisNum,
+	(SELECT COUNT(1) FROM resident_base_info WHERE is_poor = '1'
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+	) AS poorNum,
+	(SELECT COUNT(1) FROM resident_base_info WHERE 1 = 1
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+	) AS totalNum
+</select>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from resident_base_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="findResidentList" parameterType="com.zkhw.pub.query.ResidentBaseInfoQuery" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from resident_base_info
+    where 1 = 1
+     <if test="archiveNo != null and archiveNo != ''">
+       and  archive_no = #{archiveNo,jdbcType=VARCHAR}
+     </if>  
+     <if test="provinceCode != null and provinceCode != ''">
+       and  province_code = #{provinceCode,jdbcType=VARCHAR}
+     </if>   
+     <if test="cityCode != null and cityCode != ''">
+       and  city_code = #{cityCode,jdbcType=VARCHAR}
+     </if> 
+     <if test="countyCode != null and countyCode != ''">
+       and  county_code = #{countyCode,jdbcType=VARCHAR}
+     </if>  
+     <if test="townsCode != null and townsCode != ''">
+       and  towns_code = #{townsCode,jdbcType=VARCHAR}
+     </if>  
+     <if test="villageCode != null and villageCode != ''">
+       and  village_code = #{villageCode,jdbcType=VARCHAR}
+     </if>   
+     <if test="name != null and name != ''">
+       and (name like concat(concat('%',#{name,jdbcType=VARCHAR}),'%') 
+       or id_number like concat(concat('%',#{name,jdbcType=VARCHAR}),'%')
+       or phone like concat(concat('%',#{name,jdbcType=VARCHAR}),'%'))
+     </if> 
+     <if test="sex != null and sex != ''">
+       and  sex = #{sex,jdbcType=VARCHAR}
+     </if>  
+     <if test="status != null and status != ''">
+       and  status = #{status,jdbcType=VARCHAR}
+     </if> 
+     <if test="isHypertension != null">
+       and  is_hypertension = #{isHypertension,jdbcType=INTEGER}
+     </if>  
+     <if test="isDiabetes != null">
+       and  is_diabetes = #{isDiabetes,jdbcType=INTEGER}
+     </if>
+      <if test="isPsychosis != null">
+       and  is_psychosis = #{isPsychosis,jdbcType=INTEGER}
+     </if>
+      <if test="isTuberculosis != null">
+       and  is_tuberculosis = #{isTuberculosis,jdbcType=INTEGER}
+     </if> 
+     <if test="isPoor != null">
+       and  is_poor = #{isPoor,jdbcType=INTEGER}
+     </if> 
+     <if test="minage != null and minage != ''">
+       and  age &gt;= #{minage,jdbcType=INTEGER}
+     </if>  
+     <if test="maxage != null and maxage != ''">
+       and  age &lt;= #{maxage,jdbcType=INTEGER}
+     </if> 
+     <if test="orgCode != null and orgCode != ''">
+       and  create_org = #{orgCode,jdbcType=VARCHAR}
+     </if>                                                               
+  </select>  
+
+  <select id="findResidentByArchiveNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from resident_base_info
+    where archive_no = #{archiveNo,jdbcType=VARCHAR}
+  </select> 
+
+  <select id="findResidentByIdNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from resident_base_info
+    where id_number = #{idNumber,jdbcType=VARCHAR}
+  </select>
+      
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from resident_base_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.pub.entity.ResidentBaseInfo">
+    insert into resident_base_info (id, archive_no, pb_archive, 
+      name, sex, birthday, 
+      age, id_number, card_pic, 
+      company, phone, link_name, 
+      link_phone, resident_type, register_address, 
+      residence_address, nation, blood_group, 
+      blood_rh, education, profession, 
+      marital_status, pay_type, pay_other, 
+      drug_allergy, allergy_other, exposure, 
+      disease_other, is_hypertension, is_diabetes, 
+      is_psychosis, is_tuberculosis, is_heredity, 
+      heredity_name, is_deformity, deformity_name, 
+      is_poor, kitchen, fuel, 
+      other_fuel, drink, other_drink, 
+      toilet, poultry, medical_code, 
+      photo_code, aichive_org, doctor_id, 
+      doctor_name, is_signing, is_synchro, 
+      synchro_result, synchro_time, province_code, 
+      province_name, city_code, city_name, 
+      county_code, county_name, towns_code, 
+      towns_name, village_code, village_name, 
+      status, remark, create_user, 
+      create_name, create_time, create_org, 
+      create_org_name, update_user, update_name, 
+      update_time)
+    values (#{id,jdbcType=VARCHAR}, #{archiveNo,jdbcType=VARCHAR}, #{pbArchive,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{age,jdbcType=INTEGER}, #{idNumber,jdbcType=VARCHAR}, #{cardPic,jdbcType=VARCHAR}, 
+      #{company,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{linkName,jdbcType=VARCHAR}, 
+      #{linkPhone,jdbcType=VARCHAR}, #{residentType,jdbcType=VARCHAR}, #{registerAddress,jdbcType=VARCHAR}, 
+      #{residenceAddress,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{bloodGroup,jdbcType=VARCHAR}, 
+      #{bloodRh,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, #{profession,jdbcType=VARCHAR}, 
+      #{maritalStatus,jdbcType=VARCHAR}, #{payType,jdbcType=VARCHAR}, #{payOther,jdbcType=VARCHAR}, 
+      #{drugAllergy,jdbcType=VARCHAR}, #{allergyOther,jdbcType=VARCHAR}, #{exposure,jdbcType=VARCHAR}, 
+      #{diseaseOther,jdbcType=VARCHAR}, #{isHypertension,jdbcType=INTEGER}, #{isDiabetes,jdbcType=INTEGER}, 
+      #{isPsychosis,jdbcType=INTEGER}, #{isTuberculosis,jdbcType=INTEGER}, #{isHeredity,jdbcType=INTEGER}, 
+      #{heredityName,jdbcType=VARCHAR}, #{isDeformity,jdbcType=VARCHAR}, #{deformityName,jdbcType=VARCHAR}, 
+      #{isPoor,jdbcType=INTEGER}, #{kitchen,jdbcType=VARCHAR}, #{fuel,jdbcType=VARCHAR}, 
+      #{otherFuel,jdbcType=VARCHAR}, #{drink,jdbcType=VARCHAR}, #{otherDrink,jdbcType=VARCHAR}, 
+      #{toilet,jdbcType=VARCHAR}, #{poultry,jdbcType=VARCHAR}, #{medicalCode,jdbcType=VARCHAR}, 
+      #{photoCode,jdbcType=VARCHAR}, #{aichiveOrg,jdbcType=VARCHAR}, #{doctorId,jdbcType=VARCHAR}, 
+      #{doctorName,jdbcType=VARCHAR}, #{isSigning,jdbcType=INTEGER}, #{isSynchro,jdbcType=INTEGER}, 
+      #{synchroResult,jdbcType=VARCHAR}, #{synchroTime,jdbcType=TIMESTAMP}, #{provinceCode,jdbcType=VARCHAR}, 
+      #{provinceName,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{countyCode,jdbcType=VARCHAR}, #{countyName,jdbcType=VARCHAR}, #{townsCode,jdbcType=VARCHAR}, 
+      #{townsName,jdbcType=VARCHAR}, #{villageCode,jdbcType=VARCHAR}, #{villageName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
+      #{createName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createOrg,jdbcType=VARCHAR}, 
+      #{createOrgName,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.ResidentBaseInfo">
+    insert into resident_base_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="pbArchive != null">
+        pb_archive,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="cardPic != null">
+        card_pic,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="linkName != null">
+        link_name,
+      </if>
+      <if test="linkPhone != null">
+        link_phone,
+      </if>
+      <if test="residentType != null">
+        resident_type,
+      </if>
+      <if test="registerAddress != null">
+        register_address,
+      </if>
+      <if test="residenceAddress != null">
+        residence_address,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="bloodGroup != null">
+        blood_group,
+      </if>
+      <if test="bloodRh != null">
+        blood_rh,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="profession != null">
+        profession,
+      </if>
+      <if test="maritalStatus != null">
+        marital_status,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="payOther != null">
+        pay_other,
+      </if>
+      <if test="drugAllergy != null">
+        drug_allergy,
+      </if>
+      <if test="allergyOther != null">
+        allergy_other,
+      </if>
+      <if test="exposure != null">
+        exposure,
+      </if>
+      <if test="diseaseOther != null">
+        disease_other,
+      </if>
+      <if test="isHypertension != null">
+        is_hypertension,
+      </if>
+      <if test="isDiabetes != null">
+        is_diabetes,
+      </if>
+      <if test="isPsychosis != null">
+        is_psychosis,
+      </if>
+      <if test="isTuberculosis != null">
+        is_tuberculosis,
+      </if>
+      <if test="isHeredity != null">
+        is_heredity,
+      </if>
+      <if test="heredityName != null">
+        heredity_name,
+      </if>
+      <if test="isDeformity != null">
+        is_deformity,
+      </if>
+      <if test="deformityName != null">
+        deformity_name,
+      </if>
+      <if test="isPoor != null">
+        is_poor,
+      </if>
+      <if test="kitchen != null">
+        kitchen,
+      </if>
+      <if test="fuel != null">
+        fuel,
+      </if>
+      <if test="otherFuel != null">
+        other_fuel,
+      </if>
+      <if test="drink != null">
+        drink,
+      </if>
+      <if test="otherDrink != null">
+        other_drink,
+      </if>
+      <if test="toilet != null">
+        toilet,
+      </if>
+      <if test="poultry != null">
+        poultry,
+      </if>
+      <if test="medicalCode != null">
+        medical_code,
+      </if>
+      <if test="photoCode != null">
+        photo_code,
+      </if>
+      <if test="aichiveOrg != null">
+        aichive_org,
+      </if>
+      <if test="doctorId != null">
+        doctor_id,
+      </if>
+      <if test="doctorName != null">
+        doctor_name,
+      </if>
+      <if test="isSigning != null">
+        is_signing,
+      </if>
+      <if test="isSynchro != null">
+        is_synchro,
+      </if>
+      <if test="synchroResult != null">
+        synchro_result,
+      </if>
+      <if test="synchroTime != null">
+        synchro_time,
+      </if>
+      <if test="provinceCode != null">
+        province_code,
+      </if>
+      <if test="provinceName != null">
+        province_name,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="cityName != null">
+        city_name,
+      </if>
+      <if test="countyCode != null">
+        county_code,
+      </if>
+      <if test="countyName != null">
+        county_name,
+      </if>
+      <if test="townsCode != null">
+        towns_code,
+      </if>
+      <if test="townsName != null">
+        towns_name,
+      </if>
+      <if test="villageCode != null">
+        village_code,
+      </if>
+      <if test="villageName != null">
+        village_name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createOrg != null">
+        create_org,
+      </if>
+      <if test="createOrgName != null">
+        create_org_name,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="pbArchive != null">
+        #{pbArchive,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardPic != null">
+        #{cardPic,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkName != null">
+        #{linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="residentType != null">
+        #{residentType,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAddress != null">
+        #{registerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="residenceAddress != null">
+        #{residenceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodGroup != null">
+        #{bloodGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodRh != null">
+        #{bloodRh,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatus != null">
+        #{maritalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payOther != null">
+        #{payOther,jdbcType=VARCHAR},
+      </if>
+      <if test="drugAllergy != null">
+        #{drugAllergy,jdbcType=VARCHAR},
+      </if>
+      <if test="allergyOther != null">
+        #{allergyOther,jdbcType=VARCHAR},
+      </if>
+      <if test="exposure != null">
+        #{exposure,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseOther != null">
+        #{diseaseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="isHypertension != null">
+        #{isHypertension,jdbcType=INTEGER},
+      </if>
+      <if test="isDiabetes != null">
+        #{isDiabetes,jdbcType=INTEGER},
+      </if>
+      <if test="isPsychosis != null">
+        #{isPsychosis,jdbcType=INTEGER},
+      </if>
+      <if test="isTuberculosis != null">
+        #{isTuberculosis,jdbcType=INTEGER},
+      </if>
+      <if test="isHeredity != null">
+        #{isHeredity,jdbcType=INTEGER},
+      </if>
+      <if test="heredityName != null">
+        #{heredityName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeformity != null">
+        #{isDeformity,jdbcType=VARCHAR},
+      </if>
+      <if test="deformityName != null">
+        #{deformityName,jdbcType=VARCHAR},
+      </if>
+      <if test="isPoor != null">
+        #{isPoor,jdbcType=INTEGER},
+      </if>
+      <if test="kitchen != null">
+        #{kitchen,jdbcType=VARCHAR},
+      </if>
+      <if test="fuel != null">
+        #{fuel,jdbcType=VARCHAR},
+      </if>
+      <if test="otherFuel != null">
+        #{otherFuel,jdbcType=VARCHAR},
+      </if>
+      <if test="drink != null">
+        #{drink,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDrink != null">
+        #{otherDrink,jdbcType=VARCHAR},
+      </if>
+      <if test="toilet != null">
+        #{toilet,jdbcType=VARCHAR},
+      </if>
+      <if test="poultry != null">
+        #{poultry,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalCode != null">
+        #{medicalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="photoCode != null">
+        #{photoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aichiveOrg != null">
+        #{aichiveOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null">
+        #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null">
+        #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="isSigning != null">
+        #{isSigning,jdbcType=INTEGER},
+      </if>
+      <if test="isSynchro != null">
+        #{isSynchro,jdbcType=INTEGER},
+      </if>
+      <if test="synchroResult != null">
+        #{synchroResult,jdbcType=VARCHAR},
+      </if>
+      <if test="synchroTime != null">
+        #{synchroTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsCode != null">
+        #{townsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townsName != null">
+        #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null">
+        #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOrg != null">
+        #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.ResidentBaseInfo">
+    update resident_base_info
+    <set>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="pbArchive != null">
+        pb_archive = #{pbArchive,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardPic != null">
+        card_pic = #{cardPic,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkName != null">
+        link_name = #{linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        link_phone = #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="residentType != null">
+        resident_type = #{residentType,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAddress != null">
+        register_address = #{registerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="residenceAddress != null">
+        residence_address = #{residenceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodGroup != null">
+        blood_group = #{bloodGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodRh != null">
+        blood_rh = #{bloodRh,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        profession = #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatus != null">
+        marital_status = #{maritalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payOther != null">
+        pay_other = #{payOther,jdbcType=VARCHAR},
+      </if>
+      <if test="drugAllergy != null">
+        drug_allergy = #{drugAllergy,jdbcType=VARCHAR},
+      </if>
+      <if test="allergyOther != null">
+        allergy_other = #{allergyOther,jdbcType=VARCHAR},
+      </if>
+      <if test="exposure != null">
+        exposure = #{exposure,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseOther != null">
+        disease_other = #{diseaseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="isHypertension != null">
+        is_hypertension = #{isHypertension,jdbcType=INTEGER},
+      </if>
+      <if test="isDiabetes != null">
+        is_diabetes = #{isDiabetes,jdbcType=INTEGER},
+      </if>
+      <if test="isPsychosis != null">
+        is_psychosis = #{isPsychosis,jdbcType=INTEGER},
+      </if>
+      <if test="isTuberculosis != null">
+        is_tuberculosis = #{isTuberculosis,jdbcType=INTEGER},
+      </if>
+      <if test="isHeredity != null">
+        is_heredity = #{isHeredity,jdbcType=INTEGER},
+      </if>
+      <if test="heredityName != null">
+        heredity_name = #{heredityName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeformity != null">
+        is_deformity = #{isDeformity,jdbcType=VARCHAR},
+      </if>
+      <if test="deformityName != null">
+        deformity_name = #{deformityName,jdbcType=VARCHAR},
+      </if>
+      <if test="isPoor != null">
+        is_poor = #{isPoor,jdbcType=INTEGER},
+      </if>
+      <if test="kitchen != null">
+        kitchen = #{kitchen,jdbcType=VARCHAR},
+      </if>
+      <if test="fuel != null">
+        fuel = #{fuel,jdbcType=VARCHAR},
+      </if>
+      <if test="otherFuel != null">
+        other_fuel = #{otherFuel,jdbcType=VARCHAR},
+      </if>
+      <if test="drink != null">
+        drink = #{drink,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDrink != null">
+        other_drink = #{otherDrink,jdbcType=VARCHAR},
+      </if>
+      <if test="toilet != null">
+        toilet = #{toilet,jdbcType=VARCHAR},
+      </if>
+      <if test="poultry != null">
+        poultry = #{poultry,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalCode != null">
+        medical_code = #{medicalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="photoCode != null">
+        photo_code = #{photoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aichiveOrg != null">
+        aichive_org = #{aichiveOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null">
+        doctor_id = #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null">
+        doctor_name = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="isSigning != null">
+        is_signing = #{isSigning,jdbcType=INTEGER},
+      </if>
+      <if test="isSynchro != null">
+        is_synchro = #{isSynchro,jdbcType=INTEGER},
+      </if>
+      <if test="synchroResult != null">
+        synchro_result = #{synchroResult,jdbcType=VARCHAR},
+      </if>
+      <if test="synchroTime != null">
+        synchro_time = #{synchroTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="provinceCode != null">
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        county_code = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        county_name = #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsCode != null">
+        towns_code = #{townsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townsName != null">
+        towns_name = #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null">
+        village_code = #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        village_name = #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOrg != null">
+        create_org = #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.ResidentBaseInfo">
+    update resident_base_info
+    set archive_no = #{archiveNo,jdbcType=VARCHAR},
+      pb_archive = #{pbArchive,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      card_pic = #{cardPic,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      link_name = #{linkName,jdbcType=VARCHAR},
+      link_phone = #{linkPhone,jdbcType=VARCHAR},
+      resident_type = #{residentType,jdbcType=VARCHAR},
+      register_address = #{registerAddress,jdbcType=VARCHAR},
+      residence_address = #{residenceAddress,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      blood_group = #{bloodGroup,jdbcType=VARCHAR},
+      blood_rh = #{bloodRh,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      profession = #{profession,jdbcType=VARCHAR},
+      marital_status = #{maritalStatus,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      pay_other = #{payOther,jdbcType=VARCHAR},
+      drug_allergy = #{drugAllergy,jdbcType=VARCHAR},
+      allergy_other = #{allergyOther,jdbcType=VARCHAR},
+      exposure = #{exposure,jdbcType=VARCHAR},
+      disease_other = #{diseaseOther,jdbcType=VARCHAR},
+      is_hypertension = #{isHypertension,jdbcType=INTEGER},
+      is_diabetes = #{isDiabetes,jdbcType=INTEGER},
+      is_psychosis = #{isPsychosis,jdbcType=INTEGER},
+      is_tuberculosis = #{isTuberculosis,jdbcType=INTEGER},
+      is_heredity = #{isHeredity,jdbcType=INTEGER},
+      heredity_name = #{heredityName,jdbcType=VARCHAR},
+      is_deformity = #{isDeformity,jdbcType=VARCHAR},
+      deformity_name = #{deformityName,jdbcType=VARCHAR},
+      is_poor = #{isPoor,jdbcType=INTEGER},
+      kitchen = #{kitchen,jdbcType=VARCHAR},
+      fuel = #{fuel,jdbcType=VARCHAR},
+      other_fuel = #{otherFuel,jdbcType=VARCHAR},
+      drink = #{drink,jdbcType=VARCHAR},
+      other_drink = #{otherDrink,jdbcType=VARCHAR},
+      toilet = #{toilet,jdbcType=VARCHAR},
+      poultry = #{poultry,jdbcType=VARCHAR},
+      medical_code = #{medicalCode,jdbcType=VARCHAR},
+      photo_code = #{photoCode,jdbcType=VARCHAR},
+      aichive_org = #{aichiveOrg,jdbcType=VARCHAR},
+      doctor_id = #{doctorId,jdbcType=VARCHAR},
+      doctor_name = #{doctorName,jdbcType=VARCHAR},
+      is_signing = #{isSigning,jdbcType=INTEGER},
+      is_synchro = #{isSynchro,jdbcType=INTEGER},
+      synchro_result = #{synchroResult,jdbcType=VARCHAR},
+      synchro_time = #{synchroTime,jdbcType=TIMESTAMP},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      county_code = #{countyCode,jdbcType=VARCHAR},
+      county_name = #{countyName,jdbcType=VARCHAR},
+      towns_code = #{townsCode,jdbcType=VARCHAR},
+      towns_name = #{townsName,jdbcType=VARCHAR},
+      village_code = #{villageCode,jdbcType=VARCHAR},
+      village_name = #{villageName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_org = #{createOrg,jdbcType=VARCHAR},
+      create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByArchiveNo" parameterType="com.zkhw.pub.entity.ResidentBaseInfo">
+    update resident_base_info
+    <set>
+      <if test="pbArchive != null">
+        pb_archive = #{pbArchive,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardPic != null">
+        card_pic = #{cardPic,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkName != null">
+        link_name = #{linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null">
+        link_phone = #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="residentType != null">
+        resident_type = #{residentType,jdbcType=VARCHAR},
+      </if>
+      <if test="registerAddress != null">
+        register_address = #{registerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="residenceAddress != null">
+        residence_address = #{residenceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodGroup != null">
+        blood_group = #{bloodGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodRh != null">
+        blood_rh = #{bloodRh,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null">
+        profession = #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatus != null">
+        marital_status = #{maritalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payOther != null">
+        pay_other = #{payOther,jdbcType=VARCHAR},
+      </if>
+      <if test="drugAllergy != null">
+        drug_allergy = #{drugAllergy,jdbcType=VARCHAR},
+      </if>
+      <if test="allergyOther != null">
+        allergy_other = #{allergyOther,jdbcType=VARCHAR},
+      </if>
+      <if test="exposure != null">
+        exposure = #{exposure,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseOther != null">
+        disease_other = #{diseaseOther,jdbcType=VARCHAR},
+      </if>
+      <if test="isHypertension != null">
+        is_hypertension = #{isHypertension,jdbcType=INTEGER},
+      </if>
+      <if test="isDiabetes != null">
+        is_diabetes = #{isDiabetes,jdbcType=INTEGER},
+      </if>
+      <if test="isPsychosis != null">
+        is_psychosis = #{isPsychosis,jdbcType=INTEGER},
+      </if>
+      <if test="isTuberculosis != null">
+        is_tuberculosis = #{isTuberculosis,jdbcType=INTEGER},
+      </if>
+      <if test="isHeredity != null">
+        is_heredity = #{isHeredity,jdbcType=INTEGER},
+      </if>
+      <if test="heredityName != null">
+        heredity_name = #{heredityName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeformity != null">
+        is_deformity = #{isDeformity,jdbcType=VARCHAR},
+      </if>
+      <if test="deformityName != null">
+        deformity_name = #{deformityName,jdbcType=VARCHAR},
+      </if>
+      <if test="isPoor != null">
+        is_poor = #{isPoor,jdbcType=INTEGER},
+      </if>
+      <if test="kitchen != null">
+        kitchen = #{kitchen,jdbcType=VARCHAR},
+      </if>
+      <if test="fuel != null">
+        fuel = #{fuel,jdbcType=VARCHAR},
+      </if>
+      <if test="otherFuel != null">
+        other_fuel = #{otherFuel,jdbcType=VARCHAR},
+      </if>
+      <if test="drink != null">
+        drink = #{drink,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDrink != null">
+        other_drink = #{otherDrink,jdbcType=VARCHAR},
+      </if>
+      <if test="toilet != null">
+        toilet = #{toilet,jdbcType=VARCHAR},
+      </if>
+      <if test="poultry != null">
+        poultry = #{poultry,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalCode != null">
+        medical_code = #{medicalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="photoCode != null">
+        photo_code = #{photoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aichiveOrg != null">
+        aichive_org = #{aichiveOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null">
+        doctor_id = #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null">
+        doctor_name = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="isSigning != null">
+        is_signing = #{isSigning,jdbcType=INTEGER},
+      </if>
+      <if test="isSynchro != null">
+        is_synchro = #{isSynchro,jdbcType=INTEGER},
+      </if>
+      <if test="synchroResult != null">
+        synchro_result = #{synchroResult,jdbcType=VARCHAR},
+      </if>
+      <if test="synchroTime != null">
+        synchro_time = #{synchroTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="provinceCode != null">
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        county_code = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        county_name = #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsCode != null">
+        towns_code = #{townsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townsName != null">
+        towns_name = #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null">
+        village_code = #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        village_name = #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOrg != null">
+        create_org = #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where archive_no = #{archiveNo,jdbcType=VARCHAR}
+  </update>  
+</mapper>

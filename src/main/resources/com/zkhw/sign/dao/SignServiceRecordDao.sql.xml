@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.sign.dao.SignServiceRecordDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.sign.entity.SignServiceRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="family_archive_no" jdbcType="VARCHAR" property="familyArchiveNo" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="team_no" jdbcType="VARCHAR" property="teamNo" />
+    <result column="doctor_no" jdbcType="VARCHAR" property="doctorNo" />
+    <result column="doctor_name" jdbcType="VARCHAR" property="doctorName" />
+    <result column="service_date" jdbcType="VARCHAR" property="serviceDate" />
+    <result column="service_item" jdbcType="VARCHAR" property="serviceItem" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_time" jdbcType="DOUBLE" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, family_archive_no, archive_no, name, team_no, doctor_no, doctor_name, service_date, 
+    service_item, create_user, create_name, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sign_service_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sign_service_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.sign.entity.SignServiceRecord">
+    insert into sign_service_record (id, family_archive_no, archive_no, 
+      name, team_no, doctor_no, 
+      doctor_name, service_date, service_item, 
+      create_user, create_name, create_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{familyArchiveNo,jdbcType=VARCHAR}, #{archiveNo,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{teamNo,jdbcType=VARCHAR}, #{doctorNo,jdbcType=VARCHAR}, 
+      #{doctorName,jdbcType=VARCHAR}, #{serviceDate,jdbcType=VARCHAR}, #{serviceItem,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, #{createTime,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.sign.entity.SignServiceRecord">
+    insert into sign_service_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="familyArchiveNo != null">
+        family_archive_no,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="teamNo != null">
+        team_no,
+      </if>
+      <if test="doctorNo != null">
+        doctor_no,
+      </if>
+      <if test="doctorName != null">
+        doctor_name,
+      </if>
+      <if test="serviceDate != null">
+        service_date,
+      </if>
+      <if test="serviceItem != null">
+        service_item,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="familyArchiveNo != null">
+        #{familyArchiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="teamNo != null">
+        #{teamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorNo != null">
+        #{doctorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null">
+        #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceDate != null">
+        #{serviceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceItem != null">
+        #{serviceItem,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.sign.entity.SignServiceRecord">
+    update sign_service_record
+    <set>
+      <if test="familyArchiveNo != null">
+        family_archive_no = #{familyArchiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="teamNo != null">
+        team_no = #{teamNo,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorNo != null">
+        doctor_no = #{doctorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null">
+        doctor_name = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceDate != null">
+        service_date = #{serviceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceItem != null">
+        service_item = #{serviceItem,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.sign.entity.SignServiceRecord">
+    update sign_service_record
+    set family_archive_no = #{familyArchiveNo,jdbcType=VARCHAR},
+      archive_no = #{archiveNo,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      team_no = #{teamNo,jdbcType=VARCHAR},
+      doctor_no = #{doctorNo,jdbcType=VARCHAR},
+      doctor_name = #{doctorName,jdbcType=VARCHAR},
+      service_date = #{serviceDate,jdbcType=VARCHAR},
+      service_item = #{serviceItem,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

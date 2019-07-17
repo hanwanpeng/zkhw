@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhou.pub.dao.HealthExamDrugDao">
+  <resultMap id="BaseResultMap" type="com.wuzhou.pub.entity.HealthExamDrug">
+    <id column="HEALTH_EXAM_DRUG_ID" jdbcType="VARCHAR" property="healthExamDrugId" />
+    <result column="DRUG_COMPLIANCE_CODE" jdbcType="VARCHAR" property="drugComplianceCode" />
+    <result column="DRUG_COMPLIANCE_VALUE" jdbcType="VARCHAR" property="drugComplianceValue" />
+    <result column="DRUG_DOSE" jdbcType="VARCHAR" property="drugDose" />
+    <result column="DRUG_NAME" jdbcType="VARCHAR" property="drugName" />
+    <result column="DRUG_TIME" jdbcType="VARCHAR" property="drugTime" />
+    <result column="DRUG_USAGE_CODE" jdbcType="VARCHAR" property="drugUsageCode" />
+    <result column="HEALTH_EXAM_ID" jdbcType="VARCHAR" property="healthExamId" />
+    <result column="ERR_CODE" jdbcType="DECIMAL" property="errCode" />
+    <result column="ERR_STR" jdbcType="VARCHAR" property="errStr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    HEALTH_EXAM_DRUG_ID, DRUG_COMPLIANCE_CODE, DRUG_COMPLIANCE_VALUE, DRUG_DOSE, DRUG_NAME, 
+    DRUG_TIME, DRUG_USAGE_CODE, HEALTH_EXAM_ID, ERR_CODE, ERR_STR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HEALTH_EXAM_DRUG
+    where HEALTH_EXAM_DRUG_ID = #{healthExamDrugId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HEALTH_EXAM_DRUG
+    where HEALTH_EXAM_DRUG_ID = #{healthExamDrugId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuzhou.pub.entity.HealthExamDrug">
+    insert into HEALTH_EXAM_DRUG (HEALTH_EXAM_DRUG_ID, DRUG_COMPLIANCE_CODE, 
+      DRUG_COMPLIANCE_VALUE, DRUG_DOSE, DRUG_NAME, 
+      DRUG_TIME, DRUG_USAGE_CODE, HEALTH_EXAM_ID, 
+      ERR_CODE, ERR_STR)
+    values (#{healthExamDrugId,jdbcType=VARCHAR}, #{drugComplianceCode,jdbcType=VARCHAR}, 
+      #{drugComplianceValue,jdbcType=VARCHAR}, #{drugDose,jdbcType=VARCHAR}, #{drugName,jdbcType=VARCHAR}, 
+      #{drugTime,jdbcType=VARCHAR}, #{drugUsageCode,jdbcType=VARCHAR}, #{healthExamId,jdbcType=VARCHAR}, 
+      #{errCode,jdbcType=DECIMAL}, #{errStr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuzhou.pub.entity.HealthExamDrug">
+    insert into HEALTH_EXAM_DRUG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="healthExamDrugId != null">
+        HEALTH_EXAM_DRUG_ID,
+      </if>
+      <if test="drugComplianceCode != null">
+        DRUG_COMPLIANCE_CODE,
+      </if>
+      <if test="drugComplianceValue != null">
+        DRUG_COMPLIANCE_VALUE,
+      </if>
+      <if test="drugDose != null">
+        DRUG_DOSE,
+      </if>
+      <if test="drugName != null">
+        DRUG_NAME,
+      </if>
+      <if test="drugTime != null">
+        DRUG_TIME,
+      </if>
+      <if test="drugUsageCode != null">
+        DRUG_USAGE_CODE,
+      </if>
+      <if test="healthExamId != null">
+        HEALTH_EXAM_ID,
+      </if>
+      <if test="errCode != null">
+        ERR_CODE,
+      </if>
+      <if test="errStr != null">
+        ERR_STR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="healthExamDrugId != null">
+        #{healthExamDrugId,jdbcType=VARCHAR},
+      </if>
+      <if test="drugComplianceCode != null">
+        #{drugComplianceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugComplianceValue != null">
+        #{drugComplianceValue,jdbcType=VARCHAR},
+      </if>
+      <if test="drugDose != null">
+        #{drugDose,jdbcType=VARCHAR},
+      </if>
+      <if test="drugName != null">
+        #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugTime != null">
+        #{drugTime,jdbcType=VARCHAR},
+      </if>
+      <if test="drugUsageCode != null">
+        #{drugUsageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="healthExamId != null">
+        #{healthExamId,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null">
+        #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        #{errStr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuzhou.pub.entity.HealthExamDrug">
+    update HEALTH_EXAM_DRUG
+    <set>
+      <if test="drugComplianceCode != null">
+        DRUG_COMPLIANCE_CODE = #{drugComplianceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="drugComplianceValue != null">
+        DRUG_COMPLIANCE_VALUE = #{drugComplianceValue,jdbcType=VARCHAR},
+      </if>
+      <if test="drugDose != null">
+        DRUG_DOSE = #{drugDose,jdbcType=VARCHAR},
+      </if>
+      <if test="drugName != null">
+        DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      </if>
+      <if test="drugTime != null">
+        DRUG_TIME = #{drugTime,jdbcType=VARCHAR},
+      </if>
+      <if test="drugUsageCode != null">
+        DRUG_USAGE_CODE = #{drugUsageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="healthExamId != null">
+        HEALTH_EXAM_ID = #{healthExamId,jdbcType=VARCHAR},
+      </if>
+      <if test="errCode != null">
+        ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        ERR_STR = #{errStr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HEALTH_EXAM_DRUG_ID = #{healthExamDrugId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuzhou.pub.entity.HealthExamDrug">
+    update HEALTH_EXAM_DRUG
+    set DRUG_COMPLIANCE_CODE = #{drugComplianceCode,jdbcType=VARCHAR},
+      DRUG_COMPLIANCE_VALUE = #{drugComplianceValue,jdbcType=VARCHAR},
+      DRUG_DOSE = #{drugDose,jdbcType=VARCHAR},
+      DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+      DRUG_TIME = #{drugTime,jdbcType=VARCHAR},
+      DRUG_USAGE_CODE = #{drugUsageCode,jdbcType=VARCHAR},
+      HEALTH_EXAM_ID = #{healthExamId,jdbcType=VARCHAR},
+      ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      ERR_STR = #{errStr,jdbcType=VARCHAR}
+    where HEALTH_EXAM_DRUG_ID = #{healthExamDrugId,jdbcType=VARCHAR}
+  </update>
+</mapper>

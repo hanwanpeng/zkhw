@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.ltd.dao.OrganizationDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.ltd.entity.Organization">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="pub_orgcode" jdbcType="VARCHAR" property="pubOrgcode" />
+    <result column="organ_code" jdbcType="VARCHAR" property="organCode" />
+    <result column="organ_name" jdbcType="VARCHAR" property="organName" />
+    <result column="organ_short_name" jdbcType="VARCHAR" property="organShortName" />
+    <result column="organ_level" jdbcType="VARCHAR" property="organLevel" />
+    <result column="organ_parent_code" jdbcType="VARCHAR" property="organParentCode" />
+    <result column="create_user_code" jdbcType="VARCHAR" property="createUserCode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user_code" jdbcType="VARCHAR" property="updateUserCode" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="province_code" jdbcType="VARCHAR" property="provinceCode" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="county_code" jdbcType="VARCHAR" property="countyCode" />
+    <result column="county_name" jdbcType="VARCHAR" property="countyName" />
+    <result column="towns_code" jdbcType="VARCHAR" property="townsCode" />
+    <result column="towns_name" jdbcType="VARCHAR" property="townsName" />
+    <result column="village_code" jdbcType="VARCHAR" property="villageCode" />
+    <result column="village_name" jdbcType="VARCHAR" property="villageName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="lng" jdbcType="VARCHAR" property="lng" />
+    <result column="lat" jdbcType="VARCHAR" property="lat" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pub_orgcode, organ_code, organ_name, organ_short_name, organ_level, organ_parent_code, 
+    create_user_code, create_time, update_user_code, update_time, is_delete, remark, 
+    province_code, province_name, city_code, city_name, county_code, county_name, towns_code, 
+    towns_name, village_code, village_name, address, lng, lat
+  </sql>
+  
+  <!-- 根据地区编码查询机构编码 -->
+  <select id="selectByAreaCode" parameterType="com.zkhw.ltd.entity.Organization" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ltd_organization
+    where 1 = 1
+   	<if test="provinceCode != null">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ltd_organization
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getOrganizationByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ltd_organization
+    where organ_code = #{orgCode,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findChildren" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ltd_organization
+    where organ_parent_code = #{orgCode,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findOrganizationList" parameterType="com.zkhw.ltd.entity.Organization" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ltd_organization
+    where is_delete = 0
+	<if test="organName != null and organName !=''">
+		and organ_name like concat(concat('%',#{organName,jdbcType=VARCHAR}),'%')
+	</if>
+	<if test="organLevel != null and organLevel !=''">
+		and organ_level = #{organLevel,jdbcType=VARCHAR}
+	</if>	
+  </select> 
+        
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ltd_organization
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <delete id="deleteOrganization" parameterType="java.lang.String">
+    delete from ltd_organization
+    where organ_code = #{orgCode,jdbcType=VARCHAR}
+  </delete>
+    
+  <insert id="insert" parameterType="com.zkhw.ltd.entity.Organization">
+    insert into ltd_organization (id, pub_orgcode, organ_code, 
+      organ_name, organ_short_name, organ_level, 
+      organ_parent_code, create_user_code, create_time, 
+      update_user_code, update_time, is_delete, 
+      remark, province_code, province_name, 
+      city_code, city_name, county_code, 
+      county_name, towns_code, towns_name, 
+      village_code, village_name, address, 
+      lng, lat)
+    values (#{id,jdbcType=VARCHAR}, #{pubOrgcode,jdbcType=VARCHAR}, #{organCode,jdbcType=VARCHAR}, 
+      #{organName,jdbcType=VARCHAR}, #{organShortName,jdbcType=VARCHAR}, #{organLevel,jdbcType=VARCHAR}, 
+      #{organParentCode,jdbcType=VARCHAR}, #{createUserCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUserCode,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, 
+      #{cityCode,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, #{countyCode,jdbcType=VARCHAR}, 
+      #{countyName,jdbcType=VARCHAR}, #{townsCode,jdbcType=VARCHAR}, #{townsName,jdbcType=VARCHAR}, 
+      #{villageCode,jdbcType=VARCHAR}, #{villageName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.ltd.entity.Organization">
+    insert into ltd_organization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pubOrgcode != null">
+        pub_orgcode,
+      </if>
+      <if test="organCode != null">
+        organ_code,
+      </if>
+      <if test="organName != null">
+        organ_name,
+      </if>
+      <if test="organShortName != null">
+        organ_short_name,
+      </if>
+      <if test="organLevel != null">
+        organ_level,
+      </if>
+      <if test="organParentCode != null">
+        organ_parent_code,
+      </if>
+      <if test="createUserCode != null">
+        create_user_code,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUserCode != null">
+        update_user_code,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="provinceCode != null">
+        province_code,
+      </if>
+      <if test="provinceName != null">
+        province_name,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="cityName != null">
+        city_name,
+      </if>
+      <if test="countyCode != null">
+        county_code,
+      </if>
+      <if test="countyName != null">
+        county_name,
+      </if>
+      <if test="townsCode != null">
+        towns_code,
+      </if>
+      <if test="townsName != null">
+        towns_name,
+      </if>
+      <if test="villageCode != null">
+        village_code,
+      </if>
+      <if test="villageName != null">
+        village_name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="lng != null">
+        lng,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="pubOrgcode != null">
+        #{pubOrgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="organCode != null">
+        #{organCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organName != null">
+        #{organName,jdbcType=VARCHAR},
+      </if>
+      <if test="organShortName != null">
+        #{organShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="organLevel != null">
+        #{organLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="organParentCode != null">
+        #{organParentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserCode != null">
+        #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserCode != null">
+        #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsCode != null">
+        #{townsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townsName != null">
+        #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null">
+        #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.ltd.entity.Organization">
+    update ltd_organization
+    <set>
+      <if test="pubOrgcode != null">
+        pub_orgcode = #{pubOrgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="organCode != null">
+        organ_code = #{organCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organName != null">
+        organ_name = #{organName,jdbcType=VARCHAR},
+      </if>
+      <if test="organShortName != null">
+        organ_short_name = #{organShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="organLevel != null">
+        organ_level = #{organLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="organParentCode != null">
+        organ_parent_code = #{organParentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserCode != null">
+        create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserCode != null">
+        update_user_code = #{updateUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        county_code = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        county_name = #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsCode != null">
+        towns_code = #{townsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townsName != null">
+        towns_name = #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null">
+        village_code = #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        village_name = #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        lng = #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where organ_code = #{organCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.ltd.entity.Organization">
+    update ltd_organization
+    set pub_orgcode = #{pubOrgcode,jdbcType=VARCHAR},
+      organ_code = #{organCode,jdbcType=VARCHAR},
+      organ_name = #{organName,jdbcType=VARCHAR},
+      organ_short_name = #{organShortName,jdbcType=VARCHAR},
+      organ_level = #{organLevel,jdbcType=VARCHAR},
+      organ_parent_code = #{organParentCode,jdbcType=VARCHAR},
+      create_user_code = #{createUserCode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user_code = #{updateUserCode,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      county_code = #{countyCode,jdbcType=VARCHAR},
+      county_name = #{countyName,jdbcType=VARCHAR},
+      towns_code = #{townsCode,jdbcType=VARCHAR},
+      towns_name = #{townsName,jdbcType=VARCHAR},
+      village_code = #{villageCode,jdbcType=VARCHAR},
+      village_name = #{villageName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      lng = #{lng,jdbcType=VARCHAR},
+      lat = #{lat,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.TraumatismRecordDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.TraumatismRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="traumatism_name" jdbcType="VARCHAR" property="traumatismName" />
+    <result column="traumatism_time" jdbcType="VARCHAR" property="traumatismTime" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, archive_no, id_number, traumatism_name, traumatism_time, create_name, create_time, 
+    update_name, update_time
+  </sql>
+
+	<!-- 根据档案编号查询 -->
+	<select id="selectByArchiveNo" parameterType="com.zkhw.pub.entity.TraumatismRecord"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from traumatism_record
+		where archive_no = #{archiveNo,jdbcType=VARCHAR}
+	</select>
+	
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from traumatism_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByArchiveNo" parameterType="java.lang.String">
+    delete from traumatism_record
+    where archive_no = #{archiveNo,jdbcType=VARCHAR}
+  </delete>
+    
+  <insert id="insert" parameterType="com.zkhw.pub.entity.TraumatismRecord">
+    insert into traumatism_record (id, archive_no, id_number, 
+      traumatism_name, traumatism_time, create_name, 
+      create_time, update_name, update_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{archiveNo,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, 
+      #{traumatismName,jdbcType=VARCHAR}, #{traumatismTime,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.TraumatismRecord">
+    insert into traumatism_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="traumatismName != null">
+        traumatism_name,
+      </if>
+      <if test="traumatismTime != null">
+        traumatism_time,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="traumatismName != null">
+        #{traumatismName,jdbcType=VARCHAR},
+      </if>
+      <if test="traumatismTime != null">
+        #{traumatismTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.TraumatismRecord">
+    update traumatism_record
+    <set>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="traumatismName != null">
+        traumatism_name = #{traumatismName,jdbcType=VARCHAR},
+      </if>
+      <if test="traumatismTime != null">
+        traumatism_time = #{traumatismTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.TraumatismRecord">
+    update traumatism_record
+    set archive_no = #{archiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      traumatism_name = #{traumatismName,jdbcType=VARCHAR},
+      traumatism_time = #{traumatismTime,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

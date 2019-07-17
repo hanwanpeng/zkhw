@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.VaccinationRecordDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.VaccinationRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="exam_id" jdbcType="VARCHAR" property="examId" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="service_name" jdbcType="VARCHAR" property="serviceName" />
+    <result column="card_id" jdbcType="VARCHAR" property="cardId" />
+    <result column="vaccination_type" jdbcType="VARCHAR" property="vaccinationType" />
+    <result column="vaccination_id" jdbcType="VARCHAR" property="vaccinationId" />
+    <result column="vaccination_name" jdbcType="VARCHAR" property="vaccinationName" />
+    <result column="acuscount" jdbcType="VARCHAR" property="acuscount" />
+    <result column="dose" jdbcType="VARCHAR" property="dose" />
+    <result column="descnption" jdbcType="VARCHAR" property="descnption" />
+    <result column="inocu_state" jdbcType="VARCHAR" property="inocuState" />
+    <result column="sinocu_date" jdbcType="VARCHAR" property="sinocuDate" />
+    <result column="vaccination_time" jdbcType="VARCHAR" property="vaccinationTime" />
+    <result column="inocu_doctor" jdbcType="VARCHAR" property="inocuDoctor" />
+    <result column="register_person" jdbcType="VARCHAR" property="registerPerson" />
+    <result column="dzjgm" jdbcType="VARCHAR" property="dzjgm" />
+    <result column="batch_number" jdbcType="VARCHAR" property="batchNumber" />
+    <result column="county" jdbcType="VARCHAR" property="county" />
+    <result column="inoculation_site" jdbcType="VARCHAR" property="inoculationSite" />
+    <result column="inoculation_way" jdbcType="VARCHAR" property="inoculationWay" />
+    <result column="vaccination_organ" jdbcType="VARCHAR" property="vaccinationOrgan" />
+    <result column="vaccination_organ_name" jdbcType="VARCHAR" property="vaccinationOrganName" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="validdate" jdbcType="VARCHAR" property="validdate" />
+    <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer" />
+    <result column="manufact_code" jdbcType="VARCHAR" property="manufactCode" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, exam_id, archive_no, id_number, service_name, card_id, vaccination_type, vaccination_id, 
+    vaccination_name, acuscount, dose, descnption, inocu_state, sinocu_date, vaccination_time, 
+    inocu_doctor, register_person, dzjgm, batch_number, county, inoculation_site, inoculation_way, 
+    vaccination_organ, vaccination_organ_name,remark,validdate,manufacturer,manufact_code, create_name, create_time, update_name, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vaccination_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findRecordByExamId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vaccination_record
+    where exam_id = #{examId,jdbcType=VARCHAR}
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from vaccination_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.pub.entity.VaccinationRecord">
+    insert into vaccination_record (id, exam_id, archive_no, 
+      id_number, service_name, card_id, 
+      vaccination_type, vaccination_id, vaccination_name, 
+      acuscount, dose, descnption, 
+      inocu_state, sinocu_date, vaccination_time, 
+      inocu_doctor, register_person, dzjgm, 
+      batch_number, county, inoculation_site, 
+      inoculation_way, vaccination_organ, vaccination_organ_name, remark,validdate,manufacturer,manufact_code,
+      create_name, create_time, update_name, 
+      update_time)
+    values (#{id,jdbcType=VARCHAR}, #{examId,jdbcType=VARCHAR}, #{archiveNo,jdbcType=VARCHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{serviceName,jdbcType=VARCHAR}, #{cardId,jdbcType=VARCHAR}, 
+      #{vaccinationType,jdbcType=VARCHAR}, #{vaccinationId,jdbcType=VARCHAR}, #{vaccinationName,jdbcType=VARCHAR}, 
+      #{acuscount,jdbcType=VARCHAR}, #{dose,jdbcType=VARCHAR}, #{descnption,jdbcType=VARCHAR}, 
+      #{inocuState,jdbcType=VARCHAR}, #{sinocuDate,jdbcType=VARCHAR}, #{vaccinationTime,jdbcType=VARCHAR}, 
+      #{inocuDoctor,jdbcType=VARCHAR}, #{registerPerson,jdbcType=VARCHAR}, #{dzjgm,jdbcType=VARCHAR}, 
+      #{batchNumber,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{inoculationSite,jdbcType=VARCHAR}, 
+      #{inoculationWay,jdbcType=VARCHAR}, #{vaccinationOrgan,jdbcType=VARCHAR}, #{vaccinationOrganName,jdbcType=VARCHAR},
+       #{remark,jdbcType=VARCHAR},#{validdate,jdbcType=VARCHAR},#{manufacturer,jdbcType=VARCHAR},#{manufactCode,jdbcType=VARCHAR}
+      #{createName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateName,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.VaccinationRecord">
+    insert into vaccination_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="examId != null">
+        exam_id,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="serviceName != null">
+        service_name,
+      </if>
+      <if test="cardId != null">
+        card_id,
+      </if>
+      <if test="vaccinationType != null">
+        vaccination_type,
+      </if>
+      <if test="vaccinationId != null">
+        vaccination_id,
+      </if>
+      <if test="vaccinationName != null">
+        vaccination_name,
+      </if>
+      <if test="acuscount != null">
+        acuscount,
+      </if>
+      <if test="dose != null">
+        dose,
+      </if>
+      <if test="descnption != null">
+        descnption,
+      </if>
+      <if test="inocuState != null">
+        inocu_state,
+      </if>
+      <if test="sinocuDate != null">
+        sinocu_date,
+      </if>
+      <if test="vaccinationTime != null">
+        vaccination_time,
+      </if>
+      <if test="inocuDoctor != null">
+        inocu_doctor,
+      </if>
+      <if test="registerPerson != null">
+        register_person,
+      </if>
+      <if test="dzjgm != null">
+        dzjgm,
+      </if>
+      <if test="batchNumber != null">
+        batch_number,
+      </if>
+      <if test="county != null">
+        county,
+      </if>
+      <if test="inoculationSite != null">
+        inoculation_site,
+      </if>
+      <if test="inoculationWay != null">
+        inoculation_way,
+      </if>
+      <if test="vaccinationOrgan != null">
+        vaccination_organ,
+      </if>
+      <if test="vaccinationOrganName != null">
+        vaccination_organ_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="validdate != null">
+        validdate,
+      </if>
+      <if test="manufacturer != null">
+        manufacturer,
+      </if>
+      <if test="manufactCode != null">
+        manufact_code,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="examId != null">
+        #{examId,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null">
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccinationType != null">
+        #{vaccinationType,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccinationId != null">
+        #{vaccinationId,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccinationName != null">
+        #{vaccinationName,jdbcType=VARCHAR},
+      </if>
+      <if test="acuscount != null">
+        #{acuscount,jdbcType=VARCHAR},
+      </if>
+      <if test="dose != null">
+        #{dose,jdbcType=VARCHAR},
+      </if>
+      <if test="descnption != null">
+        #{descnption,jdbcType=VARCHAR},
+      </if>
+      <if test="inocuState != null">
+        #{inocuState,jdbcType=VARCHAR},
+      </if>
+      <if test="sinocuDate != null">
+        #{sinocuDate,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccinationTime != null">
+        #{vaccinationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="inocuDoctor != null">
+        #{inocuDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="registerPerson != null">
+        #{registerPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="dzjgm != null">
+        #{dzjgm,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNumber != null">
+        #{batchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="inoculationSite != null">
+        #{inoculationSite,jdbcType=VARCHAR},
+      </if>
+      <if test="inoculationWay != null">
+        #{inoculationWay,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccinationOrgan != null">
+        #{vaccinationOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccinationOrganName != null">
+        #{vaccinationOrganName,jdbcType=VARCHAR},
+      </if>
+       <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+       <if test="validdate != null">
+        #{validdate,jdbcType=VARCHAR},
+      </if>
+       <if test="manufacturer != null">
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+       <if test="manufactCode != null">
+        #{manufactCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.VaccinationRecord">
+    update vaccination_record
+    <set>
+      <if test="examId != null">
+        exam_id = #{examId,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        service_name = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null">
+        card_id = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccinationType != null">
+        vaccination_type = #{vaccinationType,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccinationId != null">
+        vaccination_id = #{vaccinationId,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccinationName != null">
+        vaccination_name = #{vaccinationName,jdbcType=VARCHAR},
+      </if>
+      <if test="acuscount != null">
+        acuscount = #{acuscount,jdbcType=VARCHAR},
+      </if>
+      <if test="dose != null">
+        dose = #{dose,jdbcType=VARCHAR},
+      </if>
+      <if test="descnption != null">
+        descnption = #{descnption,jdbcType=VARCHAR},
+      </if>
+      <if test="inocuState != null">
+        inocu_state = #{inocuState,jdbcType=VARCHAR},
+      </if>
+      <if test="sinocuDate != null">
+        sinocu_date = #{sinocuDate,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccinationTime != null">
+        vaccination_time = #{vaccinationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="inocuDoctor != null">
+        inocu_doctor = #{inocuDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="registerPerson != null">
+        register_person = #{registerPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="dzjgm != null">
+        dzjgm = #{dzjgm,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNumber != null">
+        batch_number = #{batchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="inoculationSite != null">
+        inoculation_site = #{inoculationSite,jdbcType=VARCHAR},
+      </if>
+      <if test="inoculationWay != null">
+        inoculation_way = #{inoculationWay,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccinationOrgan != null">
+        vaccination_organ = #{vaccinationOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="vaccinationOrganName != null">
+        vaccination_organ_name = #{vaccinationOrganName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="validdate != null">
+        validdate = #{validdate,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="manufactCode != null">
+        manufact_code = #{manufactCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where archive_no = #{archiveNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.VaccinationRecord">
+    update vaccination_record
+    set exam_id = #{examId,jdbcType=VARCHAR},
+      archive_no = #{archiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      service_name = #{serviceName,jdbcType=VARCHAR},
+      card_id = #{cardId,jdbcType=VARCHAR},
+      vaccination_type = #{vaccinationType,jdbcType=VARCHAR},
+      vaccination_id = #{vaccinationId,jdbcType=VARCHAR},
+      vaccination_name = #{vaccinationName,jdbcType=VARCHAR},
+      acuscount = #{acuscount,jdbcType=VARCHAR},
+      dose = #{dose,jdbcType=VARCHAR},
+      descnption = #{descnption,jdbcType=VARCHAR},
+      inocu_state = #{inocuState,jdbcType=VARCHAR},
+      sinocu_date = #{sinocuDate,jdbcType=VARCHAR},
+      vaccination_time = #{vaccinationTime,jdbcType=VARCHAR},
+      inocu_doctor = #{inocuDoctor,jdbcType=VARCHAR},
+      register_person = #{registerPerson,jdbcType=VARCHAR},
+      dzjgm = #{dzjgm,jdbcType=VARCHAR},
+      batch_number = #{batchNumber,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      inoculation_site = #{inoculationSite,jdbcType=VARCHAR},
+      inoculation_way = #{inoculationWay,jdbcType=VARCHAR},
+      vaccination_organ = #{vaccinationOrgan,jdbcType=VARCHAR},
+      vaccination_organ_name = #{vaccinationOrganName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      validdate = #{validdate,jdbcType=VARCHAR},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      manufact_code = #{manufactCode,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateArchiveNo" parameterType="com.zkhw.pub.vo.ArchiveId">
+  	update vaccination_record
+  	set archive_no = #{archiveNo,jdbcType=VARCHAR}
+  	where archive_no = #{oldArchiveNo,jdbcType=VARCHAR}
+  </update>  
+</mapper>

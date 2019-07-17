@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.flup.dao.GravidaAfterRecordDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.flup.entity.GravidaAfterRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="gravida_id" jdbcType="VARCHAR" property="gravidaId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="visit_date" jdbcType="VARCHAR" property="visitDate" />
+    <result column="childbirth" jdbcType="VARCHAR" property="childbirth" />
+    <result column="discharge_date" jdbcType="VARCHAR" property="dischargeDate" />
+    <result column="temperature" jdbcType="VARCHAR" property="temperature" />
+    <result column="general_health_status" jdbcType="VARCHAR" property="generalHealthStatus" />
+    <result column="general_psychology_status" jdbcType="VARCHAR" property="generalPsychologyStatus" />
+    <result column="blood_pressure_high" jdbcType="INTEGER" property="bloodPressureHigh" />
+    <result column="blood_pressure_low" jdbcType="INTEGER" property="bloodPressureLow" />
+    <result column="breast" jdbcType="VARCHAR" property="breast" />
+    <result column="breast_error" jdbcType="VARCHAR" property="breastError" />
+    <result column="lyma" jdbcType="VARCHAR" property="lyma" />
+    <result column="lyma_error" jdbcType="VARCHAR" property="lymaError" />
+    <result column="womb" jdbcType="VARCHAR" property="womb" />
+    <result column="womb_error" jdbcType="VARCHAR" property="wombError" />
+    <result column="wound" jdbcType="VARCHAR" property="wound" />
+    <result column="wound_error" jdbcType="VARCHAR" property="woundError" />
+    <result column="other" jdbcType="VARCHAR" property="other" />
+    <result column="conditions" jdbcType="VARCHAR" property="conditions" />
+    <result column="condition_error" jdbcType="VARCHAR" property="conditionError" />
+    <result column="guidance" jdbcType="VARCHAR" property="guidance" />
+    <result column="guidance_other" jdbcType="VARCHAR" property="guidanceOther" />
+    <result column="transfer_treatment" jdbcType="VARCHAR" property="transferTreatment" />
+    <result column="transfer_treatment_reason" jdbcType="VARCHAR" property="transferTreatmentReason" />
+    <result column="transfer_treatment_department" jdbcType="VARCHAR" property="transferTreatmentDepartment" />
+    <result column="next_visit_date" jdbcType="VARCHAR" property="nextVisitDate" />
+    <result column="visit_doctor" jdbcType="VARCHAR" property="visitDoctor" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_org" jdbcType="VARCHAR" property="createOrg" />
+    <result column="create_org_name" jdbcType="VARCHAR" property="createOrgName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+    <result column="upload_result" jdbcType="VARCHAR" property="uploadResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gravida_id, name, archive_no, id_number, visit_date, childbirth, discharge_date, 
+    temperature, general_health_status, general_psychology_status, blood_pressure_high, 
+    blood_pressure_low, breast, breast_error, lyma, lyma_error, womb, womb_error, wound, 
+    wound_error, other, conditions, condition_error, guidance, guidance_other, transfer_treatment, 
+    transfer_treatment_reason, transfer_treatment_department, next_visit_date, visit_doctor, 
+    create_user, create_name, create_org, create_org_name, create_time, update_user, 
+    update_name, update_time, upload_status, upload_time, upload_result
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gravida_after_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findAfterByGravidaId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gravida_after_record
+    where gravida_id = #{gravidaId,jdbcType=VARCHAR}
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from gravida_after_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.flup.entity.GravidaAfterRecord">
+    insert into gravida_after_record (id, gravida_id, name, 
+      archive_no, id_number, visit_date, 
+      childbirth, discharge_date, temperature, 
+      general_health_status, general_psychology_status, 
+      blood_pressure_high, blood_pressure_low, breast, 
+      breast_error, lyma, lyma_error, 
+      womb, womb_error, wound, 
+      wound_error, other, conditions, 
+      condition_error, guidance, guidance_other, 
+      transfer_treatment, transfer_treatment_reason, 
+      transfer_treatment_department, next_visit_date, 
+      visit_doctor, create_user, create_name, 
+      create_org, create_org_name, create_time, 
+      update_user, update_name, update_time, 
+      upload_status, upload_time, upload_result
+      )
+    values (#{id,jdbcType=VARCHAR}, #{gravidaId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{archiveNo,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, #{visitDate,jdbcType=VARCHAR}, 
+      #{childbirth,jdbcType=VARCHAR}, #{dischargeDate,jdbcType=VARCHAR}, #{temperature,jdbcType=VARCHAR}, 
+      #{generalHealthStatus,jdbcType=VARCHAR}, #{generalPsychologyStatus,jdbcType=VARCHAR}, 
+      #{bloodPressureHigh,jdbcType=INTEGER}, #{bloodPressureLow,jdbcType=INTEGER}, #{breast,jdbcType=VARCHAR}, 
+      #{breastError,jdbcType=VARCHAR}, #{lyma,jdbcType=VARCHAR}, #{lymaError,jdbcType=VARCHAR}, 
+      #{womb,jdbcType=VARCHAR}, #{wombError,jdbcType=VARCHAR}, #{wound,jdbcType=VARCHAR}, 
+      #{woundError,jdbcType=VARCHAR}, #{other,jdbcType=VARCHAR}, #{conditions,jdbcType=VARCHAR}, 
+      #{conditionError,jdbcType=VARCHAR}, #{guidance,jdbcType=VARCHAR}, #{guidanceOther,jdbcType=VARCHAR}, 
+      #{transferTreatment,jdbcType=VARCHAR}, #{transferTreatmentReason,jdbcType=VARCHAR}, 
+      #{transferTreatmentDepartment,jdbcType=VARCHAR}, #{nextVisitDate,jdbcType=VARCHAR}, 
+      #{visitDoctor,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, 
+      #{createOrg,jdbcType=VARCHAR}, #{createOrgName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{uploadStatus,jdbcType=INTEGER}, #{uploadTime,jdbcType=TIMESTAMP}, #{uploadResult,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.flup.entity.GravidaAfterRecord">
+    insert into gravida_after_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gravidaId != null">
+        gravida_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="visitDate != null">
+        visit_date,
+      </if>
+      <if test="childbirth != null">
+        childbirth,
+      </if>
+      <if test="dischargeDate != null">
+        discharge_date,
+      </if>
+      <if test="temperature != null">
+        temperature,
+      </if>
+      <if test="generalHealthStatus != null">
+        general_health_status,
+      </if>
+      <if test="generalPsychologyStatus != null">
+        general_psychology_status,
+      </if>
+      <if test="bloodPressureHigh != null">
+        blood_pressure_high,
+      </if>
+      <if test="bloodPressureLow != null">
+        blood_pressure_low,
+      </if>
+      <if test="breast != null">
+        breast,
+      </if>
+      <if test="breastError != null">
+        breast_error,
+      </if>
+      <if test="lyma != null">
+        lyma,
+      </if>
+      <if test="lymaError != null">
+        lyma_error,
+      </if>
+      <if test="womb != null">
+        womb,
+      </if>
+      <if test="wombError != null">
+        womb_error,
+      </if>
+      <if test="wound != null">
+        wound,
+      </if>
+      <if test="woundError != null">
+        wound_error,
+      </if>
+      <if test="other != null">
+        other,
+      </if>
+      <if test="conditions != null">
+        conditions,
+      </if>
+      <if test="conditionError != null">
+        condition_error,
+      </if>
+      <if test="guidance != null">
+        guidance,
+      </if>
+      <if test="guidanceOther != null">
+        guidance_other,
+      </if>
+      <if test="transferTreatment != null">
+        transfer_treatment,
+      </if>
+      <if test="transferTreatmentReason != null">
+        transfer_treatment_reason,
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        transfer_treatment_department,
+      </if>
+      <if test="nextVisitDate != null">
+        next_visit_date,
+      </if>
+      <if test="visitDoctor != null">
+        visit_doctor,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createOrg != null">
+        create_org,
+      </if>
+      <if test="createOrgName != null">
+        create_org_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="uploadStatus != null">
+        upload_status,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+      <if test="uploadResult != null">
+        upload_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="gravidaId != null">
+        #{gravidaId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null">
+        #{visitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="childbirth != null">
+        #{childbirth,jdbcType=VARCHAR},
+      </if>
+      <if test="dischargeDate != null">
+        #{dischargeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null">
+        #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="generalHealthStatus != null">
+        #{generalHealthStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="generalPsychologyStatus != null">
+        #{generalPsychologyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodPressureHigh != null">
+        #{bloodPressureHigh,jdbcType=INTEGER},
+      </if>
+      <if test="bloodPressureLow != null">
+        #{bloodPressureLow,jdbcType=INTEGER},
+      </if>
+      <if test="breast != null">
+        #{breast,jdbcType=VARCHAR},
+      </if>
+      <if test="breastError != null">
+        #{breastError,jdbcType=VARCHAR},
+      </if>
+      <if test="lyma != null">
+        #{lyma,jdbcType=VARCHAR},
+      </if>
+      <if test="lymaError != null">
+        #{lymaError,jdbcType=VARCHAR},
+      </if>
+      <if test="womb != null">
+        #{womb,jdbcType=VARCHAR},
+      </if>
+      <if test="wombError != null">
+        #{wombError,jdbcType=VARCHAR},
+      </if>
+      <if test="wound != null">
+        #{wound,jdbcType=VARCHAR},
+      </if>
+      <if test="woundError != null">
+        #{woundError,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="conditions != null">
+        #{conditions,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionError != null">
+        #{conditionError,jdbcType=VARCHAR},
+      </if>
+      <if test="guidance != null">
+        #{guidance,jdbcType=VARCHAR},
+      </if>
+      <if test="guidanceOther != null">
+        #{guidanceOther,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatment != null">
+        #{transferTreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentReason != null">
+        #{transferTreatmentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="nextVisitDate != null">
+        #{nextVisitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDoctor != null">
+        #{visitDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.flup.entity.GravidaAfterRecord">
+    update gravida_after_record
+    <set>
+      <if test="gravidaId != null">
+        gravida_id = #{gravidaId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDate != null">
+        visit_date = #{visitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="childbirth != null">
+        childbirth = #{childbirth,jdbcType=VARCHAR},
+      </if>
+      <if test="dischargeDate != null">
+        discharge_date = #{dischargeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null">
+        temperature = #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="generalHealthStatus != null">
+        general_health_status = #{generalHealthStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="generalPsychologyStatus != null">
+        general_psychology_status = #{generalPsychologyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodPressureHigh != null">
+        blood_pressure_high = #{bloodPressureHigh,jdbcType=INTEGER},
+      </if>
+      <if test="bloodPressureLow != null">
+        blood_pressure_low = #{bloodPressureLow,jdbcType=INTEGER},
+      </if>
+      <if test="breast != null">
+        breast = #{breast,jdbcType=VARCHAR},
+      </if>
+      <if test="breastError != null">
+        breast_error = #{breastError,jdbcType=VARCHAR},
+      </if>
+      <if test="lyma != null">
+        lyma = #{lyma,jdbcType=VARCHAR},
+      </if>
+      <if test="lymaError != null">
+        lyma_error = #{lymaError,jdbcType=VARCHAR},
+      </if>
+      <if test="womb != null">
+        womb = #{womb,jdbcType=VARCHAR},
+      </if>
+      <if test="wombError != null">
+        womb_error = #{wombError,jdbcType=VARCHAR},
+      </if>
+      <if test="wound != null">
+        wound = #{wound,jdbcType=VARCHAR},
+      </if>
+      <if test="woundError != null">
+        wound_error = #{woundError,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null">
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="conditions != null">
+        conditions = #{conditions,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionError != null">
+        condition_error = #{conditionError,jdbcType=VARCHAR},
+      </if>
+      <if test="guidance != null">
+        guidance = #{guidance,jdbcType=VARCHAR},
+      </if>
+      <if test="guidanceOther != null">
+        guidance_other = #{guidanceOther,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatment != null">
+        transfer_treatment = #{transferTreatment,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentReason != null">
+        transfer_treatment_reason = #{transferTreatmentReason,jdbcType=VARCHAR},
+      </if>
+      <if test="transferTreatmentDepartment != null">
+        transfer_treatment_department = #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="nextVisitDate != null">
+        next_visit_date = #{nextVisitDate,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDoctor != null">
+        visit_doctor = #{visitDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        create_org = #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        upload_status = #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        upload_result = #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.flup.entity.GravidaAfterRecord">
+    update gravida_after_record
+    set gravida_id = #{gravidaId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      archive_no = #{archiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      visit_date = #{visitDate,jdbcType=VARCHAR},
+      childbirth = #{childbirth,jdbcType=VARCHAR},
+      discharge_date = #{dischargeDate,jdbcType=VARCHAR},
+      temperature = #{temperature,jdbcType=VARCHAR},
+      general_health_status = #{generalHealthStatus,jdbcType=VARCHAR},
+      general_psychology_status = #{generalPsychologyStatus,jdbcType=VARCHAR},
+      blood_pressure_high = #{bloodPressureHigh,jdbcType=INTEGER},
+      blood_pressure_low = #{bloodPressureLow,jdbcType=INTEGER},
+      breast = #{breast,jdbcType=VARCHAR},
+      breast_error = #{breastError,jdbcType=VARCHAR},
+      lyma = #{lyma,jdbcType=VARCHAR},
+      lyma_error = #{lymaError,jdbcType=VARCHAR},
+      womb = #{womb,jdbcType=VARCHAR},
+      womb_error = #{wombError,jdbcType=VARCHAR},
+      wound = #{wound,jdbcType=VARCHAR},
+      wound_error = #{woundError,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR},
+      conditions = #{conditions,jdbcType=VARCHAR},
+      condition_error = #{conditionError,jdbcType=VARCHAR},
+      guidance = #{guidance,jdbcType=VARCHAR},
+      guidance_other = #{guidanceOther,jdbcType=VARCHAR},
+      transfer_treatment = #{transferTreatment,jdbcType=VARCHAR},
+      transfer_treatment_reason = #{transferTreatmentReason,jdbcType=VARCHAR},
+      transfer_treatment_department = #{transferTreatmentDepartment,jdbcType=VARCHAR},
+      next_visit_date = #{nextVisitDate,jdbcType=VARCHAR},
+      visit_doctor = #{visitDoctor,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_org = #{createOrg,jdbcType=VARCHAR},
+      create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      upload_status = #{uploadStatus,jdbcType=INTEGER},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      upload_result = #{uploadResult,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

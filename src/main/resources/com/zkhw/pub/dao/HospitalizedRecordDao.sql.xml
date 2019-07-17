@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.HospitalizedRecordDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.HospitalizedRecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="exam_id" jdbcType="VARCHAR" property="examId" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="service_name" jdbcType="VARCHAR" property="serviceName" />
+    <result column="hospitalized_type" jdbcType="INTEGER" property="hospitalizedType" />
+    <result column="in_hospital_time" jdbcType="VARCHAR" property="inHospitalTime" />
+    <result column="leave_hospital_time" jdbcType="VARCHAR" property="leaveHospitalTime" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="hospital_organ" jdbcType="VARCHAR" property="hospitalOrgan" />
+    <result column="case_code" jdbcType="VARCHAR" property="caseCode" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_org" jdbcType="VARCHAR" property="createOrg" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, exam_id, archive_no, id_number, service_name, hospitalized_type, in_hospital_time, 
+    leave_hospital_time, reason, hospital_organ, case_code, remark, create_org, create_name, 
+    create_time, update_name, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hospitalized_record
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findRecordByExamId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hospitalized_record
+    where exam_id = #{examId,jdbcType=VARCHAR}
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from hospitalized_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.pub.entity.HospitalizedRecord">
+    insert into hospitalized_record (id, exam_id, archive_no, 
+      id_number, service_name, hospitalized_type, 
+      in_hospital_time, leave_hospital_time, reason, 
+      hospital_organ, case_code, remark, 
+      create_org, create_name, create_time, 
+      update_name, update_time)
+    values (#{id,jdbcType=VARCHAR}, #{examId,jdbcType=VARCHAR}, #{archiveNo,jdbcType=VARCHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{serviceName,jdbcType=VARCHAR}, #{hospitalizedType,jdbcType=INTEGER}, 
+      #{inHospitalTime,jdbcType=VARCHAR}, #{leaveHospitalTime,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, 
+      #{hospitalOrgan,jdbcType=VARCHAR}, #{caseCode,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createOrg,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.HospitalizedRecord">
+    insert into hospitalized_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="examId != null">
+        exam_id,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="serviceName != null">
+        service_name,
+      </if>
+      <if test="hospitalizedType != null">
+        hospitalized_type,
+      </if>
+      <if test="inHospitalTime != null">
+        in_hospital_time,
+      </if>
+      <if test="leaveHospitalTime != null">
+        leave_hospital_time,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="hospitalOrgan != null">
+        hospital_organ,
+      </if>
+      <if test="caseCode != null">
+        case_code,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createOrg != null">
+        create_org,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="examId != null">
+        #{examId,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalizedType != null">
+        #{hospitalizedType,jdbcType=INTEGER},
+      </if>
+      <if test="inHospitalTime != null">
+        #{inHospitalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveHospitalTime != null">
+        #{leaveHospitalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalOrgan != null">
+        #{hospitalOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="caseCode != null">
+        #{caseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.HospitalizedRecord">
+    update hospitalized_record
+    <set>
+      <if test="examId != null">
+        exam_id = #{examId,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        service_name = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalizedType != null">
+        hospitalized_type = #{hospitalizedType,jdbcType=INTEGER},
+      </if>
+      <if test="inHospitalTime != null">
+        in_hospital_time = #{inHospitalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveHospitalTime != null">
+        leave_hospital_time = #{leaveHospitalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalOrgan != null">
+        hospital_organ = #{hospitalOrgan,jdbcType=VARCHAR},
+      </if>
+      <if test="caseCode != null">
+        case_code = #{caseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        create_org = #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where archive_no = #{archiveNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.HospitalizedRecord">
+    update hospitalized_record
+    set exam_id = #{examId,jdbcType=VARCHAR},
+      archive_no = #{archiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      service_name = #{serviceName,jdbcType=VARCHAR},
+      hospitalized_type = #{hospitalizedType,jdbcType=INTEGER},
+      in_hospital_time = #{inHospitalTime,jdbcType=VARCHAR},
+      leave_hospital_time = #{leaveHospitalTime,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      hospital_organ = #{hospitalOrgan,jdbcType=VARCHAR},
+      case_code = #{caseCode,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_org = #{createOrg,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateArchiveNo" parameterType="com.zkhw.pub.vo.ArchiveId">
+  	update hospitalized_record
+  	set archive_no = #{archiveNo,jdbcType=VARCHAR}
+  	where archive_no = #{oldArchiveNo,jdbcType=VARCHAR}
+  </update>  
+</mapper>

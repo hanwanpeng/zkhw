@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.ElderlySelfcareEstimateDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.ElderlySelfcareEstimate">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="exam_id" jdbcType="VARCHAR" property="examId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="test_date" jdbcType="VARCHAR" property="testDate" />
+    <result column="answer_result" jdbcType="VARCHAR" property="answerResult" />
+    <result column="total_score" jdbcType="INTEGER" property="totalScore" />
+    <result column="judgement_result" jdbcType="VARCHAR" property="judgementResult" />
+    <result column="test_doctor" jdbcType="VARCHAR" property="testDoctor" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_org" jdbcType="VARCHAR" property="createOrg" />
+    <result column="create_org_name" jdbcType="VARCHAR" property="createOrgName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+    <result column="upload_result" jdbcType="VARCHAR" property="uploadResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, exam_id, name, archive_no, id_number, test_date, answer_result, total_score, 
+    judgement_result, test_doctor, create_user, create_name, create_org, create_org_name, 
+    create_time, update_user, update_name, update_time, upload_status, upload_time, upload_result
+  </sql>
+  
+  
+  <!-- 老年人生活自理能力评估人数 -->
+	<select id="statForEstimate" parameterType="com.zkhw.stat.query.ResidentQuery"
+	resultType="com.zkhw.stat.vo.ElderlyEstimateVo">
+	SELECT COUNT(1) as estimateNum FROM resident_base_info r JOIN
+	elderly_selfcare_estimate e ON e.id_number = r.id_number
+	where 1 = 1
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+</select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from elderly_selfcare_estimate
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findSelfcareListByExamid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from elderly_selfcare_estimate
+    where exam_id = #{examId,jdbcType=VARCHAR}
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from elderly_selfcare_estimate
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.pub.entity.ElderlySelfcareEstimate">
+    insert into elderly_selfcare_estimate (id, exam_id, name, 
+      archive_no, id_number, test_date, 
+      answer_result, total_score, judgement_result, 
+      test_doctor, create_user, create_name, 
+      create_org, create_org_name, create_time, 
+      update_user, update_name, update_time, 
+      upload_status, upload_time, upload_result
+      )
+    values (#{id,jdbcType=VARCHAR}, #{examId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{archiveNo,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, #{testDate,jdbcType=VARCHAR}, 
+      #{answerResult,jdbcType=VARCHAR}, #{totalScore,jdbcType=INTEGER}, #{judgementResult,jdbcType=VARCHAR}, 
+      #{testDoctor,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, 
+      #{createOrg,jdbcType=VARCHAR}, #{createOrgName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{uploadStatus,jdbcType=INTEGER}, #{uploadTime,jdbcType=TIMESTAMP}, #{uploadResult,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.ElderlySelfcareEstimate">
+    insert into elderly_selfcare_estimate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="examId != null">
+        exam_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="testDate != null">
+        test_date,
+      </if>
+      <if test="answerResult != null">
+        answer_result,
+      </if>
+      <if test="totalScore != null">
+        total_score,
+      </if>
+      <if test="judgementResult != null">
+        judgement_result,
+      </if>
+      <if test="testDoctor != null">
+        test_doctor,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createOrg != null">
+        create_org,
+      </if>
+      <if test="createOrgName != null">
+        create_org_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="uploadStatus != null">
+        upload_status,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+      <if test="uploadResult != null">
+        upload_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="examId != null">
+        #{examId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="testDate != null">
+        #{testDate,jdbcType=VARCHAR},
+      </if>
+      <if test="answerResult != null">
+        #{answerResult,jdbcType=VARCHAR},
+      </if>
+      <if test="totalScore != null">
+        #{totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="judgementResult != null">
+        #{judgementResult,jdbcType=VARCHAR},
+      </if>
+      <if test="testDoctor != null">
+        #{testDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.ElderlySelfcareEstimate">
+    update elderly_selfcare_estimate
+    <set>
+      <if test="examId != null">
+        exam_id = #{examId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="testDate != null">
+        test_date = #{testDate,jdbcType=VARCHAR},
+      </if>
+      <if test="answerResult != null">
+        answer_result = #{answerResult,jdbcType=VARCHAR},
+      </if>
+      <if test="totalScore != null">
+        total_score = #{totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="judgementResult != null">
+        judgement_result = #{judgementResult,jdbcType=VARCHAR},
+      </if>
+      <if test="testDoctor != null">
+        test_doctor = #{testDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrg != null">
+        create_org = #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        upload_status = #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        upload_result = #{uploadResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.ElderlySelfcareEstimate">
+    update elderly_selfcare_estimate
+    set exam_id = #{examId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      archive_no = #{archiveNo,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      test_date = #{testDate,jdbcType=VARCHAR},
+      answer_result = #{answerResult,jdbcType=VARCHAR},
+      total_score = #{totalScore,jdbcType=INTEGER},
+      judgement_result = #{judgementResult,jdbcType=VARCHAR},
+      test_doctor = #{testDoctor,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_org = #{createOrg,jdbcType=VARCHAR},
+      create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      upload_status = #{uploadStatus,jdbcType=INTEGER},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      upload_result = #{uploadResult,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateArchiveNo" parameterType="com.zkhw.pub.vo.ArchiveId">
+  	update elderly_selfcare_estimate
+  	set archive_no = #{archiveNo,jdbcType=VARCHAR}
+  	where archive_no = #{oldArchiveNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

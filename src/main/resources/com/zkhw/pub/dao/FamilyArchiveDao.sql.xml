@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.FamilyArchiveDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.FamilyArchive">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="family_archive_no" jdbcType="VARCHAR" property="familyArchiveNo" />
+    <result column="householder_archive_no" jdbcType="VARCHAR" property="householderArchiveNo" />
+    <result column="householder_name" jdbcType="VARCHAR" property="householderName" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="is_poor" jdbcType="INTEGER" property="isPoor" />
+    <result column="kitchen" jdbcType="VARCHAR" property="kitchen" />
+    <result column="fuel" jdbcType="VARCHAR" property="fuel" />
+    <result column="other_fuel" jdbcType="VARCHAR" property="otherFuel" />
+    <result column="drink" jdbcType="VARCHAR" property="drink" />
+    <result column="other_drink" jdbcType="VARCHAR" property="otherDrink" />
+    <result column="toilet" jdbcType="VARCHAR" property="toilet" />
+    <result column="poultry" jdbcType="VARCHAR" property="poultry" />
+    <result column="aichive_org" jdbcType="VARCHAR" property="aichiveOrg" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="province_code" jdbcType="VARCHAR" property="provinceCode" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="county_code" jdbcType="VARCHAR" property="countyCode" />
+    <result column="county_name" jdbcType="VARCHAR" property="countyName" />
+    <result column="towns_code" jdbcType="VARCHAR" property="townsCode" />
+    <result column="towns_name" jdbcType="VARCHAR" property="townsName" />
+    <result column="village_code" jdbcType="VARCHAR" property="villageCode" />
+    <result column="village_name" jdbcType="VARCHAR" property="villageName" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="creat_name" jdbcType="VARCHAR" property="creatName" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="create_org" jdbcType="VARCHAR" property="createOrg" />
+    <result column="create_org_name" jdbcType="VARCHAR" property="createOrgName" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+    <result column="upload_result" jdbcType="VARCHAR" property="uploadResult" />
+    <result column="discard_reason" jdbcType="VARCHAR" property="discardReason" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, family_archive_no, householder_archive_no, householder_name, id_number, is_poor, 
+    kitchen, fuel, other_fuel, drink, other_drink, toilet, poultry, aichive_org, status, 
+    province_code, province_name, city_code, city_name, county_code, county_name, towns_code, 
+    towns_name, village_code, village_name, create_user, creat_name, creat_time, create_org, 
+    create_org_name, update_user, update_name, update_time, upload_status, upload_time, 
+    upload_result, discard_reason
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from family_archive
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findFamilyArchiveList" parameterType="com.zkhw.pub.entity.FamilyArchive" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from family_archive
+    where 1 = 1
+     <if test="provinceCode != null and provinceCode != ''">
+       and  province_code = #{provinceCode,jdbcType=VARCHAR}
+     </if>   
+     <if test="cityCode != null and cityCode != ''">
+       and  city_code = #{cityCode,jdbcType=VARCHAR}
+     </if> 
+     <if test="countyCode != null and countyCode != ''">
+       and  county_code = #{countyCode,jdbcType=VARCHAR}
+     </if>  
+     <if test="townsCode != null and townsCode != ''">
+       and  towns_code = #{townsCode,jdbcType=VARCHAR}
+     </if>  
+     <if test="villageCode != null and villageCode != ''">
+       and  village_code = #{villageCode,jdbcType=VARCHAR}
+     </if>   
+     <if test="householderName != null and householderName != ''">
+       and (householder_name like concat(concat('%',#{householderName,jdbcType=VARCHAR}),'%') 
+       or id_number like concat(concat('%',#{householderName,jdbcType=VARCHAR}),'%')
+       or family_archive_no like concat(concat('%',#{householderName,jdbcType=VARCHAR}),'%'))
+     </if>      
+  </select>
+    
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from family_archive
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.pub.entity.FamilyArchive">
+    insert into family_archive (id, family_archive_no, householder_archive_no, 
+      householder_name, id_number, is_poor, 
+      kitchen, fuel, other_fuel, 
+      drink, other_drink, toilet, 
+      poultry, aichive_org, status, 
+      province_code, province_name, city_code, 
+      city_name, county_code, county_name, 
+      towns_code, towns_name, village_code, 
+      village_name, create_user, creat_name, 
+      creat_time, create_org, create_org_name, 
+      update_user, update_name, update_time, 
+      upload_status, upload_time, upload_result, 
+      discard_reason)
+    values (#{id,jdbcType=VARCHAR}, #{familyArchiveNo,jdbcType=VARCHAR}, #{householderArchiveNo,jdbcType=VARCHAR}, 
+      #{householderName,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, #{isPoor,jdbcType=INTEGER}, 
+      #{kitchen,jdbcType=VARCHAR}, #{fuel,jdbcType=VARCHAR}, #{otherFuel,jdbcType=VARCHAR}, 
+      #{drink,jdbcType=VARCHAR}, #{otherDrink,jdbcType=VARCHAR}, #{toilet,jdbcType=VARCHAR}, 
+      #{poultry,jdbcType=VARCHAR}, #{aichiveOrg,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{provinceCode,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{cityName,jdbcType=VARCHAR}, #{countyCode,jdbcType=VARCHAR}, #{countyName,jdbcType=VARCHAR}, 
+      #{townsCode,jdbcType=VARCHAR}, #{townsName,jdbcType=VARCHAR}, #{villageCode,jdbcType=VARCHAR}, 
+      #{villageName,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{creatName,jdbcType=VARCHAR}, 
+      #{creatTime,jdbcType=TIMESTAMP}, #{createOrg,jdbcType=VARCHAR}, #{createOrgName,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{uploadStatus,jdbcType=INTEGER}, #{uploadTime,jdbcType=TIMESTAMP}, #{uploadResult,jdbcType=VARCHAR}, 
+      #{discardReason,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.FamilyArchive">
+    insert into family_archive
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="familyArchiveNo != null">
+        family_archive_no,
+      </if>
+      <if test="householderArchiveNo != null">
+        householder_archive_no,
+      </if>
+      <if test="householderName != null">
+        householder_name,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="isPoor != null">
+        is_poor,
+      </if>
+      <if test="kitchen != null">
+        kitchen,
+      </if>
+      <if test="fuel != null">
+        fuel,
+      </if>
+      <if test="otherFuel != null">
+        other_fuel,
+      </if>
+      <if test="drink != null">
+        drink,
+      </if>
+      <if test="otherDrink != null">
+        other_drink,
+      </if>
+      <if test="toilet != null">
+        toilet,
+      </if>
+      <if test="poultry != null">
+        poultry,
+      </if>
+      <if test="aichiveOrg != null">
+        aichive_org,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="provinceCode != null">
+        province_code,
+      </if>
+      <if test="provinceName != null">
+        province_name,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="cityName != null">
+        city_name,
+      </if>
+      <if test="countyCode != null">
+        county_code,
+      </if>
+      <if test="countyName != null">
+        county_name,
+      </if>
+      <if test="townsCode != null">
+        towns_code,
+      </if>
+      <if test="townsName != null">
+        towns_name,
+      </if>
+      <if test="villageCode != null">
+        village_code,
+      </if>
+      <if test="villageName != null">
+        village_name,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="creatName != null">
+        creat_name,
+      </if>
+      <if test="creatTime != null">
+        creat_time,
+      </if>
+      <if test="createOrg != null">
+        create_org,
+      </if>
+      <if test="createOrgName != null">
+        create_org_name,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="uploadStatus != null">
+        upload_status,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+      <if test="uploadResult != null">
+        upload_result,
+      </if>
+      <if test="discardReason != null">
+        discard_reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="familyArchiveNo != null">
+        #{familyArchiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="householderArchiveNo != null">
+        #{householderArchiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="householderName != null">
+        #{householderName,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isPoor != null">
+        #{isPoor,jdbcType=INTEGER},
+      </if>
+      <if test="kitchen != null">
+        #{kitchen,jdbcType=VARCHAR},
+      </if>
+      <if test="fuel != null">
+        #{fuel,jdbcType=VARCHAR},
+      </if>
+      <if test="otherFuel != null">
+        #{otherFuel,jdbcType=VARCHAR},
+      </if>
+      <if test="drink != null">
+        #{drink,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDrink != null">
+        #{otherDrink,jdbcType=VARCHAR},
+      </if>
+      <if test="toilet != null">
+        #{toilet,jdbcType=VARCHAR},
+      </if>
+      <if test="poultry != null">
+        #{poultry,jdbcType=VARCHAR},
+      </if>
+      <if test="aichiveOrg != null">
+        #{aichiveOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsCode != null">
+        #{townsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townsName != null">
+        #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null">
+        #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="creatName != null">
+        #{creatName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null">
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOrg != null">
+        #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        #{uploadResult,jdbcType=VARCHAR},
+      </if>
+      <if test="discardReason != null">
+        #{discardReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.FamilyArchive">
+    update family_archive
+    <set>
+      <if test="familyArchiveNo != null">
+        family_archive_no = #{familyArchiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="householderArchiveNo != null">
+        householder_archive_no = #{householderArchiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="householderName != null">
+        householder_name = #{householderName,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="isPoor != null">
+        is_poor = #{isPoor,jdbcType=INTEGER},
+      </if>
+      <if test="kitchen != null">
+        kitchen = #{kitchen,jdbcType=VARCHAR},
+      </if>
+      <if test="fuel != null">
+        fuel = #{fuel,jdbcType=VARCHAR},
+      </if>
+      <if test="otherFuel != null">
+        other_fuel = #{otherFuel,jdbcType=VARCHAR},
+      </if>
+      <if test="drink != null">
+        drink = #{drink,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDrink != null">
+        other_drink = #{otherDrink,jdbcType=VARCHAR},
+      </if>
+      <if test="toilet != null">
+        toilet = #{toilet,jdbcType=VARCHAR},
+      </if>
+      <if test="poultry != null">
+        poultry = #{poultry,jdbcType=VARCHAR},
+      </if>
+      <if test="aichiveOrg != null">
+        aichive_org = #{aichiveOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        county_code = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        county_name = #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsCode != null">
+        towns_code = #{townsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townsName != null">
+        towns_name = #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null">
+        village_code = #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        village_name = #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="creatName != null">
+        creat_name = #{creatName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null">
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOrg != null">
+        create_org = #{createOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null">
+        create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadStatus != null">
+        upload_status = #{uploadStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadResult != null">
+        upload_result = #{uploadResult,jdbcType=VARCHAR},
+      </if>
+      <if test="discardReason != null">
+        discard_reason = #{discardReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.FamilyArchive">
+    update family_archive
+    set family_archive_no = #{familyArchiveNo,jdbcType=VARCHAR},
+      householder_archive_no = #{householderArchiveNo,jdbcType=VARCHAR},
+      householder_name = #{householderName,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      is_poor = #{isPoor,jdbcType=INTEGER},
+      kitchen = #{kitchen,jdbcType=VARCHAR},
+      fuel = #{fuel,jdbcType=VARCHAR},
+      other_fuel = #{otherFuel,jdbcType=VARCHAR},
+      drink = #{drink,jdbcType=VARCHAR},
+      other_drink = #{otherDrink,jdbcType=VARCHAR},
+      toilet = #{toilet,jdbcType=VARCHAR},
+      poultry = #{poultry,jdbcType=VARCHAR},
+      aichive_org = #{aichiveOrg,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      county_code = #{countyCode,jdbcType=VARCHAR},
+      county_name = #{countyName,jdbcType=VARCHAR},
+      towns_code = #{townsCode,jdbcType=VARCHAR},
+      towns_name = #{townsName,jdbcType=VARCHAR},
+      village_code = #{villageCode,jdbcType=VARCHAR},
+      village_name = #{villageName,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      creat_name = #{creatName,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      create_org = #{createOrg,jdbcType=VARCHAR},
+      create_org_name = #{createOrgName,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      upload_status = #{uploadStatus,jdbcType=INTEGER},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      upload_result = #{uploadResult,jdbcType=VARCHAR},
+      discard_reason = #{discardReason,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

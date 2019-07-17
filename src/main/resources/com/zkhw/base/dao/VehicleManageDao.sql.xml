@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.base.dao.VehicleManageDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.base.entity.VehicleManage">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="carId" jdbcType="VARCHAR" property="carid" />
+    <result column="vehicle_number" jdbcType="VARCHAR" property="vehicleNumber" />
+    <result column="vehicle_name" jdbcType="VARCHAR" property="vehicleName" />
+    <result column="organ_code" jdbcType="VARCHAR" property="organCode" />
+    <result column="organ_name" jdbcType="VARCHAR" property="organName" />
+    <result column="province_code" jdbcType="VARCHAR" property="provinceCode" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="county_code" jdbcType="VARCHAR" property="countyCode" />
+    <result column="county_name" jdbcType="VARCHAR" property="countyName" />
+    <result column="towns_code" jdbcType="VARCHAR" property="townsCode" />
+    <result column="towns_name" jdbcType="VARCHAR" property="townsName" />
+    <result column="village_code" jdbcType="VARCHAR" property="villageCode" />
+    <result column="village_name" jdbcType="VARCHAR" property="villageName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, carId, vehicle_number, vehicle_name, organ_code, organ_name, province_code, province_name, 
+    city_code, city_name, county_code, county_name, towns_code, towns_name, village_code, 
+    village_name, address, update_name, update_time, create_name, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vehicle_manage
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 分页查询 -->
+  <select id="vehicleByPage" parameterType="com.zkhw.base.entity.VehicleManage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vehicle_manage
+    where 1 = 1
+    <if test="carid != null and carid != ''">
+       and carId like concat(concat('%',#{carid,jdbcType=VARCHAR}),'%')
+     </if>  
+     <if test="vehicleNumber != null and vehicleNumber != ''">
+       and vehicle_number like concat(concat('%',#{vehicleNumber,jdbcType=VARCHAR}),'%')
+     </if>  
+     <if test="vehicleName != null and vehicleName != ''">
+       and  vehicle_name = #{vehicleName,jdbcType=VARCHAR}
+     </if> 
+    <if test="provinceCode != null and provinceCode != ''">
+       and  province_code = #{provinceCode,jdbcType=VARCHAR}
+     </if>   
+     <if test="cityCode != null and cityCode != ''">
+       and  city_code = #{cityCode,jdbcType=VARCHAR}
+     </if> 
+     <if test="countyCode != null and countyCode != ''">
+       and  county_code = #{countyCode,jdbcType=VARCHAR}
+     </if>  
+     <if test="townsCode != null and townsCode != ''">
+       and  towns_code = #{townsCode,jdbcType=VARCHAR}
+     </if>  
+     <if test="villageCode != null and villageCode != ''">
+       and  village_code = #{villageCode,jdbcType=VARCHAR}
+     </if>   
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from vehicle_manage
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.base.entity.VehicleManage">
+    insert into vehicle_manage (id, carId, vehicle_number, 
+      vehicle_name, organ_code, organ_name, 
+      province_code, province_name, city_code, 
+      city_name, county_code, county_name, 
+      towns_code, towns_name, village_code, 
+      village_name, address, update_name, 
+      update_time, create_name, create_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{carid,jdbcType=VARCHAR}, #{vehicleNumber,jdbcType=VARCHAR}, 
+      #{vehicleName,jdbcType=VARCHAR}, #{organCode,jdbcType=VARCHAR}, #{organName,jdbcType=VARCHAR}, 
+      #{provinceCode,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{cityName,jdbcType=VARCHAR}, #{countyCode,jdbcType=VARCHAR}, #{countyName,jdbcType=VARCHAR}, 
+      #{townsCode,jdbcType=VARCHAR}, #{townsName,jdbcType=VARCHAR}, #{villageCode,jdbcType=VARCHAR}, 
+      #{villageName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.base.entity.VehicleManage">
+    insert into vehicle_manage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="carid != null">
+        carId,
+      </if>
+      <if test="vehicleNumber != null">
+        vehicle_number,
+      </if>
+      <if test="vehicleName != null">
+        vehicle_name,
+      </if>
+      <if test="organCode != null">
+        organ_code,
+      </if>
+      <if test="organName != null">
+        organ_name,
+      </if>
+      <if test="provinceCode != null">
+        province_code,
+      </if>
+      <if test="provinceName != null">
+        province_name,
+      </if>
+      <if test="cityCode != null">
+        city_code,
+      </if>
+      <if test="cityName != null">
+        city_name,
+      </if>
+      <if test="countyCode != null">
+        county_code,
+      </if>
+      <if test="countyName != null">
+        county_name,
+      </if>
+      <if test="townsCode != null">
+        towns_code,
+      </if>
+      <if test="townsName != null">
+        towns_name,
+      </if>
+      <if test="villageCode != null">
+        village_code,
+      </if>
+      <if test="villageName != null">
+        village_name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="carid != null">
+        #{carid,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleNumber != null">
+        #{vehicleNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleName != null">
+        #{vehicleName,jdbcType=VARCHAR},
+      </if>
+      <if test="organCode != null">
+        #{organCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organName != null">
+        #{organName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsCode != null">
+        #{townsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townsName != null">
+        #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null">
+        #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.base.entity.VehicleManage">
+    update vehicle_manage
+    <set>
+      <if test="carid != null">
+        carId = #{carid,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleNumber != null">
+        vehicle_number = #{vehicleNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleName != null">
+        vehicle_name = #{vehicleName,jdbcType=VARCHAR},
+      </if>
+      <if test="organCode != null">
+        organ_code = #{organCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organName != null">
+        organ_name = #{organName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null">
+        county_code = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyName != null">
+        county_name = #{countyName,jdbcType=VARCHAR},
+      </if>
+      <if test="townsCode != null">
+        towns_code = #{townsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="townsName != null">
+        towns_name = #{townsName,jdbcType=VARCHAR},
+      </if>
+      <if test="villageCode != null">
+        village_code = #{villageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="villageName != null">
+        village_name = #{villageName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.base.entity.VehicleManage">
+    update vehicle_manage
+    set carId = #{carid,jdbcType=VARCHAR},
+      vehicle_number = #{vehicleNumber,jdbcType=VARCHAR},
+      vehicle_name = #{vehicleName,jdbcType=VARCHAR},
+      organ_code = #{organCode,jdbcType=VARCHAR},
+      organ_name = #{organName,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      county_code = #{countyCode,jdbcType=VARCHAR},
+      county_name = #{countyName,jdbcType=VARCHAR},
+      towns_code = #{townsCode,jdbcType=VARCHAR},
+      towns_name = #{townsName,jdbcType=VARCHAR},
+      village_code = #{villageCode,jdbcType=VARCHAR},
+      village_name = #{villageName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

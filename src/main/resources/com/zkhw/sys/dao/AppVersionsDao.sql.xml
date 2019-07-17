@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.sys.dao.AppVersionsDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.sys.entity.AppVersions">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="app_version" jdbcType="VARCHAR" property="appVersion" />
+    <result column="app_path" jdbcType="VARCHAR" property="appPath" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="is_force" jdbcType="VARCHAR" property="isForce" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
+    <result column="release_date" jdbcType="VARCHAR" property="releaseDate" />
+    <result column="inuse" jdbcType="INTEGER" property="inuse" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_name" jdbcType="VARCHAR" property="updateName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, app_version, app_path, app_name, is_force, info, size, release_date, inuse, create_user, 
+    create_name, create_time, update_user, update_name, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from app_versions
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getHeadVersion"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from app_versions
+    where inuse = 1 order by create_time desc limit 1
+  </select>  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from app_versions
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkhw.sys.entity.AppVersions">
+    insert into app_versions (id, app_version, app_path, 
+      app_name, is_force, info, 
+      size, release_date, inuse, 
+      create_user, create_name, create_time, 
+      update_user, update_name, update_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{appVersion,jdbcType=VARCHAR}, #{appPath,jdbcType=VARCHAR}, 
+      #{appName,jdbcType=VARCHAR}, #{isForce,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, 
+      #{size,jdbcType=VARCHAR}, #{releaseDate,jdbcType=VARCHAR}, #{inuse,jdbcType=INTEGER}, 
+      #{createUser,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.sys.entity.AppVersions">
+    insert into app_versions
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="appVersion != null">
+        app_version,
+      </if>
+      <if test="appPath != null">
+        app_path,
+      </if>
+      <if test="appName != null">
+        app_name,
+      </if>
+      <if test="isForce != null">
+        is_force,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="releaseDate != null">
+        release_date,
+      </if>
+      <if test="inuse != null">
+        inuse,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateName != null">
+        update_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null">
+        #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="appPath != null">
+        #{appPath,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="isForce != null">
+        #{isForce,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseDate != null">
+        #{releaseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="inuse != null">
+        #{inuse,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.sys.entity.AppVersions">
+    update app_versions
+    <set>
+      <if test="appVersion != null">
+        app_version = #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="appPath != null">
+        app_path = #{appPath,jdbcType=VARCHAR},
+      </if>
+      <if test="appName != null">
+        app_name = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="isForce != null">
+        is_force = #{isForce,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseDate != null">
+        release_date = #{releaseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="inuse != null">
+        inuse = #{inuse,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateName != null">
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.sys.entity.AppVersions">
+    update app_versions
+    set app_version = #{appVersion,jdbcType=VARCHAR},
+      app_path = #{appPath,jdbcType=VARCHAR},
+      app_name = #{appName,jdbcType=VARCHAR},
+      is_force = #{isForce,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      release_date = #{releaseDate,jdbcType=VARCHAR},
+      inuse = #{inuse,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

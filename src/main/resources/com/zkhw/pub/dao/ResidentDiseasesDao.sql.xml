@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkhw.pub.dao.ResidentDiseasesDao">
+  <resultMap id="BaseResultMap" type="com.zkhw.pub.entity.ResidentDiseases">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="archive_no" jdbcType="VARCHAR" property="archiveNo" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="disease_type" jdbcType="VARCHAR" property="diseaseType" />
+    <result column="disease_name" jdbcType="VARCHAR" property="diseaseName" />
+    <result column="disease_date" jdbcType="VARCHAR" property="diseaseDate" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, archive_no, name, id_number, disease_type, disease_name, disease_date, create_user, 
+    create_name, create_time
+  </sql>
+  
+  <select id="selectByArchiveNo" parameterType="com.zkhw.pub.entity.ResidentDiseases" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from resident_diseases
+    where archive_no = #{archiveNo,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from resident_diseases
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <delete id="deleteByArchiveNo" parameterType="java.lang.String">
+    delete from resident_diseases
+    where archive_no = #{archiveNo,jdbcType=VARCHAR}
+  </delete>
+    
+  <insert id="insert" parameterType="com.zkhw.pub.entity.ResidentDiseases">
+    insert into resident_diseases (id, archive_no, name, 
+      id_number, disease_type, disease_name, 
+      disease_date, create_user, create_name, 
+      create_time)
+    values (#{id,jdbcType=VARCHAR}, #{archiveNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{diseaseType,jdbcType=VARCHAR}, #{diseaseName,jdbcType=VARCHAR}, 
+      #{diseaseDate,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkhw.pub.entity.ResidentDiseases">
+    insert into resident_diseases
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="archiveNo != null">
+        archive_no,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="diseaseType != null">
+        disease_type,
+      </if>
+      <if test="diseaseName != null">
+        disease_name,
+      </if>
+      <if test="diseaseDate != null">
+        disease_date,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNo != null">
+        #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseType != null">
+        #{diseaseType,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseName != null">
+        #{diseaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseDate != null">
+        #{diseaseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkhw.pub.entity.ResidentDiseases">
+    update resident_diseases
+    <set>
+      <if test="archiveNo != null">
+        archive_no = #{archiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseType != null">
+        disease_type = #{diseaseType,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseName != null">
+        disease_name = #{diseaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseDate != null">
+        disease_date = #{diseaseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkhw.pub.entity.ResidentDiseases">
+    update resident_diseases
+    set archive_no = #{archiveNo,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      disease_type = #{diseaseType,jdbcType=VARCHAR},
+      disease_name = #{diseaseName,jdbcType=VARCHAR},
+      disease_date = #{diseaseDate,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

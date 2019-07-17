@@ -1,0 +1,1102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhou.pub.dao.ElderCognitionDao">
+  <resultMap id="BaseResultMap" type="com.wuzhou.pub.entity.ElderCognition">
+    <id column="ELDER_COGNITION_ID" jdbcType="VARCHAR" property="elderCognitionId" />
+    <result column="PERSON_INFO_ID" jdbcType="VARCHAR" property="personInfoId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="SEX_CODE" jdbcType="VARCHAR" property="sexCode" />
+    <result column="AGE" jdbcType="DECIMAL" property="age" />
+    <result column="EDUCATION_CODE" jdbcType="VARCHAR" property="educationCode" />
+    <result column="ASSESS_DATE" jdbcType="TIMESTAMP" property="assessDate" />
+    <result column="DISEASE_HISTORY" jdbcType="VARCHAR" property="diseaseHistory" />
+    <result column="TOTAL_SCORE" jdbcType="VARCHAR" property="totalScore" />
+    <result column="DIRECTIVE_RECORD1" jdbcType="VARCHAR" property="directiveRecord1" />
+    <result column="DIRECTIVE_SCORE1" jdbcType="VARCHAR" property="directiveScore1" />
+    <result column="DIRECTIVE_RECORD2" jdbcType="VARCHAR" property="directiveRecord2" />
+    <result column="DIRECTIVE_SCORE2" jdbcType="VARCHAR" property="directiveScore2" />
+    <result column="DIRECTIVE_RECORD3" jdbcType="VARCHAR" property="directiveRecord3" />
+    <result column="DIRECTIVE_SCORE3" jdbcType="VARCHAR" property="directiveScore3" />
+    <result column="DIRECTIVE_RECORD4" jdbcType="VARCHAR" property="directiveRecord4" />
+    <result column="DIRECTIVE_SCORE4" jdbcType="VARCHAR" property="directiveScore4" />
+    <result column="DIRECTIVE_RECORD5" jdbcType="VARCHAR" property="directiveRecord5" />
+    <result column="DIRECTIVE_SCORE5" jdbcType="VARCHAR" property="directiveScore5" />
+    <result column="DIRECTIVE_RECORD6" jdbcType="VARCHAR" property="directiveRecord6" />
+    <result column="DIRECTIVE_SCORE6" jdbcType="VARCHAR" property="directiveScore6" />
+    <result column="DIRECTIVE_RECORD7" jdbcType="VARCHAR" property="directiveRecord7" />
+    <result column="DIRECTIVE_SCORE7" jdbcType="VARCHAR" property="directiveScore7" />
+    <result column="DIRECTIVE_RECORD8" jdbcType="VARCHAR" property="directiveRecord8" />
+    <result column="DIRECTIVE_SCORE8" jdbcType="VARCHAR" property="directiveScore8" />
+    <result column="DIRECTIVE_RECORD9" jdbcType="VARCHAR" property="directiveRecord9" />
+    <result column="DIRECTIVE_SCORE9" jdbcType="VARCHAR" property="directiveScore9" />
+    <result column="DIRECTIVE_RECORD10" jdbcType="VARCHAR" property="directiveRecord10" />
+    <result column="DIRECTIVE_SCORE10" jdbcType="VARCHAR" property="directiveScore10" />
+    <result column="MEMORY_RECORD1" jdbcType="VARCHAR" property="memoryRecord1" />
+    <result column="MEMORY_SCORE1" jdbcType="VARCHAR" property="memoryScore1" />
+    <result column="MEMORY_RECORD2" jdbcType="VARCHAR" property="memoryRecord2" />
+    <result column="MEMORY_SCORE2" jdbcType="VARCHAR" property="memoryScore2" />
+    <result column="MEMORY_RECORD3" jdbcType="VARCHAR" property="memoryRecord3" />
+    <result column="MEMORY_SCORE3" jdbcType="VARCHAR" property="memoryScore3" />
+    <result column="COUNT_RECORD1" jdbcType="VARCHAR" property="countRecord1" />
+    <result column="COUNT_SCORE1" jdbcType="VARCHAR" property="countScore1" />
+    <result column="COUNT_RECORD2" jdbcType="VARCHAR" property="countRecord2" />
+    <result column="COUNT_SCORE2" jdbcType="VARCHAR" property="countScore2" />
+    <result column="COUNT_RECORD3" jdbcType="VARCHAR" property="countRecord3" />
+    <result column="COUNT_SCORE3" jdbcType="VARCHAR" property="countScore3" />
+    <result column="COUNT_RECORD4" jdbcType="VARCHAR" property="countRecord4" />
+    <result column="COUNT_SCORE4" jdbcType="VARCHAR" property="countScore4" />
+    <result column="COUNT_RECORD5" jdbcType="VARCHAR" property="countRecord5" />
+    <result column="COUNT_SCORE5" jdbcType="VARCHAR" property="countScore5" />
+    <result column="RECOLLECT_RECORD1" jdbcType="VARCHAR" property="recollectRecord1" />
+    <result column="RECOLLECT_SCORE1" jdbcType="VARCHAR" property="recollectScore1" />
+    <result column="RECOLLECT_RECORD2" jdbcType="VARCHAR" property="recollectRecord2" />
+    <result column="RECOLLECT_SCORE2" jdbcType="VARCHAR" property="recollectScore2" />
+    <result column="RECOLLECT_RECORD3" jdbcType="VARCHAR" property="recollectRecord3" />
+    <result column="RECOLLECT_SCORE3" jdbcType="VARCHAR" property="recollectScore3" />
+    <result column="NAMING_QUESTION1" jdbcType="VARCHAR" property="namingQuestion1" />
+    <result column="NAMING_RECORD1" jdbcType="VARCHAR" property="namingRecord1" />
+    <result column="NAMING_SCORE1" jdbcType="VARCHAR" property="namingScore1" />
+    <result column="NAMING_QUESTION2" jdbcType="VARCHAR" property="namingQuestion2" />
+    <result column="NAMING_RECORD2" jdbcType="VARCHAR" property="namingRecord2" />
+    <result column="NAMING_SCORE2" jdbcType="VARCHAR" property="namingScore2" />
+    <result column="LANGUAGE_QUESTION" jdbcType="VARCHAR" property="languageQuestion" />
+    <result column="LANGUAGE_RECORD" jdbcType="VARCHAR" property="languageRecord" />
+    <result column="LANGUAGE_SCORE" jdbcType="VARCHAR" property="languageScore" />
+    <result column="THREESTEP_QUESTION1" jdbcType="VARCHAR" property="threestepQuestion1" />
+    <result column="THREESTEP_RECORD1" jdbcType="VARCHAR" property="threestepRecord1" />
+    <result column="THREESTEP_SCORE1" jdbcType="VARCHAR" property="threestepScore1" />
+    <result column="THREESTEP_QUESTION2" jdbcType="VARCHAR" property="threestepQuestion2" />
+    <result column="THREESTEP_RECORD2" jdbcType="VARCHAR" property="threestepRecord2" />
+    <result column="THREESTEP_SCORE2" jdbcType="VARCHAR" property="threestepScore2" />
+    <result column="THREESTEP_QUESTION3" jdbcType="VARCHAR" property="threestepQuestion3" />
+    <result column="THREESTEP_RECORD3" jdbcType="VARCHAR" property="threestepRecord3" />
+    <result column="THREESTEP_SCORE3" jdbcType="VARCHAR" property="threestepScore3" />
+    <result column="READ_QUESTION" jdbcType="VARCHAR" property="readQuestion" />
+    <result column="READ_RECORD" jdbcType="VARCHAR" property="readRecord" />
+    <result column="READ_SCORE" jdbcType="VARCHAR" property="readScore" />
+    <result column="WRITE_QUESTION" jdbcType="VARCHAR" property="writeQuestion" />
+    <result column="WRITE_RECORD" jdbcType="VARCHAR" property="writeRecord" />
+    <result column="WRITE_SCORE" jdbcType="VARCHAR" property="writeScore" />
+    <result column="STRUCTURE_RECORD" jdbcType="VARCHAR" property="structureRecord" />
+    <result column="STRUCTURE_SCORE" jdbcType="VARCHAR" property="structureScore" />
+    <result column="CREATE_ORG_ID" jdbcType="VARCHAR" property="createOrgId" />
+    <result column="ORG_NAME" jdbcType="VARCHAR" property="orgName" />
+    <result column="CREATOR_ID" jdbcType="VARCHAR" property="creatorId" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFIED_ORG_ID" jdbcType="VARCHAR" property="modifiedOrgId" />
+    <result column="MODIFIED_ORG_NAME" jdbcType="VARCHAR" property="modifiedOrgName" />
+    <result column="MODIFIER_ID" jdbcType="VARCHAR" property="modifierId" />
+    <result column="MODIFIER" jdbcType="VARCHAR" property="modifier" />
+    <result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="IS_APP_CREATE" jdbcType="DECIMAL" property="isAppCreate" />
+    <result column="ERR_CODE" jdbcType="DECIMAL" property="errCode" />
+    <result column="ERR_STR" jdbcType="VARCHAR" property="errStr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ELDER_COGNITION_ID, PERSON_INFO_ID, NAME, SEX_CODE, AGE, EDUCATION_CODE, ASSESS_DATE, 
+    DISEASE_HISTORY, TOTAL_SCORE, DIRECTIVE_RECORD1, DIRECTIVE_SCORE1, DIRECTIVE_RECORD2, 
+    DIRECTIVE_SCORE2, DIRECTIVE_RECORD3, DIRECTIVE_SCORE3, DIRECTIVE_RECORD4, DIRECTIVE_SCORE4, 
+    DIRECTIVE_RECORD5, DIRECTIVE_SCORE5, DIRECTIVE_RECORD6, DIRECTIVE_SCORE6, DIRECTIVE_RECORD7, 
+    DIRECTIVE_SCORE7, DIRECTIVE_RECORD8, DIRECTIVE_SCORE8, DIRECTIVE_RECORD9, DIRECTIVE_SCORE9, 
+    DIRECTIVE_RECORD10, DIRECTIVE_SCORE10, MEMORY_RECORD1, MEMORY_SCORE1, MEMORY_RECORD2, 
+    MEMORY_SCORE2, MEMORY_RECORD3, MEMORY_SCORE3, COUNT_RECORD1, COUNT_SCORE1, COUNT_RECORD2, 
+    COUNT_SCORE2, COUNT_RECORD3, COUNT_SCORE3, COUNT_RECORD4, COUNT_SCORE4, COUNT_RECORD5, 
+    COUNT_SCORE5, RECOLLECT_RECORD1, RECOLLECT_SCORE1, RECOLLECT_RECORD2, RECOLLECT_SCORE2, 
+    RECOLLECT_RECORD3, RECOLLECT_SCORE3, NAMING_QUESTION1, NAMING_RECORD1, NAMING_SCORE1, 
+    NAMING_QUESTION2, NAMING_RECORD2, NAMING_SCORE2, LANGUAGE_QUESTION, LANGUAGE_RECORD, 
+    LANGUAGE_SCORE, THREESTEP_QUESTION1, THREESTEP_RECORD1, THREESTEP_SCORE1, THREESTEP_QUESTION2, 
+    THREESTEP_RECORD2, THREESTEP_SCORE2, THREESTEP_QUESTION3, THREESTEP_RECORD3, THREESTEP_SCORE3, 
+    READ_QUESTION, READ_RECORD, READ_SCORE, WRITE_QUESTION, WRITE_RECORD, WRITE_SCORE, 
+    STRUCTURE_RECORD, STRUCTURE_SCORE, CREATE_ORG_ID, ORG_NAME, CREATOR_ID, CREATOR, 
+    CREATE_TIME, MODIFIED_ORG_ID, MODIFIED_ORG_NAME, MODIFIER_ID, MODIFIER, MODIFIED_TIME, 
+    IS_APP_CREATE, ERR_CODE, ERR_STR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ELDER_COGNITION
+    where ELDER_COGNITION_ID = #{elderCognitionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ELDER_COGNITION
+    where ELDER_COGNITION_ID = #{elderCognitionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuzhou.pub.entity.ElderCognition">
+    insert into ELDER_COGNITION (ELDER_COGNITION_ID, PERSON_INFO_ID, NAME, 
+      SEX_CODE, AGE, EDUCATION_CODE, 
+      ASSESS_DATE, DISEASE_HISTORY, TOTAL_SCORE, 
+      DIRECTIVE_RECORD1, DIRECTIVE_SCORE1, DIRECTIVE_RECORD2, 
+      DIRECTIVE_SCORE2, DIRECTIVE_RECORD3, DIRECTIVE_SCORE3, 
+      DIRECTIVE_RECORD4, DIRECTIVE_SCORE4, DIRECTIVE_RECORD5, 
+      DIRECTIVE_SCORE5, DIRECTIVE_RECORD6, DIRECTIVE_SCORE6, 
+      DIRECTIVE_RECORD7, DIRECTIVE_SCORE7, DIRECTIVE_RECORD8, 
+      DIRECTIVE_SCORE8, DIRECTIVE_RECORD9, DIRECTIVE_SCORE9, 
+      DIRECTIVE_RECORD10, DIRECTIVE_SCORE10, MEMORY_RECORD1, 
+      MEMORY_SCORE1, MEMORY_RECORD2, MEMORY_SCORE2, 
+      MEMORY_RECORD3, MEMORY_SCORE3, COUNT_RECORD1, 
+      COUNT_SCORE1, COUNT_RECORD2, COUNT_SCORE2, 
+      COUNT_RECORD3, COUNT_SCORE3, COUNT_RECORD4, 
+      COUNT_SCORE4, COUNT_RECORD5, COUNT_SCORE5, 
+      RECOLLECT_RECORD1, RECOLLECT_SCORE1, RECOLLECT_RECORD2, 
+      RECOLLECT_SCORE2, RECOLLECT_RECORD3, RECOLLECT_SCORE3, 
+      NAMING_QUESTION1, NAMING_RECORD1, NAMING_SCORE1, 
+      NAMING_QUESTION2, NAMING_RECORD2, NAMING_SCORE2, 
+      LANGUAGE_QUESTION, LANGUAGE_RECORD, LANGUAGE_SCORE, 
+      THREESTEP_QUESTION1, THREESTEP_RECORD1, THREESTEP_SCORE1, 
+      THREESTEP_QUESTION2, THREESTEP_RECORD2, THREESTEP_SCORE2, 
+      THREESTEP_QUESTION3, THREESTEP_RECORD3, THREESTEP_SCORE3, 
+      READ_QUESTION, READ_RECORD, READ_SCORE, 
+      WRITE_QUESTION, WRITE_RECORD, WRITE_SCORE, 
+      STRUCTURE_RECORD, STRUCTURE_SCORE, CREATE_ORG_ID, 
+      ORG_NAME, CREATOR_ID, CREATOR, 
+      CREATE_TIME, MODIFIED_ORG_ID, MODIFIED_ORG_NAME, 
+      MODIFIER_ID, MODIFIER, MODIFIED_TIME, 
+      IS_APP_CREATE, ERR_CODE, ERR_STR
+      )
+    values (#{elderCognitionId,jdbcType=VARCHAR}, #{personInfoId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sexCode,jdbcType=VARCHAR}, #{age,jdbcType=DECIMAL}, #{educationCode,jdbcType=VARCHAR}, 
+      #{assessDate,jdbcType=TIMESTAMP}, #{diseaseHistory,jdbcType=VARCHAR}, #{totalScore,jdbcType=VARCHAR}, 
+      #{directiveRecord1,jdbcType=VARCHAR}, #{directiveScore1,jdbcType=VARCHAR}, #{directiveRecord2,jdbcType=VARCHAR}, 
+      #{directiveScore2,jdbcType=VARCHAR}, #{directiveRecord3,jdbcType=VARCHAR}, #{directiveScore3,jdbcType=VARCHAR}, 
+      #{directiveRecord4,jdbcType=VARCHAR}, #{directiveScore4,jdbcType=VARCHAR}, #{directiveRecord5,jdbcType=VARCHAR}, 
+      #{directiveScore5,jdbcType=VARCHAR}, #{directiveRecord6,jdbcType=VARCHAR}, #{directiveScore6,jdbcType=VARCHAR}, 
+      #{directiveRecord7,jdbcType=VARCHAR}, #{directiveScore7,jdbcType=VARCHAR}, #{directiveRecord8,jdbcType=VARCHAR}, 
+      #{directiveScore8,jdbcType=VARCHAR}, #{directiveRecord9,jdbcType=VARCHAR}, #{directiveScore9,jdbcType=VARCHAR}, 
+      #{directiveRecord10,jdbcType=VARCHAR}, #{directiveScore10,jdbcType=VARCHAR}, #{memoryRecord1,jdbcType=VARCHAR}, 
+      #{memoryScore1,jdbcType=VARCHAR}, #{memoryRecord2,jdbcType=VARCHAR}, #{memoryScore2,jdbcType=VARCHAR}, 
+      #{memoryRecord3,jdbcType=VARCHAR}, #{memoryScore3,jdbcType=VARCHAR}, #{countRecord1,jdbcType=VARCHAR}, 
+      #{countScore1,jdbcType=VARCHAR}, #{countRecord2,jdbcType=VARCHAR}, #{countScore2,jdbcType=VARCHAR}, 
+      #{countRecord3,jdbcType=VARCHAR}, #{countScore3,jdbcType=VARCHAR}, #{countRecord4,jdbcType=VARCHAR}, 
+      #{countScore4,jdbcType=VARCHAR}, #{countRecord5,jdbcType=VARCHAR}, #{countScore5,jdbcType=VARCHAR}, 
+      #{recollectRecord1,jdbcType=VARCHAR}, #{recollectScore1,jdbcType=VARCHAR}, #{recollectRecord2,jdbcType=VARCHAR}, 
+      #{recollectScore2,jdbcType=VARCHAR}, #{recollectRecord3,jdbcType=VARCHAR}, #{recollectScore3,jdbcType=VARCHAR}, 
+      #{namingQuestion1,jdbcType=VARCHAR}, #{namingRecord1,jdbcType=VARCHAR}, #{namingScore1,jdbcType=VARCHAR}, 
+      #{namingQuestion2,jdbcType=VARCHAR}, #{namingRecord2,jdbcType=VARCHAR}, #{namingScore2,jdbcType=VARCHAR}, 
+      #{languageQuestion,jdbcType=VARCHAR}, #{languageRecord,jdbcType=VARCHAR}, #{languageScore,jdbcType=VARCHAR}, 
+      #{threestepQuestion1,jdbcType=VARCHAR}, #{threestepRecord1,jdbcType=VARCHAR}, #{threestepScore1,jdbcType=VARCHAR}, 
+      #{threestepQuestion2,jdbcType=VARCHAR}, #{threestepRecord2,jdbcType=VARCHAR}, #{threestepScore2,jdbcType=VARCHAR}, 
+      #{threestepQuestion3,jdbcType=VARCHAR}, #{threestepRecord3,jdbcType=VARCHAR}, #{threestepScore3,jdbcType=VARCHAR}, 
+      #{readQuestion,jdbcType=VARCHAR}, #{readRecord,jdbcType=VARCHAR}, #{readScore,jdbcType=VARCHAR}, 
+      #{writeQuestion,jdbcType=VARCHAR}, #{writeRecord,jdbcType=VARCHAR}, #{writeScore,jdbcType=VARCHAR}, 
+      #{structureRecord,jdbcType=VARCHAR}, #{structureScore,jdbcType=VARCHAR}, #{createOrgId,jdbcType=VARCHAR}, 
+      #{orgName,jdbcType=VARCHAR}, #{creatorId,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifiedOrgId,jdbcType=VARCHAR}, #{modifiedOrgName,jdbcType=VARCHAR}, 
+      #{modifierId,jdbcType=VARCHAR}, #{modifier,jdbcType=VARCHAR}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{isAppCreate,jdbcType=DECIMAL}, #{errCode,jdbcType=DECIMAL}, #{errStr,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuzhou.pub.entity.ElderCognition">
+    insert into ELDER_COGNITION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="elderCognitionId != null">
+        ELDER_COGNITION_ID,
+      </if>
+      <if test="personInfoId != null">
+        PERSON_INFO_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="sexCode != null">
+        SEX_CODE,
+      </if>
+      <if test="age != null">
+        AGE,
+      </if>
+      <if test="educationCode != null">
+        EDUCATION_CODE,
+      </if>
+      <if test="assessDate != null">
+        ASSESS_DATE,
+      </if>
+      <if test="diseaseHistory != null">
+        DISEASE_HISTORY,
+      </if>
+      <if test="totalScore != null">
+        TOTAL_SCORE,
+      </if>
+      <if test="directiveRecord1 != null">
+        DIRECTIVE_RECORD1,
+      </if>
+      <if test="directiveScore1 != null">
+        DIRECTIVE_SCORE1,
+      </if>
+      <if test="directiveRecord2 != null">
+        DIRECTIVE_RECORD2,
+      </if>
+      <if test="directiveScore2 != null">
+        DIRECTIVE_SCORE2,
+      </if>
+      <if test="directiveRecord3 != null">
+        DIRECTIVE_RECORD3,
+      </if>
+      <if test="directiveScore3 != null">
+        DIRECTIVE_SCORE3,
+      </if>
+      <if test="directiveRecord4 != null">
+        DIRECTIVE_RECORD4,
+      </if>
+      <if test="directiveScore4 != null">
+        DIRECTIVE_SCORE4,
+      </if>
+      <if test="directiveRecord5 != null">
+        DIRECTIVE_RECORD5,
+      </if>
+      <if test="directiveScore5 != null">
+        DIRECTIVE_SCORE5,
+      </if>
+      <if test="directiveRecord6 != null">
+        DIRECTIVE_RECORD6,
+      </if>
+      <if test="directiveScore6 != null">
+        DIRECTIVE_SCORE6,
+      </if>
+      <if test="directiveRecord7 != null">
+        DIRECTIVE_RECORD7,
+      </if>
+      <if test="directiveScore7 != null">
+        DIRECTIVE_SCORE7,
+      </if>
+      <if test="directiveRecord8 != null">
+        DIRECTIVE_RECORD8,
+      </if>
+      <if test="directiveScore8 != null">
+        DIRECTIVE_SCORE8,
+      </if>
+      <if test="directiveRecord9 != null">
+        DIRECTIVE_RECORD9,
+      </if>
+      <if test="directiveScore9 != null">
+        DIRECTIVE_SCORE9,
+      </if>
+      <if test="directiveRecord10 != null">
+        DIRECTIVE_RECORD10,
+      </if>
+      <if test="directiveScore10 != null">
+        DIRECTIVE_SCORE10,
+      </if>
+      <if test="memoryRecord1 != null">
+        MEMORY_RECORD1,
+      </if>
+      <if test="memoryScore1 != null">
+        MEMORY_SCORE1,
+      </if>
+      <if test="memoryRecord2 != null">
+        MEMORY_RECORD2,
+      </if>
+      <if test="memoryScore2 != null">
+        MEMORY_SCORE2,
+      </if>
+      <if test="memoryRecord3 != null">
+        MEMORY_RECORD3,
+      </if>
+      <if test="memoryScore3 != null">
+        MEMORY_SCORE3,
+      </if>
+      <if test="countRecord1 != null">
+        COUNT_RECORD1,
+      </if>
+      <if test="countScore1 != null">
+        COUNT_SCORE1,
+      </if>
+      <if test="countRecord2 != null">
+        COUNT_RECORD2,
+      </if>
+      <if test="countScore2 != null">
+        COUNT_SCORE2,
+      </if>
+      <if test="countRecord3 != null">
+        COUNT_RECORD3,
+      </if>
+      <if test="countScore3 != null">
+        COUNT_SCORE3,
+      </if>
+      <if test="countRecord4 != null">
+        COUNT_RECORD4,
+      </if>
+      <if test="countScore4 != null">
+        COUNT_SCORE4,
+      </if>
+      <if test="countRecord5 != null">
+        COUNT_RECORD5,
+      </if>
+      <if test="countScore5 != null">
+        COUNT_SCORE5,
+      </if>
+      <if test="recollectRecord1 != null">
+        RECOLLECT_RECORD1,
+      </if>
+      <if test="recollectScore1 != null">
+        RECOLLECT_SCORE1,
+      </if>
+      <if test="recollectRecord2 != null">
+        RECOLLECT_RECORD2,
+      </if>
+      <if test="recollectScore2 != null">
+        RECOLLECT_SCORE2,
+      </if>
+      <if test="recollectRecord3 != null">
+        RECOLLECT_RECORD3,
+      </if>
+      <if test="recollectScore3 != null">
+        RECOLLECT_SCORE3,
+      </if>
+      <if test="namingQuestion1 != null">
+        NAMING_QUESTION1,
+      </if>
+      <if test="namingRecord1 != null">
+        NAMING_RECORD1,
+      </if>
+      <if test="namingScore1 != null">
+        NAMING_SCORE1,
+      </if>
+      <if test="namingQuestion2 != null">
+        NAMING_QUESTION2,
+      </if>
+      <if test="namingRecord2 != null">
+        NAMING_RECORD2,
+      </if>
+      <if test="namingScore2 != null">
+        NAMING_SCORE2,
+      </if>
+      <if test="languageQuestion != null">
+        LANGUAGE_QUESTION,
+      </if>
+      <if test="languageRecord != null">
+        LANGUAGE_RECORD,
+      </if>
+      <if test="languageScore != null">
+        LANGUAGE_SCORE,
+      </if>
+      <if test="threestepQuestion1 != null">
+        THREESTEP_QUESTION1,
+      </if>
+      <if test="threestepRecord1 != null">
+        THREESTEP_RECORD1,
+      </if>
+      <if test="threestepScore1 != null">
+        THREESTEP_SCORE1,
+      </if>
+      <if test="threestepQuestion2 != null">
+        THREESTEP_QUESTION2,
+      </if>
+      <if test="threestepRecord2 != null">
+        THREESTEP_RECORD2,
+      </if>
+      <if test="threestepScore2 != null">
+        THREESTEP_SCORE2,
+      </if>
+      <if test="threestepQuestion3 != null">
+        THREESTEP_QUESTION3,
+      </if>
+      <if test="threestepRecord3 != null">
+        THREESTEP_RECORD3,
+      </if>
+      <if test="threestepScore3 != null">
+        THREESTEP_SCORE3,
+      </if>
+      <if test="readQuestion != null">
+        READ_QUESTION,
+      </if>
+      <if test="readRecord != null">
+        READ_RECORD,
+      </if>
+      <if test="readScore != null">
+        READ_SCORE,
+      </if>
+      <if test="writeQuestion != null">
+        WRITE_QUESTION,
+      </if>
+      <if test="writeRecord != null">
+        WRITE_RECORD,
+      </if>
+      <if test="writeScore != null">
+        WRITE_SCORE,
+      </if>
+      <if test="structureRecord != null">
+        STRUCTURE_RECORD,
+      </if>
+      <if test="structureScore != null">
+        STRUCTURE_SCORE,
+      </if>
+      <if test="createOrgId != null">
+        CREATE_ORG_ID,
+      </if>
+      <if test="orgName != null">
+        ORG_NAME,
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifiedOrgId != null">
+        MODIFIED_ORG_ID,
+      </if>
+      <if test="modifiedOrgName != null">
+        MODIFIED_ORG_NAME,
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID,
+      </if>
+      <if test="modifier != null">
+        MODIFIER,
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME,
+      </if>
+      <if test="isAppCreate != null">
+        IS_APP_CREATE,
+      </if>
+      <if test="errCode != null">
+        ERR_CODE,
+      </if>
+      <if test="errStr != null">
+        ERR_STR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="elderCognitionId != null">
+        #{elderCognitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="personInfoId != null">
+        #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sexCode != null">
+        #{sexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="educationCode != null">
+        #{educationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assessDate != null">
+        #{assessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="diseaseHistory != null">
+        #{diseaseHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="totalScore != null">
+        #{totalScore,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord1 != null">
+        #{directiveRecord1,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore1 != null">
+        #{directiveScore1,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord2 != null">
+        #{directiveRecord2,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore2 != null">
+        #{directiveScore2,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord3 != null">
+        #{directiveRecord3,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore3 != null">
+        #{directiveScore3,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord4 != null">
+        #{directiveRecord4,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore4 != null">
+        #{directiveScore4,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord5 != null">
+        #{directiveRecord5,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore5 != null">
+        #{directiveScore5,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord6 != null">
+        #{directiveRecord6,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore6 != null">
+        #{directiveScore6,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord7 != null">
+        #{directiveRecord7,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore7 != null">
+        #{directiveScore7,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord8 != null">
+        #{directiveRecord8,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore8 != null">
+        #{directiveScore8,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord9 != null">
+        #{directiveRecord9,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore9 != null">
+        #{directiveScore9,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord10 != null">
+        #{directiveRecord10,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore10 != null">
+        #{directiveScore10,jdbcType=VARCHAR},
+      </if>
+      <if test="memoryRecord1 != null">
+        #{memoryRecord1,jdbcType=VARCHAR},
+      </if>
+      <if test="memoryScore1 != null">
+        #{memoryScore1,jdbcType=VARCHAR},
+      </if>
+      <if test="memoryRecord2 != null">
+        #{memoryRecord2,jdbcType=VARCHAR},
+      </if>
+      <if test="memoryScore2 != null">
+        #{memoryScore2,jdbcType=VARCHAR},
+      </if>
+      <if test="memoryRecord3 != null">
+        #{memoryRecord3,jdbcType=VARCHAR},
+      </if>
+      <if test="memoryScore3 != null">
+        #{memoryScore3,jdbcType=VARCHAR},
+      </if>
+      <if test="countRecord1 != null">
+        #{countRecord1,jdbcType=VARCHAR},
+      </if>
+      <if test="countScore1 != null">
+        #{countScore1,jdbcType=VARCHAR},
+      </if>
+      <if test="countRecord2 != null">
+        #{countRecord2,jdbcType=VARCHAR},
+      </if>
+      <if test="countScore2 != null">
+        #{countScore2,jdbcType=VARCHAR},
+      </if>
+      <if test="countRecord3 != null">
+        #{countRecord3,jdbcType=VARCHAR},
+      </if>
+      <if test="countScore3 != null">
+        #{countScore3,jdbcType=VARCHAR},
+      </if>
+      <if test="countRecord4 != null">
+        #{countRecord4,jdbcType=VARCHAR},
+      </if>
+      <if test="countScore4 != null">
+        #{countScore4,jdbcType=VARCHAR},
+      </if>
+      <if test="countRecord5 != null">
+        #{countRecord5,jdbcType=VARCHAR},
+      </if>
+      <if test="countScore5 != null">
+        #{countScore5,jdbcType=VARCHAR},
+      </if>
+      <if test="recollectRecord1 != null">
+        #{recollectRecord1,jdbcType=VARCHAR},
+      </if>
+      <if test="recollectScore1 != null">
+        #{recollectScore1,jdbcType=VARCHAR},
+      </if>
+      <if test="recollectRecord2 != null">
+        #{recollectRecord2,jdbcType=VARCHAR},
+      </if>
+      <if test="recollectScore2 != null">
+        #{recollectScore2,jdbcType=VARCHAR},
+      </if>
+      <if test="recollectRecord3 != null">
+        #{recollectRecord3,jdbcType=VARCHAR},
+      </if>
+      <if test="recollectScore3 != null">
+        #{recollectScore3,jdbcType=VARCHAR},
+      </if>
+      <if test="namingQuestion1 != null">
+        #{namingQuestion1,jdbcType=VARCHAR},
+      </if>
+      <if test="namingRecord1 != null">
+        #{namingRecord1,jdbcType=VARCHAR},
+      </if>
+      <if test="namingScore1 != null">
+        #{namingScore1,jdbcType=VARCHAR},
+      </if>
+      <if test="namingQuestion2 != null">
+        #{namingQuestion2,jdbcType=VARCHAR},
+      </if>
+      <if test="namingRecord2 != null">
+        #{namingRecord2,jdbcType=VARCHAR},
+      </if>
+      <if test="namingScore2 != null">
+        #{namingScore2,jdbcType=VARCHAR},
+      </if>
+      <if test="languageQuestion != null">
+        #{languageQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="languageRecord != null">
+        #{languageRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="languageScore != null">
+        #{languageScore,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepQuestion1 != null">
+        #{threestepQuestion1,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepRecord1 != null">
+        #{threestepRecord1,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepScore1 != null">
+        #{threestepScore1,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepQuestion2 != null">
+        #{threestepQuestion2,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepRecord2 != null">
+        #{threestepRecord2,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepScore2 != null">
+        #{threestepScore2,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepQuestion3 != null">
+        #{threestepQuestion3,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepRecord3 != null">
+        #{threestepRecord3,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepScore3 != null">
+        #{threestepScore3,jdbcType=VARCHAR},
+      </if>
+      <if test="readQuestion != null">
+        #{readQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="readRecord != null">
+        #{readRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="readScore != null">
+        #{readScore,jdbcType=VARCHAR},
+      </if>
+      <if test="writeQuestion != null">
+        #{writeQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="writeRecord != null">
+        #{writeRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="writeScore != null">
+        #{writeScore,jdbcType=VARCHAR},
+      </if>
+      <if test="structureRecord != null">
+        #{structureRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="structureScore != null">
+        #{structureScore,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgId != null">
+        #{createOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedOrgId != null">
+        #{modifiedOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgName != null">
+        #{modifiedOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null">
+        #{modifierId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAppCreate != null">
+        #{isAppCreate,jdbcType=DECIMAL},
+      </if>
+      <if test="errCode != null">
+        #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        #{errStr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuzhou.pub.entity.ElderCognition">
+    update ELDER_COGNITION
+    <set>
+      <if test="personInfoId != null">
+        PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sexCode != null">
+        SEX_CODE = #{sexCode,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        AGE = #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="educationCode != null">
+        EDUCATION_CODE = #{educationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assessDate != null">
+        ASSESS_DATE = #{assessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="diseaseHistory != null">
+        DISEASE_HISTORY = #{diseaseHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="totalScore != null">
+        TOTAL_SCORE = #{totalScore,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord1 != null">
+        DIRECTIVE_RECORD1 = #{directiveRecord1,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore1 != null">
+        DIRECTIVE_SCORE1 = #{directiveScore1,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord2 != null">
+        DIRECTIVE_RECORD2 = #{directiveRecord2,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore2 != null">
+        DIRECTIVE_SCORE2 = #{directiveScore2,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord3 != null">
+        DIRECTIVE_RECORD3 = #{directiveRecord3,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore3 != null">
+        DIRECTIVE_SCORE3 = #{directiveScore3,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord4 != null">
+        DIRECTIVE_RECORD4 = #{directiveRecord4,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore4 != null">
+        DIRECTIVE_SCORE4 = #{directiveScore4,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord5 != null">
+        DIRECTIVE_RECORD5 = #{directiveRecord5,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore5 != null">
+        DIRECTIVE_SCORE5 = #{directiveScore5,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord6 != null">
+        DIRECTIVE_RECORD6 = #{directiveRecord6,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore6 != null">
+        DIRECTIVE_SCORE6 = #{directiveScore6,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord7 != null">
+        DIRECTIVE_RECORD7 = #{directiveRecord7,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore7 != null">
+        DIRECTIVE_SCORE7 = #{directiveScore7,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord8 != null">
+        DIRECTIVE_RECORD8 = #{directiveRecord8,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore8 != null">
+        DIRECTIVE_SCORE8 = #{directiveScore8,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord9 != null">
+        DIRECTIVE_RECORD9 = #{directiveRecord9,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore9 != null">
+        DIRECTIVE_SCORE9 = #{directiveScore9,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveRecord10 != null">
+        DIRECTIVE_RECORD10 = #{directiveRecord10,jdbcType=VARCHAR},
+      </if>
+      <if test="directiveScore10 != null">
+        DIRECTIVE_SCORE10 = #{directiveScore10,jdbcType=VARCHAR},
+      </if>
+      <if test="memoryRecord1 != null">
+        MEMORY_RECORD1 = #{memoryRecord1,jdbcType=VARCHAR},
+      </if>
+      <if test="memoryScore1 != null">
+        MEMORY_SCORE1 = #{memoryScore1,jdbcType=VARCHAR},
+      </if>
+      <if test="memoryRecord2 != null">
+        MEMORY_RECORD2 = #{memoryRecord2,jdbcType=VARCHAR},
+      </if>
+      <if test="memoryScore2 != null">
+        MEMORY_SCORE2 = #{memoryScore2,jdbcType=VARCHAR},
+      </if>
+      <if test="memoryRecord3 != null">
+        MEMORY_RECORD3 = #{memoryRecord3,jdbcType=VARCHAR},
+      </if>
+      <if test="memoryScore3 != null">
+        MEMORY_SCORE3 = #{memoryScore3,jdbcType=VARCHAR},
+      </if>
+      <if test="countRecord1 != null">
+        COUNT_RECORD1 = #{countRecord1,jdbcType=VARCHAR},
+      </if>
+      <if test="countScore1 != null">
+        COUNT_SCORE1 = #{countScore1,jdbcType=VARCHAR},
+      </if>
+      <if test="countRecord2 != null">
+        COUNT_RECORD2 = #{countRecord2,jdbcType=VARCHAR},
+      </if>
+      <if test="countScore2 != null">
+        COUNT_SCORE2 = #{countScore2,jdbcType=VARCHAR},
+      </if>
+      <if test="countRecord3 != null">
+        COUNT_RECORD3 = #{countRecord3,jdbcType=VARCHAR},
+      </if>
+      <if test="countScore3 != null">
+        COUNT_SCORE3 = #{countScore3,jdbcType=VARCHAR},
+      </if>
+      <if test="countRecord4 != null">
+        COUNT_RECORD4 = #{countRecord4,jdbcType=VARCHAR},
+      </if>
+      <if test="countScore4 != null">
+        COUNT_SCORE4 = #{countScore4,jdbcType=VARCHAR},
+      </if>
+      <if test="countRecord5 != null">
+        COUNT_RECORD5 = #{countRecord5,jdbcType=VARCHAR},
+      </if>
+      <if test="countScore5 != null">
+        COUNT_SCORE5 = #{countScore5,jdbcType=VARCHAR},
+      </if>
+      <if test="recollectRecord1 != null">
+        RECOLLECT_RECORD1 = #{recollectRecord1,jdbcType=VARCHAR},
+      </if>
+      <if test="recollectScore1 != null">
+        RECOLLECT_SCORE1 = #{recollectScore1,jdbcType=VARCHAR},
+      </if>
+      <if test="recollectRecord2 != null">
+        RECOLLECT_RECORD2 = #{recollectRecord2,jdbcType=VARCHAR},
+      </if>
+      <if test="recollectScore2 != null">
+        RECOLLECT_SCORE2 = #{recollectScore2,jdbcType=VARCHAR},
+      </if>
+      <if test="recollectRecord3 != null">
+        RECOLLECT_RECORD3 = #{recollectRecord3,jdbcType=VARCHAR},
+      </if>
+      <if test="recollectScore3 != null">
+        RECOLLECT_SCORE3 = #{recollectScore3,jdbcType=VARCHAR},
+      </if>
+      <if test="namingQuestion1 != null">
+        NAMING_QUESTION1 = #{namingQuestion1,jdbcType=VARCHAR},
+      </if>
+      <if test="namingRecord1 != null">
+        NAMING_RECORD1 = #{namingRecord1,jdbcType=VARCHAR},
+      </if>
+      <if test="namingScore1 != null">
+        NAMING_SCORE1 = #{namingScore1,jdbcType=VARCHAR},
+      </if>
+      <if test="namingQuestion2 != null">
+        NAMING_QUESTION2 = #{namingQuestion2,jdbcType=VARCHAR},
+      </if>
+      <if test="namingRecord2 != null">
+        NAMING_RECORD2 = #{namingRecord2,jdbcType=VARCHAR},
+      </if>
+      <if test="namingScore2 != null">
+        NAMING_SCORE2 = #{namingScore2,jdbcType=VARCHAR},
+      </if>
+      <if test="languageQuestion != null">
+        LANGUAGE_QUESTION = #{languageQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="languageRecord != null">
+        LANGUAGE_RECORD = #{languageRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="languageScore != null">
+        LANGUAGE_SCORE = #{languageScore,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepQuestion1 != null">
+        THREESTEP_QUESTION1 = #{threestepQuestion1,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepRecord1 != null">
+        THREESTEP_RECORD1 = #{threestepRecord1,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepScore1 != null">
+        THREESTEP_SCORE1 = #{threestepScore1,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepQuestion2 != null">
+        THREESTEP_QUESTION2 = #{threestepQuestion2,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepRecord2 != null">
+        THREESTEP_RECORD2 = #{threestepRecord2,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepScore2 != null">
+        THREESTEP_SCORE2 = #{threestepScore2,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepQuestion3 != null">
+        THREESTEP_QUESTION3 = #{threestepQuestion3,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepRecord3 != null">
+        THREESTEP_RECORD3 = #{threestepRecord3,jdbcType=VARCHAR},
+      </if>
+      <if test="threestepScore3 != null">
+        THREESTEP_SCORE3 = #{threestepScore3,jdbcType=VARCHAR},
+      </if>
+      <if test="readQuestion != null">
+        READ_QUESTION = #{readQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="readRecord != null">
+        READ_RECORD = #{readRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="readScore != null">
+        READ_SCORE = #{readScore,jdbcType=VARCHAR},
+      </if>
+      <if test="writeQuestion != null">
+        WRITE_QUESTION = #{writeQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="writeRecord != null">
+        WRITE_RECORD = #{writeRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="writeScore != null">
+        WRITE_SCORE = #{writeScore,jdbcType=VARCHAR},
+      </if>
+      <if test="structureRecord != null">
+        STRUCTURE_RECORD = #{structureRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="structureScore != null">
+        STRUCTURE_SCORE = #{structureScore,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgId != null">
+        CREATE_ORG_ID = #{createOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedOrgId != null">
+        MODIFIED_ORG_ID = #{modifiedOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgName != null">
+        MODIFIED_ORG_NAME = #{modifiedOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        MODIFIER = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isAppCreate != null">
+        IS_APP_CREATE = #{isAppCreate,jdbcType=DECIMAL},
+      </if>
+      <if test="errCode != null">
+        ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errStr != null">
+        ERR_STR = #{errStr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ELDER_COGNITION_ID = #{elderCognitionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuzhou.pub.entity.ElderCognition">
+    update ELDER_COGNITION
+    set PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      SEX_CODE = #{sexCode,jdbcType=VARCHAR},
+      AGE = #{age,jdbcType=DECIMAL},
+      EDUCATION_CODE = #{educationCode,jdbcType=VARCHAR},
+      ASSESS_DATE = #{assessDate,jdbcType=TIMESTAMP},
+      DISEASE_HISTORY = #{diseaseHistory,jdbcType=VARCHAR},
+      TOTAL_SCORE = #{totalScore,jdbcType=VARCHAR},
+      DIRECTIVE_RECORD1 = #{directiveRecord1,jdbcType=VARCHAR},
+      DIRECTIVE_SCORE1 = #{directiveScore1,jdbcType=VARCHAR},
+      DIRECTIVE_RECORD2 = #{directiveRecord2,jdbcType=VARCHAR},
+      DIRECTIVE_SCORE2 = #{directiveScore2,jdbcType=VARCHAR},
+      DIRECTIVE_RECORD3 = #{directiveRecord3,jdbcType=VARCHAR},
+      DIRECTIVE_SCORE3 = #{directiveScore3,jdbcType=VARCHAR},
+      DIRECTIVE_RECORD4 = #{directiveRecord4,jdbcType=VARCHAR},
+      DIRECTIVE_SCORE4 = #{directiveScore4,jdbcType=VARCHAR},
+      DIRECTIVE_RECORD5 = #{directiveRecord5,jdbcType=VARCHAR},
+      DIRECTIVE_SCORE5 = #{directiveScore5,jdbcType=VARCHAR},
+      DIRECTIVE_RECORD6 = #{directiveRecord6,jdbcType=VARCHAR},
+      DIRECTIVE_SCORE6 = #{directiveScore6,jdbcType=VARCHAR},
+      DIRECTIVE_RECORD7 = #{directiveRecord7,jdbcType=VARCHAR},
+      DIRECTIVE_SCORE7 = #{directiveScore7,jdbcType=VARCHAR},
+      DIRECTIVE_RECORD8 = #{directiveRecord8,jdbcType=VARCHAR},
+      DIRECTIVE_SCORE8 = #{directiveScore8,jdbcType=VARCHAR},
+      DIRECTIVE_RECORD9 = #{directiveRecord9,jdbcType=VARCHAR},
+      DIRECTIVE_SCORE9 = #{directiveScore9,jdbcType=VARCHAR},
+      DIRECTIVE_RECORD10 = #{directiveRecord10,jdbcType=VARCHAR},
+      DIRECTIVE_SCORE10 = #{directiveScore10,jdbcType=VARCHAR},
+      MEMORY_RECORD1 = #{memoryRecord1,jdbcType=VARCHAR},
+      MEMORY_SCORE1 = #{memoryScore1,jdbcType=VARCHAR},
+      MEMORY_RECORD2 = #{memoryRecord2,jdbcType=VARCHAR},
+      MEMORY_SCORE2 = #{memoryScore2,jdbcType=VARCHAR},
+      MEMORY_RECORD3 = #{memoryRecord3,jdbcType=VARCHAR},
+      MEMORY_SCORE3 = #{memoryScore3,jdbcType=VARCHAR},
+      COUNT_RECORD1 = #{countRecord1,jdbcType=VARCHAR},
+      COUNT_SCORE1 = #{countScore1,jdbcType=VARCHAR},
+      COUNT_RECORD2 = #{countRecord2,jdbcType=VARCHAR},
+      COUNT_SCORE2 = #{countScore2,jdbcType=VARCHAR},
+      COUNT_RECORD3 = #{countRecord3,jdbcType=VARCHAR},
+      COUNT_SCORE3 = #{countScore3,jdbcType=VARCHAR},
+      COUNT_RECORD4 = #{countRecord4,jdbcType=VARCHAR},
+      COUNT_SCORE4 = #{countScore4,jdbcType=VARCHAR},
+      COUNT_RECORD5 = #{countRecord5,jdbcType=VARCHAR},
+      COUNT_SCORE5 = #{countScore5,jdbcType=VARCHAR},
+      RECOLLECT_RECORD1 = #{recollectRecord1,jdbcType=VARCHAR},
+      RECOLLECT_SCORE1 = #{recollectScore1,jdbcType=VARCHAR},
+      RECOLLECT_RECORD2 = #{recollectRecord2,jdbcType=VARCHAR},
+      RECOLLECT_SCORE2 = #{recollectScore2,jdbcType=VARCHAR},
+      RECOLLECT_RECORD3 = #{recollectRecord3,jdbcType=VARCHAR},
+      RECOLLECT_SCORE3 = #{recollectScore3,jdbcType=VARCHAR},
+      NAMING_QUESTION1 = #{namingQuestion1,jdbcType=VARCHAR},
+      NAMING_RECORD1 = #{namingRecord1,jdbcType=VARCHAR},
+      NAMING_SCORE1 = #{namingScore1,jdbcType=VARCHAR},
+      NAMING_QUESTION2 = #{namingQuestion2,jdbcType=VARCHAR},
+      NAMING_RECORD2 = #{namingRecord2,jdbcType=VARCHAR},
+      NAMING_SCORE2 = #{namingScore2,jdbcType=VARCHAR},
+      LANGUAGE_QUESTION = #{languageQuestion,jdbcType=VARCHAR},
+      LANGUAGE_RECORD = #{languageRecord,jdbcType=VARCHAR},
+      LANGUAGE_SCORE = #{languageScore,jdbcType=VARCHAR},
+      THREESTEP_QUESTION1 = #{threestepQuestion1,jdbcType=VARCHAR},
+      THREESTEP_RECORD1 = #{threestepRecord1,jdbcType=VARCHAR},
+      THREESTEP_SCORE1 = #{threestepScore1,jdbcType=VARCHAR},
+      THREESTEP_QUESTION2 = #{threestepQuestion2,jdbcType=VARCHAR},
+      THREESTEP_RECORD2 = #{threestepRecord2,jdbcType=VARCHAR},
+      THREESTEP_SCORE2 = #{threestepScore2,jdbcType=VARCHAR},
+      THREESTEP_QUESTION3 = #{threestepQuestion3,jdbcType=VARCHAR},
+      THREESTEP_RECORD3 = #{threestepRecord3,jdbcType=VARCHAR},
+      THREESTEP_SCORE3 = #{threestepScore3,jdbcType=VARCHAR},
+      READ_QUESTION = #{readQuestion,jdbcType=VARCHAR},
+      READ_RECORD = #{readRecord,jdbcType=VARCHAR},
+      READ_SCORE = #{readScore,jdbcType=VARCHAR},
+      WRITE_QUESTION = #{writeQuestion,jdbcType=VARCHAR},
+      WRITE_RECORD = #{writeRecord,jdbcType=VARCHAR},
+      WRITE_SCORE = #{writeScore,jdbcType=VARCHAR},
+      STRUCTURE_RECORD = #{structureRecord,jdbcType=VARCHAR},
+      STRUCTURE_SCORE = #{structureScore,jdbcType=VARCHAR},
+      CREATE_ORG_ID = #{createOrgId,jdbcType=VARCHAR},
+      ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFIED_ORG_ID = #{modifiedOrgId,jdbcType=VARCHAR},
+      MODIFIED_ORG_NAME = #{modifiedOrgName,jdbcType=VARCHAR},
+      MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      MODIFIER = #{modifier,jdbcType=VARCHAR},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      IS_APP_CREATE = #{isAppCreate,jdbcType=DECIMAL},
+      ERR_CODE = #{errCode,jdbcType=DECIMAL},
+      ERR_STR = #{errStr,jdbcType=VARCHAR}
+    where ELDER_COGNITION_ID = #{elderCognitionId,jdbcType=VARCHAR}
+  </update>
+</mapper>
