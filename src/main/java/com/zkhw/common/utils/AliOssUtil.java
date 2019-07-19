@@ -102,7 +102,7 @@ public class AliOssUtil {
 		generatePresignedUrlRequest.setExpiration(expires);
 
 		URL url = ossClient.generatePresignedUrl(generatePresignedUrlRequest);
-
+		ossClient.shutdown();
 		System.out.println(url.toString());
 		return url.toString();
 	}

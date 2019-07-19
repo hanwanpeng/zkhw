@@ -6,7 +6,7 @@
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd" default-lazy-init="true" default-autowire="byName">
-	
+           	
 	<bean id="wuzhouSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="wuzhouDynamicDataSource"/>
 		<property name="configLocation" value="classpath:config/sqlMapConfig.xml" />
@@ -69,6 +69,11 @@
 		<property name="mapperInterface" value="com.wuzhou.pub.dao.ElderTcmHealthDao" />  
 	</bean>	
 
+	<!-- 老年人体检管理台账-->	
+	<bean id="elderExamLedgerDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
+		<property name="mapperInterface" value="com.wuzhou.pub.dao.ElderExamLedgerDao" />  
+	</bean>	
+	
 	<!-- 卫生机构表（由冠新提供）-->	
 	<bean id="posDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
 		<property name="mapperInterface" value="com.wuzhou.pub.dao.PosDao" />  

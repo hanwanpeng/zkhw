@@ -87,7 +87,7 @@
         and organ_code = #{organCode,jdbcType=VARCHAR}
       </if>
       <if test="parentOrgan != null">
-        and parent_organ = #{parentOrgan,jdbcType=VARCHAR}
+        and (parent_organ = #{parentOrgan,jdbcType=VARCHAR} or organ_code = #{parentOrgan,jdbcType=VARCHAR})
       </if>      
       <if test="departCode != null">
         and depart_code = #{departCode,jdbcType=VARCHAR}

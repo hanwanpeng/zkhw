@@ -60,11 +60,15 @@ public class ConvertObjectData {
 		//癌胚抗原浓度值(μg/L)
 		health.setCea(null);
 		//白蛋白浓度(g/L)
-		BigDecimal alb = new BigDecimal(exam.getAlbumin());
-		health.setAlb(alb);
+		if(StringUtil.isNotEmpty(exam.getAlbumin())){
+			BigDecimal alb = new BigDecimal(exam.getAlbumin());
+			health.setAlb(alb);
+		}
 		//白细胞计数值（G/L)
-		BigDecimal wbc = new BigDecimal(exam.getBloodLeukocyte());
-		health.setWbc(wbc);
+		if(StringUtil.isNotEmpty(exam.getBloodLeukocyte())){
+			BigDecimal wbc = new BigDecimal(exam.getBloodLeukocyte());
+			health.setWbc(wbc);
+		}
 		//餐后2小时血糖值（mg/dL)
 		//BigDecimal pbgMg = new BigDecimal(exam.getBloodGlucoseMg());
 		health.setPbgMg(null);
@@ -154,8 +158,10 @@ public class ConvertObjectData {
 		//腹部移动性浊音描述
 		health.setHasAbdominalDullnessDesc(exam.getExaminationShiftingdullnessMemo());
 		//甘油三酯值（mmol/L)
-		BigDecimal tg = new BigDecimal(exam.getTg());
-		health.setTg(tg);
+		if(StringUtil.isNotEmpty(exam.getTg())){
+			BigDecimal tg = new BigDecimal(exam.getTg());
+			health.setTg(tg);
+		}
 		//肝大代码
 		health.setHepatauxeCode(exam.getExaminationAbdomenHepatomegaly());
 		//肝大描述
@@ -187,10 +193,15 @@ public class ConvertObjectData {
 		//国家规范版本号，传入字符“2017”
 		health.setStandard("2017");
 		//呼吸频率（次/min)
-		health.setBreathingRate(exam.getBaseRespiratory()==null?null:Short.parseShort(exam.getBaseRespiratory()));
+		if(StringUtil.isNotEmpty(exam.getBaseRespiratory())){
+			health.setBreathingRate(Short.parseShort(exam.getBaseRespiratory()));
+		}
+		
 		//坚持锻炼时间（年）
-		BigDecimal exerciseYear = new BigDecimal(exam.getLifewayExerciseYear());
-		health.setExerciseYear(exerciseYear);
+		if(StringUtil.isNotEmpty(exam.getLifewayExerciseYear())){
+			BigDecimal exerciseYear = new BigDecimal(exam.getLifewayExerciseYear());
+			health.setExerciseYear(exerciseYear);
+		}
 		//健康评价异常标志
 		health.setHealthAbnormCode(exam.getHealthEvaluation());
 		//健康评价异常描述1
@@ -218,8 +229,10 @@ public class ConvertObjectData {
 			health.setHealthGuidanceValue(healthGuidanceValue);
 		}
 		//结合胆红素值(μmol/L)
-		BigDecimal dbil = new BigDecimal(exam.getConjugatedBilirubin());
-		health.setDbil(dbil);
+		if(StringUtil.isNotEmpty(exam.getConjugatedBilirubin())){
+			BigDecimal dbil = new BigDecimal(exam.getConjugatedBilirubin());
+			health.setDbil(dbil);
+		}
 		//戒酒标志
 		health.setStopDrinkingCode(exam.getLifewayDrinkStop());
 		//戒酒年龄（岁）
@@ -237,11 +250,15 @@ public class ConvertObjectData {
 		//开始饮酒年龄（岁）
 		health.setStartDrinkingAge(NumberUtils.convertToShort(exam.getLifewayDrinkStartage()));
 		//空腹血糖值（mg/dL)
-		BigDecimal fbgMg = new BigDecimal(exam.getBloodGlucoseMg());
-		health.setFbgMg(fbgMg);
+		if(StringUtil.isNotEmpty(exam.getBloodGlucoseMg())){
+			BigDecimal fbgMg = new BigDecimal(exam.getBloodGlucoseMg());
+			health.setFbgMg(fbgMg);
+		}
 		//空腹血糖值（mmol/L)
-		BigDecimal fbgMmol = new BigDecimal(exam.getBloodGlucoseMmol());
-		health.setFbgMmol(fbgMmol);
+		if(StringUtil.isNotEmpty(exam.getBloodGlucoseMmol())){
+			BigDecimal fbgMmol = new BigDecimal(exam.getBloodGlucoseMmol());
+			health.setFbgMmol(fbgMmol);
+		}
 		//口唇外观检査结果代码
 		health.setLipExamResultCode(exam.getOrganLips());
 		//老年人健康状态自我评估代码
@@ -257,11 +274,15 @@ public class ConvertObjectData {
 		//老年人生活自理能力自我评估代码
 		health.setElderSelfCareAssessCode(exam.getBaseSelfcareEstimate());
 		//老年人体检标识1是0否
-		if(base.getAge() >=65){
-			health.setIsElder(Short.valueOf("1"));
+		if(base.getAge() != null){
+			if(base.getAge() >=65){
+				health.setIsElder(Short.valueOf("1"));
+			}else{
+				health.setIsElder(Short.valueOf("0"));
+			}
 		}else{
 			health.setIsElder(Short.valueOf("0"));
-		}		
+		}
 		//老年人抑郁评分
 		health.setElderDepressionScore(NumberUtils.convertToShort(exam.getBaseFeelingScore()));
 		//老年人中医药健康表ID
@@ -303,8 +324,10 @@ public class ConvertObjectData {
 		//尿酮体定量检测值（mmol/L）
 		health.setKetQualResultValue(null);
 		//尿微量白蛋白（mg/dL)
-		BigDecimal urineMalb = new BigDecimal(exam.getMicroalbuminuria());
-		health.setUrineMalb(urineMalb);
+		if(StringUtil.isNotEmpty(exam.getMicroalbuminuria())){
+			BigDecimal urineMalb = new BigDecimal(exam.getMicroalbuminuria());
+			health.setUrineMalb(urineMalb);
+		}
 		//尿液酸碱度
 		health.setUrinePh(null);
 		//皮肤检查结果代码
@@ -356,11 +379,15 @@ public class ConvertObjectData {
 		//缺齿数右上
 		health.setLoseUrTeethNum(NumberUtils.convertToLong(exam.getOrganHypodontiaTopright()));
 		//日吸烟量（支）
-		BigDecimal dailySmoking = new BigDecimal(exam.getLifewaySmokeNumber());
-		health.setDailySmoking(dailySmoking);
+		if(StringUtil.isNotEmpty(exam.getLifewaySmokeNumber())){
+			BigDecimal dailySmoking = new BigDecimal(exam.getLifewaySmokeNumber());
+			health.setDailySmoking(dailySmoking);
+		}
 		//日饮酒量（两)
-		BigDecimal dailyDrinking = new BigDecimal(exam.getLifewayDrinkNumber());
-		health.setDailyDrinking(dailyDrinking);		
+		if(StringUtil.isNotEmpty(exam.getLifewayDrinkNumber())){
+			BigDecimal dailyDrinking = new BigDecimal(exam.getLifewayDrinkNumber());
+			health.setDailyDrinking(dailyDrinking);		
+		}
 		//乳腺代码
 		String breast = exam.getExaminationBreast();
 		if(StringUtil.isNotEmpty(breast)){
@@ -381,11 +408,15 @@ public class ConvertObjectData {
 			health.setBreastValue(breastValue);
 		}		
 		//身高（cm)
-		BigDecimal height = new BigDecimal(exam.getBaseHeight());
-		health.setHeight(height);
+		if(StringUtil.isNotEmpty(exam.getBaseHeight())){
+			BigDecimal height = new BigDecimal(exam.getBaseHeight());
+			health.setHeight(height);
+		}
 		//体重(kg)
-		BigDecimal weight = new BigDecimal(exam.getBaseWeight());
-		health.setWeight(weight);
+		if(StringUtil.isNotEmpty(exam.getBaseWeight())){
+			BigDecimal weight = new BigDecimal(exam.getBaseWeight());
+			health.setWeight(weight);
+		}
 		//神经系统疾病代码
 		health.setNerveOtherDiseaseCode(null);
 		//神经系统疾病中文
@@ -405,16 +436,22 @@ public class ConvertObjectData {
 		//是否孕产妇
 		health.setIsMaternal(null);
 		//糖化血红蛋白值（％)
-		BigDecimal ghb = new BigDecimal(exam.getGlycosylatedHemoglobin());
-		health.setGhb(ghb);
+		if(StringUtil.isNotEmpty(exam.getGlycosylatedHemoglobin())){
+			BigDecimal ghb = new BigDecimal(exam.getGlycosylatedHemoglobin());
+			health.setGhb(ghb);
+		}
 		//糖尿病体检标识1是0否
 		health.setIsDiabetes(base.getIsDiabetes() == null?null:base.getIsDiabetes().shortValue());
 		//体温（℃)
-		BigDecimal bodyTemperature = new BigDecimal(exam.getBaseTemperature());
-		health.setBodyTemperature(bodyTemperature);
+		if(StringUtil.isNotEmpty(exam.getBaseTemperature())){
+			BigDecimal bodyTemperature = new BigDecimal(exam.getBaseTemperature());
+			health.setBodyTemperature(bodyTemperature);
+		}
 		//体质指数
-		BigDecimal bmi = new BigDecimal(exam.getBaseBmi());
-		health.setBmi(bmi);
+		if(StringUtil.isNotEmpty(exam.getBaseBmi())){
+			BigDecimal bmi = new BigDecimal(exam.getBaseBmi());
+			health.setBmi(bmi);
+		}
 		//听力检测结果代码
 		health.setHearingCode(exam.getOrganHearing());
 		//同型半胱氨酸umol/L
@@ -462,34 +499,52 @@ public class ConvertObjectData {
 		//血管疾病中文
 		health.setDiseBloodVesselValue(exam.getVascularDiseaseOther());
 		//血红蛋白值(g/L)
-		BigDecimal hgb = new BigDecimal(exam.getBloodHemoglobin());
-		health.setHgb(hgb);
+		if(StringUtil.isNotEmpty(exam.getBloodHemoglobin())){
+			BigDecimal hgb = new BigDecimal(exam.getBloodHemoglobin());
+			health.setHgb(hgb);
+		}
 		//血钾浓度（mmol/L)
-		BigDecimal bloodk = new BigDecimal(exam.getBloodK());
-		health.setBloodk(bloodk);
+		if(StringUtil.isNotEmpty(exam.getBloodK())){
+			BigDecimal bloodk = new BigDecimal(exam.getBloodK());
+			health.setBloodk(bloodk);
+		}
 		//血钠浓度（mmol/L)
-		BigDecimal bloodNa = new BigDecimal(exam.getBloodNa());
-		health.setBloodNa(bloodNa);
+		if(StringUtil.isNotEmpty(exam.getBloodNa())){
+			BigDecimal bloodNa = new BigDecimal(exam.getBloodNa());
+			health.setBloodNa(bloodNa);
+		}
 		//血尿素氮检测值（mmol/L)
 		health.setBun(null);
 		//血清低密度脂蛋白胆固醇检测值（mmol/L)
-		BigDecimal ldlc = new BigDecimal(exam.getLdl());
-		health.setLdlc(ldlc);
+		if(StringUtil.isNotEmpty(exam.getLdl())){
+			BigDecimal ldlc = new BigDecimal(exam.getLdl());
+			health.setLdlc(ldlc);
+		}
 		//血清谷丙转氨酶值（U/L)
-		BigDecimal sgpt = new BigDecimal(exam.getSgft());
-		health.setSgpt(sgpt);
+		if(StringUtil.isNotEmpty(exam.getSgft())){
+			BigDecimal sgpt = new BigDecimal(exam.getSgft());
+			health.setSgpt(sgpt);
+		}
 		//血清谷草转氨酶值（U/L)
-		BigDecimal ast = new BigDecimal(exam.getAst());
-		health.setAst(ast);
+		if(StringUtil.isNotEmpty(exam.getAst())){
+			BigDecimal ast = new BigDecimal(exam.getAst());
+			health.setAst(ast);
+		}
 		//血清肌酐值(μmol/L)
-		BigDecimal scr = new BigDecimal(exam.getScr());
-		health.setScr(scr);
+		if(StringUtil.isNotEmpty(exam.getScr())){
+			BigDecimal scr = new BigDecimal(exam.getScr());
+			health.setScr(scr);
+		}
 		//血淸高密度脂蛋白胆固醇检测值(mmol/L)
-		BigDecimal hdlc = new BigDecimal(exam.getHdl());
-		health.setHdlc(hdlc);
+		if(StringUtil.isNotEmpty(exam.getHdl())){
+			BigDecimal hdlc = new BigDecimal(exam.getHdl());
+			health.setHdlc(hdlc);
+		}
 		//血小板计数值(G/L)
-		BigDecimal plt = new BigDecimal(exam.getBloodPlatelet());
-		health.setPlt(plt);
+		if(StringUtil.isNotEmpty(exam.getBloodPlatelet())){
+			BigDecimal plt = new BigDecimal(exam.getBloodPlatelet());
+			health.setPlt(plt);
+		}
 		//血型：ABO
 		health.setAboValue(base.getBloodGroup());
 		//血型：RH
@@ -505,8 +560,10 @@ public class ConvertObjectData {
 		//眼底检查结果异常描述
 		health.setEyegroundAbnormDesc(exam.getExaminationEyeOther());
 		//腰围(cm)
-		BigDecimal waist = new BigDecimal(exam.getBaseWaist());
-		health.setWaist(waist);
+		if(StringUtil.isNotEmpty(exam.getBaseWaist())){
+			BigDecimal waist = new BigDecimal(exam.getBaseWaist());
+			health.setWaist(waist);
+		}
 		//乙型肝炎病毒e抗体检测结果代码
 		health.setHbeabTestResultCode(null);
 		//乙型肝炎病毒e抗原检测结果代码
@@ -573,17 +630,26 @@ public class ConvertObjectData {
 		//右侧舒张压（mmHg)
 		health.setRsbp(exam.getBaseBloodPressureRightLow() == null?null:exam.getBaseBloodPressureRightLow().shortValue());
 		//右眼矫正远视力值
-		BigDecimal rightCorrectEyesight = new BigDecimal(exam.getOrganCorrectedvisionRight());
-		health.setRightCorrectEyesight(rightCorrectEyesight);
+		if(StringUtil.isNotEmpty(exam.getOrganCorrectedvisionRight())){
+			BigDecimal rightCorrectEyesight = new BigDecimal(exam.getOrganCorrectedvisionRight());
+			health.setRightCorrectEyesight(rightCorrectEyesight);
+		}
 		//右眼裸眼远视力值
-		BigDecimal rightOriginalEyesight = new BigDecimal(exam.getOrganVisionRight());
-		health.setRightOriginalEyesight(rightOriginalEyesight);
+		if(StringUtil.isNotEmpty(exam.getOrganVisionRight())){
+			BigDecimal rightOriginalEyesight = new BigDecimal(exam.getOrganVisionRight());
+			health.setRightOriginalEyesight(rightOriginalEyesight);
+		}
 		//运动功能状态代
 		health.setMovementFunctionCode(exam.getOrganMovement());
 		//责任医生ID
-		health.setRespDoctorId(base.getDoctorId());
-		//责任医师姓名
-		health.setRespDoctorName(base.getDoctorName());
+		if(StringUtil.isNotEmpty(exam.getDutydoctor())){
+			health.setRespDoctorId(exam.getDutydoctor());
+			health.setRespDoctorName(base.getDoctorName());
+		}else{
+			health.setRespDoctorId(base.getDoctorId());
+			health.setRespDoctorName(base.getDoctorName());
+		}
+				
 		//症状代码
 		String symptom = exam.getSymptom();
 		if(StringUtil.isNotEmpty(symptom)){
@@ -610,11 +676,15 @@ public class ConvertObjectData {
 		//职业病危险因素标志
 		health.setOccupExposureCode(exam.getLifewayOccupationalDisease());
 		//总胆固醇值（mmol/L)
-		BigDecimal tcho = new BigDecimal(exam.getTc());
-		health.setTcho(tcho);
+		if(StringUtil.isNotEmpty(exam.getTc())){
+			BigDecimal tcho = new BigDecimal(exam.getTc());
+			health.setTcho(tcho);
+		}
 		//总胆红素值（μmol/L)
-		BigDecimal tbi = new BigDecimal(exam.getTotalBilirubin());
-		health.setTbi(tbi);
+		if(StringUtil.isNotEmpty(exam.getTotalBilirubin())){
+			BigDecimal tbi = new BigDecimal(exam.getTotalBilirubin());
+			health.setTbi(tbi);
+		}
 		//足背动脉搏动代码
 		health.setPofdaCode(exam.getExaminationDorsalArtery());
 		//醉酒标志
@@ -624,11 +694,15 @@ public class ConvertObjectData {
 		//左侧舒张压（mmHg)
 		health.setLdbp(exam.getBaseBloodPressureLeftLow() == null?null:exam.getBaseBloodPressureLeftLow().shortValue());		
 		//左眼矫正远视力值
-		BigDecimal leftCorrectEyesight = new BigDecimal(exam.getOrganCorrectedvisionLeft());
-		health.setLeftCorrectEyesight(leftCorrectEyesight);
+		if(StringUtil.isNotEmpty(exam.getOrganCorrectedvisionLeft())){
+			BigDecimal leftCorrectEyesight = new BigDecimal(exam.getOrganCorrectedvisionLeft());
+			health.setLeftCorrectEyesight(leftCorrectEyesight);
+		}
 		//左眼裸眼远视力值
-		BigDecimal leftOriginalEyesight = new BigDecimal(exam.getOrganVisionLeft());
-		health.setLeftOriginalEyesight(leftOriginalEyesight);
+		if(StringUtil.isNotEmpty(exam.getOrganVisionLeft())){
+			BigDecimal leftOriginalEyesight = new BigDecimal(exam.getOrganVisionLeft());
+			health.setLeftOriginalEyesight(leftOriginalEyesight);
+		}
 		
 		return health;
 	}

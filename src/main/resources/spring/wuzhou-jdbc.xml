@@ -14,7 +14,7 @@
     <bean id="wuzhouDynamicDataSource" class="com.zkhw.framework.datasource.DynamicDataSource" >  
         <property name="targetDataSources">  
             <map>  
-                <entry key="write" value-ref="wuzhouDataSource"></entry> 
+                <entry key="wuzhou" value-ref="wuzhouDataSource"></entry> 
             </map>  
         </property>  
         <property name="defaultTargetDataSource" ref="wuzhouDataSource" />  

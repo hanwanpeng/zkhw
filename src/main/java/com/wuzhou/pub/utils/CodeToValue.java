@@ -1,5 +1,6 @@
 package com.wuzhou.pub.utils;
 
+
 public class CodeToValue {
 	
 	//症状
@@ -195,6 +196,30 @@ public class CodeToValue {
 		case "5":
 			name = "其他";
 			break;				
+		default:
+			break;
+		}
+		return name;
+	}
+	
+	public static String sexConvert(String code){
+		String name = "";
+		if(code == null){
+			return name;
+		}
+		switch (code) {
+		case "1":
+			name = "男性";
+			break;
+		case "2":
+			name = "女性";
+			break;
+		case "9":
+			name = "未说明性别";
+			break;
+		case "0":
+			name = "未知的性别";
+			break;			
 		default:
 			break;
 		}

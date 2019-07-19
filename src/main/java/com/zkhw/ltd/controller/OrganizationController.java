@@ -70,39 +70,6 @@ public class OrganizationController {
 				code = "00" + i;
 			}
 
-			organization.setId(CodeUtil.getUUID());
-			if(StringUtil.isNotEmpty(organization.getOrganParentCode())){
-				Organization org = organizationService.getOrganizationByCode(organization.getOrganParentCode());				
-				if(org != null){					
-					organization.setProvinceCode(org.getProvinceCode());
-					organization.setProvinceName(org.getProvinceName());
-					organization.setCityCode(org.getCityCode());
-					organization.setCityName(org.getCityName());
-					organization.setCountyCode(org.getCountyCode());
-					organization.setCountyName(org.getCountyName());
-					organization.setTownsCode(org.getTownsCode());
-					organization.setTownsName(org.getTownsName());
-					organization.setVillageCode(org.getVillageCode());
-					organization.setVillageName(org.getVillageName());
-					
-					String level = org.getOrganLevel();
-					int lev = Integer.parseInt(level);
-					if("1".equals(type)){
-						lev = lev + 1;
-					}else{
-						if(StringUtil.isNotEmpty(villageCode)){
-							lev = 5;
-						}
-					}
-					organization.setOrganLevel(String.valueOf(lev));
-				}else{
-					result.setCode("1");
-					result.setMsg("上级机构不存在");
-				}
-			}else{
-				organization.setOrganLevel("1");
-			}
-
 			if(StringUtil.isNotEmpty(villageCode)){
 				orgCode = villageCode + code;
 				organization.setVillageCode(villageCode);
@@ -139,8 +106,56 @@ public class OrganizationController {
 					organization.setProvinceName(area.getName());
 				}
 			}
-			organization.setOrganCode(orgCode);
 			
+			organization.setId(CodeUtil.getUUID());
+			if(StringUtil.isNotEmpty(organization.getOrganParentCode())){
+				Organization org = organizationService.getOrganizationByCode(organization.getOrganParentCode());				
+				if(org != null){					
+					organization.setProvinceCode(org.getProvinceCode());
+					organization.setProvinceName(org.getProvinceName());
+					organization.setCityCode(org.getCityCode());
+					organization.setCityName(org.getCityName());
+					organization.setCountyCode(org.getCountyCode());
+					organization.setCountyName(org.getCountyName());
+					organization.setTownsCode(org.getTownsCode());
+					organization.setTownsName(org.getTownsName());
+					organization.setVillageCode(org.getVillageCode());
+					organization.setVillageName(org.getVillageName());
+					
+					String level = org.getOrganLevel();
+					int lev = Integer.parseInt(level);
+					if("1".equals(type)){
+						lev = lev + 1;
+					}else{
+						if(StringUtil.isNotEmpty(villageCode)){
+							lev = 5;
+						}
+					}
+					organization.setOrganLevel(String.valueOf(lev));
+					
+					if(StringUtil.isEmpty(orgCode)){
+						if(lev == 1){
+							orgCode = org.getProvinceCode() + "0000000000" + code;
+						}else if(lev == 2){
+							orgCode = org.getCityCode() + "000000" + code;
+						}else if(lev == 3){
+							orgCode = org.getCountyCode() + "000000" + code;
+						}else if(lev == 4){
+							orgCode = org.getTownsCode() + code;
+						}else{
+							orgCode = org.getVillageCode() + code;
+						}
+					}
+					
+				}else{
+					result.setCode("1");
+					result.setMsg("上级机构不存在");
+				}
+			}else{
+				organization.setOrganLevel("1");
+			}
+			
+			organization.setOrganCode(orgCode);
 			Date now = new Date();
 			
 			organization.setCreateTime(now);

@@ -16,6 +16,13 @@
     from POS
     where POS_ID = #{posId,jdbcType=VARCHAR}
   </select>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from POS
+  </select>  
+    
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from POS
     where POS_ID = #{posId,jdbcType=VARCHAR}

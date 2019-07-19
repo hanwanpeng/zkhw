@@ -7,7 +7,7 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd" default-lazy-init="true" default-autowire="byName">
 	
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="zkhwsqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dynamicDataSource"/>
 		<property name="configLocation" value="classpath:config/sqlMapConfig.xml" />
 		<property name="mapperLocations">
@@ -18,15 +18,15 @@
 	</bean>
 
     <!-- 定义SqlSessionTemplate，个别涉及大数据量操作需要保证性能的dao，可以直接用SqlSessionTemplate来操作,比Mapper接口灵活方便 -->  
-    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">  
-        <constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>  
+    <bean id="zkhwsqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">  
+        <constructor-arg index="0" ref="zkhwsqlSessionFactory"></constructor-arg>  
     </bean>
-
+    
 	<!--
 		配置每个Dao所需的公共属性sqlSessionFactory
 	 -->
 	<bean id="baseDao">    
-		<property name="sqlSessionFactory" ref="sqlSessionFactory" />  
+		<property name="sqlSessionFactory" ref="zkhwsqlSessionFactory" />  
 	</bean>
 
 	<!-- 用户dao -->
@@ -109,7 +109,8 @@
 	<!--家族病史  -->	
 	<bean id="familyRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
 		<property name="mapperInterface" value="com.zkhw.pub.dao.FamilyRecordDao" />  
-	</bean>		
+	</bean>		
+
 	<!-- 老年人生活自理能力 -->
 	<bean id="elderlySelfcareEstimateDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDao">    
 		<property name="mapperInterface" value="com.zkhw.pub.dao.ElderlySelfcareEstimateDao" />  

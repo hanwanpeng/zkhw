@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhou.pub.dao.ElderExamLedgerDao">
+  <resultMap id="BaseResultMap" type="com.wuzhou.pub.entity.ElderExamLedger">
+    <id column="ELDER_EXAM_LEDGER_ID" jdbcType="VARCHAR" property="elderExamLedgerId" />
+    <result column="HEALTH_EXAM_ID" jdbcType="VARCHAR" property="healthExamId" />
+    <result column="CREATE_ORG_ID" jdbcType="VARCHAR" property="createOrgId" />
+    <result column="ORG_NAME" jdbcType="VARCHAR" property="orgName" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATOR_ID" jdbcType="VARCHAR" property="creatorId" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="MODIFIED_ORG_ID" jdbcType="VARCHAR" property="modifiedOrgId" />
+    <result column="MODIFIED_ORG_NAME" jdbcType="VARCHAR" property="modifiedOrgName" />
+    <result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="MODIFIER_ID" jdbcType="VARCHAR" property="modifierId" />
+    <result column="MODIFIER" jdbcType="VARCHAR" property="modifier" />
+    <result column="EXAM_DATE" jdbcType="TIMESTAMP" property="examDate" />
+    <result column="PERSON_INFO_ID" jdbcType="VARCHAR" property="personInfoId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ID_NO" jdbcType="VARCHAR" property="idNo" />
+    <result column="ABO_CODE" jdbcType="VARCHAR" property="aboCode" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="DIABETES_DRUGS" jdbcType="VARCHAR" property="diabetesDrugs" />
+    <result column="DRINK" jdbcType="VARCHAR" property="drink" />
+    <result column="DRUG_ALLERGY" jdbcType="VARCHAR" property="drugAllergy" />
+    <result column="EDUCATION_CODE" jdbcType="VARCHAR" property="educationCode" />
+    <result column="EXERCISE" jdbcType="VARCHAR" property="exercise" />
+    <result column="HEART_DRUGS" jdbcType="VARCHAR" property="heartDrugs" />
+    <result column="HYPER_DRUGS" jdbcType="VARCHAR" property="hyperDrugs" />
+    <result column="MARRIAGE_CODE" jdbcType="VARCHAR" property="marriageCode" />
+    <result column="MEDICAL" jdbcType="VARCHAR" property="medical" />
+    <result column="SMOKING" jdbcType="VARCHAR" property="smoking" />
+    <result column="TEETH" jdbcType="VARCHAR" property="teeth" />
+    <result column="TEL_NO" jdbcType="VARCHAR" property="telNo" />
+    <result column="WORK_UNIT" jdbcType="VARCHAR" property="workUnit" />
+    <result column="YEAR" jdbcType="DECIMAL" property="year" />
+    <result column="ELDER_COGNITION" jdbcType="VARCHAR" property="elderCognition" />
+    <result column="ELDER_DEPRESSION" jdbcType="VARCHAR" property="elderDepression" />
+    <result column="ELDER_SELF_CARE_ASSESS" jdbcType="VARCHAR" property="elderSelfCareAssess" />
+    <result column="SEX_VALUE" jdbcType="VARCHAR" property="sexValue" />
+    <result column="BIRTHDAY" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="HEALTH_ABNORM_DESC" jdbcType="VARCHAR" property="healthAbnormDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ELDER_EXAM_LEDGER_ID, HEALTH_EXAM_ID, CREATE_ORG_ID, ORG_NAME, CREATE_TIME, CREATOR_ID, 
+    CREATOR, MODIFIED_ORG_ID, MODIFIED_ORG_NAME, MODIFIED_TIME, MODIFIER_ID, MODIFIER, 
+    EXAM_DATE, PERSON_INFO_ID, NAME, ID_NO, ABO_CODE, ADDRESS, DIABETES_DRUGS, DRINK, 
+    DRUG_ALLERGY, EDUCATION_CODE, EXERCISE, HEART_DRUGS, HYPER_DRUGS, MARRIAGE_CODE, 
+    MEDICAL, SMOKING, TEETH, TEL_NO, WORK_UNIT, YEAR, ELDER_COGNITION, ELDER_DEPRESSION, 
+    ELDER_SELF_CARE_ASSESS, SEX_VALUE, BIRTHDAY, HEALTH_ABNORM_DESC
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ELDER_EXAM_LEDGER
+    where ELDER_EXAM_LEDGER_ID = #{elderExamLedgerId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ELDER_EXAM_LEDGER
+    where ELDER_EXAM_LEDGER_ID = #{elderExamLedgerId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuzhou.pub.entity.ElderExamLedger">
+    insert into ELDER_EXAM_LEDGER (ELDER_EXAM_LEDGER_ID, HEALTH_EXAM_ID, 
+      CREATE_ORG_ID, ORG_NAME, CREATE_TIME, 
+      CREATOR_ID, CREATOR, MODIFIED_ORG_ID, 
+      MODIFIED_ORG_NAME, MODIFIED_TIME, MODIFIER_ID, 
+      MODIFIER, EXAM_DATE, PERSON_INFO_ID, 
+      NAME, ID_NO, ABO_CODE, 
+      ADDRESS, DIABETES_DRUGS, DRINK, 
+      DRUG_ALLERGY, EDUCATION_CODE, EXERCISE, 
+      HEART_DRUGS, HYPER_DRUGS, MARRIAGE_CODE, 
+      MEDICAL, SMOKING, TEETH, 
+      TEL_NO, WORK_UNIT, YEAR, 
+      ELDER_COGNITION, ELDER_DEPRESSION, ELDER_SELF_CARE_ASSESS, 
+      SEX_VALUE, BIRTHDAY, HEALTH_ABNORM_DESC
+      )
+    values (#{elderExamLedgerId,jdbcType=VARCHAR}, #{healthExamId,jdbcType=VARCHAR}, 
+      #{createOrgId,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{creatorId,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{modifiedOrgId,jdbcType=VARCHAR}, 
+      #{modifiedOrgName,jdbcType=VARCHAR}, #{modifiedTime,jdbcType=TIMESTAMP}, #{modifierId,jdbcType=VARCHAR}, 
+      #{modifier,jdbcType=VARCHAR}, #{examDate,jdbcType=TIMESTAMP}, #{personInfoId,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{idNo,jdbcType=VARCHAR}, #{aboCode,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{diabetesDrugs,jdbcType=VARCHAR}, #{drink,jdbcType=VARCHAR}, 
+      #{drugAllergy,jdbcType=VARCHAR}, #{educationCode,jdbcType=VARCHAR}, #{exercise,jdbcType=VARCHAR}, 
+      #{heartDrugs,jdbcType=VARCHAR}, #{hyperDrugs,jdbcType=VARCHAR}, #{marriageCode,jdbcType=VARCHAR}, 
+      #{medical,jdbcType=VARCHAR}, #{smoking,jdbcType=VARCHAR}, #{teeth,jdbcType=VARCHAR}, 
+      #{telNo,jdbcType=VARCHAR}, #{workUnit,jdbcType=VARCHAR}, #{year,jdbcType=DECIMAL}, 
+      #{elderCognition,jdbcType=VARCHAR}, #{elderDepression,jdbcType=VARCHAR}, #{elderSelfCareAssess,jdbcType=VARCHAR}, 
+      #{sexValue,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{healthAbnormDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuzhou.pub.entity.ElderExamLedger">
+    insert into ELDER_EXAM_LEDGER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="elderExamLedgerId != null">
+        ELDER_EXAM_LEDGER_ID,
+      </if>
+      <if test="healthExamId != null">
+        HEALTH_EXAM_ID,
+      </if>
+      <if test="createOrgId != null">
+        CREATE_ORG_ID,
+      </if>
+      <if test="orgName != null">
+        ORG_NAME,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="modifiedOrgId != null">
+        MODIFIED_ORG_ID,
+      </if>
+      <if test="modifiedOrgName != null">
+        MODIFIED_ORG_NAME,
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME,
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID,
+      </if>
+      <if test="modifier != null">
+        MODIFIER,
+      </if>
+      <if test="examDate != null">
+        EXAM_DATE,
+      </if>
+      <if test="personInfoId != null">
+        PERSON_INFO_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="idNo != null">
+        ID_NO,
+      </if>
+      <if test="aboCode != null">
+        ABO_CODE,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="diabetesDrugs != null">
+        DIABETES_DRUGS,
+      </if>
+      <if test="drink != null">
+        DRINK,
+      </if>
+      <if test="drugAllergy != null">
+        DRUG_ALLERGY,
+      </if>
+      <if test="educationCode != null">
+        EDUCATION_CODE,
+      </if>
+      <if test="exercise != null">
+        EXERCISE,
+      </if>
+      <if test="heartDrugs != null">
+        HEART_DRUGS,
+      </if>
+      <if test="hyperDrugs != null">
+        HYPER_DRUGS,
+      </if>
+      <if test="marriageCode != null">
+        MARRIAGE_CODE,
+      </if>
+      <if test="medical != null">
+        MEDICAL,
+      </if>
+      <if test="smoking != null">
+        SMOKING,
+      </if>
+      <if test="teeth != null">
+        TEETH,
+      </if>
+      <if test="telNo != null">
+        TEL_NO,
+      </if>
+      <if test="workUnit != null">
+        WORK_UNIT,
+      </if>
+      <if test="year != null">
+        YEAR,
+      </if>
+      <if test="elderCognition != null">
+        ELDER_COGNITION,
+      </if>
+      <if test="elderDepression != null">
+        ELDER_DEPRESSION,
+      </if>
+      <if test="elderSelfCareAssess != null">
+        ELDER_SELF_CARE_ASSESS,
+      </if>
+      <if test="sexValue != null">
+        SEX_VALUE,
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY,
+      </if>
+      <if test="healthAbnormDesc != null">
+        HEALTH_ABNORM_DESC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="elderExamLedgerId != null">
+        #{elderExamLedgerId,jdbcType=VARCHAR},
+      </if>
+      <if test="healthExamId != null">
+        #{healthExamId,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgId != null">
+        #{createOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgId != null">
+        #{modifiedOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgName != null">
+        #{modifiedOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null">
+        #{modifierId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="examDate != null">
+        #{examDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personInfoId != null">
+        #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null">
+        #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aboCode != null">
+        #{aboCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="diabetesDrugs != null">
+        #{diabetesDrugs,jdbcType=VARCHAR},
+      </if>
+      <if test="drink != null">
+        #{drink,jdbcType=VARCHAR},
+      </if>
+      <if test="drugAllergy != null">
+        #{drugAllergy,jdbcType=VARCHAR},
+      </if>
+      <if test="educationCode != null">
+        #{educationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="exercise != null">
+        #{exercise,jdbcType=VARCHAR},
+      </if>
+      <if test="heartDrugs != null">
+        #{heartDrugs,jdbcType=VARCHAR},
+      </if>
+      <if test="hyperDrugs != null">
+        #{hyperDrugs,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageCode != null">
+        #{marriageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="medical != null">
+        #{medical,jdbcType=VARCHAR},
+      </if>
+      <if test="smoking != null">
+        #{smoking,jdbcType=VARCHAR},
+      </if>
+      <if test="teeth != null">
+        #{teeth,jdbcType=VARCHAR},
+      </if>
+      <if test="telNo != null">
+        #{telNo,jdbcType=VARCHAR},
+      </if>
+      <if test="workUnit != null">
+        #{workUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=DECIMAL},
+      </if>
+      <if test="elderCognition != null">
+        #{elderCognition,jdbcType=VARCHAR},
+      </if>
+      <if test="elderDepression != null">
+        #{elderDepression,jdbcType=VARCHAR},
+      </if>
+      <if test="elderSelfCareAssess != null">
+        #{elderSelfCareAssess,jdbcType=VARCHAR},
+      </if>
+      <if test="sexValue != null">
+        #{sexValue,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="healthAbnormDesc != null">
+        #{healthAbnormDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuzhou.pub.entity.ElderExamLedger">
+    update ELDER_EXAM_LEDGER
+    <set>
+      <if test="healthExamId != null">
+        HEALTH_EXAM_ID = #{healthExamId,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgId != null">
+        CREATE_ORG_ID = #{createOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgId != null">
+        MODIFIED_ORG_ID = #{modifiedOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgName != null">
+        MODIFIED_ORG_NAME = #{modifiedOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        MODIFIER = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="examDate != null">
+        EXAM_DATE = #{examDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personInfoId != null">
+        PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idNo != null">
+        ID_NO = #{idNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aboCode != null">
+        ABO_CODE = #{aboCode,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="diabetesDrugs != null">
+        DIABETES_DRUGS = #{diabetesDrugs,jdbcType=VARCHAR},
+      </if>
+      <if test="drink != null">
+        DRINK = #{drink,jdbcType=VARCHAR},
+      </if>
+      <if test="drugAllergy != null">
+        DRUG_ALLERGY = #{drugAllergy,jdbcType=VARCHAR},
+      </if>
+      <if test="educationCode != null">
+        EDUCATION_CODE = #{educationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="exercise != null">
+        EXERCISE = #{exercise,jdbcType=VARCHAR},
+      </if>
+      <if test="heartDrugs != null">
+        HEART_DRUGS = #{heartDrugs,jdbcType=VARCHAR},
+      </if>
+      <if test="hyperDrugs != null">
+        HYPER_DRUGS = #{hyperDrugs,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageCode != null">
+        MARRIAGE_CODE = #{marriageCode,jdbcType=VARCHAR},
+      </if>
+      <if test="medical != null">
+        MEDICAL = #{medical,jdbcType=VARCHAR},
+      </if>
+      <if test="smoking != null">
+        SMOKING = #{smoking,jdbcType=VARCHAR},
+      </if>
+      <if test="teeth != null">
+        TEETH = #{teeth,jdbcType=VARCHAR},
+      </if>
+      <if test="telNo != null">
+        TEL_NO = #{telNo,jdbcType=VARCHAR},
+      </if>
+      <if test="workUnit != null">
+        WORK_UNIT = #{workUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        YEAR = #{year,jdbcType=DECIMAL},
+      </if>
+      <if test="elderCognition != null">
+        ELDER_COGNITION = #{elderCognition,jdbcType=VARCHAR},
+      </if>
+      <if test="elderDepression != null">
+        ELDER_DEPRESSION = #{elderDepression,jdbcType=VARCHAR},
+      </if>
+      <if test="elderSelfCareAssess != null">
+        ELDER_SELF_CARE_ASSESS = #{elderSelfCareAssess,jdbcType=VARCHAR},
+      </if>
+      <if test="sexValue != null">
+        SEX_VALUE = #{sexValue,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="healthAbnormDesc != null">
+        HEALTH_ABNORM_DESC = #{healthAbnormDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ELDER_EXAM_LEDGER_ID = #{elderExamLedgerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuzhou.pub.entity.ElderExamLedger">
+    update ELDER_EXAM_LEDGER
+    set HEALTH_EXAM_ID = #{healthExamId,jdbcType=VARCHAR},
+      CREATE_ORG_ID = #{createOrgId,jdbcType=VARCHAR},
+      ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      MODIFIED_ORG_ID = #{modifiedOrgId,jdbcType=VARCHAR},
+      MODIFIED_ORG_NAME = #{modifiedOrgName,jdbcType=VARCHAR},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      MODIFIER = #{modifier,jdbcType=VARCHAR},
+      EXAM_DATE = #{examDate,jdbcType=TIMESTAMP},
+      PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      ID_NO = #{idNo,jdbcType=VARCHAR},
+      ABO_CODE = #{aboCode,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      DIABETES_DRUGS = #{diabetesDrugs,jdbcType=VARCHAR},
+      DRINK = #{drink,jdbcType=VARCHAR},
+      DRUG_ALLERGY = #{drugAllergy,jdbcType=VARCHAR},
+      EDUCATION_CODE = #{educationCode,jdbcType=VARCHAR},
+      EXERCISE = #{exercise,jdbcType=VARCHAR},
+      HEART_DRUGS = #{heartDrugs,jdbcType=VARCHAR},
+      HYPER_DRUGS = #{hyperDrugs,jdbcType=VARCHAR},
+      MARRIAGE_CODE = #{marriageCode,jdbcType=VARCHAR},
+      MEDICAL = #{medical,jdbcType=VARCHAR},
+      SMOKING = #{smoking,jdbcType=VARCHAR},
+      TEETH = #{teeth,jdbcType=VARCHAR},
+      TEL_NO = #{telNo,jdbcType=VARCHAR},
+      WORK_UNIT = #{workUnit,jdbcType=VARCHAR},
+      YEAR = #{year,jdbcType=DECIMAL},
+      ELDER_COGNITION = #{elderCognition,jdbcType=VARCHAR},
+      ELDER_DEPRESSION = #{elderDepression,jdbcType=VARCHAR},
+      ELDER_SELF_CARE_ASSESS = #{elderSelfCareAssess,jdbcType=VARCHAR},
+      SEX_VALUE = #{sexValue,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      HEALTH_ABNORM_DESC = #{healthAbnormDesc,jdbcType=VARCHAR}
+    where ELDER_EXAM_LEDGER_ID = #{elderExamLedgerId,jdbcType=VARCHAR}
+  </update>
+</mapper>

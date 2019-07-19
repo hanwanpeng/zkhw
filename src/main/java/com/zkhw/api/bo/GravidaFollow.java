@@ -9,6 +9,7 @@ public class GravidaFollow extends BaseBo{
 
 	private String id;
 	
+	private String orderNum;
 	//孕妇保健号
 	private String mHealthNo;
 	

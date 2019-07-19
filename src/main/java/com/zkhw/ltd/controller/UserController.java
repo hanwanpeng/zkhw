@@ -162,10 +162,10 @@ public class UserController {
 			if(u != null){
 				user.setOrganCode(u.getOrganCode());
 				if(StringUtil.isNotEmpty(u.getParentOrgan())){
-					if(u.getOrganCode().equals(u.getParentOrgan())){
-						user.setOrganCode(null);
-						user.setParentOrgan(u.getOrganCode());
-					}				
+
+					user.setOrganCode(null);
+					user.setParentOrgan(u.getOrganCode());
+			
 				}
 			}
 		}

@@ -128,7 +128,8 @@ public class ShanxiSyncServiceImpl implements ShanxiSyncService {
 			for(int i = 0; i < list.size(); i++){
 				try{
 					PhysicalExamination phy = list.get(i);	
-					if(!phy.getIdNumber().equals("612430194104092418") && !phy.getIdNumber().equals("612430194404202236")){
+					String d = DateUtil.fmtDate(phy.getCreateTime(), "yyyy-MM-dd");
+					if(!d.equals("2019-06-26")){
 						continue;
 					}
 					Businessdata data = new Businessdata();
@@ -158,13 +159,13 @@ public class ShanxiSyncServiceImpl implements ShanxiSyncService {
 						int age = DateUtil.getNominalAge(info.getBirthday());
 						if(age >= 65){
 							examVo.setCheckFlag(CodeConvert.checkFlagConvert("2"));
-						}else if(info.getIsDiabetes() == 1){
+						}else if(info.getIsDiabetes() != null &&  info.getIsDiabetes() == 1){
 							examVo.setCheckFlag(CodeConvert.checkFlagConvert("5"));
-						}else if(info.getIsHypertension() == 1){							
+						}else if(info.getIsHypertension() != null && info.getIsHypertension() == 1){							
 							examVo.setCheckFlag(CodeConvert.checkFlagConvert("4"));
-						}else if(info.getIsPsychosis() == 1){
+						}else if(info.getIsPsychosis() != null && info.getIsPsychosis() == 1){
 							examVo.setCheckFlag(CodeConvert.checkFlagConvert("6"));
-						}else if(info.getIsPoor() == 1){
+						}else if(info.getIsPoor() != null && info.getIsPoor() == 1){
 							examVo.setCheckFlag(CodeConvert.checkFlagConvert("7"));
 						}else {
 							examVo.setCheckFlag(CodeConvert.checkFlagConvert("3"));
@@ -669,258 +670,14 @@ public class ShanxiSyncServiceImpl implements ShanxiSyncService {
 				if(info == null){
 					info = new ResidentBaseInfo();
 					BeanUtils.copyProperties(temp,info);
-					
-					Residentdata data = new Residentdata();
-					Header header = new Header();
-					header.setFunctioncode("ARCH_4003");
-					header.setErrCode("0");
-					header.setErrMsg("");
-					data.setHeader(header);
-					
-					ResidentVo vo = new ResidentVo();
-					vo.setTypeId("1");
-					vo.setIdNumber(temp.getIdNumber());
-					
-					ResidentQuery resident = ConvertObject.convertToResident(vo);
-
-					data.setBody(resident);
-					
-					String reqXml = XmlUtils.modelToStringXML(data);
-					reqXml = reqXml.replace("<body>", "<body><![CDATA[");
-					reqXml = reqXml.replace("</body>", "]]></body>");
-					String areaCode = "6199";
-					Organization corg = organizationService.getOrganizationByCode(temp.getCreateOrg());
-					if(corg != null){
-						areaCode = corg.getCountyCode();
-					}
-					String duns = temp.getCreateOrg();
-					String token = "123456";
-					String userId = temp.getCreateUser();
-					User user = userService.findUserByCode(temp.getCreateUser());
-					if( user == null){
-						user = userService.findUserByLoginName(temp.getCreateUser());
-					}
-					if(user != null){
-						if(StringUtil.isNotEmpty(user.getPubUsercode())){
-							userId = user.getPubUsercode();
-						}else{
-							userId = user.getLoginName();
+					info.setAge(DateUtil.getAge(temp.getBirthday()));
+					Organization o = organizationService.getOrganizationByCode(temp.getCreateOrg());
+					if(o != null){
+						if("61".equals(o.getProvinceCode())){
+							this.getResident(info, temp);
 						}
 					}
-					String functionCode = "ARCH_4003";
-					String verifyCode = "123456";
-					String compId = "123";
-					
-					String result = this.send(areaCode, duns, token, userId, functionCode, verifyCode, compId, reqXml);
-					if(!"".equals(result)){
-						Object r = XmlUtils.xmlToBean(result, ResidentXml.class);
-						if(r != null){
-							ResidentXml x = (ResidentXml)r;
-							String errCode = x.getHeader().getErrCode();
-							if("0".equals(errCode)){
-								ResidentBody body = x.getBody().getObjectInstance();
-								if(body != null){
-									BaseElement archive = body.getArchiveid();
-									info.setPbArchive(archive.getValue());
-									
-									//BaseElement status = body.getArchstatus();
-									
-									BaseElement birth = body.getBirthday();
-									if(birth != null){
-										if(StringUtil.isNotEmpty(birth.getValue())){
-											info.setBirthday(birth.getValue());
-											info.setAge(DateUtil.getNominalAge(birth.getValue()));
-										}
-									}
-									//BaseElement date = body.getBuild_date();
-									BaseElement doc = body.getBuilddoctor();
-									if(doc != null){
-										if(StringUtil.isNotEmpty(doc.getValue())){											
-											info.setCreateUser(doc.getValue());
-											User u = userService.findUserByCode(doc.getValue());
-											if(u != null){
-												info.setCreateName(u.getUserName());
-											}
-										}
-									}
-									
-									//body.getCuraddr_committee();									
-									BaseElement address = body.getCuraddr_doorno();
-									if(address != null){
-										if(StringUtil.isNotEmpty(address.getValue())){
-											info.setResidenceAddress(address.getValue());;
-										}
-									}
 
-									BaseElement dm = body.getDisdmflag();
-									if(dm != null){
-										if(StringUtil.isNotEmpty(dm.getValue())){
-											if("1".equals(dm.getValue())){
-												info.setIsDiabetes(1);
-											}else{
-												info.setIsDiabetes(0);
-											}
-											
-										}
-									}									
-									//body.getDisheartflag();
-									
-									BaseElement hyper = body.getDishyperflag();
-									if(hyper != null){
-										if(StringUtil.isNotEmpty(hyper.getValue())){											
-											if("1".equals(hyper.getValue())){
-												info.setIsHypertension(1);
-											}else{
-												info.setIsHypertension(0);
-											}
-										}
-									}
-									BaseElement org = body.getDuns();	
-									if(org != null){
-										if(StringUtil.isNotEmpty(org.getValue())){
-											info.setCreateOrg(org.getValue());
-											Organization o = organizationService.getOrganizationByCode(org.getValue());
-											if(o != null){
-												info.setCreateOrgName(o.getOrganName());
-											}
-										}
-									}
-									
-									BaseElement dutydoc = body.getDutydoctor();
-									if(dutydoc != null){
-										if(StringUtil.isNotEmpty(dutydoc.getValue())){											
-											info.setDoctorId(dutydoc.getValue());
-											User u = userService.findUserByCode(dutydoc.getValue());
-											if(u != null){
-												info.setDoctorName(dutydoc.getValue());
-											}
-										}
-									}
-									//body.getFullname();
-									//body.getGender();
-									//body.getIdentityno();
-									//body.getResaddr_committee();
-									
-									BaseElement resadd = body.getResaddr_doorno();
-									if(resadd != null){
-										if(StringUtil.isNotEmpty(resadd.getValue())){
-											info.setRegisterAddress(resadd.getValue());
-										}
-									}									
-	
-									BaseElement tel = body.getTel();
-									if(tel != null){
-										if(StringUtil.isNotEmpty(tel.getValue())){
-											info.setPhone(tel.getValue());
-										}
-									}	
-									
-									BaseElement sign = body.getIsSign();
-									if(sign != null){
-										if(StringUtil.isNotEmpty(sign.getValue())){
-											info.setIsSigning(Integer.parseInt(sign.getValue()));
-										}
-									}
-									
-									BaseElement poor = body.getIsSign();
-									if(poor != null){
-										if(StringUtil.isNotEmpty(poor.getValue())){
-											if("SX0083_1".equals(poor.getValue())){
-												info.setIsPoor(1);
-											}else{
-												info.setIsPoor(0);
-											}
-										}
-									}
-								}
-								
-							}
-						}else{
-							Businessdata udata = new Businessdata();
-							Header uheader = new Header();
-							uheader.setFunctioncode("ARCH_1002");
-							uheader.setErrCode("0");
-							uheader.setErrMsg("");
-							uheader.setCmd("insert");
-							data.setHeader(uheader);
-							
-							List<Object> ulist = new ArrayList<Object>();
-							
-							ResidentVo residentVo = new ResidentVo();
-							//获取Id
-							String basicinfoName = "EHR_Arch_Basicinfo";
-							IdTest idTest = new IdTest();
-							String basicinfoId = idTest.getId(basicinfoName, areaCode, duns, token, userId, compId);
-							if(!StringUtil.isEmpty(basicinfoId)) {
-								residentVo.setId(basicinfoId);
-							}
-							
-							residentVo.setArchiveNo(info.getArchiveNo());//纸质档案号
-							residentVo.setName(info.getName());//姓名
-							residentVo.setSex("1");//性别
-							residentVo.setBirthday(info.getBirthday());//出生日期
-							residentVo.setIdNumber(info.getIdNumber());//身份证号
-							//residentVo.setRegisterAddress("123265");//户籍所在地(省市区的六位号码字段)
-							residentVo.setRegisterAddressDoor(info.getRegisterAddress());// 户籍所在地(门牌号)
-							//residentVo.setResidenceAddress("123265");//现住址(省市区的六位号码字段)
-							residentVo.setResidenceAddressDoor(info.getResidenceAddress());//现住址(门牌号)
-							residentVo.setCompany(info.getCompany());
-							residentVo.setPhone(info.getPhone());//电话 
-							residentVo.setLinkName(info.getLinkName());//联系人 
-							residentVo.setLinkPhone(info.getLinkPhone());//联系人电话
-							residentVo.setResidentType("户籍");//常住类型
-							residentVo.setNation("汉");//民族
-							residentVo.setMedicalCode(info.getMedicalCode());//健康卡号
-							residentVo.setDoctorName(info.getDoctorId());//责任医生
-							residentVo.setIsPoor(1);//是否贫困
-							residentVo.setCreateTime(DateUtil.getTodayString());//建档日期
-							residentVo.setCreateName(info.getCreateUser());//建档医生
-							residentVo.setRemark(info.getRemark());//备注
-							residentVo.setAichiveOrg(info.getCreateOrg());//建档机构
-							
-							Resident res = ConvertObject.convertToInsertResident(residentVo);
-							ulist.add(res);
-							
-							udata.setBody(ulist);
-							
-							String ureqXml = XmlUtils.modelToStringXML(data);
-							ureqXml = ureqXml.replace("<body>", "<body><![CDATA[");
-							ureqXml = ureqXml.replace("</body>", "]]></body>");
-							System.out.println(ureqXml);
-							
-							
-							String uareaCode = "6199";
-							
-							String uduns = "61990011X1009";
-							
-							String utoken = "123456";
-							
-							String uuserId = "610404197712260672";
-							
-							String uverifyCode = "123456";
-							
-							String ufunctionCode = "ARCH_1002";
-							
-							String ucompId = "123";
-							
-							String uresult = this.send(uareaCode, uduns, utoken, uuserId, ufunctionCode, uverifyCode, ucompId, ureqXml);
-							if(!"".equals(uresult)){
-								Object ur = XmlUtils.xmlToBean(result, ResponseXml.class);
-								if(ur != null){
-									ResponseXml x = (ResponseXml)ur;
-									String errCode = x.getHeader().getErrCode();
-									if("0".equals(errCode)){
-									}else{
-										System.out.println("msg =" + x.getHeader().getErrMsg());
-										System.out.println("total =" + x.getBody().getRows_total());
-										System.out.println("suc =" + x.getBody().getRows_suc());
-										System.out.println("fail =" + x.getBody().getRows_faild());
-										System.out.println("memo =" + x.getBody().getMemo());
-									}
-								}
-							}							
-						}
-					}					
 					int count = residentBaseInfoDao.insertSelective(info);
 					if(count > 0 ){
 						residentInfoTempDao.deleteByPrimaryKey(temp.getId());
@@ -1723,6 +1480,264 @@ public class ShanxiSyncServiceImpl implements ShanxiSyncService {
 			}
 		}
 		
+	}
+	
+	private void getResident(ResidentBaseInfo info, ResidentInfoTemp temp){
+		try{
+			Residentdata data = new Residentdata();
+			Header header = new Header();
+			header.setFunctioncode("ARCH_4003");
+			header.setErrCode("0");
+			header.setErrMsg("");
+			data.setHeader(header);
+			
+			ResidentVo vo = new ResidentVo();
+			vo.setTypeId("1");
+			vo.setIdNumber(temp.getIdNumber());
+			
+			ResidentQuery resident = ConvertObject.convertToResident(vo);
+	
+			data.setBody(resident);
+			
+			String reqXml = XmlUtils.modelToStringXML(data);
+			reqXml = reqXml.replace("<body>", "<body><![CDATA[");
+			reqXml = reqXml.replace("</body>", "]]></body>");
+			String areaCode = "6199";
+			Organization corg = organizationService.getOrganizationByCode(temp.getCreateOrg());
+			if(corg != null){
+				areaCode = corg.getCountyCode();
+			}
+			String duns = temp.getCreateOrg();
+			String token = "123456";
+			String userId = temp.getCreateUser();
+			User user = userService.findUserByCode(temp.getCreateUser());
+			if( user == null){
+				user = userService.findUserByLoginName(temp.getCreateUser());
+			}
+			if(user != null){
+				if(StringUtil.isNotEmpty(user.getPubUsercode())){
+					userId = user.getPubUsercode();
+				}else{
+					userId = user.getLoginName();
+				}
+			}
+			String functionCode = "ARCH_4003";
+			String verifyCode = "123456";
+			String compId = "123";
+			
+			String result = this.send(areaCode, duns, token, userId, functionCode, verifyCode, compId, reqXml);
+			if(!"".equals(result)){
+				Object r = XmlUtils.xmlToBean(result, ResidentXml.class);
+				if(r != null){
+					ResidentXml x = (ResidentXml)r;
+					String errCode = x.getHeader().getErrCode();
+					if("0".equals(errCode)){
+						ResidentBody body = x.getBody().getObjectInstance();
+						if(body != null){
+							BaseElement archive = body.getArchiveid();
+							info.setPbArchive(archive.getValue());
+							
+							//BaseElement status = body.getArchstatus();
+							
+							BaseElement birth = body.getBirthday();
+							if(birth != null){
+								if(StringUtil.isNotEmpty(birth.getValue())){
+									info.setBirthday(birth.getValue());
+									info.setAge(DateUtil.getNominalAge(birth.getValue()));
+								}
+							}
+							//BaseElement date = body.getBuild_date();
+							BaseElement doc = body.getBuilddoctor();
+							if(doc != null){
+								if(StringUtil.isNotEmpty(doc.getValue())){											
+									info.setCreateUser(doc.getValue());
+									User u = userService.findUserByCode(doc.getValue());
+									if(u != null){
+										info.setCreateName(u.getUserName());
+									}
+								}
+							}
+							
+							//body.getCuraddr_committee();									
+							BaseElement address = body.getCuraddr_doorno();
+							if(address != null){
+								if(StringUtil.isNotEmpty(address.getValue())){
+									info.setResidenceAddress(address.getValue());;
+								}
+							}
+	
+							BaseElement dm = body.getDisdmflag();
+							if(dm != null){
+								if(StringUtil.isNotEmpty(dm.getValue())){
+									if("1".equals(dm.getValue())){
+										info.setIsDiabetes(1);
+									}else{
+										info.setIsDiabetes(0);
+									}
+									
+								}
+							}									
+							//body.getDisheartflag();
+							
+							BaseElement hyper = body.getDishyperflag();
+							if(hyper != null){
+								if(StringUtil.isNotEmpty(hyper.getValue())){											
+									if("1".equals(hyper.getValue())){
+										info.setIsHypertension(1);
+									}else{
+										info.setIsHypertension(0);
+									}
+								}
+							}
+							BaseElement org = body.getDuns();	
+							if(org != null){
+								if(StringUtil.isNotEmpty(org.getValue())){
+									info.setCreateOrg(org.getValue());
+									Organization o = organizationService.getOrganizationByCode(org.getValue());
+									if(o != null){
+										info.setCreateOrgName(o.getOrganName());
+									}
+								}
+							}
+							
+							BaseElement dutydoc = body.getDutydoctor();
+							if(dutydoc != null){
+								if(StringUtil.isNotEmpty(dutydoc.getValue())){											
+									info.setDoctorId(dutydoc.getValue());
+									User u = userService.findUserByCode(dutydoc.getValue());
+									if(u != null){
+										info.setDoctorName(dutydoc.getValue());
+									}
+								}
+							}
+							//body.getFullname();
+							//body.getGender();
+							//body.getIdentityno();
+							//body.getResaddr_committee();
+							
+							BaseElement resadd = body.getResaddr_doorno();
+							if(resadd != null){
+								if(StringUtil.isNotEmpty(resadd.getValue())){
+									info.setRegisterAddress(resadd.getValue());
+								}
+							}									
+	
+							BaseElement tel = body.getTel();
+							if(tel != null){
+								if(StringUtil.isNotEmpty(tel.getValue())){
+									info.setPhone(tel.getValue());
+								}
+							}	
+							
+							BaseElement sign = body.getIsSign();
+							if(sign != null){
+								if(StringUtil.isNotEmpty(sign.getValue())){
+									info.setIsSigning(Integer.parseInt(sign.getValue()));
+								}
+							}
+							
+							BaseElement poor = body.getIsSign();
+							if(poor != null){
+								if(StringUtil.isNotEmpty(poor.getValue())){
+									if("SX0083_1".equals(poor.getValue())){
+										info.setIsPoor(1);
+									}else{
+										info.setIsPoor(0);
+									}
+								}
+							}
+						}
+						
+					}
+				}else{
+					Businessdata udata = new Businessdata();
+					Header uheader = new Header();
+					uheader.setFunctioncode("ARCH_1002");
+					uheader.setErrCode("0");
+					uheader.setErrMsg("");
+					uheader.setCmd("insert");
+					data.setHeader(uheader);
+					
+					List<Object> ulist = new ArrayList<Object>();
+					
+					ResidentVo residentVo = new ResidentVo();
+					//获取Id
+					String basicinfoName = "EHR_Arch_Basicinfo";
+					IdTest idTest = new IdTest();
+					String basicinfoId = idTest.getId(basicinfoName, areaCode, duns, token, userId, compId);
+					if(!StringUtil.isEmpty(basicinfoId)) {
+						residentVo.setId(basicinfoId);
+					}
+					
+					residentVo.setArchiveNo(info.getArchiveNo());//纸质档案号
+					residentVo.setName(info.getName());//姓名
+					residentVo.setSex("1");//性别
+					residentVo.setBirthday(info.getBirthday());//出生日期
+					residentVo.setIdNumber(info.getIdNumber());//身份证号
+					//residentVo.setRegisterAddress("123265");//户籍所在地(省市区的六位号码字段)
+					residentVo.setRegisterAddressDoor(info.getRegisterAddress());// 户籍所在地(门牌号)
+					//residentVo.setResidenceAddress("123265");//现住址(省市区的六位号码字段)
+					residentVo.setResidenceAddressDoor(info.getResidenceAddress());//现住址(门牌号)
+					residentVo.setCompany(info.getCompany());
+					residentVo.setPhone(info.getPhone());//电话 
+					residentVo.setLinkName(info.getLinkName());//联系人 
+					residentVo.setLinkPhone(info.getLinkPhone());//联系人电话
+					residentVo.setResidentType("户籍");//常住类型
+					residentVo.setNation("汉");//民族
+					residentVo.setMedicalCode(info.getMedicalCode());//健康卡号
+					residentVo.setDoctorName(info.getDoctorId());//责任医生
+					residentVo.setIsPoor(1);//是否贫困
+					residentVo.setCreateTime(DateUtil.getTodayString());//建档日期
+					residentVo.setCreateName(info.getCreateUser());//建档医生
+					residentVo.setRemark(info.getRemark());//备注
+					residentVo.setAichiveOrg(info.getCreateOrg());//建档机构
+					
+					Resident res = ConvertObject.convertToInsertResident(residentVo);
+					ulist.add(res);
+					
+					udata.setBody(ulist);
+					
+					String ureqXml = XmlUtils.modelToStringXML(data);
+					ureqXml = ureqXml.replace("<body>", "<body><![CDATA[");
+					ureqXml = ureqXml.replace("</body>", "]]></body>");
+					System.out.println(ureqXml);
+					
+					
+					String uareaCode = "6199";
+					
+					String uduns = "61990011X1009";
+					
+					String utoken = "123456";
+					
+					String uuserId = "610404197712260672";
+					
+					String uverifyCode = "123456";
+					
+					String ufunctionCode = "ARCH_1002";
+					
+					String ucompId = "123";
+					
+					String uresult = this.send(uareaCode, uduns, utoken, uuserId, ufunctionCode, uverifyCode, ucompId, ureqXml);
+					if(!"".equals(uresult)){
+						Object ur = XmlUtils.xmlToBean(result, ResponseXml.class);
+						if(ur != null){
+							ResponseXml x = (ResponseXml)ur;
+							String errCode = x.getHeader().getErrCode();
+							if("0".equals(errCode)){
+							}else{
+								System.out.println("msg =" + x.getHeader().getErrMsg());
+								System.out.println("total =" + x.getBody().getRows_total());
+								System.out.println("suc =" + x.getBody().getRows_suc());
+								System.out.println("fail =" + x.getBody().getRows_faild());
+								System.out.println("memo =" + x.getBody().getMemo());
+							}
+						}
+					}							
+				}
+			}					
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 }

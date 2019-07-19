@@ -147,11 +147,7 @@ public class PdfUtils {
 
 	// 利用模板生成pdf
 	@SuppressWarnings("unchecked")
-	public static void pdfout(Map<String, Object> o) {
-		// 模板路径
-		String templatePath = "d:/testpdf.pdf";
-		// 生成的新文件路径
-		String newPDFPath = "d:/testout1.pdf";
+	public static void pdfout(Map<String, Object> o,String templatePath,String newPDFPath) {
 
 		PdfReader reader;
 		FileOutputStream out;
@@ -287,7 +283,7 @@ public class PdfUtils {
 		Map<String, Object> o = new HashMap();
 		o.put("datemap", map);
 		o.put("imgmap", map2);
-		pdfout(o);
+		//pdfout(o);
 	}
 
 }

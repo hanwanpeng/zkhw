@@ -1,5 +1,7 @@
 package com.wuzhou.pub.dao;
 
+import java.util.List;
+
 import com.wuzhou.pub.entity.Pos;
 
 public interface PosDao {
@@ -14,4 +16,6 @@ public interface PosDao {
     int updateByPrimaryKeySelective(Pos record);
 
     int updateByPrimaryKey(Pos record);
+    
+    List<Pos> findAll();
 }

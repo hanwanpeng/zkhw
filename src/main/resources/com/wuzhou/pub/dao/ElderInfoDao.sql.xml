@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuzhou.pub.dao.ElderInfoDao">
+  <resultMap id="BaseResultMap" type="com.wuzhou.pub.entity.ElderInfo">
+    <id column="ELDER_INFO_ID" jdbcType="VARCHAR" property="elderInfoId" />
+    <result column="PERSON_INFO_ID" jdbcType="VARCHAR" property="personInfoId" />
+    <result column="CREATE_ORG_ID" jdbcType="VARCHAR" property="createOrgId" />
+    <result column="ORG_NAME" jdbcType="VARCHAR" property="orgName" />
+    <result column="CREATOR_ID" jdbcType="VARCHAR" property="creatorId" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFIED_ORG_ID" jdbcType="VARCHAR" property="modifiedOrgId" />
+    <result column="MODIFIED_ORG_NAME" jdbcType="VARCHAR" property="modifiedOrgName" />
+    <result column="MODIFIER_ID" jdbcType="VARCHAR" property="modifierId" />
+    <result column="MODIFIER" jdbcType="VARCHAR" property="modifier" />
+    <result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="MAINTENANCE_MODE_CODE" jdbcType="VARCHAR" property="maintenanceModeCode" />
+    <result column="GUARDIAN_NAME" jdbcType="VARCHAR" property="guardianName" />
+    <result column="GUARDIAN_RELATION_CODE" jdbcType="VARCHAR" property="guardianRelationCode" />
+    <result column="GUARDIAN_ADDR" jdbcType="VARCHAR" property="guardianAddr" />
+    <result column="GUARDIAN_TEL_NO" jdbcType="VARCHAR" property="guardianTelNo" />
+    <result column="GUARDIAN_MOBILE" jdbcType="VARCHAR" property="guardianMobile" />
+    <result column="INFORMANT" jdbcType="VARCHAR" property="informant" />
+    <result column="INFORMANT_DATE" jdbcType="TIMESTAMP" property="informantDate" />
+    <result column="INVESTIGATOR" jdbcType="VARCHAR" property="investigator" />
+    <result column="INVESTIGATOR_DATE" jdbcType="TIMESTAMP" property="investigatorDate" />
+    <result column="MANAGE_DATE" jdbcType="TIMESTAMP" property="manageDate" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+    <result column="IS_APP_CREATE" jdbcType="DECIMAL" property="isAppCreate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ELDER_INFO_ID, PERSON_INFO_ID, CREATE_ORG_ID, ORG_NAME, CREATOR_ID, CREATOR, CREATE_TIME, 
+    MODIFIED_ORG_ID, MODIFIED_ORG_NAME, MODIFIER_ID, MODIFIER, MODIFIED_TIME, NAME, MAINTENANCE_MODE_CODE, 
+    GUARDIAN_NAME, GUARDIAN_RELATION_CODE, GUARDIAN_ADDR, GUARDIAN_TEL_NO, GUARDIAN_MOBILE, 
+    INFORMANT, INFORMANT_DATE, INVESTIGATOR, INVESTIGATOR_DATE, MANAGE_DATE, REMARKS, 
+    IS_APP_CREATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ELDER_INFO
+    where ELDER_INFO_ID = #{elderInfoId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findByPersonInfoId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ELDER_INFO
+    where PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR}
+  </select>  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ELDER_INFO
+    where ELDER_INFO_ID = #{elderInfoId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuzhou.pub.entity.ElderInfo">
+    insert into ELDER_INFO (ELDER_INFO_ID, PERSON_INFO_ID, CREATE_ORG_ID, 
+      ORG_NAME, CREATOR_ID, CREATOR, 
+      CREATE_TIME, MODIFIED_ORG_ID, MODIFIED_ORG_NAME, 
+      MODIFIER_ID, MODIFIER, MODIFIED_TIME, 
+      NAME, MAINTENANCE_MODE_CODE, GUARDIAN_NAME, 
+      GUARDIAN_RELATION_CODE, GUARDIAN_ADDR, GUARDIAN_TEL_NO, 
+      GUARDIAN_MOBILE, INFORMANT, INFORMANT_DATE, 
+      INVESTIGATOR, INVESTIGATOR_DATE, MANAGE_DATE, 
+      REMARKS, IS_APP_CREATE)
+    values (#{elderInfoId,jdbcType=VARCHAR}, #{personInfoId,jdbcType=VARCHAR}, #{createOrgId,jdbcType=VARCHAR}, 
+      #{orgName,jdbcType=VARCHAR}, #{creatorId,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifiedOrgId,jdbcType=VARCHAR}, #{modifiedOrgName,jdbcType=VARCHAR}, 
+      #{modifierId,jdbcType=VARCHAR}, #{modifier,jdbcType=VARCHAR}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{name,jdbcType=VARCHAR}, #{maintenanceModeCode,jdbcType=VARCHAR}, #{guardianName,jdbcType=VARCHAR}, 
+      #{guardianRelationCode,jdbcType=VARCHAR}, #{guardianAddr,jdbcType=VARCHAR}, #{guardianTelNo,jdbcType=VARCHAR}, 
+      #{guardianMobile,jdbcType=VARCHAR}, #{informant,jdbcType=VARCHAR}, #{informantDate,jdbcType=TIMESTAMP}, 
+      #{investigator,jdbcType=VARCHAR}, #{investigatorDate,jdbcType=TIMESTAMP}, #{manageDate,jdbcType=TIMESTAMP}, 
+      #{remarks,jdbcType=VARCHAR}, #{isAppCreate,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuzhou.pub.entity.ElderInfo">
+    insert into ELDER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="elderInfoId != null">
+        ELDER_INFO_ID,
+      </if>
+      <if test="personInfoId != null">
+        PERSON_INFO_ID,
+      </if>
+      <if test="createOrgId != null">
+        CREATE_ORG_ID,
+      </if>
+      <if test="orgName != null">
+        ORG_NAME,
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="modifiedOrgId != null">
+        MODIFIED_ORG_ID,
+      </if>
+      <if test="modifiedOrgName != null">
+        MODIFIED_ORG_NAME,
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID,
+      </if>
+      <if test="modifier != null">
+        MODIFIER,
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="maintenanceModeCode != null">
+        MAINTENANCE_MODE_CODE,
+      </if>
+      <if test="guardianName != null">
+        GUARDIAN_NAME,
+      </if>
+      <if test="guardianRelationCode != null">
+        GUARDIAN_RELATION_CODE,
+      </if>
+      <if test="guardianAddr != null">
+        GUARDIAN_ADDR,
+      </if>
+      <if test="guardianTelNo != null">
+        GUARDIAN_TEL_NO,
+      </if>
+      <if test="guardianMobile != null">
+        GUARDIAN_MOBILE,
+      </if>
+      <if test="informant != null">
+        INFORMANT,
+      </if>
+      <if test="informantDate != null">
+        INFORMANT_DATE,
+      </if>
+      <if test="investigator != null">
+        INVESTIGATOR,
+      </if>
+      <if test="investigatorDate != null">
+        INVESTIGATOR_DATE,
+      </if>
+      <if test="manageDate != null">
+        MANAGE_DATE,
+      </if>
+      <if test="remarks != null">
+        REMARKS,
+      </if>
+      <if test="isAppCreate != null">
+        IS_APP_CREATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="elderInfoId != null">
+        #{elderInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="personInfoId != null">
+        #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgId != null">
+        #{createOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedOrgId != null">
+        #{modifiedOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgName != null">
+        #{modifiedOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null">
+        #{modifierId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="maintenanceModeCode != null">
+        #{maintenanceModeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="guardianName != null">
+        #{guardianName,jdbcType=VARCHAR},
+      </if>
+      <if test="guardianRelationCode != null">
+        #{guardianRelationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="guardianAddr != null">
+        #{guardianAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="guardianTelNo != null">
+        #{guardianTelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="guardianMobile != null">
+        #{guardianMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="informant != null">
+        #{informant,jdbcType=VARCHAR},
+      </if>
+      <if test="informantDate != null">
+        #{informantDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="investigator != null">
+        #{investigator,jdbcType=VARCHAR},
+      </if>
+      <if test="investigatorDate != null">
+        #{investigatorDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manageDate != null">
+        #{manageDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="isAppCreate != null">
+        #{isAppCreate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuzhou.pub.entity.ElderInfo">
+    update ELDER_INFO
+    <set>
+      <if test="personInfoId != null">
+        PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgId != null">
+        CREATE_ORG_ID = #{createOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedOrgId != null">
+        MODIFIED_ORG_ID = #{modifiedOrgId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedOrgName != null">
+        MODIFIED_ORG_NAME = #{modifiedOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifierId != null">
+        MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        MODIFIER = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="maintenanceModeCode != null">
+        MAINTENANCE_MODE_CODE = #{maintenanceModeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="guardianName != null">
+        GUARDIAN_NAME = #{guardianName,jdbcType=VARCHAR},
+      </if>
+      <if test="guardianRelationCode != null">
+        GUARDIAN_RELATION_CODE = #{guardianRelationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="guardianAddr != null">
+        GUARDIAN_ADDR = #{guardianAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="guardianTelNo != null">
+        GUARDIAN_TEL_NO = #{guardianTelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="guardianMobile != null">
+        GUARDIAN_MOBILE = #{guardianMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="informant != null">
+        INFORMANT = #{informant,jdbcType=VARCHAR},
+      </if>
+      <if test="informantDate != null">
+        INFORMANT_DATE = #{informantDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="investigator != null">
+        INVESTIGATOR = #{investigator,jdbcType=VARCHAR},
+      </if>
+      <if test="investigatorDate != null">
+        INVESTIGATOR_DATE = #{investigatorDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="manageDate != null">
+        MANAGE_DATE = #{manageDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="isAppCreate != null">
+        IS_APP_CREATE = #{isAppCreate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ELDER_INFO_ID = #{elderInfoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuzhou.pub.entity.ElderInfo">
+    update ELDER_INFO
+    set PERSON_INFO_ID = #{personInfoId,jdbcType=VARCHAR},
+      CREATE_ORG_ID = #{createOrgId,jdbcType=VARCHAR},
+      ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFIED_ORG_ID = #{modifiedOrgId,jdbcType=VARCHAR},
+      MODIFIED_ORG_NAME = #{modifiedOrgName,jdbcType=VARCHAR},
+      MODIFIER_ID = #{modifierId,jdbcType=VARCHAR},
+      MODIFIER = #{modifier,jdbcType=VARCHAR},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      NAME = #{name,jdbcType=VARCHAR},
+      MAINTENANCE_MODE_CODE = #{maintenanceModeCode,jdbcType=VARCHAR},
+      GUARDIAN_NAME = #{guardianName,jdbcType=VARCHAR},
+      GUARDIAN_RELATION_CODE = #{guardianRelationCode,jdbcType=VARCHAR},
+      GUARDIAN_ADDR = #{guardianAddr,jdbcType=VARCHAR},
+      GUARDIAN_TEL_NO = #{guardianTelNo,jdbcType=VARCHAR},
+      GUARDIAN_MOBILE = #{guardianMobile,jdbcType=VARCHAR},
+      INFORMANT = #{informant,jdbcType=VARCHAR},
+      INFORMANT_DATE = #{informantDate,jdbcType=TIMESTAMP},
+      INVESTIGATOR = #{investigator,jdbcType=VARCHAR},
+      INVESTIGATOR_DATE = #{investigatorDate,jdbcType=TIMESTAMP},
+      MANAGE_DATE = #{manageDate,jdbcType=TIMESTAMP},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      IS_APP_CREATE = #{isAppCreate,jdbcType=DECIMAL}
+    where ELDER_INFO_ID = #{elderInfoId,jdbcType=VARCHAR}
+  </update>
+</mapper>

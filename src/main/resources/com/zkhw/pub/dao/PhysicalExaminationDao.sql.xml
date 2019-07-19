@@ -296,7 +296,7 @@
     select 
     <include refid="Base_Column_List" />
     from physical_examination_record r
-    where upload_status = 0 and EXISTS(select 1 from ltd_organization o where o.organ_code = r.create_org and o.city_code = '450400')
+    where ifnull(upload_status,0) = 0 and EXISTS(select 1 from ltd_organization o where o.organ_code = r.create_org and o.city_code = '450400')
   </select> 
   
  <!-- 陕西同步数据 -->

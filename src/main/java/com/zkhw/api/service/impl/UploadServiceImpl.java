@@ -631,18 +631,18 @@ public class UploadServiceImpl implements UploadService {
 				
 				psy.setRemark(first.getRemark());
 				
-				//psy.setCreateName(first.getCreated_By());
+				psy.setCreateName(first.getCreated_By());
 				psy.setCreateOrg(first.getDuns());
 				Organization org = organizationDao.getOrganizationByCode(first.getDuns());
 				if(org != null){
 					psy.setCreateOrgName(org.getOrganName());
 				}
 				psy.setCreateTime(DateUtil.getDate(first.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				psy.setCreateUser(first.getCreated_By());			
+				//psy.setCreateUser(first.getCreated_By());			
 								
-				//psy.setUpdateName(updateName);
+				psy.setUpdateName(first.getUpdated_By());
 				psy.setUpdateTime(DateUtil.getDate(first.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				psy.setUpdateUser(first.getUpdated_By());
+				//psy.setUpdateUser(first.getUpdated_By());
 				//psy.setUploadResult(uploadResult);
 				psy.setUploadStatus(0);
 				//psy.setUploadTime(uploadTime);
@@ -668,10 +668,18 @@ public class UploadServiceImpl implements UploadService {
 		for(int j = 0; j < bo.getFeiJieHeVisit1().size(); j++){
 			Error err = new Error();
 			try{
-				TuberculosisFirst first = bo.getFeiJieHeVisit1().get(j);				
-				TuberculosisInfo tub = new TuberculosisInfo();
+				TuberculosisFirst first = bo.getFeiJieHeVisit1().get(j);	
+				boolean add = true;
+				TuberculosisInfo tub = null;
+				tub = tuberculosisInfoDao.getTuberculosisByArchiveNo(first.getArchiveid());
+				if(tub != null){
+					add = false;
+				}else{
+					tub = new TuberculosisInfo();
+					tub.setId(CodeUtil.getUUID());
+				}
 				err.setId(first.getUUID());
-				tub.setId(CodeUtil.getUUID());
+
 				tub.setArchiveNo(first.getArchiveid());
 				List<ResidentBaseInfo> residents = residentBaseInfoDao.findResidentByArchiveNo(first.getArchiveid());
 				if(residents != null && residents.size() > 0){
@@ -750,22 +758,26 @@ public class UploadServiceImpl implements UploadService {
 				//评估医生
 				tub.setEstimateDoctor(first.getEvaluationDoctor());
 				
-				//tub.setCreateName(createName);
+				tub.setCreateName(first.getCreated_By());
 				tub.setCreateOrg(first.getDuns());
 				Organization org = organizationDao.getOrganizationByCode(first.getDuns());
 				if(org != null){
 					tub.setCreateOrgName(org.getOrganName());
 				}
 				tub.setCreateTime(DateUtil.getDate(first.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				tub.setCreateUser(first.getCreated_By());
+				//tub.setCreateUser(first.getCreated_By());
 							
-				//tub.setUpdateName(updateName);
+				tub.setUpdateName(first.getUpdated_By());
 				tub.setUpdateTime(DateUtil.getDate(first.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				tub.setUpdateUser(first.getUpdated_By());
+				//tub.setUpdateUser(first.getUpdated_By());
 				//tub.setUploadResult(uploadResult);
 				tub.setUploadStatus(0);
-				//tub.setUploadTime(uploadTime);				
-				tuberculosisInfoDao.insertSelective(tub);
+				//tub.setUploadTime(uploadTime);	
+				if(add){
+					tuberculosisInfoDao.insertSelective(tub);
+				}else{
+					tuberculosisInfoDao.updateByPrimaryKeySelective(tub);
+				}
 				err.setCode("0");
 			}catch(Exception e){
 				e.printStackTrace();
@@ -869,18 +881,18 @@ public class UploadServiceImpl implements UploadService {
 				//评估医生
 				record.setEstimateDoctor(follow.getEvaluationDoctor());
 				
-				//record.setCreateName(createName);
+				record.setCreateName(follow.getCreated_By());
 				record.setCreateOrg(follow.getDuns());
 				Organization org = organizationDao.getOrganizationByCode(follow.getDuns());
 				if(org != null){
 					record.setCreateOrgName(org.getOrganName());
 				}
 				record.setCreateTime(DateUtil.getDate(follow.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				record.setCreateUser(follow.getCreated_By());
+				//record.setCreateUser(follow.getCreated_By());
 
-				//record.setUpdateName(updateName);
+				record.setUpdateName(follow.getUpdated_By());
 				record.setUpdateTime(DateUtil.getDate(follow.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				record.setUpdateUser(follow.getUpdated_By());
+				//record.setUpdateUser(follow.getUpdated_By());
 				//record.setUploadResult(uploadResult);
 				record.setUploadStatus(0);
 				//record.setUploadTime(uploadTime);		
@@ -919,7 +931,7 @@ public class UploadServiceImpl implements UploadService {
 				}
 				
 				record.setGravidaId(follow.getExaminfirid());
-				//record.setOrderNum(orderNum);
+				record.setOrderNum(follow.getOrderNum());
 				record.setVisitDate(follow.getVisitdate());
 				//孕周
 				record.setGestationalWeeks(follow.getWeek());
@@ -950,7 +962,9 @@ public class UploadServiceImpl implements UploadService {
 				//异常信息
 				record.setErrorInfo(follow.getTypesbug());
 				//指导
-				record.setGuidance(follow.getGuide());
+				if(StringUtil.isNotEmpty(follow.getGuide())){
+					record.setGuidance(follow.getGuide().replaceAll("\\|", ","));
+				}
 				//有无转诊
 				//record.setTransferTreatment(transferTreatment);
 				//转诊原因
@@ -962,18 +976,18 @@ public class UploadServiceImpl implements UploadService {
 				//访问医生签名
 				record.setVisitDoctor(follow.getVisitdoc());
 				
-				//record.setCreateName(createName);
+				record.setCreateName(follow.getCreated_By());
 				record.setCreateOrg(follow.getDuns());
 				Organization org = organizationDao.getOrganizationByCode(follow.getDuns());
 				if(org != null){
 					record.setCreateOrgName(org.getOrganName());
 				}				
 				record.setCreateTime(DateUtil.getDate(follow.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				record.setCreateUser(follow.getCreated_By());
+				//record.setCreateUser(follow.getCreated_By());
 														
-				//record.setUpdateName(updateName);
+				record.setUpdateName(follow.getUpdated_By());
 				record.setUpdateTime(DateUtil.getDate(follow.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				record.setUpdateUser(follow.getUpdated_By());
+				//record.setUpdateUser(follow.getUpdated_By());
 				//record.setUploadResult(uploadResult);
 				record.setUploadStatus(0);
 				//record.setUploadTime(uploadTime);
@@ -1047,8 +1061,10 @@ public class UploadServiceImpl implements UploadService {
 				record.setConditions(follow.getTypes());
 				//异常信息
 				record.setConditionError(follow.getTypesbug());
-				//指导
-				record.setGuidance(follow.getGuide());				
+				//指导	
+				if(StringUtil.isNotEmpty(follow.getGuide())){
+					record.setGuidance(follow.getGuide().replaceAll("\\|", ","));
+				}
 				record.setGuidanceOther(follow.getGuideother());
 				//有无转诊
 				//record.setTransferTreatment(transferTreatment);
@@ -1061,18 +1077,18 @@ public class UploadServiceImpl implements UploadService {
 				//访问医生签名
 				record.setVisitDoctor(follow.getVisitdoc());
 				
-				//record.setCreateName(createName);
+				record.setCreateName(follow.getCreated_By());
 				record.setCreateOrg(follow.getDuns());
 				Organization org = organizationDao.getOrganizationByCode(follow.getDuns());
 				if(org != null){
 					record.setCreateOrgName(org.getOrganName());
 				}				
 				record.setCreateTime(DateUtil.getDate(follow.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				record.setCreateUser(follow.getCreated_By());
+				//record.setCreateUser(follow.getCreated_By());
 														
-				//record.setUpdateName(updateName);
+				record.setUpdateName(follow.getUpdated_By());
 				record.setUpdateTime(DateUtil.getDate(follow.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				record.setUpdateUser(follow.getUpdated_By());
+				//record.setUpdateUser(follow.getUpdated_By());
 				//record.setUploadResult(uploadResult);
 				record.setUploadStatus(0);
 				//record.setUploadTime(uploadTime);
@@ -1147,7 +1163,9 @@ public class UploadServiceImpl implements UploadService {
 				//异常信息
 				record.setConditionError(follow.getTypesbug());
 				//指导
-				record.setGuidance(follow.getGuide());				
+				if(StringUtil.isNotEmpty(follow.getGuide())){
+					record.setGuidance(follow.getGuide().replaceAll("\\|", ","));
+				}			
 				record.setGuidanceOther(follow.getGuideother());
 				//有无转诊
 				record.setTransferTreatment(follow.getIfzz());
@@ -1160,18 +1178,18 @@ public class UploadServiceImpl implements UploadService {
 				//访问医生签名
 				record.setVisitDoctor(follow.getVisitdoc());
 				
-				//record.setCreateName(createName);
+				record.setCreateName(follow.getCreated_By());
 				record.setCreateOrg(follow.getDuns());
 				Organization org = organizationDao.getOrganizationByCode(follow.getDuns());
 				if(org != null){
 					record.setCreateOrgName(org.getOrganName());
 				}				
 				record.setCreateTime(DateUtil.getDate(follow.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				record.setCreateUser(follow.getCreated_By());
+				//record.setCreateUser(follow.getCreated_By());
 														
-				//record.setUpdateName(updateName);
+				record.setUpdateName(follow.getUpdated_By());
 				record.setUpdateTime(DateUtil.getDate(follow.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				record.setUpdateUser(follow.getUpdated_By());
+				//record.setUpdateUser(follow.getUpdated_By());
 				//record.setUploadResult(uploadResult);
 				record.setUploadStatus(0);
 				//record.setUploadTime(uploadTime);
@@ -1350,7 +1368,9 @@ public class UploadServiceImpl implements UploadService {
 				//评估异常
 				record.setAssessmentError(follow.getEvaluatebug());
 				//保健指导
-				record.setHealthGuidance(follow.getGuide());
+				if(StringUtil.isNotEmpty(follow.getGuide())){
+					record.setHealthGuidance(follow.getGuide().replaceAll("\\|", ","));
+				}
 				//保健指导其他
 				record.setHealthGuidanceOther(follow.getGuideother());
 				
@@ -1366,18 +1386,18 @@ public class UploadServiceImpl implements UploadService {
 				
 				record.setStatus(follow.getManaged());
 
-				//record.setCreateName(createName);
+				record.setCreateName(follow.getCreated_By());
 				record.setCreateOrg(follow.getDuns());
 				Organization org = organizationDao.getOrganizationByCode(follow.getDuns());
 				if(org != null){
 					record.setCreateOrgName(org.getOrganName());
 				}				
 				record.setCreateTime(DateUtil.getDate(follow.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				record.setCreateUser(follow.getCreated_By());
+				//record.setCreateUser(follow.getCreated_By());
 														
-				//record.setUpdateName(updateName);
+				record.setUpdateName(follow.getUpdated_By());
 				record.setUpdateTime(DateUtil.getDate(follow.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				record.setUpdateUser(follow.getUpdated_By());
+				//record.setUpdateUser(follow.getUpdated_By());
 				//record.setUploadResult(uploadResult);
 				record.setUploadStatus(0);
 				//record.setUploadTime(uploadTime);
@@ -1570,6 +1590,9 @@ public class UploadServiceImpl implements UploadService {
 					}
 				}
 				info.setIsSynchro(0);
+				info.setUpdateName(redisent.getUpdated_By());
+				info.setUpdateTime(DateUtil.getDate(redisent.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
+				//med.setUpdateUser(updateUser);
 				if(add){
 					residentBaseInfoDao.insertSelective(info);
 				}else{
@@ -2043,18 +2066,18 @@ public class UploadServiceImpl implements UploadService {
 				//随方医生签名
 				record.setVisitDoctor(follow.getFollowDicName());
 				
-				//record.setCreateName(createName);
+				record.setCreateName(follow.getCreated_By());
 				record.setCreateOrg(follow.getDuns());
 				Organization org = organizationDao.getOrganizationByCode(follow.getDuns());
 				if(org != null){
 					record.setCreateOrgName(org.getOrganName());
 				}				
 				record.setCreateTime(DateUtil.getDate(follow.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				record.setCreateUser(follow.getCreated_By());
+				//record.setCreateUser(follow.getCreated_By());
 														
-				//record.setUpdateName(updateName);
+				record.setUpdateName(follow.getUpdated_By());
 				record.setUpdateTime(DateUtil.getDate(follow.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
-				record.setUpdateUser(follow.getUpdated_By());
+				//record.setUpdateUser(follow.getUpdated_By());
 				//record.setUploadResult(uploadResult);
 				record.setUploadStatus(0);
 				//record.setUploadTime(uploadTime);
