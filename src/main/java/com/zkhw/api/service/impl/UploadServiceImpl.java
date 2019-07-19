@@ -549,6 +549,7 @@ public class UploadServiceImpl implements UploadService {
 				PsychosisFirst first = bo.getJingShenBingInfo().get(j);				
 				PsychosisInfo psy = new PsychosisInfo();
 				err.setId(first.getUUID());
+				err.setInfo(first.getId());
 				psy.setId(CodeUtil.getUUID());
 				psy.setArchiveNo(first.getArchiveid());
 				List<ResidentBaseInfo> residents = residentBaseInfoDao.findResidentByArchiveNo(first.getArchiveid());
@@ -679,7 +680,7 @@ public class UploadServiceImpl implements UploadService {
 					tub.setId(CodeUtil.getUUID());
 				}
 				err.setId(first.getUUID());
-
+				err.setInfo(first.getId());
 				tub.setArchiveNo(first.getArchiveid());
 				List<ResidentBaseInfo> residents = residentBaseInfoDao.findResidentByArchiveNo(first.getArchiveid());
 				if(residents != null && residents.size() > 0){
@@ -801,6 +802,7 @@ public class UploadServiceImpl implements UploadService {
 				TuberculosisFollow follow = bo.getFeiJieHeVisit().get(j);			
 				TuberculosisFollowRecord record = new TuberculosisFollowRecord();
 				err.setId(follow.getUUID());
+				err.setInfo(follow.getId());
 				record.setId(CodeUtil.getUUID());
 				record.setArchiveNo(follow.getArchiveid());
 				List<ResidentBaseInfo> residents = residentBaseInfoDao.findResidentByArchiveNo(follow.getArchiveid());
@@ -922,6 +924,7 @@ public class UploadServiceImpl implements UploadService {
 				GravidaFollow follow = bo.getChanQian2_5().get(j);
 				GravidaFollowRecord record = new GravidaFollowRecord();
 				err.setId(follow.getUUID());
+				err.setInfo(follow.getId());
 				record.setId(CodeUtil.getUUID());
 				record.setArchiveNo(follow.getArchiveid());
 				List<ResidentBaseInfo> residents = residentBaseInfoDao.findResidentByArchiveNo(follow.getArchiveid());
@@ -1016,6 +1019,7 @@ public class UploadServiceImpl implements UploadService {
 				GravidaAfter follow = bo.getChanHouVisit().get(j);
 				GravidaAfterRecord record = new GravidaAfterRecord();
 				err.setId(follow.getUUID());
+				err.setInfo(follow.getId());
 				record.setId(CodeUtil.getUUID());
 				record.setArchiveNo(follow.getArchiveid());
 				List<ResidentBaseInfo> residents = residentBaseInfoDao.findResidentByArchiveNo(follow.getArchiveid());
@@ -1117,6 +1121,7 @@ public class UploadServiceImpl implements UploadService {
 				Gravida42After follow = bo.getChanHou42day().get(j);
 				GravidaAfterRecord record = new GravidaAfterRecord();
 				err.setId(follow.getUUID());
+				err.setInfo(follow.getId());
 				record.setId(CodeUtil.getUUID());
 				record.setArchiveNo(follow.getArchiveid());
 				List<ResidentBaseInfo> residents = residentBaseInfoDao.findResidentByArchiveNo(follow.getArchiveid());
@@ -1218,6 +1223,7 @@ public class UploadServiceImpl implements UploadService {
 				GravidaFirst follow = bo.getChanQian1().get(j);
 				GravidaInfo record = new GravidaInfo();
 				err.setId(follow.getUUID());
+				err.setInfo(follow.getId());
 				record.setId(CodeUtil.getUUID());
 				record.setArchiveNo(follow.getArchiveid());
 				
@@ -1624,6 +1630,7 @@ public class UploadServiceImpl implements UploadService {
 				NeonatusBaseInfo follow = bo.getChildrenBasicInfo().get(j);
 				NeonatusInfo record = neonatusInfoDao.getNeonatusByArchiveNo(follow.getArchiveid());
 				err.setId(follow.getUUID());
+				err.setInfo(follow.getId());
 				boolean isNew = false;
 				if(record == null){
 					isNew = true;
@@ -1736,6 +1743,7 @@ public class UploadServiceImpl implements UploadService {
 				NeonatusFirst follow = bo.getChildrenFamilyVisit().get(j);
 				NeonatusInfo record = neonatusInfoDao.getNeonatusByArchiveNo(follow.getArchiveid());
 				err.setId(follow.getUUID());
+				err.setInfo(follow.getId());
 				boolean isNew = false;
 				if(record == null){
 					isNew = true;
@@ -1908,7 +1916,7 @@ public class UploadServiceImpl implements UploadService {
 				record.setId(CodeUtil.getUUID());
 				record.setArchiveNo(follow.getArchiveid());
 				err.setId(follow.getUUID());
-				
+				err.setInfo(follow.getId());
 				NeonatusInfo info = neonatusInfoDao.getNeonatusByArchiveNo(follow.getArchiveid());
 				if(info != null){
 					record.setName(info.getName());
