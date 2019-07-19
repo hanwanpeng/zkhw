@@ -968,6 +968,7 @@ public class UploadServiceImpl implements UploadService {
 				if(StringUtil.isNotEmpty(follow.getGuide())){
 					record.setGuidance(follow.getGuide().replaceAll("\\|", ","));
 				}
+				record.setGuidanceOther(follow.getGuideother());
 				//有无转诊
 				//record.setTransferTreatment(transferTreatment);
 				//转诊原因
