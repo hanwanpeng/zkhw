@@ -21,6 +21,7 @@ import com.zkhw.api.bo.OrgBo;
 import com.zkhw.api.bo.ResidentDownBo;
 import com.zkhw.api.bo.Result;
 import com.zkhw.api.bo.UserBo;
+import com.zkhw.api.bo.YunfuBo;
 import com.zkhw.api.service.DownLoadService;
 import com.zkhw.framework.utils.JsonWebPrintUtils;
 
@@ -214,5 +215,24 @@ public class DownLoadController {
 		}
 		
 		JsonWebPrintUtils.printApiResult(request, response, r);
-	}	
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/GetYunFuInfos")
+	public void getYunFuInfos(HttpServletRequest request, HttpServletResponse response,String accessTokenKey,String startIndex,
+			String returnSize) {
+		
+		Result r = new Result();
+		try{
+			YunfuBo bo = downLoadService.getYunfus(startIndex, returnSize);
+			r.setCode(0);
+			r.setMessage("Success");
+			r.setData(bo);
+		}catch(Exception e){
+			e.printStackTrace();
+			r.setCode(1);			
+		}
+		
+		JsonWebPrintUtils.printApiResult(request, response, r);
+	}
 }

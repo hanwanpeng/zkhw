@@ -13,6 +13,7 @@ import com.zkhw.api.bo.DictBo;
 import com.zkhw.api.bo.OrgBo;
 import com.zkhw.api.bo.ResidentDownBo;
 import com.zkhw.api.bo.UserBo;
+import com.zkhw.api.bo.YunfuBo;
 
 @Service
 public interface DownLoadService {
@@ -36,4 +37,6 @@ public interface DownLoadService {
 	List<CheckResidentBatchBo> exitResdidentBatch(String idCard);
 	
 	AppUpdateBo getAppUpdate();
+	
+	YunfuBo getYunfus(String startIndex,String returnSize);
 }

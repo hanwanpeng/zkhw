@@ -1391,7 +1391,7 @@ public class UploadServiceImpl implements UploadService {
 				//访问医生签名
 				record.setVisitDoctor(follow.getVisitDoc());
 				
-				record.setStatus(follow.getManaged());
+				record.setStatus(follow.getCloseStatus());
 
 				record.setCreateName(follow.getCreated_By());
 				record.setCreateOrg(follow.getDuns());
