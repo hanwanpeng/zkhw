@@ -1222,9 +1222,10 @@ public class UploadServiceImpl implements UploadService {
 			try{
 				GravidaFirst follow = bo.getChanQian1().get(j);
 				GravidaInfo record = new GravidaInfo();
+				String id = CodeUtil.getUUID();
 				err.setId(follow.getUUID());
-				err.setInfo(follow.getId());
-				record.setId(CodeUtil.getUUID());
+				err.setInfo(id);
+				record.setId(id);
 				record.setArchiveNo(follow.getArchiveid());
 				
 				List<ResidentBaseInfo> residents = residentBaseInfoDao.findResidentByArchiveNo(follow.getArchiveid());
