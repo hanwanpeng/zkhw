@@ -68,7 +68,12 @@
 	<bean id="elderTcmHealthDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
 		<property name="mapperInterface" value="com.wuzhou.pub.dao.ElderTcmHealthDao" />  
 	</bean>	
-
+	
+	<!-- 老年人专项档案 -->
+	<bean id="elderInfoDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
+		<property name="mapperInterface" value="com.wuzhou.pub.dao.ElderInfoDao" />  
+	</bean>	
+	
 	<!-- 老年人体检管理台账-->	
 	<bean id="elderExamLedgerDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="wuzhouBaseDao">    
 		<property name="mapperInterface" value="com.wuzhou.pub.dao.ElderExamLedgerDao" />  
