@@ -968,6 +968,7 @@ public class UploadServiceImpl implements UploadService {
 				if(StringUtil.isNotEmpty(follow.getGuide())){
 					record.setGuidance(follow.getGuide().replaceAll("\\|", ","));
 				}
+				record.setGuidanceOther(follow.getGuideother());
 				//有无转诊
 				//record.setTransferTreatment(transferTreatment);
 				//转诊原因
@@ -1222,9 +1223,10 @@ public class UploadServiceImpl implements UploadService {
 			try{
 				GravidaFirst follow = bo.getChanQian1().get(j);
 				GravidaInfo record = new GravidaInfo();
+				String id = CodeUtil.getUUID();
 				err.setId(follow.getUUID());
-				err.setInfo(follow.getId());
-				record.setId(CodeUtil.getUUID());
+				err.setInfo(id);
+				record.setId(id);
 				record.setArchiveNo(follow.getArchiveid());
 				
 				List<ResidentBaseInfo> residents = residentBaseInfoDao.findResidentByArchiveNo(follow.getArchiveid());
@@ -1390,7 +1392,7 @@ public class UploadServiceImpl implements UploadService {
 				//访问医生签名
 				record.setVisitDoctor(follow.getVisitDoc());
 				
-				record.setStatus(follow.getManaged());
+				record.setStatus(follow.getCloseStatus());
 
 				record.setCreateName(follow.getCreated_By());
 				record.setCreateOrg(follow.getDuns());

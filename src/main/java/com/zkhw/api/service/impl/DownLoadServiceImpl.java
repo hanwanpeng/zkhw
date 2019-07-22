@@ -25,11 +25,16 @@ import com.zkhw.api.bo.ResidentDownBo;
 import com.zkhw.api.bo.ResidentInfo;
 import com.zkhw.api.bo.UserBo;
 import com.zkhw.api.bo.UserInfo;
+import com.zkhw.api.bo.Yunfu;
+import com.zkhw.api.bo.YunfuBo;
 import com.zkhw.api.service.DownLoadService;
 import com.zkhw.code.dao.AreaConfigDao;
 import com.zkhw.code.dao.DictionariesDao;
 import com.zkhw.code.entity.AreaConfig;
 import com.zkhw.code.entity.Dictionaries;
+import com.zkhw.flup.dao.GravidaInfoDao;
+import com.zkhw.flup.entity.GravidaInfo;
+import com.zkhw.flup.query.GravidaInfoQuery;
 import com.zkhw.framework.utils.DateUtil;
 import com.zkhw.ltd.dao.OrganizationDao;
 import com.zkhw.ltd.dao.UserDao;
@@ -61,6 +66,9 @@ public class DownLoadServiceImpl implements DownLoadService {
 	
 	@Autowired
 	private AppVersionsDao appVersionsDao;
+	
+	@Autowired
+	private GravidaInfoDao gravidaInfoDao;
 	
 	@Override
 	public OrgBo getOrgList(String startIndex, String returnSize, String duns) {
@@ -544,6 +552,55 @@ public class DownLoadServiceImpl implements DownLoadService {
 			}
 		}
 		return boList;
+	}
+
+	@Override
+	public YunfuBo getYunfus(String startIndex, String returnSize) {
+		// TODO Auto-generated method stub
+		int start = 0;		
+		int pageSize = 0;
+		int total = 0;
+		YunfuBo bo = new YunfuBo();
+		List<Yunfu> accountList = new ArrayList<Yunfu>();
+		List<GravidaInfo> list = new ArrayList<GravidaInfo>();
+		if(StringUtil.isEmpty(startIndex)){
+			start = 1;
+		}else{
+			start = Integer.parseInt(startIndex);
+		}
+		
+		if(StringUtil.isNotEmpty(returnSize)){
+			pageSize = Integer.parseInt(returnSize);
+		}
+		
+		if(pageSize != 0){
+			//PageHelper.startPage(start, pageSize);//pageNum, pageSize	
+			PageHelper.offsetPage(start, pageSize);
+		}	
+		list = gravidaInfoDao.findGravidaList(new GravidaInfoQuery());
+
+		PageInfo<GravidaInfo> page = new PageInfo<GravidaInfo>(list);
+		total = Integer.parseInt(String.valueOf(page.getTotal()));
+		
+		for(int i = 0; i < list.size(); i++){
+			GravidaInfo g = list.get(i);
+			Yunfu info = new Yunfu();
+			info.setExaminid(g.getId());
+			info.setArchiveid(g.getArchiveNo());
+			info.setCloseStatus(g.getStatus());
+			accountList.add(info);
+		}
+		
+		bo.setSyncTime(DateUtil.getTodaySecondString());
+		bo.setModels(accountList);
+		bo.setReturnSize(accountList.size());
+		if(StringUtil.isNotEmpty(startIndex)){
+			bo.setStart(Integer.parseInt(startIndex));
+		}else{
+			bo.setStart(1);
+		}		
+		bo.setTotal(total);
+		return bo;
 	}
 
 }
