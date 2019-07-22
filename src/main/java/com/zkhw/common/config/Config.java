@@ -20,6 +20,12 @@ public class Config {
     
     public static String bucketName;
     
+    public static String bucketName_bc;
+    
+    public static String bucketName_xdt;
+    
+    public static String bucketName_archive;
+    
     static{
         Properties prop = new Properties();   
         InputStream in = Config.class.getResourceAsStream("/config.properties");   
@@ -33,6 +39,10 @@ public class Config {
             oss_accessKeyId = prop.getProperty("oss_accessKeyId").trim();
             oss_accessKeySecret = prop.getProperty("oss_accessKeySecret").trim();
             bucketName = prop.getProperty("bucketName").trim();
+            
+            bucketName_bc = prop.getProperty("bucketName_bc").trim();
+            bucketName_xdt = prop.getProperty("bucketName_xdt").trim();
+            bucketName_archive = prop.getProperty("bucketName_archive").trim();
             
         } catch (IOException e) {   
             e.printStackTrace();   
