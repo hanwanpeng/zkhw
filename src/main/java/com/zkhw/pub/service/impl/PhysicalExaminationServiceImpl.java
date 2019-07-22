@@ -90,6 +90,12 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 		PhysicalExaminationVo vo = new PhysicalExaminationVo();
 		if(exam != null){			
 			BeanUtils.copyProperties(exam,vo);
+			if(StringUtil.isEmpty(vo.getDutydoctor())){
+				ResidentBaseInfo info = residentBaseInfoDao.findResidentByIdNumber(vo.getIdNumber());
+				if(info != null){
+					vo.setDutydoctor(info.getDoctorName());
+				}
+			}
 			List<HospitalizedRecord> hosps = hospitalizedRecordDao.findRecordByExamId(exam.getId());
 			vo.setHospitals(hosps);
 			List<TakeMedicineRecord> meds = takeMedicineRecordDao.findRecordByExamId(exam.getId());
