@@ -26,6 +26,8 @@ public class PhysicalExaminationVo {
 
     private String barCode;
 
+    private String dutydoctor;
+    
     private String symptom;
 
     private String symptomOther;
