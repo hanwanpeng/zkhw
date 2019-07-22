@@ -44,6 +44,7 @@
     <result column="upload_status" jdbcType="INTEGER" property="uploadStatus" />
     <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
     <result column="upload_result" jdbcType="VARCHAR" property="uploadResult" />
+    <result column="record_type" jdbcType="VARCHAR" property="recordType" />
   </resultMap>
   <sql id="Base_Column_List">
     id, gravida_id, name, archive_no, id_number, visit_date, childbirth, discharge_date, 
@@ -52,7 +53,7 @@
     wound_error, other, conditions, condition_error, guidance, guidance_other, transfer_treatment, 
     transfer_treatment_reason, transfer_treatment_department, next_visit_date, visit_doctor, 
     create_user, create_name, create_org, create_org_name, create_time, update_user, 
-    update_name, update_time, upload_status, upload_time, upload_result
+    update_name, update_time, upload_status, upload_time, upload_result, record_type
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -87,7 +88,7 @@
       visit_doctor, create_user, create_name, 
       create_org, create_org_name, create_time, 
       update_user, update_name, update_time, 
-      upload_status, upload_time, upload_result
+      upload_status, upload_time, upload_result, record_type
       )
     values (#{id,jdbcType=VARCHAR}, #{gravidaId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{archiveNo,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, #{visitDate,jdbcType=VARCHAR}, 
@@ -103,7 +104,7 @@
       #{visitDoctor,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createName,jdbcType=VARCHAR}, 
       #{createOrg,jdbcType=VARCHAR}, #{createOrgName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateUser,jdbcType=VARCHAR}, #{updateName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{uploadStatus,jdbcType=INTEGER}, #{uploadTime,jdbcType=TIMESTAMP}, #{uploadResult,jdbcType=VARCHAR}
+      #{uploadStatus,jdbcType=INTEGER}, #{uploadTime,jdbcType=TIMESTAMP}, #{uploadResult,jdbcType=VARCHAR},#{recordType,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.zkhw.flup.entity.GravidaAfterRecord">
@@ -235,6 +236,9 @@
       <if test="uploadResult != null">
         upload_result,
       </if>
+       <if test="recordType != null">
+        record_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -362,6 +366,9 @@
       </if>
       <if test="uploadResult != null">
         #{uploadResult,jdbcType=VARCHAR},
+      </if>
+      <if test="recordType != null">
+        #{recordType,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -491,6 +498,9 @@
       <if test="uploadResult != null">
         upload_result = #{uploadResult,jdbcType=VARCHAR},
       </if>
+      <if test="recordType != null">
+        record_type = #{recordType,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -537,6 +547,7 @@
       upload_status = #{uploadStatus,jdbcType=INTEGER},
       upload_time = #{uploadTime,jdbcType=TIMESTAMP},
       upload_result = #{uploadResult,jdbcType=VARCHAR}
+      record_type = #{recordType,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
