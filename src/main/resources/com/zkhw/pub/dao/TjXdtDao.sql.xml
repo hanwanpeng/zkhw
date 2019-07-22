@@ -54,6 +54,8 @@
     <include refid="Base_Column_List" />
     from zkhw_tj_xdt
     where aichive_no = #{aichiveNo,jdbcType=VARCHAR}
+    order by createtime DESC 
+    LIMIT 1
   </select>
     
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

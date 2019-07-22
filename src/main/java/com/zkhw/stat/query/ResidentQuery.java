@@ -7,6 +7,12 @@ import lombok.Setter;
 @Setter
 public class ResidentQuery {
 	
+	
+	/**
+	 * 身份证号
+	 */
+	private String IdNumber;
+	
 	/**
 	 * 年份
 	 */

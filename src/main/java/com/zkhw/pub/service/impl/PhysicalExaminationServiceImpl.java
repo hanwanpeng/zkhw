@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.util.StringUtil;
+import com.zkhw.common.utils.AliOssUtil;
 import com.zkhw.common.vo.PageInfos;
 import com.zkhw.pub.dao.HospitalizedRecordDao;
 import com.zkhw.pub.dao.PhysicalExaminationDao;
@@ -812,9 +813,39 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 		List<TjXy> xyList = tjXyDao.findListByAichiveNo(archiveNo);
 		data.setXyList(xyList);
 		List<TjBc> bcList = tjBcDao.findListByAichiveNo(archiveNo);
-		data.setBcList(bcList);
+		TjBc tjBc = null;
+		String bupic01 = "";
+		String bupic02 = "";
+		for (int i = 0; i < bcList.size(); i++) {
+			tjBc = bcList.get(i);
+			bupic01 = tjBc.getBupic01();
+			bupic02 = tjBc.getBupic02();
+			if(!StringUtil.isEmpty(bupic01)) {
+				String presignedURL01 = AliOssUtil.presignedURL("bctp2019", bupic01);
+				tjBc.setBupic01(presignedURL01);
+			}
+			if(!StringUtil.isEmpty(bupic02)) {
+				String presignedURL02 = AliOssUtil.presignedURL("bctp2019", bupic02);
+				tjBc.setBupic02(presignedURL02);
+			}
+		}
+		ArrayList<TjBc> arrayList = new ArrayList<TjBc>();
+		arrayList.add(tjBc);
+		data.setBcList(arrayList);
 		List<TjXdt> xdtList = tjXdtDao.findListByAichiveNo(archiveNo);
-		data.setXdtList(xdtList);
+		TjXdt tjXdt = null;
+		String imageurl = "";
+		for(int j = 0; j < xdtList.size();j++) {
+			tjXdt = xdtList.get(j);
+			imageurl = tjXdt.getImageurl();
+			if(!StringUtil.isEmpty(imageurl)) {
+				String presignedURL01 = AliOssUtil.presignedURL("xdtp2019", imageurl);
+				tjXdt.setImageurl(presignedURL01);
+			}
+		}
+		ArrayList<TjXdt> TjXdtList = new ArrayList<TjXdt>();
+		TjXdtList.add(tjXdt);
+		data.setXdtList(TjXdtList);
 		return data;
 	}	
 	

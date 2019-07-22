@@ -125,7 +125,7 @@
   
   <!-- 孕产妇统计 -->
   <select id="statForGravida" parameterType="com.zkhw.stat.query.ResidentQuery" resultType="com.zkhw.stat.vo.GravidaVo">
-   SELECT (SELECT COUNT(1) FROM gravida_info
+   SELECT (SELECT COUNT(1) FROM gravida_info g JOIN resident_base_info r ON g.archive_no = r.archive_no
    where 1 = 1
 	<if test="provinceCode != null and provinceCode != ''">
 		and province_code = #{provinceCode,jdbcType=VARCHAR}
@@ -143,8 +143,8 @@
 		and village_code = #{villageCode,jdbcType=VARCHAR}
 	</if>
    ) AS gravidaInfoNum,
-	(SELECT COUNT(1) FROM gravida_info i JOIN gravida_after_record a ON i.archive_no = a.archive_no
-	where 1 = 1
+	(SELECT COUNT(1) FROM gravida_info i JOIN resident_base_info r ON i.archive_no = r.archive_no 
+	WHERE 1 = 1
 	<if test="provinceCode != null and provinceCode != ''">
 		and province_code = #{provinceCode,jdbcType=VARCHAR}
 	</if>

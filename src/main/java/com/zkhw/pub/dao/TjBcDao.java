@@ -17,5 +17,6 @@ public interface TjBcDao {
 
     int updateByPrimaryKey(TjBc record);
     
-    List<TjBc> findListByAichiveNo(String aichiveNo);
+    List<TjBc> findListByAichiveNo(String archiveNo);
+    
 }
