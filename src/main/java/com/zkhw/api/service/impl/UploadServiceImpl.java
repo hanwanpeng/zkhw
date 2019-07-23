@@ -1030,7 +1030,7 @@ public class UploadServiceImpl implements UploadService {
 				}
 				
 				record.setGravidaId(follow.getExaminfirid());
-				//record.setOrderNum(orderNum);
+				record.setRecordType("1");
 				record.setVisitDate(follow.getVisitdate());
 				//分娩日期
 				record.setChildbirth(follow.getLABOURDATE());
@@ -1132,7 +1132,7 @@ public class UploadServiceImpl implements UploadService {
 				}
 				
 				record.setGravidaId(follow.getExaminfirid());
-				//record.setOrderNum(orderNum);
+				record.setRecordType("2");
 				record.setVisitDate(follow.getVisitdate());
 				//分娩日期
 				record.setChildbirth(follow.getLABOURDATE());
