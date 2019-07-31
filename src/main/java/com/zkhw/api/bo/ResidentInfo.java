@@ -77,6 +77,9 @@ public class ResidentInfo {
 	@JSONField(name = "DUTYDOCTOR")
 	private String dutydoctor;
 	
+	@JSONField(name = "ISPOOR")
+	private String ispoor;
+	
 	//建档日期
 	@JSONField(name = "BUILD_DATE")
 	private Date build_date;

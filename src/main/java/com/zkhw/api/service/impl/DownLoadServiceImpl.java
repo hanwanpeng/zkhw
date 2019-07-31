@@ -240,6 +240,7 @@ public class DownLoadServiceImpl implements DownLoadService {
 			info.setDistbflag(res.getIsTuberculosis() == null?"":res.getIsTuberculosis().toString());
 			info.setArchstatus(res.getStatus());
 			info.setDutydoctor(res.getDoctorId());
+			info.setIspoor(res.getIsPoor() == null?"":res.getIsPoor().toString());
 			info.setBuild_date(res.getCreateTime());
 			info.setBuilddoctor(res.getCreateName());
 			info.setDuns(res.getCreateOrg());
