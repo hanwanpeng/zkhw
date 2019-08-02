@@ -626,9 +626,9 @@ public class ConvertObjectData {
 			health.setEatingHabitValue(eatingValue);
 		}
 		//右侧收缩压（mmHg)
-		health.setRdbp(exam.getBaseBloodPressureRightHigh() == null?null:exam.getBaseBloodPressureRightHigh().shortValue());
+		health.setRsbp(exam.getBaseBloodPressureRightHigh() == null?null:exam.getBaseBloodPressureRightHigh().shortValue());
 		//右侧舒张压（mmHg)
-		health.setRsbp(exam.getBaseBloodPressureRightLow() == null?null:exam.getBaseBloodPressureRightLow().shortValue());
+		health.setRdbp(exam.getBaseBloodPressureRightLow() == null?null:exam.getBaseBloodPressureRightLow().shortValue());
 		//右眼矫正远视力值
 		if(StringUtil.isNotEmpty(exam.getOrganCorrectedvisionRight())){
 			BigDecimal rightCorrectEyesight = new BigDecimal(exam.getOrganCorrectedvisionRight());
