@@ -100,6 +100,7 @@ public class WuzhouSynServiceImpl implements WuzhouSynService {
 	@Autowired
 	private ElderInfoDao elderInfoDao;
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void sync() {
 		List<PhysicalExamination> list = physicalExaminationDao.findWuzhouSyncList();
@@ -202,7 +203,7 @@ public class WuzhouSynServiceImpl implements WuzhouSynService {
 						//健康评价异常
 						leger.setHealthAbnormDesc(phy.getHealthEvaluation());
 						
-						leger.setYear(2019l);
+						leger.setYear(1900l + phy.getCreateTime().getYear());
 						
 						elderExamLedgerDao.insertSelective(leger);
 					}
