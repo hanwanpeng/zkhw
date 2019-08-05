@@ -63,6 +63,15 @@
     update_name, update_time, transfer_organ, transfer_reason, upload_status, upload_time, 
     upload_result
   </sql>
+  
+  <select id="statForIdNumber" parameterType="com.zkhw.stat.query.ResidentQuery" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fuv_hypertension
+    where id_number = #{idNumber,jdbcType=VARCHAR}
+  </select>
+  
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

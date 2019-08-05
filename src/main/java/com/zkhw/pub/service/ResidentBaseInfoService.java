@@ -31,6 +31,10 @@ public interface ResidentBaseInfoService {
 	Map<String, String> exportPdf(String archiveNo);
 	
 	int updateResident(ResidentVo vo);
+
+	void residentBaseInfoForExcel(ResidentBaseInfoQuery redident);
+
+	void elderlyForExcel(ResidentBaseInfoQuery redident);
 	
 }
  

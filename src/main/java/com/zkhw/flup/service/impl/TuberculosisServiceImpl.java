@@ -1,5 +1,6 @@
 package com.zkhw.flup.service.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.util.StringUtil;
+import com.zkhw.common.utils.ExcelUtil;
 import com.zkhw.common.vo.PageInfos;
 import com.zkhw.flup.bo.TuberculosisListBo;
 import com.zkhw.flup.dao.TuberculosisFollowRecordDao;
@@ -35,6 +37,58 @@ public class TuberculosisServiceImpl implements TuberculosisService {
 	
 	@Autowired
 	private TuberculosisFollowRecordDao tuberculosisFollowRecordDao;
+	
+	
+	/**
+	 * 肺结核花名册
+	 */
+	@Override
+	public void tuberculosisForExcel(ResidentBaseInfoQuery redident) {
+		ExcelUtil excelutil = new ExcelUtil();
+		//表头
+		ArrayList<String> headerList = new ArrayList<String>();
+		String[] header = {"村名","姓名","性别","年龄","身份证号码","现住址","电话"};
+		for (int i = 0; i < header.length; i++) {
+			headerList.add(header[i]);
+		}
+		//行内容
+		ArrayList<List<String>> rowList = new ArrayList<List<String>>();
+		redident.setIsTuberculosis(1);
+		List<ResidentBaseInfo> residentBaseInfoList = residentBaseInfoDao.findResidentList(redident);
+		ArrayList<String> StrList = null;
+		ResidentBaseInfo residentBaseInfo = null;
+		for (int i = 0; i < residentBaseInfoList.size(); i++) {
+			residentBaseInfo = residentBaseInfoList.get(i);
+			StrList = new ArrayList<String>();
+			String place = residentBaseInfo.getCityName() + residentBaseInfo.getCountyName() + residentBaseInfo.getTownsName() + residentBaseInfo.getVillageName();
+			StrList.add(place.replace("null", ""));
+			StrList.add(residentBaseInfo.getName());
+			String sex = residentBaseInfo.getSex();
+			if(!StringUtil.isEmpty(sex) && sex.equals("1")) {
+				StrList.add("男");
+			}else {
+				StrList.add("女");
+			}
+			StrList.add(residentBaseInfo.getAge().toString());
+			StrList.add(residentBaseInfo.getIdNumber());
+			StrList.add(residentBaseInfo.getResidenceAddress());
+			StrList.add(residentBaseInfo.getPhone());
+			rowList.add(StrList);
+		}
+		//地址
+		String xlsPath = "C:\\Users\\Administrator\\Desktop\\肺结核花名册.xls";
+		//工作表名称
+		String sheetName = "肺结核花名册";
+		
+		try {
+			excelutil.writeExcel(headerList, rowList, xlsPath, sheetName);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	@Override
 	public PageInfos<TuberculosisListBo> findTuberculosisByPage(ResidentBaseInfoQuery redident,
@@ -340,5 +394,6 @@ public class TuberculosisServiceImpl implements TuberculosisService {
 		}
 		return map;
 	}
+
 
 }

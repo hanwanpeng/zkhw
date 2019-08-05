@@ -3,6 +3,7 @@ package com.zkhw.flup.dao;
 import java.util.List;
 
 import com.zkhw.flup.entity.Hypertension;
+import com.zkhw.stat.query.ResidentQuery;
 
 public interface HypertensionDao {
     int deleteByPrimaryKey(String id);
@@ -22,4 +23,6 @@ public interface HypertensionDao {
     List<Hypertension> shanxiSyncList();
     
     List<Hypertension> findFollowByYear(Hypertension record);
+
+	List<Hypertension> statForIdNumber(ResidentQuery query);
 }

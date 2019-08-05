@@ -13,4 +13,5 @@ public interface HypertensionService {
 	HypertensionInfoBo getHypertensionFollowRecordById(String id);
 	
 	Map<String, String> exportPdf(String archiveNo,String year);
+	void hypertensionForExcel(ResidentBaseInfoQuery redident);
 }

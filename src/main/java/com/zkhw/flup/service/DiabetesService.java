@@ -1,5 +1,6 @@
 package com.zkhw.flup.service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 import com.zkhw.common.vo.PageInfos;
@@ -17,4 +18,6 @@ public interface DiabetesService {
 	PageInfos<DiabetesFollowRecord> findFollowRecordByPage(DiabetesFollowRecord record, PageInfos<DiabetesFollowRecord> pageData);
 	
 	Map<String, String> exportPdf(String archiveNo,String year);
+
+	void diabetesForExcel(ResidentBaseInfoQuery redident) throws UnsupportedEncodingException;
 }

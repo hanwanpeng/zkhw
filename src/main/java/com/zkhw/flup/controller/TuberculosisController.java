@@ -1,5 +1,8 @@
 package com.zkhw.flup.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +15,7 @@ import com.zkhw.flup.bo.TuberculosisListBo;
 import com.zkhw.flup.entity.TuberculosisFollowRecord;
 import com.zkhw.flup.entity.TuberculosisInfo;
 import com.zkhw.flup.service.TuberculosisService;
+import com.zkhw.framework.utils.JsonWebPrintUtils;
 import com.zkhw.pub.query.ResidentBaseInfoQuery;
 
 @Controller
@@ -20,6 +24,28 @@ public class TuberculosisController {
 
 	@Autowired
 	private TuberculosisService tuberculosisService;
+	
+	
+	/**
+	 * 肺结核花名册
+	 * @param redident
+	 * @param pageData
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/tuberculosisForExcel", method = RequestMethod.GET)
+	public void tuberculosisForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentBaseInfoQuery redident){
+		try {
+			tuberculosisService.tuberculosisForExcel(redident);
+			result.setCode("0");
+			result.setMsg("成功，已导出到桌面");
+		}catch (Exception e) {
+			result.setCode("1");
+			result.setMsg("失败");
+		}
+		JsonWebPrintUtils.printApiResult(req, resp, result);
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "/list", method = RequestMethod.GET)

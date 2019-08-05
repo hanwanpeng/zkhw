@@ -5,6 +5,7 @@ import com.zkhw.stat.vo.ChildVo;
 import com.zkhw.stat.vo.ElderlyVo;
 import com.zkhw.stat.vo.FlupVo;
 import com.zkhw.stat.vo.GravidaVo;
+import com.zkhw.stat.vo.PersonVo;
 import com.zkhw.stat.vo.ResidentAgeVo;
 import com.zkhw.stat.vo.StatResidentVo;
 import com.zkhw.stat.vo.StatisticsVo;
@@ -30,6 +31,9 @@ public interface StatisticsService {
 
 
 	GravidaVo statForGravida(ResidentQuery query);
+
+
+	PersonVo statForIdNumber(ResidentQuery query);
 
 	
 

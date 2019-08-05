@@ -72,6 +72,16 @@
     create_name, create_org, create_org_name, create_time, update_user, update_name, 
     update_time, upload_status, upload_time, upload_result
   </sql>
+  
+  
+   <select id="statForIdNumber" parameterType="com.zkhw.stat.query.ResidentQuery" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from diabetes_follow_record
+    where id_number = #{idNumber,jdbcType=VARCHAR}
+  </select>
+  
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

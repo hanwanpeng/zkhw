@@ -21,4 +21,6 @@ public interface TuberculosisService {
 	Map<String, String> exportInfoPdf(String archiveNo);
 	
 	Map<String, String> exportFollowPdf(String archiveNo, String year);
+
+	void tuberculosisForExcel(ResidentBaseInfoQuery redident);
 }

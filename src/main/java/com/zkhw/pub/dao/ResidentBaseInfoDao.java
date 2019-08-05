@@ -9,6 +9,7 @@ import com.zkhw.stat.vo.ElderlyEstimateVo;
 import com.zkhw.stat.vo.ElderlyRecordVo;
 import com.zkhw.stat.vo.ElderlyVo;
 import com.zkhw.stat.vo.FlupVo;
+import com.zkhw.stat.vo.PersonVo;
 import com.zkhw.stat.vo.ResidentAgeVo;
 import com.zkhw.stat.vo.StatResidentVo;
 
@@ -44,5 +45,7 @@ public interface ResidentBaseInfoDao {
 	List<ElderlyVo> statForElderlyNnm(ResidentQuery query);
 
 	List<FlupVo> statForFlup(ResidentQuery query);
+
+	PersonVo statForIdNumber(ResidentQuery query);
 	
 }

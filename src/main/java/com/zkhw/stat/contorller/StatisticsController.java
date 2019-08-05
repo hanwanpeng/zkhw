@@ -29,6 +29,7 @@ import com.zkhw.stat.vo.ChildVo;
 import com.zkhw.stat.vo.ElderlyVo;
 import com.zkhw.stat.vo.FlupVo;
 import com.zkhw.stat.vo.GravidaVo;
+import com.zkhw.stat.vo.PersonVo;
 import com.zkhw.stat.vo.ResidentAgeVo;
 import com.zkhw.stat.vo.StatResidentVo;
 import com.zkhw.stat.vo.StatisticsVo;
@@ -51,28 +52,28 @@ public class StatisticsController {
 	private OrganizationService organizationService;
 	
 	/**
-	 * 个人统计（通过身份证号查询）
+	 * 个人统计（通过身份证号查询）-小程序
 	 */
-//	@ResponseBody
-//	@RequestMapping(value = "/statForIdNumber", method = RequestMethod.GET)
-//	public void statForIdNumber(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentQuery query){
-//		try {
-//			PersonVo personVo = statisticsService.statForIdNumber(query);
-//			if(personVo != null) {
-//				result.setData(personVo);
-//				result.setCode("0");
-//				result.setMsg("成功");
-//			}else {
-//				result.setCode("1");
-//				result.setMsg("未查询到结果！");
-//			}
-//		}catch (Exception e) {
-//			result.setCode("1");
-//			result.setMsg("失败");
-//		}
-//		
-//		JsonWebPrintUtils.printApiResult(req, resp, result);
-//	}
+	@ResponseBody
+	@RequestMapping(value = "/statForIdNumber", method = RequestMethod.GET)
+	public void statForIdNumber(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentQuery query){
+		try {
+			PersonVo personVo = statisticsService.statForIdNumber(query);
+			if(personVo != null) {
+				result.setData(personVo);
+				result.setCode("0");
+				result.setMsg("成功");
+			}else {
+				result.setCode("1");
+				result.setMsg("未查询到结果！");
+			}
+		}catch (Exception e) {
+			result.setCode("1");
+			result.setMsg("失败");
+		}
+		
+		JsonWebPrintUtils.printApiResult(req, resp, result);
+	}
 	
 	
 	

@@ -136,7 +136,7 @@
 	</if>
 	) AS neonatusNum,
 	(SELECT COUNT(1) FROM neonatus_info n JOIN
-	children_health_record c ON n.archive_no = c.archive_no
+	children_health_record h ON n.archive_no = h.archive_no
 	where 1 = 1
 	<if test="provinceCode != null and provinceCode != ''">
 		and province_code = #{provinceCode,jdbcType=VARCHAR}
@@ -152,10 +152,16 @@
 	</if>
 	<if test="villageCode != null and villageCode != ''">
 		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+	<if test="startTime != null and startTime != ''">
+            <![CDATA[and DATE_FORMAT(h.visit_date, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d')]]>
+	</if>
+	<if test="endTime != null and endTime != ''">
+            <![CDATA[and DATE_FORMAT(h.visit_date, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d')]]>
 	</if>
 	) AS childrenHealthNum,
 	(SELECT COUNT(1) FROM neonatus_info n JOIN
-	children_tcm_record c ON n.archive_no = c.archive_no
+	children_tcm_record t ON n.archive_no = t.archive_no
 	where 1 = 1
 	<if test="provinceCode != null and provinceCode != ''">
 		and province_code = #{provinceCode,jdbcType=VARCHAR}
@@ -171,6 +177,12 @@
 	</if>
 	<if test="villageCode != null and villageCode != ''">
 		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+	<if test="startTime != null and startTime != ''">
+            <![CDATA[and DATE_FORMAT(t.visit_date, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d')]]>
+	</if>
+	<if test="endTime != null and endTime != ''">
+            <![CDATA[and DATE_FORMAT(t.visit_date, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d')]]>
 	</if>
 	) AS childrenTcmNum
 </select>

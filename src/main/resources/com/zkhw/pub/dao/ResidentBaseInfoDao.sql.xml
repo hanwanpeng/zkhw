@@ -90,11 +90,31 @@
     update_time
   </sql>
   
+   <!-- 个人统计（通过身份证号查询）小程序 -->
+	<select id="statForIdNumber" parameterType="com.zkhw.stat.query.ResidentQuery" resultType="com.zkhw.stat.vo.PersonVo">
+		SELECT r.name,r.age,r.id_number,r.register_address,r.is_hypertension,r.is_diabetes,
+		(SELECT COUNT(1) FROM physical_examination_record p WHERE p.id_number = r.id_number) AS physicalExaminationRecord,
+		(SELECT COUNT(1) FROM elderly_selfcare_estimate e WHERE e.id_number = r.id_number) AS elderlySelfcareEstimateNum,
+		(SELECT COUNT(1) FROM elderly_tcm_record e WHERE e.id_number = r.id_number) AS elderlyTcmRecordNum,
+		(SELECT COUNT(1) FROM fuv_hypertension f WHERE f.id_number = r.id_number ) AS fuvHypertensionNum,
+		(SELECT COUNT(1) FROM diabetes_follow_record d WHERE d.id_number = r.id_number) AS diabetesFollowRecordNum,
+		(SELECT COUNT(1) FROM tuberculosis_follow_record t WHERE t.id_number = r.id_number ) AS tuberculosisFollowRecord,
+		(SELECT COUNT(1) FROM psychosis_follow_record p WHERE p.id_number = r.id_number ) AS psychosisFollowRecord,
+		(SELECT COUNT(1) FROM children_health_record c WHERE c.id_number = r.id_number ) AS childrenHealthRecordNum,
+		(SELECT COUNT(1) FROM gravida_follow_record g WHERE g.id_number = r.id_number) AS gravidaFollowRecordNum,
+		(SELECT COUNT(1) FROM gravida_after_record g WHERE g.id_number = r.id_number) AS gravidaAfterRecordNum
+		FROM resident_base_info r
+		WHERE 1 = 1
+		<if test="idNumber != null and idNumber != ''">
+			and id_number = #{idNumber,jdbcType=VARCHAR}
+		</if>
+	</select>
+  
   
   
   <!-- 慢病随访统计人数 -->
 	<select id="statForFlup" parameterType="com.zkhw.stat.query.ResidentQuery" resultType="com.zkhw.stat.vo.FlupVo">
-	SELECT (SELECT COUNT(1) FROM resident_base_info r JOIN physical_examination_record p ON r.id_number = p.id_number WHERE r.is_hypertension = 1
+	SELECT (SELECT COUNT(1) FROM resident_base_info r JOIN fuv_hypertension f ON r.id_number = f.id_number WHERE r.is_hypertension = 1
 		<if test="provinceCode != null and provinceCode != ''">
 			and province_code = #{provinceCode,jdbcType=VARCHAR}
 		</if>
@@ -109,6 +129,12 @@
 		</if>
 		<if test="villageCode != null and villageCode != ''">
 			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+		<if test="startTime != null and startTime != ''">
+            <![CDATA[and DATE_FORMAT(visit_date, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d')]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+            <![CDATA[and DATE_FORMAT(visit_date, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d')]]>
 		</if>
 	) AS hypertensionNum,
 	(SELECT COUNT(1) FROM resident_base_info r JOIN diabetes_follow_record d ON r.id_number = d.id_number WHERE r.is_diabetes = 1
@@ -127,6 +153,12 @@
 		<if test="villageCode != null and villageCode != ''">
 			and village_code = #{villageCode,jdbcType=VARCHAR}
 		</if>
+		<if test="startTime != null and startTime != ''">
+            <![CDATA[and DATE_FORMAT(visit_date, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d')]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+            <![CDATA[and DATE_FORMAT(visit_date, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d')]]>
+		</if>
 	) AS diabetesNum,
 	(SELECT COUNT(1) FROM resident_base_info r JOIN tuberculosis_follow_record t ON r.id_number = t.id_number WHERE r.is_tuberculosis = 1
 		<if test="provinceCode != null and provinceCode != ''">
@@ -144,6 +176,12 @@
 		<if test="villageCode != null and villageCode != ''">
 			and village_code = #{villageCode,jdbcType=VARCHAR}
 		</if>
+		<if test="startTime != null and startTime != ''">
+            <![CDATA[and DATE_FORMAT(visit_date, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d')]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+            <![CDATA[and DATE_FORMAT(visit_date, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d')]]>
+		</if>
 	) AS tuberculosisNum,
 	(SELECT COUNT(1) FROM resident_base_info r JOIN psychosis_follow_record p ON r.id_number = p.id_number WHERE r.is_psychosis = 1
 		<if test="provinceCode != null and provinceCode != ''">
@@ -160,6 +198,12 @@
 		</if>
 		<if test="villageCode != null and villageCode != ''">
 			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+		<if test="startTime != null and startTime != ''">
+            <![CDATA[and DATE_FORMAT(visit_date, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d')]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+            <![CDATA[and DATE_FORMAT(visit_date, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d')]]>
 		</if>
 	) AS psychosisNum
 	</select>
@@ -185,6 +229,12 @@
 		</if>
 		<if test="villageCode != null and villageCode != ''">
 			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+		<if test="startTime != null and startTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d')]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d')]]>
 		</if>
 	</select>
 	
@@ -239,7 +289,7 @@
   <!-- 档案统计-按人群统计 -->
   <select id="statResidentForMan" parameterType="com.zkhw.stat.query.ResidentQuery"
 	resultType="com.zkhw.stat.vo.StatResidentVo">
-	SELECT (SELECT COUNT(1) FROM resident_base_info WHERE age &gt; 64
+	SELECT (SELECT COUNT(1) FROM resident_base_info r WHERE YEAR(NOW())-SUBSTRING(r.id_number,7,4) &gt;= 65
 	<if test="provinceCode != null and provinceCode != ''">
 		and province_code = #{provinceCode,jdbcType=VARCHAR}
 	</if>

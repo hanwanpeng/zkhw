@@ -1,5 +1,7 @@
 package com.zkhw.pub.service.impl;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +16,7 @@ import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.util.StringUtil;
 import com.zkhw.common.utils.ApiConstants;
 import com.zkhw.common.utils.CodeUtil;
+import com.zkhw.common.utils.ExcelUtil;
 import com.zkhw.common.vo.PageInfos;
 import com.zkhw.pub.dao.FamilyRecordDao;
 import com.zkhw.pub.dao.MentachysisRecordDao;
@@ -54,7 +57,166 @@ public class ResidentBaseInfoServiceImpl implements ResidentBaseInfoService {
 	@Autowired
 	private ResidentDiseasesDao residentDiseasesDao;
 	
+	/**
+	 * 老年人花名册
+	 */
+	@Override
+	public void elderlyForExcel(ResidentBaseInfoQuery redident) {
+		ExcelUtil excelutil = new ExcelUtil();
+		//表头
+		ArrayList<String> headerList = new ArrayList<String>();
+		String[] header = {"姓名","性别","年龄","身份证号码","住址","电话","所患疾病"};
+		for (int i = 0; i < header.length; i++) {
+			headerList.add(header[i]);
+		}
+		//行内容
+		ArrayList<List<String>> rowList = new ArrayList<List<String>>();
+		redident.setMinage(65);
+		List<ResidentBaseInfo> residentBaseInfoList = residentBaseInfoDao.findResidentList(redident);
+		ArrayList<String> StrList = null;
+		ResidentBaseInfo residentBaseInfo = null;
+		for (int i = 0; i < residentBaseInfoList.size(); i++) {
+			residentBaseInfo = residentBaseInfoList.get(i);
+			StrList = new ArrayList<String>();
+			
+			StrList.add(residentBaseInfo.getName());
+			String sex = residentBaseInfo.getSex();
+			if(!StringUtil.isEmpty(sex) && sex.equals("1")) {
+				StrList.add("男");
+			}else {
+				StrList.add("女");
+			}
+			String nation = residentBaseInfo.getNation();
+			if(!StringUtil.isEmpty(nation) && nation.equals("1")) {
+				StrList.add("汉");
+			}else {
+				StrList.add("");
+			}
+			StrList.add(residentBaseInfo.getAge().toString());
+			StrList.add(residentBaseInfo.getIdNumber());
+			StrList.add(residentBaseInfo.getResidenceAddress());
+			StrList.add(residentBaseInfo.getPhone());
+			Integer isHypertension = residentBaseInfo.getIsHypertension();
+			Integer isDiabetes = residentBaseInfo.getIsDiabetes();
+			Integer isTuberculosis = residentBaseInfo.getIsTuberculosis();
+			Integer isPsychosis = residentBaseInfo.getIsPsychosis();
+			String illness = "";
+			if(isHypertension != null && isHypertension == 1) {
+				illness += "高血压、";
+			}
+			if(isDiabetes != null && isDiabetes == 1) {
+				illness += "糖尿病、";
+			}
+			if(isTuberculosis != null && isTuberculosis == 1) {
+				illness += "肺结核、";
+			}
+			if(isPsychosis != null && isPsychosis == 1) {
+				illness += "精神病";
+			}
+			StrList.add(illness);
+			Integer isPoor = residentBaseInfo.getIsPoor();
+			if(isPoor != null && isPoor == 1) {
+				StrList.add("是");
+			}else {
+				StrList.add("否");
+			}
+			
+			rowList.add(StrList);
+		}
+		//地址
+		String xlsPath = "C:\\Users\\Administrator\\Desktop\\人口花名册.xls";
+		//工作表名称
+		String sheetName = "人口花名册";
+		
+		try {
+			excelutil.writeExcel(headerList, rowList, xlsPath, sheetName);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
+	
+	/**
+	 * 人口花名册
+	 */
+	@Override
+	public void residentBaseInfoForExcel(ResidentBaseInfoQuery redident) {
+		ExcelUtil excelutil = new ExcelUtil();
+		//表头
+		ArrayList<String> headerList = new ArrayList<String>();
+		String[] header = {"姓名","性别","民族","年龄","身份证号码","住址","电话","所患疾病","贫困户"};
+		for (int i = 0; i < header.length; i++) {
+			headerList.add(header[i]);
+		}
+		//行内容
+		ArrayList<List<String>> rowList = new ArrayList<List<String>>();
+		List<ResidentBaseInfo> residentBaseInfoList = residentBaseInfoDao.findResidentList(redident);
+		ArrayList<String> StrList = null;
+		ResidentBaseInfo residentBaseInfo = null;
+		for (int i = 0; i < residentBaseInfoList.size(); i++) {
+			residentBaseInfo = residentBaseInfoList.get(i);
+			StrList = new ArrayList<String>();
+			
+			StrList.add(residentBaseInfo.getName());
+			String sex = residentBaseInfo.getSex();
+			if(!StringUtil.isEmpty(sex) && sex.equals("1")) {
+				StrList.add("男");
+			}else {
+				StrList.add("女");
+			}
+			String nation = residentBaseInfo.getNation();
+			if(!StringUtil.isEmpty(nation) && nation.equals("1")) {
+				StrList.add("汉");
+			}else {
+				StrList.add("");
+			}
+			StrList.add(residentBaseInfo.getAge().toString());
+			StrList.add(residentBaseInfo.getIdNumber());
+			StrList.add(residentBaseInfo.getResidenceAddress());
+			StrList.add(residentBaseInfo.getPhone());
+			Integer isHypertension = residentBaseInfo.getIsHypertension();
+			Integer isDiabetes = residentBaseInfo.getIsDiabetes();
+			Integer isTuberculosis = residentBaseInfo.getIsTuberculosis();
+			Integer isPsychosis = residentBaseInfo.getIsPsychosis();
+			String illness = "";
+			if(isHypertension != null && isHypertension == 1) {
+				illness += "高血压、";
+			}
+			if(isDiabetes != null && isDiabetes == 1) {
+				illness += "糖尿病、";
+			}
+			if(isTuberculosis != null && isTuberculosis == 1) {
+				illness += "肺结核、";
+			}
+			if(isPsychosis != null && isPsychosis == 1) {
+				illness += "精神病";
+			}
+			StrList.add(illness);
+			Integer isPoor = residentBaseInfo.getIsPoor();
+			if(isPoor != null && isPoor == 1) {
+				StrList.add("是");
+			}else {
+				StrList.add("否");
+			}
+			
+			rowList.add(StrList);
+		}
+		//地址
+		String xlsPath = "C:\\Users\\Administrator\\Desktop\\人口花名册.xls";
+		//工作表名称
+		String sheetName = "人口花名册";
+		
+		try {
+			excelutil.writeExcel(headerList, rowList, xlsPath, sheetName);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}	
 
 	@Override
 	public int saveResidentBaseInfo(ResidentBaseInfo info) {
@@ -772,5 +934,7 @@ public class ResidentBaseInfoServiceImpl implements ResidentBaseInfoService {
 			}
 		}
 		return residentBaseInfoDao.updateByArchiveNo(residentBaseInfo);
-	}	
+	}
+
+
 }

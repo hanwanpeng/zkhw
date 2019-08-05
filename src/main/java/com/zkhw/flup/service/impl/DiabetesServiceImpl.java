@@ -1,5 +1,7 @@
 package com.zkhw.flup.service.impl;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.util.StringUtil;
+import com.zkhw.common.utils.ExcelUtil;
 import com.zkhw.common.vo.PageInfos;
 import com.zkhw.flup.bo.DiabetesFollowBo;
 import com.zkhw.flup.bo.DiabetesListBo;
@@ -21,6 +24,7 @@ import com.zkhw.flup.dao.FollowMedicineRecordDao;
 import com.zkhw.flup.entity.DiabetesFollowRecord;
 import com.zkhw.flup.entity.FollowMedicineRecord;
 import com.zkhw.flup.service.DiabetesService;
+import com.zkhw.framework.utils.StringUtils;
 import com.zkhw.pub.dao.ResidentBaseInfoDao;
 import com.zkhw.pub.entity.ResidentBaseInfo;
 import com.zkhw.pub.query.ResidentBaseInfoQuery;
@@ -36,6 +40,59 @@ public class DiabetesServiceImpl implements DiabetesService {
 	
 	@Autowired
 	private FollowMedicineRecordDao followMedicineRecordDao;
+	
+	
+	/**
+	 * 糖尿病花名册
+	 * @throws UnsupportedEncodingException 
+	 */
+	@Override
+	public void diabetesForExcel(ResidentBaseInfoQuery redident) throws UnsupportedEncodingException {
+		ExcelUtil excelutil = new ExcelUtil();
+		//表头
+		ArrayList<String> headerList = new ArrayList<String>();
+		String[] header = {"村名","姓名","性别","年龄","身份证号码","现住址","电话"};
+		for (int i = 0; i < header.length; i++) {
+			headerList.add(header[i]);
+		}
+		//行内容
+		ArrayList<List<String>> rowList = new ArrayList<List<String>>();
+		redident.setIsDiabetes(1);
+		List<ResidentBaseInfo> residentBaseInfoList = residentBaseInfoDao.findResidentList(redident);
+		ArrayList<String> StrList = null;
+		ResidentBaseInfo residentBaseInfo = null;
+		for (int i = 0; i < residentBaseInfoList.size(); i++) {
+			residentBaseInfo = residentBaseInfoList.get(i);
+			StrList = new ArrayList<String>();
+			String place = residentBaseInfo.getCityName() + residentBaseInfo.getCountyName() + residentBaseInfo.getTownsName() + residentBaseInfo.getVillageName();
+			StrList.add(place.replace("null", ""));
+			StrList.add(residentBaseInfo.getName());
+			String sex = residentBaseInfo.getSex();
+			if(!StringUtil.isEmpty(sex) && sex.equals("1")) {
+				StrList.add("男");
+			}else {
+				StrList.add("女");
+			}
+			StrList.add(residentBaseInfo.getAge().toString());
+			StrList.add(residentBaseInfo.getIdNumber());
+			StrList.add(residentBaseInfo.getResidenceAddress());
+			StrList.add(residentBaseInfo.getPhone());
+			rowList.add(StrList);
+		}
+		//地址
+		String xlsPath = "C:\\Users\\Administrator\\Desktop\\糖尿病花名册.xls";
+		//工作表名称
+		String sheetName = "糖尿病花名册";
+		
+		try {
+			excelutil.writeExcel(headerList, rowList, xlsPath, sheetName);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	@Override
 	public PageInfos<DiabetesListBo> findDiabetesByPage(ResidentBaseInfoQuery redident,
@@ -256,5 +313,7 @@ public class DiabetesServiceImpl implements DiabetesService {
 		}
 		return map;	
 	}
+
+	
 
 }

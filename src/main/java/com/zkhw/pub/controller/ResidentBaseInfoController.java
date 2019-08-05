@@ -45,6 +45,49 @@ public class ResidentBaseInfoController {
 	@Autowired
 	private CommonUtil commonUtil;
 	
+	
+	/**
+	 * 老年人花名册
+	 * @param redident
+	 * @param pageData
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/elderlyForExcel", method = RequestMethod.GET)
+	public void elderlyForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentBaseInfoQuery redident){
+		try {
+			residentBaseInfoService.elderlyForExcel(redident);
+			result.setCode("0");
+			result.setMsg("成功，已导出到桌面");
+		}catch (Exception e) {
+			result.setCode("1");
+			result.setMsg("失败");
+		}
+		JsonWebPrintUtils.printApiResult(req, resp, result);
+	}
+	
+	
+	/**
+	 * 人口花名册
+	 * @param redident
+	 * @param pageData
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/residentBaseInfoForExcel", method = RequestMethod.GET)
+	public void residentBaseInfoForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentBaseInfoQuery redident){
+		try {
+			residentBaseInfoService.residentBaseInfoForExcel(redident);
+			result.setCode("0");
+			result.setMsg("成功，已导出到桌面");
+		}catch (Exception e) {
+			result.setCode("1");
+			result.setMsg("失败");
+		}
+		JsonWebPrintUtils.printApiResult(req, resp, result);
+	}
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void  findResidentList(HttpServletRequest req, HttpServletResponse resp, ResidentBaseInfoQuery info, PageInfos<ResidentBaseInfo> pageData){

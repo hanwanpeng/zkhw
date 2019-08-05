@@ -22,4 +22,6 @@ public interface PsychosisService {
 	Map<String, String> exportInfoPdf(String archiveNo);
 	
 	Map<String, String> exportFollowPdf(String id);
+
+	void psychosisForExcel(ResidentBaseInfoQuery redident);
 }

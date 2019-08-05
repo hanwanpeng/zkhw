@@ -10,8 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.util.StringUtil;
+import com.zkhw.flup.dao.DiabetesFollowRecordDao;
 import com.zkhw.flup.dao.GravidaInfoDao;
+import com.zkhw.flup.dao.HypertensionDao;
 import com.zkhw.flup.dao.NeonatusInfoDao;
+import com.zkhw.flup.entity.DiabetesFollowRecord;
+import com.zkhw.flup.entity.Hypertension;
 import com.zkhw.ltd.dao.OrganizationDao;
 import com.zkhw.ltd.dao.UserDao;
 import com.zkhw.ltd.entity.Organization;
@@ -29,6 +33,7 @@ import com.zkhw.stat.vo.ElderlyRecordVo;
 import com.zkhw.stat.vo.ElderlyVo;
 import com.zkhw.stat.vo.FlupVo;
 import com.zkhw.stat.vo.GravidaVo;
+import com.zkhw.stat.vo.PersonVo;
 import com.zkhw.stat.vo.PhysicalVo;
 import com.zkhw.stat.vo.ResidentAgeVo;
 import com.zkhw.stat.vo.StatResidentVo;
@@ -63,6 +68,37 @@ public class StatisticsServiceImpl implements StatisticsService {
 	
 	@Autowired
 	private GravidaInfoDao gravidaInfoDao;
+	
+	@Autowired
+	private HypertensionDao hypertensionDao;
+	
+	@Autowired
+	private DiabetesFollowRecordDao diabetesFollowRecordDao;
+	
+	
+	/**
+	 * 个人统计（通过身份证号查询）-小程序
+	 */
+	@Override
+	public PersonVo statForIdNumber(ResidentQuery query) {
+		PersonVo personVo = residentBaseInfoDao.statForIdNumber(query);
+		
+		//高血压走势
+		Integer isHypertension = personVo.getIsHypertension();
+		List<Hypertension> hypertensionList = null;
+		if(isHypertension != null && isHypertension == 1 ) {
+			hypertensionList = hypertensionDao.statForIdNumber(query);
+			personVo.setHypertensionList(hypertensionList);
+		}
+		//糖尿病走势
+		Integer isDiabetes = personVo.getIsDiabetes();
+		List<DiabetesFollowRecord> diabetesFollowRecordList = null;
+		if(isDiabetes != null && isDiabetes == 1) {
+			diabetesFollowRecordList = diabetesFollowRecordDao.statForIdNumber(query);
+			personVo.setDiabetesFollowRecordList(diabetesFollowRecordList);
+		}
+		return personVo;
+	}
 	
 	
 	/**
@@ -465,6 +501,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 		vo.setPhysicalList(arrayList);
 		return vo;
 	}
+
 
 
 	
