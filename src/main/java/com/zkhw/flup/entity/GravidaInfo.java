@@ -1,1005 +1,518 @@
 package com.zkhw.flup.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class GravidaInfo {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+//第 1次产前检查服务记录表
+public class GravidaInfo implements Serializable {
+    /**
+     * 
+     */
     private String id;
 
+    /**
+     * 姓名
+     */
     private String name;
 
+    /**
+     * 电子档案编码
+     */
     private String archiveNo;
 
+    /**
+     * 身份证号
+     */
     private String idNumber;
 
+    /**
+     * 填表日期
+     */
     private String visitDate;
 
+    /**
+     * 孕周
+     */
     private Integer gestationalWeeks;
 
+    /**
+     * 孕妇年龄
+     */
     private Integer gravidaAge;
 
+    /**
+     * 丈夫姓名
+     */
     private String husbandName;
 
+    /**
+     * 丈夫年龄
+     */
     private Integer husbandAge;
 
+    /**
+     * 丈夫电话
+     */
     private String husbandPhone;
 
+    /**
+     * 孕次
+     */
     private Integer pregnantNum;
 
+    /**
+     * 阴道分娩次数
+     */
     private Integer naturalLabourNum;
 
+    /**
+     * 剖腹产次数
+     */
     private Integer cesareanNum;
 
+    /**
+     * 末次月经日期
+     */
     private String lastMenstruationDate;
 
+    /**
+     * 预产期
+     */
     private String dueDate;
 
+    /**
+     * 既往史
+     */
     private String pastIllness;
 
+    /**
+     * 既往史其他
+     */
     private String pastIllnessOther;
 
+    /**
+     * 家族史
+     */
     private String familyHistory;
 
+    /**
+     * 家族史其他
+     */
     private String familyHistoryOther;
 
+    /**
+     * 个人史
+     */
     private String habitsCustoms;
 
+    /**
+     * 个人史其他
+     */
     private String habitsCustomsOther;
 
+    /**
+     * 妇产科手术史
+     */
     private String isoperation;
 
+    /**
+     * 手术名称
+     */
     private String operationName;
 
+    /**
+     * 自然流产次数
+     */
     private Integer naturalAbortionNum;
 
+    /**
+     * 人工流产次数
+     */
     private Integer abactioNum;
 
+    /**
+     * 死胎次数
+     */
     private Integer fetaldeathNum;
 
+    /**
+     * 死产次数
+     */
     private Integer stillbirthNum;
 
+    /**
+     * 新生儿死亡次数
+     */
     private Integer neonatalDeathNum;
 
+    /**
+     * 出生缺陷儿次数
+     */
     private Integer birthDefectNum;
 
+    /**
+     * 身高
+     */
     private String height;
 
+    /**
+     * 体重
+     */
     private String weight;
 
+    /**
+     * 体质指数bmi
+     */
     private String bmi;
 
+    /**
+     * 血压高压
+     */
     private Integer bloodPressureHigh;
 
+    /**
+     * 血压低压
+     */
     private Integer bloodPressureLow;
 
+    /**
+     * 心脏
+     */
     private String heart;
 
+    /**
+     * 心脏其他
+     */
     private String heartOther;
 
+    /**
+     * 肺部
+     */
     private String lungs;
 
+    /**
+     * 肺部其他
+     */
     private String lungsOther;
 
+    /**
+     * 外阴
+     */
     private String vulva;
 
+    /**
+     * 外阴其他
+     */
     private String vulvaOther;
 
+    /**
+     * 阴道
+     */
     private String vagina;
 
+    /**
+     * 阴道其他
+     */
     private String vaginaOther;
 
+    /**
+     * 宫颈
+     */
     private String cervix;
 
+    /**
+     * 宫颈其他
+     */
     private String cervixOther;
 
+    /**
+     * 子宫
+     */
     private String corpus;
 
+    /**
+     * 子宫其他
+     */
     private String corpusOther;
 
+    /**
+     * 附件
+     */
     private String accessories;
 
+    /**
+     * 附件其他
+     */
     private String accessoriesOther;
 
+    /**
+     * 血红蛋白
+     */
     private String hemoglobin;
 
+    /**
+     * 白细胞计数
+     */
     private String leukocyte;
 
+    /**
+     * 血小板计数
+     */
     private String platelet;
 
+    /**
+     * 血液检查其他
+     */
     private String bloodOther;
 
+    /**
+     * 尿蛋白
+     */
     private String urineProtein;
 
+    /**
+     * 尿糖
+     */
     private String glycosuria;
 
+    /**
+     * 尿酮体
+     */
     private String urineAcetoneBodies;
 
+    /**
+     * 尿潜血
+     */
     private String bld;
 
+    /**
+     * 尿常规其他
+     */
     private String urineOther;
 
+    /**
+     * 血糖
+     */
     private String bloodSugar;
 
+    /**
+     * 血型
+     */
     private String bloodGroup;
 
+    /**
+     * RH
+     */
     private String bloodRh;
 
+    /**
+     * 血清谷丙转氨酶
+     */
     private String sgft;
 
+    /**
+     * 血清谷草转氨酶
+     */
     private String ast;
 
+    /**
+     * 白蛋白
+     */
     private String albumin;
 
+    /**
+     * 总胆红素
+     */
     private String totalBilirubin;
 
+    /**
+     * 结合胆红素
+     */
     private String conjugatedBilirubin;
 
+    /**
+     * 血清肌酐
+     */
     private String scr;
 
+    /**
+     * 血尿素
+     */
     private String bloodUrea;
 
+    /**
+     * 阴道分泌物
+     */
     private String vaginalFluid;
 
+    /**
+     * 阴道分泌物其他
+     */
     private String vaginalFluidOther;
 
+    /**
+     * 阴道清洁度
+     */
     private String vaginalCleaning;
 
+    /**
+     * 乙型肝炎表面抗原
+     */
     private String hb;
 
+    /**
+     * 乙型肝炎表面抗体
+     */
     private String hbsab;
 
+    /**
+     * 乙型肝炎e抗原
+     */
     private String hbeag;
 
+    /**
+     * 乙型肝炎e抗体
+     */
     private String hbeab;
 
+    /**
+     * 乙型肝炎核心抗体
+     */
     private String hbcab;
 
+    /**
+     * 梅毒血清学实验
+     */
     private String syphilis;
 
+    /**
+     * HIV抗体检测
+     */
     private String hiv;
 
+    /**
+     * B超
+     */
     private String bUltrasonic;
 
+    /**
+     * 其他检测
+     */
     private String other;
 
+    /**
+     * 总体评估
+     */
     private String generalAssessment;
 
+    /**
+     * 评估异常
+     */
     private String assessmentError;
 
+    /**
+     * 保健指导
+     */
     private String healthGuidance;
 
+    /**
+     * 保健指导其他
+     */
     private String healthGuidanceOther;
 
+    /**
+     * 有无转诊
+     */
     private String transferTreatment;
 
+    /**
+     * 转诊原因
+     */
     private String transferTreatmentReason;
 
+    /**
+     * 转诊机构和科别
+     */
     private String transferTreatmentDepartment;
 
+    /**
+     * 下次访问日期
+     */
     private String nextVisitDate;
 
+    /**
+     * 访问医生签名
+     */
     private String visitDoctor;
 
+    /**
+     * 
+     */
     private String status;
 
+    /**
+     * 
+     */
     private String createUser;
 
+    /**
+     * 
+     */
     private String createName;
 
+    /**
+     * 
+     */
     private String createOrg;
 
+    /**
+     * 
+     */
     private String createOrgName;
 
+    /**
+     * 
+     */
     private Date createTime;
 
+    /**
+     * 
+     */
     private String updateUser;
 
+    /**
+     * 
+     */
     private String updateName;
 
+    /**
+     * 
+     */
     private Date updateTime;
 
+    /**
+     * 
+     */
     private Integer uploadStatus;
 
+    /**
+     * 
+     */
     private Date uploadTime;
 
+    /**
+     * 
+     */
     private String uploadResult;
 
-    public String getId() {
-        return id;
-    }
+    /**
+     * gravida_info
+     */
+    private static final long serialVersionUID = 1L;
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getArchiveNo() {
-        return archiveNo;
-    }
-
-    public void setArchiveNo(String archiveNo) {
-        this.archiveNo = archiveNo == null ? null : archiveNo.trim();
-    }
-
-    public String getIdNumber() {
-        return idNumber;
-    }
-
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber == null ? null : idNumber.trim();
-    }
-
-    public String getVisitDate() {
-        return visitDate;
-    }
-
-    public void setVisitDate(String visitDate) {
-        this.visitDate = visitDate == null ? null : visitDate.trim();
-    }
-
-    public Integer getGestationalWeeks() {
-        return gestationalWeeks;
-    }
-
-    public void setGestationalWeeks(Integer gestationalWeeks) {
-        this.gestationalWeeks = gestationalWeeks;
-    }
-
-    public Integer getGravidaAge() {
-        return gravidaAge;
-    }
-
-    public void setGravidaAge(Integer gravidaAge) {
-        this.gravidaAge = gravidaAge;
-    }
-
-    public String getHusbandName() {
-        return husbandName;
-    }
-
-    public void setHusbandName(String husbandName) {
-        this.husbandName = husbandName == null ? null : husbandName.trim();
-    }
-
-    public Integer getHusbandAge() {
-        return husbandAge;
-    }
-
-    public void setHusbandAge(Integer husbandAge) {
-        this.husbandAge = husbandAge;
-    }
-
-    public String getHusbandPhone() {
-        return husbandPhone;
-    }
-
-    public void setHusbandPhone(String husbandPhone) {
-        this.husbandPhone = husbandPhone == null ? null : husbandPhone.trim();
-    }
-
-    public Integer getPregnantNum() {
-        return pregnantNum;
-    }
-
-    public void setPregnantNum(Integer pregnantNum) {
-        this.pregnantNum = pregnantNum;
-    }
-
-    public Integer getNaturalLabourNum() {
-        return naturalLabourNum;
-    }
-
-    public void setNaturalLabourNum(Integer naturalLabourNum) {
-        this.naturalLabourNum = naturalLabourNum;
-    }
-
-    public Integer getCesareanNum() {
-        return cesareanNum;
-    }
-
-    public void setCesareanNum(Integer cesareanNum) {
-        this.cesareanNum = cesareanNum;
-    }
-
-    public String getLastMenstruationDate() {
-        return lastMenstruationDate;
-    }
-
-    public void setLastMenstruationDate(String lastMenstruationDate) {
-        this.lastMenstruationDate = lastMenstruationDate == null ? null : lastMenstruationDate.trim();
-    }
-
-    public String getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate == null ? null : dueDate.trim();
-    }
-
-    public String getPastIllness() {
-        return pastIllness;
-    }
-
-    public void setPastIllness(String pastIllness) {
-        this.pastIllness = pastIllness == null ? null : pastIllness.trim();
-    }
-
-    public String getPastIllnessOther() {
-        return pastIllnessOther;
-    }
-
-    public void setPastIllnessOther(String pastIllnessOther) {
-        this.pastIllnessOther = pastIllnessOther == null ? null : pastIllnessOther.trim();
-    }
-
-    public String getFamilyHistory() {
-        return familyHistory;
-    }
-
-    public void setFamilyHistory(String familyHistory) {
-        this.familyHistory = familyHistory == null ? null : familyHistory.trim();
-    }
-
-    public String getFamilyHistoryOther() {
-        return familyHistoryOther;
-    }
-
-    public void setFamilyHistoryOther(String familyHistoryOther) {
-        this.familyHistoryOther = familyHistoryOther == null ? null : familyHistoryOther.trim();
-    }
-
-    public String getHabitsCustoms() {
-        return habitsCustoms;
-    }
-
-    public void setHabitsCustoms(String habitsCustoms) {
-        this.habitsCustoms = habitsCustoms == null ? null : habitsCustoms.trim();
-    }
-
-    public String getHabitsCustomsOther() {
-        return habitsCustomsOther;
-    }
-
-    public void setHabitsCustomsOther(String habitsCustomsOther) {
-        this.habitsCustomsOther = habitsCustomsOther == null ? null : habitsCustomsOther.trim();
-    }
-
-    public String getIsoperation() {
-        return isoperation;
-    }
-
-    public void setIsoperation(String isoperation) {
-        this.isoperation = isoperation == null ? null : isoperation.trim();
-    }
-
-    public String getOperationName() {
-        return operationName;
-    }
-
-    public void setOperationName(String operationName) {
-        this.operationName = operationName == null ? null : operationName.trim();
-    }
-
-    public Integer getNaturalAbortionNum() {
-        return naturalAbortionNum;
-    }
-
-    public void setNaturalAbortionNum(Integer naturalAbortionNum) {
-        this.naturalAbortionNum = naturalAbortionNum;
-    }
-
-    public Integer getAbactioNum() {
-        return abactioNum;
-    }
-
-    public void setAbactioNum(Integer abactioNum) {
-        this.abactioNum = abactioNum;
-    }
-
-    public Integer getFetaldeathNum() {
-        return fetaldeathNum;
-    }
-
-    public void setFetaldeathNum(Integer fetaldeathNum) {
-        this.fetaldeathNum = fetaldeathNum;
-    }
-
-    public Integer getStillbirthNum() {
-        return stillbirthNum;
-    }
-
-    public void setStillbirthNum(Integer stillbirthNum) {
-        this.stillbirthNum = stillbirthNum;
-    }
-
-    public Integer getNeonatalDeathNum() {
-        return neonatalDeathNum;
-    }
-
-    public void setNeonatalDeathNum(Integer neonatalDeathNum) {
-        this.neonatalDeathNum = neonatalDeathNum;
-    }
-
-    public Integer getBirthDefectNum() {
-        return birthDefectNum;
-    }
-
-    public void setBirthDefectNum(Integer birthDefectNum) {
-        this.birthDefectNum = birthDefectNum;
-    }
-
-    public String getHeight() {
-        return height;
-    }
-
-    public void setHeight(String height) {
-        this.height = height == null ? null : height.trim();
-    }
-
-    public String getWeight() {
-        return weight;
-    }
-
-    public void setWeight(String weight) {
-        this.weight = weight == null ? null : weight.trim();
-    }
-
-    public String getBmi() {
-        return bmi;
-    }
-
-    public void setBmi(String bmi) {
-        this.bmi = bmi == null ? null : bmi.trim();
-    }
-
-    public Integer getBloodPressureHigh() {
-        return bloodPressureHigh;
-    }
-
-    public void setBloodPressureHigh(Integer bloodPressureHigh) {
-        this.bloodPressureHigh = bloodPressureHigh;
-    }
-
-    public Integer getBloodPressureLow() {
-        return bloodPressureLow;
-    }
-
-    public void setBloodPressureLow(Integer bloodPressureLow) {
-        this.bloodPressureLow = bloodPressureLow;
-    }
-
-    public String getHeart() {
-        return heart;
-    }
-
-    public void setHeart(String heart) {
-        this.heart = heart == null ? null : heart.trim();
-    }
-
-    public String getHeartOther() {
-        return heartOther;
-    }
-
-    public void setHeartOther(String heartOther) {
-        this.heartOther = heartOther == null ? null : heartOther.trim();
-    }
-
-    public String getLungs() {
-        return lungs;
-    }
-
-    public void setLungs(String lungs) {
-        this.lungs = lungs == null ? null : lungs.trim();
-    }
-
-    public String getLungsOther() {
-        return lungsOther;
-    }
-
-    public void setLungsOther(String lungsOther) {
-        this.lungsOther = lungsOther == null ? null : lungsOther.trim();
-    }
-
-    public String getVulva() {
-        return vulva;
-    }
-
-    public void setVulva(String vulva) {
-        this.vulva = vulva == null ? null : vulva.trim();
-    }
-
-    public String getVulvaOther() {
-        return vulvaOther;
-    }
-
-    public void setVulvaOther(String vulvaOther) {
-        this.vulvaOther = vulvaOther == null ? null : vulvaOther.trim();
-    }
-
-    public String getVagina() {
-        return vagina;
-    }
-
-    public void setVagina(String vagina) {
-        this.vagina = vagina == null ? null : vagina.trim();
-    }
-
-    public String getVaginaOther() {
-        return vaginaOther;
-    }
-
-    public void setVaginaOther(String vaginaOther) {
-        this.vaginaOther = vaginaOther == null ? null : vaginaOther.trim();
-    }
-
-    public String getCervix() {
-        return cervix;
-    }
-
-    public void setCervix(String cervix) {
-        this.cervix = cervix == null ? null : cervix.trim();
-    }
-
-    public String getCervixOther() {
-        return cervixOther;
-    }
-
-    public void setCervixOther(String cervixOther) {
-        this.cervixOther = cervixOther == null ? null : cervixOther.trim();
-    }
-
-    public String getCorpus() {
-        return corpus;
-    }
-
-    public void setCorpus(String corpus) {
-        this.corpus = corpus == null ? null : corpus.trim();
-    }
-
-    public String getCorpusOther() {
-        return corpusOther;
-    }
-
-    public void setCorpusOther(String corpusOther) {
-        this.corpusOther = corpusOther == null ? null : corpusOther.trim();
-    }
-
-    public String getAccessories() {
-        return accessories;
-    }
-
-    public void setAccessories(String accessories) {
-        this.accessories = accessories == null ? null : accessories.trim();
-    }
-
-    public String getAccessoriesOther() {
-        return accessoriesOther;
-    }
-
-    public void setAccessoriesOther(String accessoriesOther) {
-        this.accessoriesOther = accessoriesOther == null ? null : accessoriesOther.trim();
-    }
-
-    public String getHemoglobin() {
-        return hemoglobin;
-    }
-
-    public void setHemoglobin(String hemoglobin) {
-        this.hemoglobin = hemoglobin == null ? null : hemoglobin.trim();
-    }
-
-    public String getLeukocyte() {
-        return leukocyte;
-    }
-
-    public void setLeukocyte(String leukocyte) {
-        this.leukocyte = leukocyte == null ? null : leukocyte.trim();
-    }
-
-    public String getPlatelet() {
-        return platelet;
-    }
-
-    public void setPlatelet(String platelet) {
-        this.platelet = platelet == null ? null : platelet.trim();
-    }
-
-    public String getBloodOther() {
-        return bloodOther;
-    }
-
-    public void setBloodOther(String bloodOther) {
-        this.bloodOther = bloodOther == null ? null : bloodOther.trim();
-    }
-
-    public String getUrineProtein() {
-        return urineProtein;
-    }
-
-    public void setUrineProtein(String urineProtein) {
-        this.urineProtein = urineProtein == null ? null : urineProtein.trim();
-    }
-
-    public String getGlycosuria() {
-        return glycosuria;
-    }
-
-    public void setGlycosuria(String glycosuria) {
-        this.glycosuria = glycosuria == null ? null : glycosuria.trim();
-    }
-
-    public String getUrineAcetoneBodies() {
-        return urineAcetoneBodies;
-    }
-
-    public void setUrineAcetoneBodies(String urineAcetoneBodies) {
-        this.urineAcetoneBodies = urineAcetoneBodies == null ? null : urineAcetoneBodies.trim();
-    }
-
-    public String getBld() {
-        return bld;
-    }
-
-    public void setBld(String bld) {
-        this.bld = bld == null ? null : bld.trim();
-    }
-
-    public String getUrineOther() {
-        return urineOther;
-    }
-
-    public void setUrineOther(String urineOther) {
-        this.urineOther = urineOther == null ? null : urineOther.trim();
-    }
-
-    public String getBloodSugar() {
-        return bloodSugar;
-    }
-
-    public void setBloodSugar(String bloodSugar) {
-        this.bloodSugar = bloodSugar == null ? null : bloodSugar.trim();
-    }
-
-    public String getBloodGroup() {
-        return bloodGroup;
-    }
-
-    public void setBloodGroup(String bloodGroup) {
-        this.bloodGroup = bloodGroup == null ? null : bloodGroup.trim();
-    }
-
-    public String getBloodRh() {
-        return bloodRh;
-    }
-
-    public void setBloodRh(String bloodRh) {
-        this.bloodRh = bloodRh == null ? null : bloodRh.trim();
-    }
-
-    public String getSgft() {
-        return sgft;
-    }
-
-    public void setSgft(String sgft) {
-        this.sgft = sgft == null ? null : sgft.trim();
-    }
-
-    public String getAst() {
-        return ast;
-    }
-
-    public void setAst(String ast) {
-        this.ast = ast == null ? null : ast.trim();
-    }
-
-    public String getAlbumin() {
-        return albumin;
-    }
-
-    public void setAlbumin(String albumin) {
-        this.albumin = albumin == null ? null : albumin.trim();
-    }
-
-    public String getTotalBilirubin() {
-        return totalBilirubin;
-    }
-
-    public void setTotalBilirubin(String totalBilirubin) {
-        this.totalBilirubin = totalBilirubin == null ? null : totalBilirubin.trim();
-    }
-
-    public String getConjugatedBilirubin() {
-        return conjugatedBilirubin;
-    }
-
-    public void setConjugatedBilirubin(String conjugatedBilirubin) {
-        this.conjugatedBilirubin = conjugatedBilirubin == null ? null : conjugatedBilirubin.trim();
-    }
-
-    public String getScr() {
-        return scr;
-    }
-
-    public void setScr(String scr) {
-        this.scr = scr == null ? null : scr.trim();
-    }
-
-    public String getBloodUrea() {
-        return bloodUrea;
-    }
-
-    public void setBloodUrea(String bloodUrea) {
-        this.bloodUrea = bloodUrea == null ? null : bloodUrea.trim();
-    }
-
-    public String getVaginalFluid() {
-        return vaginalFluid;
-    }
-
-    public void setVaginalFluid(String vaginalFluid) {
-        this.vaginalFluid = vaginalFluid == null ? null : vaginalFluid.trim();
-    }
-
-    public String getVaginalFluidOther() {
-        return vaginalFluidOther;
-    }
-
-    public void setVaginalFluidOther(String vaginalFluidOther) {
-        this.vaginalFluidOther = vaginalFluidOther == null ? null : vaginalFluidOther.trim();
-    }
-
-    public String getVaginalCleaning() {
-        return vaginalCleaning;
-    }
-
-    public void setVaginalCleaning(String vaginalCleaning) {
-        this.vaginalCleaning = vaginalCleaning == null ? null : vaginalCleaning.trim();
-    }
-
-    public String getHb() {
-        return hb;
-    }
-
-    public void setHb(String hb) {
-        this.hb = hb == null ? null : hb.trim();
-    }
-
-    public String getHbsab() {
-        return hbsab;
-    }
-
-    public void setHbsab(String hbsab) {
-        this.hbsab = hbsab == null ? null : hbsab.trim();
-    }
-
-    public String getHbeag() {
-        return hbeag;
-    }
-
-    public void setHbeag(String hbeag) {
-        this.hbeag = hbeag == null ? null : hbeag.trim();
-    }
-
-    public String getHbeab() {
-        return hbeab;
-    }
-
-    public void setHbeab(String hbeab) {
-        this.hbeab = hbeab == null ? null : hbeab.trim();
-    }
-
-    public String getHbcab() {
-        return hbcab;
-    }
-
-    public void setHbcab(String hbcab) {
-        this.hbcab = hbcab == null ? null : hbcab.trim();
-    }
-
-    public String getSyphilis() {
-        return syphilis;
-    }
-
-    public void setSyphilis(String syphilis) {
-        this.syphilis = syphilis == null ? null : syphilis.trim();
-    }
-
-    public String getHiv() {
-        return hiv;
-    }
-
-    public void setHiv(String hiv) {
-        this.hiv = hiv == null ? null : hiv.trim();
-    }
-
-    public String getbUltrasonic() {
-        return bUltrasonic;
-    }
-
-    public void setbUltrasonic(String bUltrasonic) {
-        this.bUltrasonic = bUltrasonic == null ? null : bUltrasonic.trim();
-    }
-
-    public String getOther() {
-        return other;
-    }
-
-    public void setOther(String other) {
-        this.other = other == null ? null : other.trim();
-    }
-
-    public String getGeneralAssessment() {
-        return generalAssessment;
-    }
-
-    public void setGeneralAssessment(String generalAssessment) {
-        this.generalAssessment = generalAssessment == null ? null : generalAssessment.trim();
-    }
-
-    public String getAssessmentError() {
-        return assessmentError;
-    }
-
-    public void setAssessmentError(String assessmentError) {
-        this.assessmentError = assessmentError == null ? null : assessmentError.trim();
-    }
-
-    public String getHealthGuidance() {
-        return healthGuidance;
-    }
-
-    public void setHealthGuidance(String healthGuidance) {
-        this.healthGuidance = healthGuidance == null ? null : healthGuidance.trim();
-    }
-
-    public String getHealthGuidanceOther() {
-        return healthGuidanceOther;
-    }
-
-    public void setHealthGuidanceOther(String healthGuidanceOther) {
-        this.healthGuidanceOther = healthGuidanceOther == null ? null : healthGuidanceOther.trim();
-    }
-
-    public String getTransferTreatment() {
-        return transferTreatment;
-    }
-
-    public void setTransferTreatment(String transferTreatment) {
-        this.transferTreatment = transferTreatment == null ? null : transferTreatment.trim();
-    }
-
-    public String getTransferTreatmentReason() {
-        return transferTreatmentReason;
-    }
-
-    public void setTransferTreatmentReason(String transferTreatmentReason) {
-        this.transferTreatmentReason = transferTreatmentReason == null ? null : transferTreatmentReason.trim();
-    }
-
-    public String getTransferTreatmentDepartment() {
-        return transferTreatmentDepartment;
-    }
-
-    public void setTransferTreatmentDepartment(String transferTreatmentDepartment) {
-        this.transferTreatmentDepartment = transferTreatmentDepartment == null ? null : transferTreatmentDepartment.trim();
-    }
-
-    public String getNextVisitDate() {
-        return nextVisitDate;
-    }
-
-    public void setNextVisitDate(String nextVisitDate) {
-        this.nextVisitDate = nextVisitDate == null ? null : nextVisitDate.trim();
-    }
-
-    public String getVisitDoctor() {
-        return visitDoctor;
-    }
-
-    public void setVisitDoctor(String visitDoctor) {
-        this.visitDoctor = visitDoctor == null ? null : visitDoctor.trim();
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
-    }
-
-    public String getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(String createUser) {
-        this.createUser = createUser == null ? null : createUser.trim();
-    }
-
-    public String getCreateName() {
-        return createName;
-    }
-
-    public void setCreateName(String createName) {
-        this.createName = createName == null ? null : createName.trim();
-    }
-
-    public String getCreateOrg() {
-        return createOrg;
-    }
-
-    public void setCreateOrg(String createOrg) {
-        this.createOrg = createOrg == null ? null : createOrg.trim();
-    }
-
-    public String getCreateOrgName() {
-        return createOrgName;
-    }
-
-    public void setCreateOrgName(String createOrgName) {
-        this.createOrgName = createOrgName == null ? null : createOrgName.trim();
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setUpdateUser(String updateUser) {
-        this.updateUser = updateUser == null ? null : updateUser.trim();
-    }
-
-    public String getUpdateName() {
-        return updateName;
-    }
-
-    public void setUpdateName(String updateName) {
-        this.updateName = updateName == null ? null : updateName.trim();
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Integer getUploadStatus() {
-        return uploadStatus;
-    }
-
-    public void setUploadStatus(Integer uploadStatus) {
-        this.uploadStatus = uploadStatus;
-    }
-
-    public Date getUploadTime() {
-        return uploadTime;
-    }
-
-    public void setUploadTime(Date uploadTime) {
-        this.uploadTime = uploadTime;
-    }
-
-    public String getUploadResult() {
-        return uploadResult;
-    }
-
-    public void setUploadResult(String uploadResult) {
-        this.uploadResult = uploadResult == null ? null : uploadResult.trim();
-    }
 }

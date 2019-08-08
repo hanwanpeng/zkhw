@@ -2,6 +2,7 @@ package com.zkhw.pub.entity;
 
 import java.util.Date;
 
+//居民档案信息临时表
 public class ResidentInfoTemp {
     private String id;
 

@@ -1,95 +1,63 @@
 package com.zkhw.pub.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TraumatismRecord {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+//外伤附属表
+public class TraumatismRecord implements Serializable {
+    /**
+     * 主键
+     */
     private String id;
 
+    /**
+     * 电子档案编码
+     */
     private String archiveNo;
 
+    /**
+     * 身份证号
+     */
     private String idNumber;
 
+    /**
+     * 外伤名称
+     */
     private String traumatismName;
 
+    /**
+     * 外伤时间
+     */
     private String traumatismTime;
 
+    /**
+     * 创建人
+     */
     private String createName;
 
+    /**
+     * 创建时间
+     */
     private Date createTime;
 
+    /**
+     * 修改人
+     */
     private String updateName;
 
+    /**
+     * 修改人时间
+     */
     private Date updateTime;
 
-    public String getId() {
-        return id;
-    }
+    /**
+     * traumatism_record
+     */
+    private static final long serialVersionUID = 1L;
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
-    public String getArchiveNo() {
-        return archiveNo;
-    }
-
-    public void setArchiveNo(String archiveNo) {
-        this.archiveNo = archiveNo == null ? null : archiveNo.trim();
-    }
-
-    public String getIdNumber() {
-        return idNumber;
-    }
-
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber == null ? null : idNumber.trim();
-    }
-
-    public String getTraumatismName() {
-        return traumatismName;
-    }
-
-    public void setTraumatismName(String traumatismName) {
-        this.traumatismName = traumatismName == null ? null : traumatismName.trim();
-    }
-
-    public String getTraumatismTime() {
-        return traumatismTime;
-    }
-
-    public void setTraumatismTime(String traumatismTime) {
-        this.traumatismTime = traumatismTime == null ? null : traumatismTime.trim();
-    }
-
-    public String getCreateName() {
-        return createName;
-    }
-
-    public void setCreateName(String createName) {
-        this.createName = createName == null ? null : createName.trim();
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateName() {
-        return updateName;
-    }
-
-    public void setUpdateName(String updateName) {
-        this.updateName = updateName == null ? null : updateName.trim();
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }

@@ -45,9 +45,48 @@ public class ResidentBaseInfoController {
 	@Autowired
 	private CommonUtil commonUtil;
 	
+	/**
+	 * 汇总表花名册
+	 * @param redident
+	 * @param pageData
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/allForExcel", method = RequestMethod.GET)
+	public void allForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentBaseInfoQuery redident){
+		try {
+			residentBaseInfoService.allForExcel(redident);
+			result.setCode("0");
+			result.setMsg("成功，已导出到桌面");
+		}catch (Exception e) {
+			result.setCode("1");
+			result.setMsg("失败");
+		}
+		JsonWebPrintUtils.printApiResult(req, resp, result);
+	}
 	
 	/**
-	 * 老年人花名册
+	 * 26-64岁花名册
+	 * @param redident
+	 * @param pageData
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/minElderlyForExcel", method = RequestMethod.GET)
+	public void minElderlyForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentBaseInfoQuery redident){
+		try {
+			residentBaseInfoService.minElderlyForExcel(redident);
+			result.setCode("0");
+			result.setMsg("成功，已导出到桌面");
+		}catch (Exception e) {
+			result.setCode("1");
+			result.setMsg("失败");
+		}
+		JsonWebPrintUtils.printApiResult(req, resp, result);
+	}
+	
+	/**
+	 * 65岁老年人花名册
 	 * @param redident
 	 * @param pageData
 	 * @return

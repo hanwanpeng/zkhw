@@ -1,325 +1,178 @@
 package com.zkhw.pub.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class VaccinationRecord {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+//疫苗接种附属表
+public class VaccinationRecord implements Serializable {
+    /**
+     * 主键
+     */
     private String id;
 
+    /**
+     * 
+     */
     private String examId;
 
+    /**
+     * 电子档案唯一编码
+     */
     private String archiveNo;
 
+    /**
+     * 身份证号
+     */
     private String idNumber;
 
+    /**
+     * 服务项目
+     */
     private String serviceName;
 
+    /**
+     * 个案编码
+     */
     private String cardId;
 
+    /**
+     * 接种类别 Ⅰ类 Ⅱ类 强化 应急
+     */
     private String vaccinationType;
 
+    /**
+     * 疫苗编码
+     */
     private String vaccinationId;
 
+    /**
+     * 接种名称
+     */
     private String vaccinationName;
 
+    /**
+     * 疫苗编码
+     */
     private String acuscount;
 
+    /**
+     * 剂量
+     */
     private String dose;
 
+    /**
+     * 剂次描述
+     */
     private String descnption;
 
+    /**
+     * 接种状态,未接种 已接种
+     */
     private String inocuState;
 
+    /**
+     * 应接种日期
+     */
     private String sinocuDate;
 
+    /**
+     * 接种日期
+     */
     private String vaccinationTime;
 
+    /**
+     * 接种医生
+     */
     private String inocuDoctor;
 
+    /**
+     * 登记人
+     */
     private String registerPerson;
 
+    /**
+     * 电子监管码
+     */
     private String dzjgm;
 
+    /**
+     * 疫苗批号
+     */
     private String batchNumber;
 
+    /**
+     * 接种县国标
+     */
     private String county;
 
+    /**
+     * 接种部位
+     */
     private String inoculationSite;
 
+    /**
+     * 接种途径 
+     */
     private String inoculationWay;
 
+    /**
+     * 接种机构
+     */
     private String vaccinationOrgan;
 
+    /**
+     * 接种机构名称
+     */
     private String vaccinationOrganName;
-    
+
+    /**
+     * 备注
+     */
     private String remark;
-    
+
+    /**
+     * 有效日期
+     */
     private String validdate;
-    
+
+    /**
+     * 生产企业名称
+     */
     private String manufacturer;
-    
+
+    /**
+     * 生产企业编码
+     */
     private String manufactCode;
 
+    /**
+     * 创建人
+     */
     private String createName;
 
+    /**
+     * 创建时间
+     */
     private Date createTime;
 
+    /**
+     * 修改人
+     */
     private String updateName;
 
+    /**
+     * 修改时间
+     */
     private Date updateTime;
 
-    public String getId() {
-        return id;
-    }
+    /**
+     * vaccination_record
+     */
+    private static final long serialVersionUID = 1L;
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
-    public String getExamId() {
-        return examId;
-    }
-
-    public void setExamId(String examId) {
-        this.examId = examId == null ? null : examId.trim();
-    }
-
-    public String getArchiveNo() {
-        return archiveNo;
-    }
-
-    public void setArchiveNo(String archiveNo) {
-        this.archiveNo = archiveNo == null ? null : archiveNo.trim();
-    }
-
-    public String getIdNumber() {
-        return idNumber;
-    }
-
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber == null ? null : idNumber.trim();
-    }
-
-    public String getServiceName() {
-        return serviceName;
-    }
-
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName == null ? null : serviceName.trim();
-    }
-
-    public String getCardId() {
-        return cardId;
-    }
-
-    public void setCardId(String cardId) {
-        this.cardId = cardId == null ? null : cardId.trim();
-    }
-
-    public String getVaccinationType() {
-        return vaccinationType;
-    }
-
-    public void setVaccinationType(String vaccinationType) {
-        this.vaccinationType = vaccinationType == null ? null : vaccinationType.trim();
-    }
-
-    public String getVaccinationId() {
-        return vaccinationId;
-    }
-
-    public void setVaccinationId(String vaccinationId) {
-        this.vaccinationId = vaccinationId == null ? null : vaccinationId.trim();
-    }
-
-    public String getVaccinationName() {
-        return vaccinationName;
-    }
-
-    public void setVaccinationName(String vaccinationName) {
-        this.vaccinationName = vaccinationName == null ? null : vaccinationName.trim();
-    }
-
-    public String getAcuscount() {
-        return acuscount;
-    }
-
-    public void setAcuscount(String acuscount) {
-        this.acuscount = acuscount == null ? null : acuscount.trim();
-    }
-
-    public String getDose() {
-        return dose;
-    }
-
-    public void setDose(String dose) {
-        this.dose = dose == null ? null : dose.trim();
-    }
-
-    public String getDescnption() {
-        return descnption;
-    }
-
-    public void setDescnption(String descnption) {
-        this.descnption = descnption == null ? null : descnption.trim();
-    }
-
-    public String getInocuState() {
-        return inocuState;
-    }
-
-    public void setInocuState(String inocuState) {
-        this.inocuState = inocuState == null ? null : inocuState.trim();
-    }
-
-    public String getSinocuDate() {
-        return sinocuDate;
-    }
-
-    public void setSinocuDate(String sinocuDate) {
-        this.sinocuDate = sinocuDate == null ? null : sinocuDate.trim();
-    }
-
-    public String getVaccinationTime() {
-        return vaccinationTime;
-    }
-
-    public void setVaccinationTime(String vaccinationTime) {
-        this.vaccinationTime = vaccinationTime == null ? null : vaccinationTime.trim();
-    }
-
-    public String getInocuDoctor() {
-        return inocuDoctor;
-    }
-
-    public void setInocuDoctor(String inocuDoctor) {
-        this.inocuDoctor = inocuDoctor == null ? null : inocuDoctor.trim();
-    }
-
-    public String getRegisterPerson() {
-        return registerPerson;
-    }
-
-    public void setRegisterPerson(String registerPerson) {
-        this.registerPerson = registerPerson == null ? null : registerPerson.trim();
-    }
-
-    public String getDzjgm() {
-        return dzjgm;
-    }
-
-    public void setDzjgm(String dzjgm) {
-        this.dzjgm = dzjgm == null ? null : dzjgm.trim();
-    }
-
-    public String getBatchNumber() {
-        return batchNumber;
-    }
-
-    public void setBatchNumber(String batchNumber) {
-        this.batchNumber = batchNumber == null ? null : batchNumber.trim();
-    }
-
-    public String getCounty() {
-        return county;
-    }
-
-    public void setCounty(String county) {
-        this.county = county == null ? null : county.trim();
-    }
-
-    public String getInoculationSite() {
-        return inoculationSite;
-    }
-
-    public void setInoculationSite(String inoculationSite) {
-        this.inoculationSite = inoculationSite == null ? null : inoculationSite.trim();
-    }
-
-    public String getInoculationWay() {
-        return inoculationWay;
-    }
-
-    public void setInoculationWay(String inoculationWay) {
-        this.inoculationWay = inoculationWay == null ? null : inoculationWay.trim();
-    }
-
-    public String getVaccinationOrgan() {
-        return vaccinationOrgan;
-    }
-
-    public String getRemark() {
-		return remark;
-	}
-
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-
-	public String getValiddate() {
-		return validdate;
-	}
-
-	public void setValiddate(String validdate) {
-		this.validdate = validdate;
-	}
-
-	public String getManufacturer() {
-		return manufacturer;
-	}
-
-	public void setManufacturer(String manufacturer) {
-		this.manufacturer = manufacturer;
-	}
-
-	public String getManufactCode() {
-		return manufactCode;
-	}
-
-	public void setManufactCode(String manufactCode) {
-		this.manufactCode = manufactCode;
-	}
-
-	public void setVaccinationOrgan(String vaccinationOrgan) {
-        this.vaccinationOrgan = vaccinationOrgan == null ? null : vaccinationOrgan.trim();
-    }
-
-    public String getVaccinationOrganName() {
-        return vaccinationOrganName;
-    }
-
-    public void setVaccinationOrganName(String vaccinationOrganName) {
-        this.vaccinationOrganName = vaccinationOrganName == null ? null : vaccinationOrganName.trim();
-    }
-
-    public String getCreateName() {
-        return createName;
-    }
-
-    public void setCreateName(String createName) {
-        this.createName = createName == null ? null : createName.trim();
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateName() {
-        return updateName;
-    }
-
-    public void setUpdateName(String updateName) {
-        this.updateName = updateName == null ? null : updateName.trim();
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }

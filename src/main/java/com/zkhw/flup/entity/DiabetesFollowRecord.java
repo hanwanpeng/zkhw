@@ -1,575 +1,303 @@
 package com.zkhw.flup.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class DiabetesFollowRecord {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+//糖尿病随访
+public class DiabetesFollowRecord implements Serializable {
+    /**
+     * 
+     */
     private String id;
 
+    /**
+     * 姓名
+     */
     private String name;
 
+    /**
+     * 电子档案编码
+     */
     private String archiveNo;
 
+    /**
+     * 身份证号
+     */
     private String idNumber;
 
+    /**
+     * 访问日期
+     */
     private String visitDate;
 
+    /**
+     * 访问类型
+     */
     private String visitType;
 
+    /**
+     * 症状
+     */
     private String symptom;
 
+    /**
+     * 症状其他
+     */
     private String symptomOther;
 
+    /**
+     * 血压高压
+     */
     private Integer bloodPressureHigh;
 
+    /**
+     * 血压低压
+     */
     private Integer bloodPressureLow;
 
+    /**
+     * 目前体重
+     */
     private String weightNow;
 
+    /**
+     * 下次体重
+     */
     private String weightNext;
 
+    /**
+     * 
+     */
     private String height;
 
+    /**
+     * 目前体质指数
+     */
     private String bmiNow;
 
+    /**
+     * 下次体质指数
+     */
     private String bmiNext;
 
+    /**
+     * 足背动脉搏动
+     */
     private String dorsalArtery;
 
+    /**
+     * 搏动位置(1：双侧 2：左侧 3：右侧）
+     */
     private String pulsationPosition;
 
+    /**
+     * 
+     */
     private String other;
 
+    /**
+     * 现在每天吸烟量
+     */
     private Integer smokeNow;
 
+    /**
+     * 下次随访每天吸烟目标
+     */
     private Integer smokeNext;
 
+    /**
+     * 现在每天饮酒量
+     */
     private Integer drinkNow;
 
+    /**
+     * 下次随访每天饮酒目标量
+     */
     private Integer drinkNext;
 
+    /**
+     * 目前每周运动次数
+     */
     private Integer sportsNumNow;
 
+    /**
+     * 目前每次运动时长
+     */
     private Integer sportsTimeNow;
 
+    /**
+     * 下次每周运动次数目标
+     */
     private Integer sportsNumNext;
 
+    /**
+     * 下次每次运动时长目标
+     */
     private Integer sportsTimeNext;
 
+    /**
+     * 目前每天主食量
+     */
     private String stapleFoodNow;
 
+    /**
+     * 下次每天主食目标
+     */
     private String stapleFoodNext;
 
+    /**
+     * 心理调整
+     */
     private String psychologicalRecovery;
 
+    /**
+     * 遵医行为
+     */
     private String medicalCompliance;
 
+    /**
+     * 空腹血糖值
+     */
     private String bloodGlucose;
 
+    /**
+     * 糖化血红蛋白
+     */
     private String glycosylatedHemoglobin;
 
+    /**
+     * 检查日期
+     */
     private String checkDate;
 
+    /**
+     * 服药依从性
+     */
     private String compliance;
 
+    /**
+     * 药物不良反应
+     */
     private String untowardEffect;
 
+    /**
+     * 药物不良反应描述
+     */
     private String untowardEffectDrug;
 
+    /**
+     * 低血糖反应
+     */
     private String reactiveHypoglycemia;
 
+    /**
+     * 此次随访分类
+     */
     private String followType;
 
+    /**
+     * 胰岛素名称
+     */
     private String insulinName;
 
+    /**
+     * 胰岛素用法用量
+     */
     private String insulinUsage;
 
+    /**
+     * 是否转诊
+     */
     private String transferTreatment;
 
+    /**
+     * 转诊原因
+     */
     private String transferTreatmentReason;
 
+    /**
+     * 转诊机构和科别
+     */
     private String transferTreatmentDepartment;
 
+    /**
+     * 
+     */
     private String nextVisitDate;
 
+    /**
+     * 
+     */
     private String visitDoctor;
 
+    /**
+     * 
+     */
     private String advice;
 
+    /**
+     * 
+     */
     private String createUser;
 
+    /**
+     * 
+     */
     private String createName;
 
+    /**
+     * 
+     */
     private String createOrg;
 
+    /**
+     * 
+     */
     private String createOrgName;
 
+    /**
+     * 
+     */
     private Date createTime;
 
+    /**
+     * 
+     */
     private String updateUser;
 
+    /**
+     * 
+     */
     private String updateName;
 
+    /**
+     * 
+     */
     private Date updateTime;
 
+    /**
+     * 
+     */
     private Integer uploadStatus;
 
+    /**
+     * 
+     */
     private Date uploadTime;
 
+    /**
+     * 
+     */
     private String uploadResult;
 
-    public String getId() {
-        return id;
-    }
+    /**
+     * diabetes_follow_record
+     */
+    private static final long serialVersionUID = 1L;
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getArchiveNo() {
-        return archiveNo;
-    }
-
-    public void setArchiveNo(String archiveNo) {
-        this.archiveNo = archiveNo == null ? null : archiveNo.trim();
-    }
-
-    public String getIdNumber() {
-        return idNumber;
-    }
-
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber == null ? null : idNumber.trim();
-    }
-
-    public String getVisitDate() {
-        return visitDate;
-    }
-
-    public void setVisitDate(String visitDate) {
-        this.visitDate = visitDate == null ? null : visitDate.trim();
-    }
-
-    public String getVisitType() {
-        return visitType;
-    }
-
-    public void setVisitType(String visitType) {
-        this.visitType = visitType == null ? null : visitType.trim();
-    }
-
-    public String getSymptom() {
-        return symptom;
-    }
-
-    public void setSymptom(String symptom) {
-        this.symptom = symptom == null ? null : symptom.trim();
-    }
-
-    public String getSymptomOther() {
-        return symptomOther;
-    }
-
-    public void setSymptomOther(String symptomOther) {
-        this.symptomOther = symptomOther == null ? null : symptomOther.trim();
-    }
-
-    public Integer getBloodPressureHigh() {
-        return bloodPressureHigh;
-    }
-
-    public void setBloodPressureHigh(Integer bloodPressureHigh) {
-        this.bloodPressureHigh = bloodPressureHigh;
-    }
-
-    public Integer getBloodPressureLow() {
-        return bloodPressureLow;
-    }
-
-    public void setBloodPressureLow(Integer bloodPressureLow) {
-        this.bloodPressureLow = bloodPressureLow;
-    }
-
-    public String getWeightNow() {
-        return weightNow;
-    }
-
-    public void setWeightNow(String weightNow) {
-        this.weightNow = weightNow == null ? null : weightNow.trim();
-    }
-
-    public String getWeightNext() {
-        return weightNext;
-    }
-
-    public void setWeightNext(String weightNext) {
-        this.weightNext = weightNext == null ? null : weightNext.trim();
-    }
-
-    public String getHeight() {
-        return height;
-    }
-
-    public void setHeight(String height) {
-        this.height = height == null ? null : height.trim();
-    }
-
-    public String getBmiNow() {
-        return bmiNow;
-    }
-
-    public void setBmiNow(String bmiNow) {
-        this.bmiNow = bmiNow == null ? null : bmiNow.trim();
-    }
-
-    public String getBmiNext() {
-        return bmiNext;
-    }
-
-    public void setBmiNext(String bmiNext) {
-        this.bmiNext = bmiNext == null ? null : bmiNext.trim();
-    }
-
-    public String getDorsalArtery() {
-        return dorsalArtery;
-    }
-
-    public void setDorsalArtery(String dorsalArtery) {
-        this.dorsalArtery = dorsalArtery == null ? null : dorsalArtery.trim();
-    }
-
-    public String getPulsationPosition() {
-        return pulsationPosition;
-    }
-
-    public void setPulsationPosition(String pulsationPosition) {
-        this.pulsationPosition = pulsationPosition == null ? null : pulsationPosition.trim();
-    }
-
-    public String getOther() {
-        return other;
-    }
-
-    public void setOther(String other) {
-        this.other = other == null ? null : other.trim();
-    }
-
-    public Integer getSmokeNow() {
-        return smokeNow;
-    }
-
-    public void setSmokeNow(Integer smokeNow) {
-        this.smokeNow = smokeNow;
-    }
-
-    public Integer getSmokeNext() {
-        return smokeNext;
-    }
-
-    public void setSmokeNext(Integer smokeNext) {
-        this.smokeNext = smokeNext;
-    }
-
-    public Integer getDrinkNow() {
-        return drinkNow;
-    }
-
-    public void setDrinkNow(Integer drinkNow) {
-        this.drinkNow = drinkNow;
-    }
-
-    public Integer getDrinkNext() {
-        return drinkNext;
-    }
-
-    public void setDrinkNext(Integer drinkNext) {
-        this.drinkNext = drinkNext;
-    }
-
-    public Integer getSportsNumNow() {
-        return sportsNumNow;
-    }
-
-    public void setSportsNumNow(Integer sportsNumNow) {
-        this.sportsNumNow = sportsNumNow;
-    }
-
-    public Integer getSportsTimeNow() {
-        return sportsTimeNow;
-    }
-
-    public void setSportsTimeNow(Integer sportsTimeNow) {
-        this.sportsTimeNow = sportsTimeNow;
-    }
-
-    public Integer getSportsNumNext() {
-        return sportsNumNext;
-    }
-
-    public void setSportsNumNext(Integer sportsNumNext) {
-        this.sportsNumNext = sportsNumNext;
-    }
-
-    public Integer getSportsTimeNext() {
-        return sportsTimeNext;
-    }
-
-    public void setSportsTimeNext(Integer sportsTimeNext) {
-        this.sportsTimeNext = sportsTimeNext;
-    }
-
-    public String getStapleFoodNow() {
-        return stapleFoodNow;
-    }
-
-    public void setStapleFoodNow(String stapleFoodNow) {
-        this.stapleFoodNow = stapleFoodNow == null ? null : stapleFoodNow.trim();
-    }
-
-    public String getStapleFoodNext() {
-        return stapleFoodNext;
-    }
-
-    public void setStapleFoodNext(String stapleFoodNext) {
-        this.stapleFoodNext = stapleFoodNext == null ? null : stapleFoodNext.trim();
-    }
-
-    public String getPsychologicalRecovery() {
-        return psychologicalRecovery;
-    }
-
-    public void setPsychologicalRecovery(String psychologicalRecovery) {
-        this.psychologicalRecovery = psychologicalRecovery == null ? null : psychologicalRecovery.trim();
-    }
-
-    public String getMedicalCompliance() {
-        return medicalCompliance;
-    }
-
-    public void setMedicalCompliance(String medicalCompliance) {
-        this.medicalCompliance = medicalCompliance == null ? null : medicalCompliance.trim();
-    }
-
-    public String getBloodGlucose() {
-        return bloodGlucose;
-    }
-
-    public void setBloodGlucose(String bloodGlucose) {
-        this.bloodGlucose = bloodGlucose == null ? null : bloodGlucose.trim();
-    }
-
-    public String getGlycosylatedHemoglobin() {
-        return glycosylatedHemoglobin;
-    }
-
-    public void setGlycosylatedHemoglobin(String glycosylatedHemoglobin) {
-        this.glycosylatedHemoglobin = glycosylatedHemoglobin == null ? null : glycosylatedHemoglobin.trim();
-    }
-
-    public String getCheckDate() {
-        return checkDate;
-    }
-
-    public void setCheckDate(String checkDate) {
-        this.checkDate = checkDate == null ? null : checkDate.trim();
-    }
-
-    public String getCompliance() {
-        return compliance;
-    }
-
-    public void setCompliance(String compliance) {
-        this.compliance = compliance == null ? null : compliance.trim();
-    }
-
-    public String getUntowardEffect() {
-        return untowardEffect;
-    }
-
-    public void setUntowardEffect(String untowardEffect) {
-        this.untowardEffect = untowardEffect == null ? null : untowardEffect.trim();
-    }
-
-    public String getUntowardEffectDrug() {
-        return untowardEffectDrug;
-    }
-
-    public void setUntowardEffectDrug(String untowardEffectDrug) {
-        this.untowardEffectDrug = untowardEffectDrug == null ? null : untowardEffectDrug.trim();
-    }
-
-    public String getReactiveHypoglycemia() {
-        return reactiveHypoglycemia;
-    }
-
-    public void setReactiveHypoglycemia(String reactiveHypoglycemia) {
-        this.reactiveHypoglycemia = reactiveHypoglycemia == null ? null : reactiveHypoglycemia.trim();
-    }
-
-    public String getFollowType() {
-        return followType;
-    }
-
-    public void setFollowType(String followType) {
-        this.followType = followType == null ? null : followType.trim();
-    }
-
-    public String getInsulinName() {
-        return insulinName;
-    }
-
-    public void setInsulinName(String insulinName) {
-        this.insulinName = insulinName == null ? null : insulinName.trim();
-    }
-
-    public String getInsulinUsage() {
-        return insulinUsage;
-    }
-
-    public void setInsulinUsage(String insulinUsage) {
-        this.insulinUsage = insulinUsage == null ? null : insulinUsage.trim();
-    }
-
-    public String getTransferTreatment() {
-        return transferTreatment;
-    }
-
-    public void setTransferTreatment(String transferTreatment) {
-        this.transferTreatment = transferTreatment == null ? null : transferTreatment.trim();
-    }
-
-    public String getTransferTreatmentReason() {
-        return transferTreatmentReason;
-    }
-
-    public void setTransferTreatmentReason(String transferTreatmentReason) {
-        this.transferTreatmentReason = transferTreatmentReason == null ? null : transferTreatmentReason.trim();
-    }
-
-    public String getTransferTreatmentDepartment() {
-        return transferTreatmentDepartment;
-    }
-
-    public void setTransferTreatmentDepartment(String transferTreatmentDepartment) {
-        this.transferTreatmentDepartment = transferTreatmentDepartment == null ? null : transferTreatmentDepartment.trim();
-    }
-
-    public String getNextVisitDate() {
-        return nextVisitDate;
-    }
-
-    public void setNextVisitDate(String nextVisitDate) {
-        this.nextVisitDate = nextVisitDate == null ? null : nextVisitDate.trim();
-    }
-
-    public String getVisitDoctor() {
-        return visitDoctor;
-    }
-
-    public void setVisitDoctor(String visitDoctor) {
-        this.visitDoctor = visitDoctor == null ? null : visitDoctor.trim();
-    }
-
-    public String getAdvice() {
-        return advice;
-    }
-
-    public void setAdvice(String advice) {
-        this.advice = advice == null ? null : advice.trim();
-    }
-
-    public String getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(String createUser) {
-        this.createUser = createUser == null ? null : createUser.trim();
-    }
-
-    public String getCreateName() {
-        return createName;
-    }
-
-    public void setCreateName(String createName) {
-        this.createName = createName == null ? null : createName.trim();
-    }
-
-    public String getCreateOrg() {
-        return createOrg;
-    }
-
-    public void setCreateOrg(String createOrg) {
-        this.createOrg = createOrg == null ? null : createOrg.trim();
-    }
-
-    public String getCreateOrgName() {
-        return createOrgName;
-    }
-
-    public void setCreateOrgName(String createOrgName) {
-        this.createOrgName = createOrgName == null ? null : createOrgName.trim();
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setUpdateUser(String updateUser) {
-        this.updateUser = updateUser == null ? null : updateUser.trim();
-    }
-
-    public String getUpdateName() {
-        return updateName;
-    }
-
-    public void setUpdateName(String updateName) {
-        this.updateName = updateName == null ? null : updateName.trim();
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Integer getUploadStatus() {
-        return uploadStatus;
-    }
-
-    public void setUploadStatus(Integer uploadStatus) {
-        this.uploadStatus = uploadStatus;
-    }
-
-    public Date getUploadTime() {
-        return uploadTime;
-    }
-
-    public void setUploadTime(Date uploadTime) {
-        this.uploadTime = uploadTime;
-    }
-
-    public String getUploadResult() {
-        return uploadResult;
-    }
-
-    public void setUploadResult(String uploadResult) {
-        this.uploadResult = uploadResult == null ? null : uploadResult.trim();
-    }
 }

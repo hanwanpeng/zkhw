@@ -1,5 +1,8 @@
 package com.zkhw.flup.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +14,8 @@ import com.zkhw.common.vo.PageInfos;
 import com.zkhw.flup.entity.ChildrenHealthRecord;
 import com.zkhw.flup.entity.NeonatusInfo;
 import com.zkhw.flup.service.ChildrenService;
+import com.zkhw.framework.utils.JsonWebPrintUtils;
+import com.zkhw.pub.query.ResidentBaseInfoQuery;
 
 @Controller
 @RequestMapping("/pub/children")
@@ -18,6 +23,27 @@ public class ChildrenController {
 	
 	@Autowired
 	private ChildrenService childrenService;
+	
+	/**
+	 * 0-6岁儿童花名册
+	 * @param redident
+	 * @param pageData
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/childrenForExcel", method = RequestMethod.GET)
+	public void minElderlyForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,NeonatusInfo neonatus){
+		try {
+			childrenService.childrenForExcel(neonatus);
+			result.setCode("0");
+			result.setMsg("成功，已导出到桌面");
+		}catch (Exception e) {
+			result.setCode("1");
+			result.setMsg("失败");
+		}
+		JsonWebPrintUtils.printApiResult(req, resp, result);
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "/list", method = RequestMethod.GET)

@@ -2,6 +2,9 @@ package com.zkhw.flup.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +19,8 @@ import com.zkhw.flup.entity.GravidaFollowRecord;
 import com.zkhw.flup.entity.GravidaInfo;
 import com.zkhw.flup.query.GravidaInfoQuery;
 import com.zkhw.flup.service.GravidaService;
+import com.zkhw.framework.utils.JsonWebPrintUtils;
+import com.zkhw.pub.query.ResidentBaseInfoQuery;
 
 @Controller
 @RequestMapping("/pub/gravida")
@@ -24,6 +29,25 @@ public class GravidaController {
 	@Autowired
 	private GravidaService gravidaService;
 	
+	/**
+	 * 孕产妇花名册
+	 * @param redident
+	 * @param pageData
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/gravidaForExcel", method = RequestMethod.GET)
+	public void minElderlyForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,GravidaInfoQuery gravida){
+		try {
+			gravidaService.gravidaForExcel(gravida);
+			result.setCode("0");
+			result.setMsg("成功，已导出到桌面");
+		}catch (Exception e) {
+			result.setCode("1");
+			result.setMsg("失败");
+		}
+		JsonWebPrintUtils.printApiResult(req, resp, result);
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/list", method = RequestMethod.GET)

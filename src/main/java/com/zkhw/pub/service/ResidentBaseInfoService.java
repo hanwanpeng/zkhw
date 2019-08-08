@@ -35,6 +35,10 @@ public interface ResidentBaseInfoService {
 	void residentBaseInfoForExcel(ResidentBaseInfoQuery redident);
 
 	void elderlyForExcel(ResidentBaseInfoQuery redident);
+
+	void minElderlyForExcel(ResidentBaseInfoQuery redident);
+
+	void allForExcel(ResidentBaseInfoQuery redident);
 	
 }
  

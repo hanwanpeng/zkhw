@@ -1,575 +1,303 @@
 package com.zkhw.flup.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PsychosisFollowRecord {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+//精神障碍者随访记录表
+public class PsychosisFollowRecord implements Serializable {
+    /**
+     * 
+     */
     private String id;
 
+    /**
+     * 姓名
+     */
     private String name;
 
+    /**
+     * 电子档案编码
+     */
     private String archiveNo;
 
+    /**
+     * 身份证号
+     */
     private String idNumber;
 
+    /**
+     * 访问日期
+     */
     private String visitDate;
 
+    /**
+     * 访问类型
+     */
     private String visitType;
 
+    /**
+     * 失访原因
+     */
     private String missReason;
 
+    /**
+     * 失访原因其他
+     */
     private String missReasonOther;
 
+    /**
+     * 死亡日期
+     */
     private String dieDate;
 
+    /**
+     * 死亡原因
+     */
     private String dieReason;
 
+    /**
+     * 躯体疾病
+     */
     private String physicalDisease;
 
+    /**
+     * 死亡原因其他
+     */
     private String dieReasonOther;
 
+    /**
+     * 危险性评估
+     */
     private String fatalness;
 
+    /**
+     * 症状
+     */
     private String symptom;
 
+    /**
+     * 症状其他
+     */
     private String symptomOther;
 
+    /**
+     * 自知力
+     */
     private String insight;
 
+    /**
+     * 睡眠状况
+     */
     private String sleepStatus;
 
+    /**
+     * 饮食状况
+     */
     private String dietaryStatus;
 
+    /**
+     * 个人生活自理
+     */
     private String selfHelp;
 
+    /**
+     * 家务劳动
+     */
     private String housework;
 
+    /**
+     * 生产劳动及工作
+     */
     private String work;
 
+    /**
+     * 学习能力
+     */
     private String learningAbility;
 
+    /**
+     * 社会人际交往
+     */
     private String interpersonal;
 
+    /**
+     * 危险行为
+     */
     private String dangerousAct;
 
+    /**
+     * 轻度滋事次数
+     */
     private Integer slightTroubleNum;
 
+    /**
+     * 肇事次数
+     */
     private Integer causeTroubleNum;
 
+    /**
+     * 肇祸次数
+     */
     private Integer causeAccidentNum;
 
+    /**
+     * 其他危害行为次数
+     */
     private Integer harmOtherNum;
 
+    /**
+     * 自伤次数
+     */
     private Integer autolesionNum;
 
+    /**
+     * 自杀未遂次数
+     */
     private Integer attemptedSuicideNum;
 
+    /**
+     * 两次随访期间关锁情况
+     */
     private String isolation;
 
+    /**
+     * 两次随访期间住院情况
+     */
     private String hospitalizedStatus;
 
+    /**
+     * 末次出院日期
+     */
     private String outHospitalDate;
 
+    /**
+     * 实验室检查
+     */
     private String laboratoryExamination;
 
+    /**
+     * 用药依从性
+     */
     private String compliance;
 
+    /**
+     * 用药不良反应
+     */
     private String untowardEffect;
 
+    /**
+     * 不良反应信息
+     */
     private String untowardEffectInfo;
 
+    /**
+     * 治疗效果
+     */
     private String treatmentEffect;
 
+    /**
+     * 是否转诊
+     */
     private String transferTreatment;
 
+    /**
+     * 转诊原因
+     */
     private String transferTreatmentReason;
 
+    /**
+     * 转诊机构和科别
+     */
     private String transferTreatmentDepartment;
 
+    /**
+     * 康复措施
+     */
     private String rehabilitationMeasure;
 
+    /**
+     * 康复措施其他
+     */
     private String rehabilitationMeasureOther;
 
+    /**
+     * 下次随访分类
+     */
     private String nextVisitClassify;
 
+    /**
+     * 下次随访日期
+     */
     private String nextVisitDate;
 
+    /**
+     * 
+     */
     private String visitDoctor;
 
+    /**
+     * 
+     */
     private String createUser;
 
+    /**
+     * 
+     */
     private String createName;
 
+    /**
+     * 
+     */
     private String createOrg;
 
+    /**
+     * 
+     */
     private String createOrgName;
 
+    /**
+     * 
+     */
     private Date createTime;
 
+    /**
+     * 
+     */
     private String updateUser;
 
+    /**
+     * 
+     */
     private String updateName;
 
+    /**
+     * 
+     */
     private Date updateTime;
 
+    /**
+     * 
+     */
     private Integer uploadStatus;
 
+    /**
+     * 
+     */
     private Date uploadTime;
 
+    /**
+     * 
+     */
     private String uploadResult;
 
-    public String getId() {
-        return id;
-    }
+    /**
+     * psychosis_follow_record
+     */
+    private static final long serialVersionUID = 1L;
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getArchiveNo() {
-        return archiveNo;
-    }
-
-    public void setArchiveNo(String archiveNo) {
-        this.archiveNo = archiveNo == null ? null : archiveNo.trim();
-    }
-
-    public String getIdNumber() {
-        return idNumber;
-    }
-
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber == null ? null : idNumber.trim();
-    }
-
-    public String getVisitDate() {
-        return visitDate;
-    }
-
-    public void setVisitDate(String visitDate) {
-        this.visitDate = visitDate == null ? null : visitDate.trim();
-    }
-
-    public String getVisitType() {
-        return visitType;
-    }
-
-    public void setVisitType(String visitType) {
-        this.visitType = visitType == null ? null : visitType.trim();
-    }
-
-    public String getMissReason() {
-        return missReason;
-    }
-
-    public void setMissReason(String missReason) {
-        this.missReason = missReason == null ? null : missReason.trim();
-    }
-
-    public String getMissReasonOther() {
-        return missReasonOther;
-    }
-
-    public void setMissReasonOther(String missReasonOther) {
-        this.missReasonOther = missReasonOther == null ? null : missReasonOther.trim();
-    }
-
-    public String getDieDate() {
-        return dieDate;
-    }
-
-    public void setDieDate(String dieDate) {
-        this.dieDate = dieDate == null ? null : dieDate.trim();
-    }
-
-    public String getDieReason() {
-        return dieReason;
-    }
-
-    public void setDieReason(String dieReason) {
-        this.dieReason = dieReason == null ? null : dieReason.trim();
-    }
-
-    public String getPhysicalDisease() {
-        return physicalDisease;
-    }
-
-    public void setPhysicalDisease(String physicalDisease) {
-        this.physicalDisease = physicalDisease == null ? null : physicalDisease.trim();
-    }
-
-    public String getDieReasonOther() {
-        return dieReasonOther;
-    }
-
-    public void setDieReasonOther(String dieReasonOther) {
-        this.dieReasonOther = dieReasonOther == null ? null : dieReasonOther.trim();
-    }
-
-    public String getFatalness() {
-        return fatalness;
-    }
-
-    public void setFatalness(String fatalness) {
-        this.fatalness = fatalness == null ? null : fatalness.trim();
-    }
-
-    public String getSymptom() {
-        return symptom;
-    }
-
-    public void setSymptom(String symptom) {
-        this.symptom = symptom == null ? null : symptom.trim();
-    }
-
-    public String getSymptomOther() {
-        return symptomOther;
-    }
-
-    public void setSymptomOther(String symptomOther) {
-        this.symptomOther = symptomOther == null ? null : symptomOther.trim();
-    }
-
-    public String getInsight() {
-        return insight;
-    }
-
-    public void setInsight(String insight) {
-        this.insight = insight == null ? null : insight.trim();
-    }
-
-    public String getSleepStatus() {
-        return sleepStatus;
-    }
-
-    public void setSleepStatus(String sleepStatus) {
-        this.sleepStatus = sleepStatus == null ? null : sleepStatus.trim();
-    }
-
-    public String getDietaryStatus() {
-        return dietaryStatus;
-    }
-
-    public void setDietaryStatus(String dietaryStatus) {
-        this.dietaryStatus = dietaryStatus == null ? null : dietaryStatus.trim();
-    }
-
-    public String getSelfHelp() {
-        return selfHelp;
-    }
-
-    public void setSelfHelp(String selfHelp) {
-        this.selfHelp = selfHelp == null ? null : selfHelp.trim();
-    }
-
-    public String getHousework() {
-        return housework;
-    }
-
-    public void setHousework(String housework) {
-        this.housework = housework == null ? null : housework.trim();
-    }
-
-    public String getWork() {
-        return work;
-    }
-
-    public void setWork(String work) {
-        this.work = work == null ? null : work.trim();
-    }
-
-    public String getLearningAbility() {
-        return learningAbility;
-    }
-
-    public void setLearningAbility(String learningAbility) {
-        this.learningAbility = learningAbility == null ? null : learningAbility.trim();
-    }
-
-    public String getInterpersonal() {
-        return interpersonal;
-    }
-
-    public void setInterpersonal(String interpersonal) {
-        this.interpersonal = interpersonal == null ? null : interpersonal.trim();
-    }
-
-    public String getDangerousAct() {
-        return dangerousAct;
-    }
-
-    public void setDangerousAct(String dangerousAct) {
-        this.dangerousAct = dangerousAct == null ? null : dangerousAct.trim();
-    }
-
-    public Integer getSlightTroubleNum() {
-        return slightTroubleNum;
-    }
-
-    public void setSlightTroubleNum(Integer slightTroubleNum) {
-        this.slightTroubleNum = slightTroubleNum;
-    }
-
-    public Integer getCauseTroubleNum() {
-        return causeTroubleNum;
-    }
-
-    public void setCauseTroubleNum(Integer causeTroubleNum) {
-        this.causeTroubleNum = causeTroubleNum;
-    }
-
-    public Integer getCauseAccidentNum() {
-        return causeAccidentNum;
-    }
-
-    public void setCauseAccidentNum(Integer causeAccidentNum) {
-        this.causeAccidentNum = causeAccidentNum;
-    }
-
-    public Integer getHarmOtherNum() {
-        return harmOtherNum;
-    }
-
-    public void setHarmOtherNum(Integer harmOtherNum) {
-        this.harmOtherNum = harmOtherNum;
-    }
-
-    public Integer getAutolesionNum() {
-        return autolesionNum;
-    }
-
-    public void setAutolesionNum(Integer autolesionNum) {
-        this.autolesionNum = autolesionNum;
-    }
-
-    public Integer getAttemptedSuicideNum() {
-        return attemptedSuicideNum;
-    }
-
-    public void setAttemptedSuicideNum(Integer attemptedSuicideNum) {
-        this.attemptedSuicideNum = attemptedSuicideNum;
-    }
-
-    public String getIsolation() {
-        return isolation;
-    }
-
-    public void setIsolation(String isolation) {
-        this.isolation = isolation == null ? null : isolation.trim();
-    }
-
-    public String getHospitalizedStatus() {
-        return hospitalizedStatus;
-    }
-
-    public void setHospitalizedStatus(String hospitalizedStatus) {
-        this.hospitalizedStatus = hospitalizedStatus == null ? null : hospitalizedStatus.trim();
-    }
-
-    public String getOutHospitalDate() {
-        return outHospitalDate;
-    }
-
-    public void setOutHospitalDate(String outHospitalDate) {
-        this.outHospitalDate = outHospitalDate == null ? null : outHospitalDate.trim();
-    }
-
-    public String getLaboratoryExamination() {
-        return laboratoryExamination;
-    }
-
-    public void setLaboratoryExamination(String laboratoryExamination) {
-        this.laboratoryExamination = laboratoryExamination == null ? null : laboratoryExamination.trim();
-    }
-
-    public String getCompliance() {
-        return compliance;
-    }
-
-    public void setCompliance(String compliance) {
-        this.compliance = compliance == null ? null : compliance.trim();
-    }
-
-    public String getUntowardEffect() {
-        return untowardEffect;
-    }
-
-    public void setUntowardEffect(String untowardEffect) {
-        this.untowardEffect = untowardEffect == null ? null : untowardEffect.trim();
-    }
-
-    public String getUntowardEffectInfo() {
-        return untowardEffectInfo;
-    }
-
-    public void setUntowardEffectInfo(String untowardEffectInfo) {
-        this.untowardEffectInfo = untowardEffectInfo == null ? null : untowardEffectInfo.trim();
-    }
-
-    public String getTreatmentEffect() {
-        return treatmentEffect;
-    }
-
-    public void setTreatmentEffect(String treatmentEffect) {
-        this.treatmentEffect = treatmentEffect == null ? null : treatmentEffect.trim();
-    }
-
-    public String getTransferTreatment() {
-        return transferTreatment;
-    }
-
-    public void setTransferTreatment(String transferTreatment) {
-        this.transferTreatment = transferTreatment == null ? null : transferTreatment.trim();
-    }
-
-    public String getTransferTreatmentReason() {
-        return transferTreatmentReason;
-    }
-
-    public void setTransferTreatmentReason(String transferTreatmentReason) {
-        this.transferTreatmentReason = transferTreatmentReason == null ? null : transferTreatmentReason.trim();
-    }
-
-    public String getTransferTreatmentDepartment() {
-        return transferTreatmentDepartment;
-    }
-
-    public void setTransferTreatmentDepartment(String transferTreatmentDepartment) {
-        this.transferTreatmentDepartment = transferTreatmentDepartment == null ? null : transferTreatmentDepartment.trim();
-    }
-
-    public String getRehabilitationMeasure() {
-        return rehabilitationMeasure;
-    }
-
-    public void setRehabilitationMeasure(String rehabilitationMeasure) {
-        this.rehabilitationMeasure = rehabilitationMeasure == null ? null : rehabilitationMeasure.trim();
-    }
-
-    public String getRehabilitationMeasureOther() {
-        return rehabilitationMeasureOther;
-    }
-
-    public void setRehabilitationMeasureOther(String rehabilitationMeasureOther) {
-        this.rehabilitationMeasureOther = rehabilitationMeasureOther == null ? null : rehabilitationMeasureOther.trim();
-    }
-
-    public String getNextVisitClassify() {
-        return nextVisitClassify;
-    }
-
-    public void setNextVisitClassify(String nextVisitClassify) {
-        this.nextVisitClassify = nextVisitClassify == null ? null : nextVisitClassify.trim();
-    }
-
-    public String getNextVisitDate() {
-        return nextVisitDate;
-    }
-
-    public void setNextVisitDate(String nextVisitDate) {
-        this.nextVisitDate = nextVisitDate == null ? null : nextVisitDate.trim();
-    }
-
-    public String getVisitDoctor() {
-        return visitDoctor;
-    }
-
-    public void setVisitDoctor(String visitDoctor) {
-        this.visitDoctor = visitDoctor == null ? null : visitDoctor.trim();
-    }
-
-    public String getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(String createUser) {
-        this.createUser = createUser == null ? null : createUser.trim();
-    }
-
-    public String getCreateName() {
-        return createName;
-    }
-
-    public void setCreateName(String createName) {
-        this.createName = createName == null ? null : createName.trim();
-    }
-
-    public String getCreateOrg() {
-        return createOrg;
-    }
-
-    public void setCreateOrg(String createOrg) {
-        this.createOrg = createOrg == null ? null : createOrg.trim();
-    }
-
-    public String getCreateOrgName() {
-        return createOrgName;
-    }
-
-    public void setCreateOrgName(String createOrgName) {
-        this.createOrgName = createOrgName == null ? null : createOrgName.trim();
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateUser() {
-        return updateUser;
-    }
-
-    public void setUpdateUser(String updateUser) {
-        this.updateUser = updateUser == null ? null : updateUser.trim();
-    }
-
-    public String getUpdateName() {
-        return updateName;
-    }
-
-    public void setUpdateName(String updateName) {
-        this.updateName = updateName == null ? null : updateName.trim();
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Integer getUploadStatus() {
-        return uploadStatus;
-    }
-
-    public void setUploadStatus(Integer uploadStatus) {
-        this.uploadStatus = uploadStatus;
-    }
-
-    public Date getUploadTime() {
-        return uploadTime;
-    }
-
-    public void setUploadTime(Date uploadTime) {
-        this.uploadTime = uploadTime;
-    }
-
-    public String getUploadResult() {
-        return uploadResult;
-    }
-
-    public void setUploadResult(String uploadResult) {
-        this.uploadResult = uploadResult == null ? null : uploadResult.trim();
-    }
 }

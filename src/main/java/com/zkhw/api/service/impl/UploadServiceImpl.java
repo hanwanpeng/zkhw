@@ -1369,7 +1369,7 @@ public class UploadServiceImpl implements UploadService {
 				//HIV抗体检测
 				record.setHiv(follow.getHIV());
 				//B超
-				record.setbUltrasonic(follow.getB());
+				record.setBUltrasonic(follow.getB());
 				//record.setOther(other);
 				//总体评估
 				record.setGeneralAssessment(follow.getEvaluate());

@@ -9,6 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+//居民档案信息表
 public class ResidentBaseInfo {
 	 /**
      * 主键

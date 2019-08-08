@@ -11,4 +11,6 @@ public interface ChildrenService {
 	NeonatusInfo getNeonatusById(String id);
 	
 	ChildrenHealthRecord findFollowRecordByAge(ChildrenHealthRecord record);
+
+	void childrenForExcel(NeonatusInfo neonatus);
 }

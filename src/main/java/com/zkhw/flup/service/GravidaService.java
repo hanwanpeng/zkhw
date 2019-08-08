@@ -18,4 +18,6 @@ public interface GravidaService {
 	GravidaAfterRecord selectByPrimaryKey(String id);
 
 	PageInfos<GravidaAfterRecord> findGravidaAfterByPage(GravidaAfterRecord gravida, PageInfos<GravidaAfterRecord> pageData);
+
+	void gravidaForExcel(GravidaInfoQuery gravida);
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+//居民疾病表
 public class ResidentDiseases  {
     /**
      * 

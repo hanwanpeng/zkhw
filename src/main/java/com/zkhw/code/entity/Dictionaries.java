@@ -1,7 +1,7 @@
 package com.zkhw.code.entity;
 
 import java.util.Date;
-
+//字典表
 public class Dictionaries {
     private Integer mtId;
 
