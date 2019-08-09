@@ -3,24 +3,34 @@ package com.wuzhou.pub.entity;
 import java.util.Date;
 
 public class HealthExamInhos {
+	//个人健康体检住院治疗情况ID
     private String healthExamInhosId;
 
+    //入院日期/建床日期
     private Date admissionDate;
 
+    //原因
     private String admissionReason;
 
+    //出院日期/撤床日期
     private Date dischargeDate;
 
+    //个人健康体检ID
     private String healthExamId;
 
+    //医疗机构名称
     private String hospitalName;
 
+    //住院史类型代码(1住院史2病床史)
     private String inhosHistoryTypeCode;
 
+    //病案号
     private String medicalRecordNo;
 
+    //接口返回值，0成功1失败，由冠新填入。
     private Short errCode;
 
+    //接口返回信息，由冠新填入。
     private String errStr;
 
     public String getHealthExamInhosId() {

@@ -1,12 +1,16 @@
 package com.wuzhou.pub.entity;
 
 public class PosEmp {
+	//id
     private String empId;
 
+    //所属机构id
     private String posId;
 
+    //姓名
     private String empName;
 
+    //身份证号
     private String empRin;
 
     public String getEmpId() {

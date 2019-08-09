@@ -1,24 +1,34 @@
 package com.wuzhou.pub.entity;
 
 public class HealthExamDrug {
+	//个人健康体检用药情况ID
     private String healthExamDrugId;
 
+    //服药依从性代码
     private String drugComplianceCode;
 
+    //服药依从性中文
     private String drugComplianceValue;
 
+    //用量
     private String drugDose;
 
+    //药物名称
     private String drugName;
 
+    //用药时间
     private String drugTime;
 
+    //用法代码
     private String drugUsageCode;
 
+    //个人健康体检ID
     private String healthExamId;
 
+    //接口返回值，0成功1失败，由冠新填入。
     private Short errCode;
 
+    //接口返回信息，由冠新填入。
     private String errStr;
 
     public String getHealthExamDrugId() {

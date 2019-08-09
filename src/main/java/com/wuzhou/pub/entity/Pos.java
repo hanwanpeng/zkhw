@@ -1,12 +1,16 @@
 package com.wuzhou.pub.entity;
 
 public class Pos {
+	//id
     private String posId;
 
+    //机构名称
     private String posName;
 
+    //组织机构代码
     private String posCode;
 
+    //上级机构id
     private String posPid;
 
     public String getPosId() {

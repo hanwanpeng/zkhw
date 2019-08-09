@@ -3,80 +3,118 @@ package com.wuzhou.pub.entity;
 import java.util.Date;
 
 public class ElderExamLedger {
+	//65岁老年人体检管理台账ID
     private String elderExamLedgerId;
 
+    //体检ID
     private String healthExamId;
 
+    //录入机构ID
     private String createOrgId;
 
+    //录入机构名称
     private String orgName;
 
+    //录入时间
     private Date createTime;
 
+    //录入人ID
     private String creatorId;
 
+    //录入人姓名
     private String creator;
 
+    //最后更新机构ID
     private String modifiedOrgId;
 
+    //最后更新机构名称
     private String modifiedOrgName;
 
+    //最后更新时间
     private Date modifiedTime;
 
+    //最后更新人ID
     private String modifierId;
 
+    //最后更新人姓名
     private String modifier;
 
+    //体检日期
     private Date examDate;
 
+    //个人档案ID
     private String personInfoId;
 
+    //本人姓名
     private String name;
 
+    //身份证证号
     private String idNo;
 
+    //ABO血型
     private String aboCode;
 
+    //地址
     private String address;
 
+    //糖尿病药物
     private String diabetesDrugs;
 
+    //酒
     private String drink;
 
+    //过敏史
     private String drugAllergy;
 
+    //文化程度
     private String educationCode;
 
+    //锻炼
     private String exercise;
 
+    //心脏病药物
     private String heartDrugs;
 
+    //高血压药物
     private String hyperDrugs;
 
+    //婚姻状况
     private String marriageCode;
 
+    //医保
     private String medical;
 
+    //烟
     private String smoking;
 
+    //牙齿
     private String teeth;
 
+    //电话号码
     private String telNo;
 
+    //工作单位
     private String workUnit;
 
+    //年份
     private Long year;
 
+    //老年人认知功能筛查
     private String elderCognition;
 
+    //老年人抑郁情况筛查
     private String elderDepression;
 
+    //自理能力评估结果
     private String elderSelfCareAssess;
 
+    //性别中文
     private String sexValue;
 
+    //出生日期
     private Date birthday;
 
+    //健康评价异常
     private String healthAbnormDesc;
 
     public String getElderExamLedgerId() {

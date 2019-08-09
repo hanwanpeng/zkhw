@@ -3,24 +3,34 @@ package com.wuzhou.pub.entity;
 import java.util.Date;
 
 public class PersonInfo {
+	//个人档案ID
     private String personInfoId;
 
+    //姓名
     private String aboCode;
 
+    //性别
     private String address;
 
+    //民族
     private Date birthday;
 
+    //身份证证号
     private String idNo;
 
+    //出生日期
     private String name;
 
+    //家庭地址
     private String nationalityValue;
 
+    //ABO血型代码
     private String rhCode;
 
+    //Rh血型代码
     private String sexValue;
 
+    //药物过敏史
     private String drugAllergyValue;
 
     public String getPersonInfoId() {

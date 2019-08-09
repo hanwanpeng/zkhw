@@ -4,60 +4,88 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class ElderSelfcareAbility {
+	//老年人自理能力评估表ID
     private String elderSelfcareAbilityId;
 
+    //个人档案ID
     private String personInfoId;
 
+    //老年人健康状态自我评估代码
     private String elderHealthAssessCode;
 
+    //进餐评分
     private Short dineScore;
 
+    //梳洗评分
     private Short cleanupScore;
 
+    //穿衣评分
     private Short dressedScore;
 
+    //如厕评分
     private Short defecationScore;
 
+    //活动评分
     private Short activityScore;
 
+    //总评分
     private Short totalScore;
 
+    //填表时间
     private Date fillDate;
 
+    //录入机构ID
     private String createOrgId;
 
+    //录入机构名称
     private String orgName;
 
+    //录入人ID
     private String creatorId;
 
+    //录入人姓名
     private String creator;
 
+    //录入时间
     private Date createTime;
 
+    //最后更新机构ID
     private String modifiedOrgId;
 
+    //最后更新机构名称
     private String modifiedOrgName;
 
+    //最后更新人ID
     private String modifierId;
 
+    //最后更新人姓名
     private String modifier;
 
+    //最后更新时间
     private Date modifiedTime;
 
+    //考核项总数
     private Integer assessmentCount;
 
+    //未考核项
     private Integer missingCount;
 
+    //完整率
     private BigDecimal intactRate;
 
+    //传入“5”
     private Short isAppCreate;
 
+    //评价医生姓名
     private String doctorName;
 
+    //评价医生ID
     private String doctorId;
 
+    //接口返回值，0成功1失败，由冠新填入。
     private Short errCode;
 
+    //接口返回信息，由冠新填入。
     private String errStr;
 
     public String getElderSelfcareAbilityId() {

@@ -3,20 +3,28 @@ package com.wuzhou.pub.entity;
 import java.util.Date;
 
 public class HealthExamNoplanvacc {
+	//个人健康体检疫苗情况ID
     private String healthExamNoplanVaccId;
 
+    //个人健康体检ID
     private String healthExamId;
 
+    //表内顺序
     private Short ssn;
 
+    //疫苗接种日期
     private Date vaccinationDate;
 
+    //疫苗接种单位名称
     private String vaccinationOrgName;
 
+    //疫苗名称代码
     private String vaccineCode;
 
+    //接口返回值，0成功1失败，由冠新填入。
     private Short errCode;
 
+    //接口返回信息，由冠新填入。
     private String errStr;
 
     public String getHealthExamNoplanVaccId() {

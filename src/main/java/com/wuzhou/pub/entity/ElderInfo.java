@@ -3,56 +3,83 @@ package com.wuzhou.pub.entity;
 import java.util.Date;
 
 public class ElderInfo {
+	
+	//老年人专档ID
     private String elderInfoId;
 
+    //个人档案ID
     private String personInfoId;
 
+    //录入机构ID
     private String createOrgId;
 
+    //录入机构名称
     private String orgName;
 
+    //录入人ID
     private String creatorId;
 
+    //录入人姓名
     private String creator;
 
+    //录入时间
     private Date createTime;
 
+    //最后更新机构ID
     private String modifiedOrgId;
 
+    //最后更新机构名称
     private String modifiedOrgName;
 
+    //最后更新人ID
     private String modifierId;
 
+    //最后更新人姓名
     private String modifier;
 
+    //最后更新时间
     private Date modifiedTime;
 
+    //本人姓名
     private String name;
 
+    //赡养方式
     private String maintenanceModeCode;
 
+    //监护人姓名
     private String guardianName;
 
+    //监护人与本人关系代码
     private String guardianRelationCode;
 
+    //监护人地址
     private String guardianAddr;
 
+    //监护人电话号码
     private String guardianTelNo;
 
+    //监护人手机号码
     private String guardianMobile;
 
+    //被调查者
     private String informant;
 
+    //签名日期
     private Date informantDate;
 
+    //调查者
     private String investigator;
 
+    //调查日期
     private Date investigatorDate;
 
+    //纳入老年人管理日期
     private Date manageDate;
 
+    //备注
     private String remarks;
 
+    //传入“5”
     private Short isAppCreate;
 
     public String getElderInfoId() {
