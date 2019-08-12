@@ -66,14 +66,13 @@ public class ResidentBaseInfoServiceImpl implements ResidentBaseInfoService {
 		ExcelUtil excelutil = new ExcelUtil();
 		//表头
 		ArrayList<String> headerList = new ArrayList<String>();
-		String[] header = {"人口总数","贫困户总人数","家庭签约人数","贫困户签约人数","高血压人数","糖尿病人数","肺结核人数","精神病人数","2019年体检人数","26岁—64岁体检人数","65岁以上老年人体检人数","贫困户体检人数","贫困户患慢病人员人数","重点人群总人数","残疾人数","0—6岁儿童人数","",""};
+		String[] header = {"人口总数","贫困户总人数","家庭签约人数","贫困户签约人数","高血压人数","糖尿病人数","肺结核人数","精神病人数","2019年体检人数","26岁—64岁体检人数","65岁以上老年人体检人数","贫困户体检人数","贫困户患慢病人员人数","重点人群总人数","残疾人数","0—6岁儿童人数","7岁--25岁总人数","26岁--64岁总人数","65岁以上老年人总数","孕产妇总数"};
 		for (int i = 0; i < header.length; i++) {
 			headerList.add(header[i]);
 		}
 		//行内容
 		ArrayList<List<String>> rowList = new ArrayList<List<String>>();
-		redident.setMaxage(65);
-		redident.setMinage(26);
+		
 		List<ResidentBaseInfo> residentBaseInfoList = residentBaseInfoDao.findResidentList(redident);
 		ArrayList<String> StrList = null;
 		ResidentBaseInfo residentBaseInfo = null;
@@ -89,33 +88,12 @@ public class ResidentBaseInfoServiceImpl implements ResidentBaseInfoService {
 				StrList.add("女");
 			}
 			StrList.add(residentBaseInfo.getAge().toString());
-			StrList.add(residentBaseInfo.getIdNumber());
-			StrList.add(residentBaseInfo.getResidenceAddress());
-			StrList.add(residentBaseInfo.getPhone());
-			Integer isHypertension = residentBaseInfo.getIsHypertension();
-			Integer isDiabetes = residentBaseInfo.getIsDiabetes();
-			Integer isTuberculosis = residentBaseInfo.getIsTuberculosis();
-			Integer isPsychosis = residentBaseInfo.getIsPsychosis();
-			String illness = "";
-			if(isHypertension != null && isHypertension == 1) {
-				illness += "高血压";
-			}
-			if(isDiabetes != null && isDiabetes == 1) {
-				illness += "、糖尿病";
-			}
-			if(isTuberculosis != null && isTuberculosis == 1) {
-				illness += "、肺结核";
-			}
-			if(isPsychosis != null && isPsychosis == 1) {
-				illness += "、精神病";
-			}
-			StrList.add(illness);
 			rowList.add(StrList);
 		}
 		//地址
-		String xlsPath = "C:\\Users\\Administrator\\Desktop\\26-64岁人花名册.xls";
+		String xlsPath = "C:\\Users\\Administrator\\Desktop\\汇总表花名册.xls";
 		//工作表名称
-		String sheetName = "26-64岁人花名册";
+		String sheetName = "汇总表花名册";
 		
 		try {
 			excelutil.writeExcel(headerList, rowList, xlsPath, sheetName);
