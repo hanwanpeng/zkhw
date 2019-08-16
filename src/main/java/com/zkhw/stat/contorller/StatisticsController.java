@@ -225,29 +225,6 @@ public class StatisticsController {
 	@RequestMapping(value = "/statForAge", method = RequestMethod.GET)
 	public void statForAge(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentQuery query){
 		try {
-			/*String loginName = SystemParam.getUserId();
-	    	String loginVoJson = redisClient.get(ApiConstants.REDIS_KEY_PREFIX_SESSION+loginName);
-	    	LoginVo loginVo = null;
-	    	User user = null;
-	    	String provinceCode = null;
-	    	String cityCode = null;
-	    	String countyCode = null;
-	    	String townsCode = null;
-	    	String villageCode = null;
-	    	if( !StringUtils.isEmpty(loginVoJson)) {
-	    		loginVo = JsonConverter.json2Obj(loginVoJson,LoginVo.class);
-	    		user = loginVo.getUser();
-	    		provinceCode = loginVo.getProvinceCode();
-	    		cityCode = loginVo.getCityCode();
-	    		countyCode = loginVo.getCountyCode();
-	    		townsCode = loginVo.getTownsCode();
-	    		villageCode = loginVo.getVillageCode();
-	    	}
-	    	query.setProvinceCode(provinceCode);
-			query.setCityCode(cityCode);
-			query.setCountyCode(countyCode);
-			query.setTownsCode(townsCode);
-			query.setVillageCode(villageCode);*/
 			ResidentAgeVo residentAgeVo = statisticsService.statForAge(query);
 			result.setData(residentAgeVo);
 			result.setCode("0");

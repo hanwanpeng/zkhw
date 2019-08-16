@@ -34,6 +34,7 @@ import com.zkhw.pub.mo.ResidentMo;
 import com.zkhw.pub.query.ResidentBaseInfoQuery;
 import com.zkhw.pub.service.ResidentBaseInfoService;
 import com.zkhw.pub.vo.ResidentVo;
+import com.zkhw.stat.query.ResidentQuery;
 
 
 @Service
@@ -72,22 +73,31 @@ public class ResidentBaseInfoServiceImpl implements ResidentBaseInfoService {
 		}
 		//行内容
 		ArrayList<List<String>> rowList = new ArrayList<List<String>>();
+		ArrayList<String> StrList = new ArrayList<String>();
+		
+		ResidentQuery query = new ResidentQuery();
+		BeanUtils.copyProperties(redident, query);
+		List<ResidentBaseInfo> resident = residentBaseInfoDao.statForAge(query);
+		int size = resident.size();
+		StrList.add(String.valueOf(size));//总人数
+		
+		
 		
 		List<ResidentBaseInfo> residentBaseInfoList = residentBaseInfoDao.findResidentList(redident);
-		ArrayList<String> StrList = null;
+		ArrayList<String> strList = null;
 		ResidentBaseInfo residentBaseInfo = null;
 		for (int i = 0; i < residentBaseInfoList.size(); i++) {
 			residentBaseInfo = residentBaseInfoList.get(i);
-			StrList = new ArrayList<String>();
+			strList = new ArrayList<String>();
 			
-			StrList.add(residentBaseInfo.getName());
+			strList.add(residentBaseInfo.getName());
 			String sex = residentBaseInfo.getSex();
 			if(!StringUtil.isEmpty(sex) && sex.equals("1")) {
-				StrList.add("男");
+				strList.add("男");
 			}else {
-				StrList.add("女");
+				strList.add("女");
 			}
-			StrList.add(residentBaseInfo.getAge().toString());
+			strList.add(residentBaseInfo.getAge().toString());
 			rowList.add(StrList);
 		}
 		//地址
