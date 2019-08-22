@@ -75,8 +75,10 @@ import com.zkhw.ltd.dao.OrganizationDao;
 import com.zkhw.ltd.entity.Organization;
 import com.zkhw.pub.dao.PhysicalExaminationDao;
 import com.zkhw.pub.dao.ResidentBaseInfoDao;
+import com.zkhw.pub.dao.ResidentDiseasesDao;
 import com.zkhw.pub.entity.PhysicalExamination;
 import com.zkhw.pub.entity.ResidentBaseInfo;
+import com.zkhw.pub.entity.ResidentDiseases;
 
 @Service
 public class UploadServiceImpl implements UploadService {
@@ -125,6 +127,9 @@ public class UploadServiceImpl implements UploadService {
 	
 	@Autowired
 	private PhysicalExaminationDao physicalExaminationDao;
+	
+	@Autowired
+	private ResidentDiseasesDao residentDiseasesDao;
 	
 	@Override
 	public ErrorInfo diabetesUpload(DiabetesBo bo) {
@@ -1500,10 +1505,23 @@ public class UploadServiceImpl implements UploadService {
 				info.setAllergyOther(redisent.getHypersuses_other());
 				//暴露史
 				info.setExposure(redisent.getUndress());
+				
+				if(!add){
+					residentDiseasesDao.deleteByArchiveNo(redisent.getArchiveid());
+				}
 				//是否患高血压
 				if(StringUtil.isNotEmpty(redisent.getDishyperflag())){
 					if("1".equals(redisent.getDishyperflag())){
 						info.setIsHypertension(1);
+						ResidentDiseases dis = new ResidentDiseases();
+						dis.setId(CodeUtil.getUUID());
+						dis.setArchiveNo(redisent.getArchiveid());
+						dis.setName(redisent.getFullname());
+						dis.setIdNumber(redisent.getIdentityno());
+						dis.setDiseaseType("2");
+						dis.setDiseaseName("高血压");
+						dis.setDiseaseDate(redisent.getHyperDiagnoseDate());
+						residentDiseasesDao.insertSelective(dis);
 					}else{
 						info.setIsHypertension(0);
 					}					
@@ -1513,6 +1531,15 @@ public class UploadServiceImpl implements UploadService {
 				if(StringUtil.isNotEmpty(redisent.getDisdmflag())){
 					if("1".equals(redisent.getDisdmflag())){
 						info.setIsDiabetes(1);
+						ResidentDiseases dis = new ResidentDiseases();
+						dis.setId(CodeUtil.getUUID());
+						dis.setArchiveNo(redisent.getArchiveid());
+						dis.setName(redisent.getFullname());
+						dis.setIdNumber(redisent.getIdentityno());
+						dis.setDiseaseType("3");
+						dis.setDiseaseName("糖尿病");
+						dis.setDiseaseDate(redisent.getDmDiagnoseDate());
+						residentDiseasesDao.insertSelective(dis);
 					}else{
 						info.setIsDiabetes(0);
 					}					
@@ -1522,6 +1549,15 @@ public class UploadServiceImpl implements UploadService {
 				if(StringUtil.isNotEmpty(redisent.getDismentalflag())){
 					if("1".equals(redisent.getDismentalflag())){
 						info.setIsPsychosis(1);
+						ResidentDiseases dis = new ResidentDiseases();
+						dis.setId(CodeUtil.getUUID());
+						dis.setArchiveNo(redisent.getArchiveid());
+						dis.setName(redisent.getFullname());
+						dis.setIdNumber(redisent.getIdentityno());
+						dis.setDiseaseType("8");
+						dis.setDiseaseName("严重精神障碍");
+						dis.setDiseaseDate(redisent.getMentaDiagnoseDate());
+						residentDiseasesDao.insertSelective(dis);
 					}else{
 						info.setIsPsychosis(0);
 					}					
@@ -1531,10 +1567,132 @@ public class UploadServiceImpl implements UploadService {
 				if(StringUtil.isNotEmpty(redisent.getDistbflag())){
 					if("1".equals((redisent.getDistbflag()))){
 						info.setIsTuberculosis(1);
+						ResidentDiseases dis = new ResidentDiseases();
+						dis.setId(CodeUtil.getUUID());
+						dis.setArchiveNo(redisent.getArchiveid());
+						dis.setName(redisent.getFullname());
+						dis.setIdNumber(redisent.getIdentityno());
+						dis.setDiseaseType("9");
+						dis.setDiseaseName("肺结核");
+						dis.setDiseaseDate(redisent.getTbDiagnoseDate());
+						residentDiseasesDao.insertSelective(dis);
 					}else{
 						info.setIsTuberculosis(0);
 					}					
 				}
+				
+				//是否患冠心病
+				if(StringUtil.isNotEmpty(redisent.getDisheartflag())){
+					if("1".equals((redisent.getDisheartflag()))){
+						ResidentDiseases dis = new ResidentDiseases();
+						dis.setId(CodeUtil.getUUID());
+						dis.setArchiveNo(redisent.getArchiveid());
+						dis.setName(redisent.getFullname());
+						dis.setIdNumber(redisent.getIdentityno());
+						dis.setDiseaseType("4");
+						dis.setDiseaseName("冠心病");
+						dis.setDiseaseDate(redisent.getHeartDiagnoseDate());
+						residentDiseasesDao.insertSelective(dis);
+					}			
+				}
+				
+				//是否患慢性阻塞性肺疾病
+				if(StringUtil.isNotEmpty(redisent.getDislungflag())){
+					if("1".equals((redisent.getDislungflag()))){
+						ResidentDiseases dis = new ResidentDiseases();
+						dis.setId(CodeUtil.getUUID());
+						dis.setArchiveNo(redisent.getArchiveid());
+						dis.setName(redisent.getFullname());
+						dis.setIdNumber(redisent.getIdentityno());
+						dis.setDiseaseType("5");
+						dis.setDiseaseName("慢性阻塞性肺疾病");
+						dis.setDiseaseDate(redisent.getLungdiagnoseDate());
+						residentDiseasesDao.insertSelective(dis);
+					}			
+				}
+				
+				//是否患恶性肿瘤
+				if(StringUtil.isNotEmpty(redisent.getDistumorflag())){
+					if("1".equals((redisent.getDistumorflag()))){
+						ResidentDiseases dis = new ResidentDiseases();
+						dis.setId(CodeUtil.getUUID());
+						dis.setArchiveNo(redisent.getArchiveid());
+						dis.setName(redisent.getFullname());
+						dis.setIdNumber(redisent.getIdentityno());
+						dis.setDiseaseType("6");
+						dis.setDiseaseName(redisent.getTumorName());
+						dis.setDiseaseDate(redisent.getTumorDiagnoseDate());
+						residentDiseasesDao.insertSelective(dis);
+					}			
+				}	
+				
+				//是否患脑卒中
+				if(StringUtil.isNotEmpty(redisent.getDisstrokeflag())){
+					if("1".equals((redisent.getDisstrokeflag()))){
+						ResidentDiseases dis = new ResidentDiseases();
+						dis.setId(CodeUtil.getUUID());
+						dis.setArchiveNo(redisent.getArchiveid());
+						dis.setName(redisent.getFullname());
+						dis.setIdNumber(redisent.getIdentityno());
+						dis.setDiseaseType("7");
+						dis.setDiseaseName("脑卒中");
+						dis.setDiseaseDate(redisent.getStrokeDiagnoseDate());
+						residentDiseasesDao.insertSelective(dis);
+					}			
+				}
+				
+				//是否患肝炎
+				if(StringUtil.isNotEmpty(redisent.getDishepatitisflag())){
+					if("1".equals((redisent.getDishepatitisflag()))){
+						ResidentDiseases dis = new ResidentDiseases();
+						dis.setId(CodeUtil.getUUID());
+						dis.setArchiveNo(redisent.getArchiveid());
+						dis.setName(redisent.getFullname());
+						dis.setIdNumber(redisent.getIdentityno());
+						dis.setDiseaseType("10");
+						dis.setDiseaseName("肝炎");
+						dis.setDiseaseDate(redisent.getHepatitDiagnoseDate());
+						residentDiseasesDao.insertSelective(dis);
+					}			
+				}
+				
+				//是否患其他法定传染病
+				if(StringUtil.isNotEmpty(redisent.getDisinfectflag())){
+					if("1".equals((redisent.getDisinfectflag()))){
+						ResidentDiseases dis = new ResidentDiseases();
+						dis.setId(CodeUtil.getUUID());
+						dis.setArchiveNo(redisent.getArchiveid());
+						dis.setName(redisent.getFullname());
+						dis.setIdNumber(redisent.getIdentityno());
+						dis.setDiseaseType("11");
+						dis.setDiseaseName("其他法定传染病");
+						dis.setDiseaseDate(redisent.getInfectDiagnoseDate());
+						residentDiseasesDao.insertSelective(dis);
+					}			
+				}
+				
+				//是否患职业病
+				if(StringUtil.isNotEmpty(redisent.getDisoccupationflag())){
+					if("1".equals((redisent.getDisoccupationflag()))){
+						ResidentDiseases dis = new ResidentDiseases();
+						dis.setId(CodeUtil.getUUID());
+						dis.setArchiveNo(redisent.getArchiveid());
+						dis.setName(redisent.getFullname());
+						dis.setIdNumber(redisent.getIdentityno());
+						dis.setDiseaseType("12");
+						dis.setDiseaseName(redisent.getOccupationName());
+						dis.setDiseaseDate(redisent.getOccupaDiagnoseDate());
+						residentDiseasesDao.insertSelective(dis);
+					}			
+				}
+				
+				//是否患其他疾病
+				if(StringUtil.isNotEmpty(redisent.getDisOtherflag())){
+					if("1".equals((redisent.getDisOtherflag()))){
+						info.setDiseaseOther(redisent.getDisOtherName());
+					}			
+				}
+				
 				//有无遗传病史
 				if(StringUtil.isNotEmpty(redisent.getHas_inherit_dis())){
 					info.setIsHeredity(Integer.valueOf(redisent.getHas_inherit_dis()));
