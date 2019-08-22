@@ -7,6 +7,7 @@ import com.zkhw.api.bo.Gravida42AfterBo;
 import com.zkhw.api.bo.GravidaAfterBo;
 import com.zkhw.api.bo.GravidaFirstBo;
 import com.zkhw.api.bo.GravidaFollowBo;
+import com.zkhw.api.bo.HealthManageBo;
 import com.zkhw.api.bo.HypertensionBo;
 import com.zkhw.api.bo.NeonatusBaseInfoBo;
 import com.zkhw.api.bo.NeonatusFirstBo;
@@ -45,4 +46,6 @@ public interface UploadService {
 	ErrorInfo neonatusFirst(NeonatusFirstBo bo);
 	
 	ErrorInfo childrenFollow(ChildenFollowBo bo);
+	
+	ErrorInfo healthManage(HealthManageBo bo);
 }

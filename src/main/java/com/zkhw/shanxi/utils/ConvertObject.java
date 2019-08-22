@@ -52,8 +52,8 @@ public class ConvertObject {
 		Map<String, String> map = new HashMap<String, String>();
 
 		map.put("checkFlag", vo.getCheckFlag());
-		// map.put("archiveId", vo.getArchiveNo());
-		map.put("archiveId", vo.getIdNumber());
+		map.put("archiveId", vo.getArchiveNo());
+		//map.put("archiveId", vo.getIdNumber());
 		map.put("checkdate", vo.getCheckDate());
 		map.put("dutydoctor", vo.getDutydoctor());
 		map.put("symptom", vo.getSymptom());

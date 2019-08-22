@@ -227,17 +227,46 @@ public class DownLoadServiceImpl implements DownLoadService {
 			info.setBirthday(res.getBirthday());
 			
 			info.setIdentityno(res.getIdNumber());
+			info.setRegister_committee(res.getRegisterAddress());
 			//info.setCuraddr_committee(curaddr_committee);
 			info.setCuraddr_doorno(res.getResidenceAddress());
+			info.setCompany(res.getCompany());
 
 			info.setTel(res.getPhone());
 			info.setLinkman(res.getLinkName());
 			info.setLinkman_tel(res.getLinkPhone());
-
+			info.setResident_type(res.getResidentType());
+			info.setNation(res.getNation());
+			info.setBlood_group(res.getBloodGroup());
+			info.setBlood_rh(res.getBloodRh());
+			info.setEducation(res.getEducation());
+			info.setProfession(res.getProfession());
+			info.setMarital_status(res.getMaritalStatus());
+			info.setPay_type(res.getPayType());
+			info.setPay_other(res.getPayOther());
+			
+			info.setDrug_allergy(res.getDrugAllergy());
+			info.setAllergy_other(res.getAllergyOther());
+			info.setExposure(res.getExposure());
+			
 			info.setDishyperflag(res.getIsHypertension() == null?"":res.getIsHypertension().toString());
 			info.setDisdmflag(res.getIsDiabetes() == null?"":res.getIsDiabetes().toString());
 			info.setDismentalflag(res.getIsPsychosis() == null?"":res.getIsPsychosis().toString());
 			info.setDistbflag(res.getIsTuberculosis() == null?"":res.getIsTuberculosis().toString());
+			
+			info.setIs_heredity(res.getIsHeredity() == null?"0":res.getIsHeredity().toString());
+			info.setHeredity_name(res.getHeredityName());
+			info.setIs_deformity(res.getIsDeformity());
+			info.setDeformity_name(res.getDeformityName());
+			
+			info.setKitchen(res.getKitchen());
+			info.setFuel(res.getFuel());
+			info.setOther_fuel(res.getOtherFuel());
+			info.setDrink(res.getDrink());
+			info.setOther_drink(res.getOtherDrink());
+			info.setToilet(res.getToilet());
+			info.setPoultry(res.getPoultry());
+			
 			info.setArchstatus(res.getStatus());
 			info.setDutydoctor(res.getDoctorId());
 			info.setIspoor(res.getIsPoor() == null?"":res.getIsPoor().toString());

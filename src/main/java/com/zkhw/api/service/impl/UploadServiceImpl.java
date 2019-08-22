@@ -22,6 +22,8 @@ import com.zkhw.api.bo.GravidaFirst;
 import com.zkhw.api.bo.GravidaFirstBo;
 import com.zkhw.api.bo.GravidaFollow;
 import com.zkhw.api.bo.GravidaFollowBo;
+import com.zkhw.api.bo.HealthManage;
+import com.zkhw.api.bo.HealthManageBo;
 import com.zkhw.api.bo.HypertensionBo;
 import com.zkhw.api.bo.HypertensionFollow;
 import com.zkhw.api.bo.HypertensionFollowUpLog;
@@ -71,7 +73,9 @@ import com.zkhw.flup.entity.TuberculosisInfo;
 import com.zkhw.framework.utils.DateUtil;
 import com.zkhw.ltd.dao.OrganizationDao;
 import com.zkhw.ltd.entity.Organization;
+import com.zkhw.pub.dao.PhysicalExaminationDao;
 import com.zkhw.pub.dao.ResidentBaseInfoDao;
+import com.zkhw.pub.entity.PhysicalExamination;
 import com.zkhw.pub.entity.ResidentBaseInfo;
 
 @Service
@@ -118,6 +122,9 @@ public class UploadServiceImpl implements UploadService {
 	
 	@Autowired
 	private ChildrenHealthRecordDao childrenHealthRecordDao;
+	
+	@Autowired
+	private PhysicalExaminationDao physicalExaminationDao;
 	
 	@Override
 	public ErrorInfo diabetesUpload(DiabetesBo bo) {
@@ -2102,6 +2109,303 @@ public class UploadServiceImpl implements UploadService {
 			errList.add(err);
 		}
 		errInfo.setChildrenHealthCheck(errList);
+		return errInfo;
+	}
+
+	@Override
+	public ErrorInfo healthManage(HealthManageBo bo) {
+		// TODO Auto-generated method stub
+		ErrorInfo errInfo = new ErrorInfo();
+		List<Error> errList = new ArrayList<Error>();
+		for(int j = 0; j < bo.getElderlyHealthManage().size(); j++){
+			Error err = new Error();
+			try{
+				HealthManage follow = bo.getElderlyHealthManage().get(j);
+				PhysicalExamination record = new PhysicalExamination();
+				err.setId(follow.getUUID());
+				err.setInfo(follow.getId());
+
+				record.setId(CodeUtil.getUUID());
+				record.setArchiveNo(follow.getArchiveId());			
+				List<ResidentBaseInfo> residents = residentBaseInfoDao.findResidentByArchiveNo(follow.getArchiveId());
+				String idNumber = "";
+				if(residents != null && residents.size() > 0){
+					record.setName(residents.get(0).getName());	
+					record.setIdNumber(residents.get(0).getIdNumber());
+					idNumber = residents.get(0).getIdNumber();
+					record.setIdNumber(idNumber);
+				}
+				
+				//体检分类
+				record.setCheckFlag(follow.getCheckFlag());
+				//责任医生
+				record.setDutydoctor(follow.getDutydoctor());
+				record.setSymptom(follow.getSymptom());
+				record.setSymptomOther(follow.getSymptom_other());
+				record.setCheckDate(follow.getCheckdate());
+				record.setBaseTemperature(follow.getHeat());
+				record.setBaseHeartbeat(follow.getCardiotach_ometer());
+				record.setBaseRespiratory(follow.getBreath_count()== null?"":follow.getBreath_count().toString());
+				record.setBaseBloodPressureLeftHigh(follow.getLeftsbp());
+				record.setBaseBloodPressureLeftLow(follow.getLeftdbp());
+				record.setBaseBloodPressureRightHigh(follow.getRightsbp());
+				record.setBaseBloodPressureRightLow(follow.getRightdbp());
+				record.setBaseHeight(follow.getHeight());
+				record.setBaseWeight(follow.getWeight());
+				record.setBaseWaist(follow.getWaistline());
+				record.setBaseBmi(follow.getBmi());
+				
+				record.setBaseHealthEstimate(follow.getHealthstate());
+				record.setBaseSelfcareEstimate(follow.getLivingstate());
+				record.setBaseCognitionEstimate(follow.getOldkown());
+				record.setBaseCognitionScore(follow.getOldkown_fee() == null?"":follow.getOldkown_fee().toString());
+				record.setBaseFeelingEstimate(follow.getOldfeeling());
+				record.setBaseFeelingScore(follow.getOldfeeling_fee() == null?"":follow.getOldfeeling_fee().toString());
+				
+				record.setLifewayExerciseFrequency(follow.getExercise_frequency());
+				record.setLifewayExerciseTime(follow.getExercise_timeslice() == null?"":follow.getExercise_timeslice().toString());
+				record.setLifewayExerciseYear(follow.getPersisttime() == null?"":follow.getPersisttime().toString());
+				record.setLifewayExerciseType(follow.getExercise_method());
+				record.setLifewayDiet(follow.getEat_habit());
+				
+				record.setLifewaySmokeStatus(follow.getSmoke_frequency());
+				record.setLifewaySmokeNumber(follow.getSmoke_count_day() == null?"":follow.getSmoke_count_day().toString());
+				record.setLifewaySmokeStartage(follow.getSmoke_start_age() == null?"":follow.getSmoke_start_age().toString());
+				record.setLifewaySmokeEndage(follow.getSmoke_end_age() == null?"":follow.getSmoke_end_age().toString());
+				
+				record.setLifewayDrinkStatus(follow.getWine_frequency());
+				record.setLifewayDrinkNumber(follow.getWine_count() == null?"":follow.getWine_count().toString());
+				record.setLifewayDrinkStop(follow.getWine_refrain());
+				record.setLifewayDrinkStopage(follow.getWine_refrain_age() == null?"":follow.getWine_refrain_age().toString());
+				record.setLifewayDrinkStartage(follow.getWine_start_age() == null?"":follow.getWine_start_age().toString());
+				record.setLifewayDrinkOneyear(follow.getIsstoned());
+				record.setLifewayDrinkType(follow.getWine_type());
+				record.setLifewayDrinkOther(follow.getWine_other());
+				
+				record.setLifewayOccupationalDisease(follow.getUndress());
+				record.setLifewayJob(follow.getUndress_work());
+				record.setLifewayJobPeriod(follow.getUndress_worktime() == null?"":follow.getUndress_worktime().toString());
+				
+				record.setOrganLips(follow.getLip());
+				record.setOrganTooth(follow.getTooth());
+				record.setOrganHypodontiaTopleft(follow.getToothless_top());
+				record.setOrganHypodontiaTopright(follow.getToothless_right());
+				record.setOrganHypodontiaBottomleft(follow.getToothless_left());
+				record.setOrganHypodontiaBottomright(follow.getToothless_down());
+				record.setOrganCariesTopleft(follow.getDecayedtooth_top());
+				record.setOrganCariesTopright(follow.getDecayedtooth_right());
+				record.setOrganCariesBottomleft(follow.getDecayedtooth_left());
+				record.setOrganCariesBottomright(follow.getDecayedtooth_down());
+				record.setOrganDentureTopleft(follow.getFalsetooth_top());
+				record.setOrganDentureTopright(follow.getFalsetooth_right());
+				record.setOrganDentureBottomleft(follow.getFalsetooth_left());
+				record.setOrganDentureBottomright(follow.getFalsetooth_down());
+				
+				record.setOrganGuttur(follow.getYanbu());
+				record.setOrganVisionLeft(follow.getEye_nakedness_left());
+				record.setOrganVisionRight(follow.getEye_nakedness_right());
+				record.setOrganCorrectedvisionLeft(follow.getEye_remedy_left());
+				record.setOrganCorrectedvisionRight(follow.getEye_remedy_right());
+				record.setOrganHearing(follow.getAudition());
+				record.setOrganMovement(follow.getSport_fun());
+				
+				record.setExaminationEye(follow.getFundus());
+				record.setExaminationEyeOther(follow.getFundus_other());
+				record.setExaminationSkin(follow.getSkin());
+				record.setExaminationSkinOther(follow.getSkin_other());
+				record.setExaminationSclera(follow.getSclera());
+				record.setExaminationScleraOther(follow.getSclera_other());
+				record.setExaminationLymph(follow.getLymph());
+				record.setExaminationLymphOther(follow.getLymph_other());
+				record.setExaminationBarrelChest(follow.getBarrel_chest());
+				record.setExaminationBreathSounds(follow.getBreathing());
+				record.setExaminationBreathOther(follow.getBreathing_other());
+				record.setExaminationRale(follow.getRales());
+				record.setExaminationRaleOther(follow.getRales_other());
+				
+				record.setExaminationHeartRate(follow.getHeart_rate() == null?"":follow.getHeart_rate().toString());
+				record.setExaminationHeartRhythm(follow.getRhythm() == null?"":follow.getRhythm().toString());
+				record.setExaminationHeartNoise(follow.getNoise());
+				record.setExaminationNoiseOther(follow.getNoise_memo());
+				
+				record.setExaminationAbdomenTenderness(follow.getTenderness());
+				record.setExaminationTendernessMemo(follow.getTenderness_memo());
+				record.setExaminationAbdomenMass(follow.getMass());
+				record.setExaminationMassMemo(follow.getMass_memo());
+				record.setExaminationAbdomenHepatomegaly(follow.getLiver());
+				record.setExaminationHepatomegalyMemo(follow.getLiver_memo());
+				record.setExaminationAbdomenSplenomegaly(follow.getSpleen());
+				record.setExaminationSplenomegalyMemo(follow.getSpleen_memo());
+				record.setExaminationAbdomenShiftingdullness(follow.getDullness());
+				record.setExaminationShiftingdullnessMemo(follow.getDullness_memo());
+				record.setExaminationLowerextremityEdema(follow.getEdema());
+				record.setExaminationDorsalArtery(follow.getDorsal());
+				
+				record.setExaminationAnus(follow.getDre());
+				record.setExaminationAnusOther(follow.getDre_memo());
+				record.setExaminationBreast(follow.getBreast());
+				record.setExaminationBreastOther(follow.getBreast_memo());
+				
+				record.setExaminationWomanVulva(follow.getVulva());
+				record.setExaminationVulvaMemo(follow.getVulva_memo());
+				record.setExaminationWomanVagina(follow.getVaginal());
+				record.setExaminationVaginaMemo(follow.getVaginal_memo());
+				record.setExaminationWomanCervix(follow.getCervix());
+				record.setExaminationCervixMemo(follow.getCervix_memo());
+				record.setExaminationWomanCorpus(follow.getPalace());
+				record.setExaminationCorpusMemo(follow.getPalace_memo());
+				record.setExaminationWomanAccessories(follow.getAttachment());
+				record.setExaminationAccessoriesMemo(follow.getAttachment_memo());
+				record.setExaminationOther(follow.getExamination_memo());
+				
+				//血红蛋白
+				record.setBloodHemoglobin(follow.getHemoglobined());
+				//白细胞
+				record.setBloodLeukocyte(follow.getLeukocyte());
+				//血小板
+				record.setBloodPlatelet(follow.getPlatelet());
+				//血常规其他
+				record.setBloodOther(follow.getBlood_memo());
+				
+				//尿蛋白
+				record.setUrineProtein(follow.getUrinary_protein());
+				//尿糖
+				record.setGlycosuria(follow.getUrine());
+				//尿酮体
+				record.setUrineAcetoneBodies(follow.getKetone());
+				//尿潜血
+				record.setBld(follow.getOccult_blood());
+				//尿常规其他
+				record.setUrineOther(follow.getUrine_memo());
+				
+				//空腹血糖mol
+				record.setBloodGlucoseMmol(follow.getBsugar_mmo());
+				//空腹血糖mg
+				record.setBloodGlucoseMg(follow.getBsugar_mg());
+				//心电图
+				record.setCardiogram(follow.getEcg());
+				//心电图描述
+				record.setCardiogramMemo(follow.getEcg_memo());
+				
+				//尿微量白蛋白
+				record.setMicroalbuminuria(follow.getUrinary_albumin());
+				//大便潜血
+				record.setFob(follow.getOccult_blooded());
+				//糖化血红蛋白
+				record.setGlycosylatedHemoglobin(follow.getHemoglobin());
+				//乙型肝炎表面抗原
+				record.setHb(follow.getHbeag());
+				//血清谷丙转氨酶
+				record.setSgft(follow.getAlt());
+				//血清谷草转氨酶
+				record.setAst(follow.getAst());
+				//白蛋白
+				record.setAlbumin(follow.getAlbumin());
+				//总胆红素
+				record.setTotalBilirubin(follow.getBilirubin_total());
+				//结合胆红素
+				record.setConjugatedBilirubin(follow.getBilirubin_combine());
+				//血清肌酐
+				record.setScr(follow.getScr());
+				//血尿素
+				record.setBloodUrea(follow.getBun());
+				//血钾浓度
+				record.setBloodK(follow.getPotassium());
+				//血钠浓度
+				record.setBloodNa(follow.getSerum_sodium());
+				//总胆固醇
+				record.setTc(follow.getCholesterol());
+				//甘油三酯
+				record.setTg(follow.getTriglycerides());
+				//血清低密度脂蛋白胆固醇
+				record.setLdl(follow.getL_cholesterol());
+				//血清高密度脂蛋白胆固醇
+				record.setHdl(follow.getH_cholesterol());
+				
+				//胸部X线片
+				record.setChestX(follow.getXray());
+				//X线片描述
+				record.setXMemo(follow.getXray_memo());
+				//腹部B超
+				record.setUltrasoundAbdomen(follow.getBultrasound());
+				//腹部B超异常描述
+				record.setUltrasoundMemo(follow.getBultrasound_memo());
+				//其他B超
+				record.setOtherB(follow.getBsound());
+				//其他B超异常描述
+				record.setOtherbMemo(follow.getBsound_memo());
+				//宫颈涂片
+				record.setCervicalSmear(follow.getCervix());
+				//宫颈涂片异常描述
+				record.setCervicalSmearMemo(follow.getCervix_Explain());
+				//辅助检查-其他
+				record.setOther(follow.getCheck_other());
+				
+				//脑血管疾病
+				record.setCerebrovascularDisease(follow.getCerebrovascular());
+				//其他脑血管疾病
+				record.setCerebrovascularDiseaseOther(follow.getCerebrovascular_memo());
+				//肾脏疾病
+				record.setKidneyDisease(follow.getKidney());
+				//肾脏疾病其他
+				record.setKidneyDiseaseOther(follow.getKidney_other());
+				//心脏疾病
+				record.setHeartDisease(follow.getHeartdis());
+				//其他心脏疾病
+				record.setHeartDiseaseOther(follow.getHeartdis_other());
+				//血管疾病
+				record.setVascularDisease(follow.getBlooddis());
+				record.setVascularDiseaseOther(follow.getBlooddis_other());
+				//眼部疾病
+				record.setOcularDiseases(follow.getEysdis());
+				record.setOcularDiseasesOther(follow.getEysdis_other());
+				//神经系统疾病
+				record.setNervousSystemDisease(follow.getNervousdis());
+				record.setNervousDiseaseMemo(follow.getNervousdis_memo());
+				//其他系统疾病
+				record.setOtherDisease(follow.getHasotherdis());
+				record.setOtherDiseaseMemo(follow.getOtherdismemo());
+				
+				//健康评价
+				record.setHealthEvaluation(follow.getHealthesti());
+				//健康指导
+				record.setHealthGuidance(follow.getHealthguide());
+				//危险因素控制
+				record.setDangerControlling(follow.getDangercontrol());
+				//目标体重
+				record.setTargetWeight(follow.getWeighttarget());
+				//建议接种疫苗
+				record.setAdviseBacterin(follow.getAdvisebacterin());
+				//其他危险因素控制
+				record.setDangerControllingOther(follow.getOtherdanger());
+				//其他危险因素控制
+				record.setHealthAdvice(follow.getHealthadvice());
+						
+				record.setCreateName(follow.getCreated_By());
+				record.setCreateOrg(follow.getDuns());
+				Organization org = organizationDao.getOrganizationByCode(follow.getDuns());
+				if(org != null){
+					record.setCreateOrgName(org.getOrganName());
+				}				
+				record.setCreateTime(DateUtil.getDate(follow.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
+				record.setCreateUser(follow.getCreated_By());
+														
+				record.setUpdateName(follow.getUpdated_By());
+				record.setUpdateTime(DateUtil.getDate(follow.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
+				record.setUpdateUser(follow.getUpdated_By());
+				//record.setUploadResult(uploadResult);
+				record.setUploadStatus(0);
+				//record.setUploadTime(uploadTime);
+				physicalExaminationDao.insertSelective(record);
+				err.setCode("0");
+			}catch(Exception e){
+				e.printStackTrace();
+				err.setCode("-1");
+				
+			}
+			errList.add(err);
+		}
+		errInfo.setElderlyHealthManage(errList);
 		return errInfo;
 	}
 }

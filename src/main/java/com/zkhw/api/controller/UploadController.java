@@ -18,6 +18,7 @@ import com.zkhw.api.bo.Gravida42AfterBo;
 import com.zkhw.api.bo.GravidaAfterBo;
 import com.zkhw.api.bo.GravidaFirstBo;
 import com.zkhw.api.bo.GravidaFollowBo;
+import com.zkhw.api.bo.HealthManageBo;
 import com.zkhw.api.bo.HypertensionBo;
 import com.zkhw.api.bo.NeonatusBaseInfoBo;
 import com.zkhw.api.bo.NeonatusFirstBo;
@@ -175,6 +176,13 @@ public class UploadController {
 				if(bo != null){
 					if(bo.getChildrenHealthCheck() != null && bo.getChildrenHealthCheck().size() > 0){
 						errInfo = uploadService.childrenFollow(bo);
+					}
+				}
+			}else if(fromObject.containsKey("ElderlyHealthManage")){
+				HealthManageBo bo = JsonConverter.json2Obj(Data, HealthManageBo.class);
+				if(bo != null){
+					if(bo.getElderlyHealthManage() != null && bo.getElderlyHealthManage().size() > 0){
+						errInfo = uploadService.healthManage(bo);
 					}
 				}
 			}
