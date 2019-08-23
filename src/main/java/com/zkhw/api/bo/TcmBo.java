@@ -27,6 +27,8 @@ public class TcmBo {
 	
 	private String SSUPPLIERCODE;
 	
+	private String TEST_DOCTOR;
+	
 	private String CREATED_BY;
 	
 	private String CREATED_DATE;

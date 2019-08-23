@@ -293,7 +293,7 @@ public class UploadController {
 				}
 			}
 			
-			record.setTestDoctor(bo.getCREATED_BY());
+			record.setTestDoctor(bo.getTEST_DOCTOR());
 			record.setCreateUser(bo.getCREATED_BY());
 			record.setCreateTime(DateUtil.getDate(bo.getCREATED_DATE(), "yyyy-MM-dd HH:mm:ss"));
 			record.setCreateOrg(bo.getDUNS());

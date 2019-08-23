@@ -146,7 +146,7 @@ public class ResidentInfo {
 	private String kitchen;	
 	
 	//燃料类型
-	@JSONField(name = "fuel")
+	@JSONField(name = "FUEL")
 	private String fuel;	
 
 	//燃料类型(其它)
