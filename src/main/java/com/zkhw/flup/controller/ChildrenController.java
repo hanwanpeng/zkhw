@@ -32,16 +32,8 @@ public class ChildrenController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/childrenForExcel", method = RequestMethod.GET)
-	public void minElderlyForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,NeonatusInfo neonatus){
-		try {
-			childrenService.childrenForExcel(neonatus);
-			result.setCode("0");
-			result.setMsg("成功，已导出到桌面");
-		}catch (Exception e) {
-			result.setCode("1");
-			result.setMsg("失败");
-		}
-		JsonWebPrintUtils.printApiResult(req, resp, result);
+	public void minElderlyForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,NeonatusInfo neonatus){
+			childrenService.childrenForExcel(request, response, result, neonatus);
 	}
 	
 	

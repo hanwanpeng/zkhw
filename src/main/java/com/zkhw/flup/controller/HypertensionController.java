@@ -32,16 +32,8 @@ public class HypertensionController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/hypertensionForExcel", method = RequestMethod.GET)
-	public void hypertensionForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentBaseInfoQuery redident){
-		try {
-			hypertensionService.hypertensionForExcel(redident);
-			result.setCode("0");
-			result.setMsg("成功，已导出到桌面");
-		}catch (Exception e) {
-			result.setCode("1");
-			result.setMsg("失败");
-		}
-		JsonWebPrintUtils.printApiResult(req, resp, result);
+	public void hypertensionForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery resident){
+			hypertensionService.hypertensionForExcel(result, request, response, resident);
 	}
 	
 	

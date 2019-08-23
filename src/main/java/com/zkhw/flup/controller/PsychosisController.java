@@ -34,16 +34,8 @@ public class PsychosisController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/psychosisForExcel", method = RequestMethod.GET)
-	public void psychosisForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentBaseInfoQuery redident){
-		try {
-			psychosisService.psychosisForExcel(redident);
-			result.setCode("0");
-			result.setMsg("成功，已导出到桌面");
-		}catch (Exception e) {
-			result.setCode("1");
-			result.setMsg("失败");
-		}
-		JsonWebPrintUtils.printApiResult(req, resp, result);
+	public void psychosisForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery resident){
+			psychosisService.psychosisForExcel(request, response, result, resident);
 	}
 	
 	

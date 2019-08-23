@@ -1,5 +1,9 @@
 package com.zkhw.flup.service;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.zkhw.common.vo.ApiJsonResult;
 import com.zkhw.common.vo.PageInfos;
 import com.zkhw.flup.entity.GravidaAfterRecord;
 import com.zkhw.flup.entity.GravidaFollowRecord;
@@ -19,5 +23,5 @@ public interface GravidaService {
 
 	PageInfos<GravidaAfterRecord> findGravidaAfterByPage(GravidaAfterRecord gravida, PageInfos<GravidaAfterRecord> pageData);
 
-	void gravidaForExcel(GravidaInfoQuery gravida);
+	void gravidaForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,GravidaInfoQuery gravida);
 }

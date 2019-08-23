@@ -34,16 +34,8 @@ public class TuberculosisController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/tuberculosisForExcel", method = RequestMethod.GET)
-	public void tuberculosisForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentBaseInfoQuery redident){
-		try {
-			tuberculosisService.tuberculosisForExcel(redident);
-			result.setCode("0");
-			result.setMsg("成功，已导出到桌面");
-		}catch (Exception e) {
-			result.setCode("1");
-			result.setMsg("失败");
-		}
-		JsonWebPrintUtils.printApiResult(req, resp, result);
+	public void tuberculosisForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery resident){
+			tuberculosisService.tuberculosisForExcel(result, request, response, resident);
 	}
 	
 	

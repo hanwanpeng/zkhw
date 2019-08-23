@@ -37,16 +37,8 @@ public class GravidaController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/gravidaForExcel", method = RequestMethod.GET)
-	public void minElderlyForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,GravidaInfoQuery gravida){
-		try {
-			gravidaService.gravidaForExcel(gravida);
-			result.setCode("0");
-			result.setMsg("成功，已导出到桌面");
-		}catch (Exception e) {
-			result.setCode("1");
-			result.setMsg("失败");
-		}
-		JsonWebPrintUtils.printApiResult(req, resp, result);
+	public void minElderlyForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,GravidaInfoQuery gravida){
+			gravidaService.gravidaForExcel(request, response, result, gravida);
 	}
 	
 	@ResponseBody

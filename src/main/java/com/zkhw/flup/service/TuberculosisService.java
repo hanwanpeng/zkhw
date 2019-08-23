@@ -2,6 +2,10 @@ package com.zkhw.flup.service;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.zkhw.common.vo.ApiJsonResult;
 import com.zkhw.common.vo.PageInfos;
 import com.zkhw.flup.bo.TuberculosisListBo;
 import com.zkhw.flup.entity.TuberculosisFollowRecord;
@@ -22,5 +26,5 @@ public interface TuberculosisService {
 	
 	Map<String, String> exportFollowPdf(String archiveNo, String year);
 
-	void tuberculosisForExcel(ResidentBaseInfoQuery redident);
+	void tuberculosisForExcel(ApiJsonResult result,HttpServletRequest request, HttpServletResponse response,ResidentBaseInfoQuery resident);
 }

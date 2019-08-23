@@ -53,16 +53,8 @@ public class ResidentBaseInfoController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/allForExcel", method = RequestMethod.GET)
-	public void allForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentBaseInfoQuery redident){
-		try {
-			residentBaseInfoService.allForExcel(redident);
-			result.setCode("0");
-			result.setMsg("成功，已导出到桌面");
-		}catch (Exception e) {
-			result.setCode("1");
-			result.setMsg("失败");
-		}
-		JsonWebPrintUtils.printApiResult(req, resp, result);
+	public void allForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery resident){
+			residentBaseInfoService.allForExcel(request, response, result, resident);
 	}
 	
 	/**
@@ -73,16 +65,8 @@ public class ResidentBaseInfoController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/minElderlyForExcel", method = RequestMethod.GET)
-	public void minElderlyForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentBaseInfoQuery redident){
-		try {
-			residentBaseInfoService.minElderlyForExcel(redident);
-			result.setCode("0");
-			result.setMsg("成功，已导出到桌面");
-		}catch (Exception e) {
-			result.setCode("1");
-			result.setMsg("失败");
-		}
-		JsonWebPrintUtils.printApiResult(req, resp, result);
+	public void minElderlyForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery resident){
+			residentBaseInfoService.minElderlyForExcel(request, response, result, resident);
 	}
 	
 	/**
@@ -93,16 +77,8 @@ public class ResidentBaseInfoController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/elderlyForExcel", method = RequestMethod.GET)
-	public void elderlyForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentBaseInfoQuery redident){
-		try {
-			residentBaseInfoService.elderlyForExcel(redident);
-			result.setCode("0");
-			result.setMsg("成功，已导出到桌面");
-		}catch (Exception e) {
-			result.setCode("1");
-			result.setMsg("失败");
-		}
-		JsonWebPrintUtils.printApiResult(req, resp, result);
+	public void elderlyForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery resident){
+			residentBaseInfoService.elderlyForExcel(request, response, result, resident);
 	}
 	
 	
@@ -114,16 +90,8 @@ public class ResidentBaseInfoController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/residentBaseInfoForExcel", method = RequestMethod.GET)
-	public void residentBaseInfoForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentBaseInfoQuery redident){
-		try {
-			residentBaseInfoService.residentBaseInfoForExcel(redident);
-			result.setCode("0");
-			result.setMsg("成功，已导出到桌面");
-		}catch (Exception e) {
-			result.setCode("1");
-			result.setMsg("失败");
-		}
-		JsonWebPrintUtils.printApiResult(req, resp, result);
+	public void residentBaseInfoForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery resident){
+			residentBaseInfoService.residentBaseInfoForExcel(request, response, result, resident);
 	}
 	
 	

@@ -2,6 +2,10 @@ package com.zkhw.flup.service;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.zkhw.common.vo.ApiJsonResult;
 import com.zkhw.common.vo.PageInfos;
 import com.zkhw.flup.bo.PsychosisFollowBo;
 import com.zkhw.flup.bo.PsychosisListBo;
@@ -23,5 +27,5 @@ public interface PsychosisService {
 	
 	Map<String, String> exportFollowPdf(String id);
 
-	void psychosisForExcel(ResidentBaseInfoQuery redident);
+	void psychosisForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery resident);
 }

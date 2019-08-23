@@ -1,5 +1,7 @@
 package com.zkhw.flup.controller;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -34,16 +36,13 @@ public class DiabetesController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/diabetesForExcel", method = RequestMethod.GET)
-	public void diabetesForExcel(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentBaseInfoQuery redident){
+	public void diabetesForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery redident){
 		try {
-			diabetesService.diabetesForExcel(redident);
-			result.setCode("0");
-			result.setMsg("成功，已导出到桌面");
-		}catch (Exception e) {
-			result.setCode("1");
-			result.setMsg("失败");
+			diabetesService.diabetesForExcel(result, request, response, redident);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		JsonWebPrintUtils.printApiResult(req, resp, result);
 	}
 	
 	

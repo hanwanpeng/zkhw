@@ -2,6 +2,10 @@ package com.zkhw.pub.service;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.zkhw.common.vo.ApiJsonResult;
 import com.zkhw.common.vo.PageInfos;
 import com.zkhw.pub.entity.ResidentBaseInfo;
 import com.zkhw.pub.mo.ResidentMo;
@@ -32,13 +36,13 @@ public interface ResidentBaseInfoService {
 	
 	int updateResident(ResidentVo vo);
 
-	void residentBaseInfoForExcel(ResidentBaseInfoQuery redident);
+	public void residentBaseInfoForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery resident);
 
-	void elderlyForExcel(ResidentBaseInfoQuery redident);
+	public void elderlyForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery resident);
 
-	void minElderlyForExcel(ResidentBaseInfoQuery redident);
+	public void minElderlyForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery resident);
 
-	void allForExcel(ResidentBaseInfoQuery redident);
+	public void allForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery resident);
 	
 }
  
