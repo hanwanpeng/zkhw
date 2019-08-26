@@ -592,39 +592,47 @@ public class ResidentBaseInfoServiceImpl implements ResidentBaseInfoService {
 			for (int i = 0; i < historyIllnessStr.length; i++) {
 				residentDiseases = new ResidentDiseases();
 				String diseaseType = historyIllnessStr[i].split(":")[0];//疾病编码
-				String diseaseDate = historyIllnessStr[i].split(":")[1];//疾病日期
-				//String diseaseName = historyIllnessStr[i].split(":")[1];//疾病名字
+				if(diseaseType.equals("1")) {
+					residentBaseInfo.setIsHypertension(0);
+					residentBaseInfo.setIsDiabetes(0);
+					residentBaseInfo.setIsPsychosis(0);
+					residentBaseInfo.setIsTuberculosis(0);
+				}else {
+					String diseaseDate = historyIllnessStr[i].split(":")[1];//疾病日期
+					//String diseaseName = historyIllnessStr[i].split(":")[1];//疾病名字
+					
+					
+					String uuid = CodeUtil.getUUID();
+					residentDiseases.setId(uuid);//id
+					residentDiseases.setArchiveNo(archiveNo);//档案编号
+					residentDiseases.setIdNumber(idNumber);//身份证号
+					//residentDiseases.setCreateName(createName);//创建人
+					residentDiseases.setCreateTime(new Date());//创建时间
+					residentDiseases.setDiseaseType(diseaseType);//疾病编码
+					if("6".equals(diseaseType)){
+						residentDiseases.setDiseaseName(vo.getCancer());//恶性肿瘤
+					}else if("12".equals(diseaseType)){
+						residentDiseases.setDiseaseName(vo.getOccupationDisease());//职业病
+					}
 				
-				
-				String uuid = CodeUtil.getUUID();
-				residentDiseases.setId(uuid);//id
-				residentDiseases.setArchiveNo(archiveNo);//档案编号
-				residentDiseases.setIdNumber(idNumber);//身份证号
-				//residentDiseases.setCreateName(createName);//创建人
-				residentDiseases.setCreateTime(new Date());//创建时间
-				residentDiseases.setDiseaseType(diseaseType);//疾病编码
-				if("6".equals(diseaseType)){
-					residentDiseases.setDiseaseName(vo.getCancer());//恶性肿瘤
-				}else if("12".equals(diseaseType)){
-					residentDiseases.setDiseaseName(vo.getOccupationDisease());//职业病
-				}
-			
-				residentDiseases.setDiseaseDate(diseaseDate);//疾病日期
-				
-				if("2".equals(diseaseType) ) {
-					residentBaseInfo.setIsHypertension(1);
-				}
-				if("3".equals(diseaseType)) {
-					residentBaseInfo.setIsDiabetes(1);
-				}
-				if("8".equals(diseaseType)) {
-					residentBaseInfo.setIsPsychosis(1);
-				}
-				if("9".equals(diseaseType)) {
-					residentBaseInfo.setIsTuberculosis(1);
+					residentDiseases.setDiseaseDate(diseaseDate);//疾病日期
+					
+					if("2".equals(diseaseType) ) {
+						residentBaseInfo.setIsHypertension(1);
+					}
+					if("3".equals(diseaseType)) {
+						residentBaseInfo.setIsDiabetes(1);
+					}
+					if("8".equals(diseaseType)) {
+						residentBaseInfo.setIsPsychosis(1);
+					}
+					if("9".equals(diseaseType)) {
+						residentBaseInfo.setIsTuberculosis(1);
+					}
+					
+					residentDiseasesDao.insertSelective(residentDiseases);
 				}
 				
-				residentDiseasesDao.insertSelective(residentDiseases);
 				
 			}
 		}
