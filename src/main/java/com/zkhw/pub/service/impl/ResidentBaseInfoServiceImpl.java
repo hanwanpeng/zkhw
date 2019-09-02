@@ -982,7 +982,7 @@ public class ResidentBaseInfoServiceImpl implements ResidentBaseInfoService {
 			map.put("heredityName", info.getHeredityName());
 			
 			String deformitys = info.getIsDeformity();
-			if(!"".equals(deformitys)){
+			if(StringUtil.isNotEmpty(deformitys)){
 				String[] def = deformitys.split(",");
 				for(int i = 1; i <= def.length; i++){
 					map.put("deformity" + i , def[i-1]);
