@@ -81,6 +81,7 @@ import com.zkhw.pub.dao.OperationRecordDao;
 import com.zkhw.pub.dao.PhysicalExaminationDao;
 import com.zkhw.pub.dao.ResidentBaseInfoDao;
 import com.zkhw.pub.dao.ResidentDiseasesDao;
+import com.zkhw.pub.dao.TakeMedicineRecordDao;
 import com.zkhw.pub.dao.TraumatismRecordDao;
 import com.zkhw.pub.entity.FamilyRecord;
 import com.zkhw.pub.entity.MetachysisRecord;
@@ -88,6 +89,7 @@ import com.zkhw.pub.entity.OperationRecord;
 import com.zkhw.pub.entity.PhysicalExamination;
 import com.zkhw.pub.entity.ResidentBaseInfo;
 import com.zkhw.pub.entity.ResidentDiseases;
+import com.zkhw.pub.entity.TakeMedicineRecord;
 import com.zkhw.pub.entity.TraumatismRecord;
 
 @Service
@@ -152,6 +154,9 @@ public class UploadServiceImpl implements UploadService {
 	
 	@Autowired
 	private FamilyRecordDao familyRecordDao;
+	
+	@Autowired
+	private TakeMedicineRecordDao takeMedicineRecordDao;
 	
 	@Override
 	public ErrorInfo diabetesUpload(DiabetesBo bo) {
@@ -2406,7 +2411,7 @@ public class UploadServiceImpl implements UploadService {
 		for(int j = 0; j < bo.getElderlyHealthManage().size(); j++){
 			Error err = new Error();
 			try{
-				HealthManage follow = bo.getElderlyHealthManage().get(j);
+				HealthManage follow = bo.getElderlyHealthManage().get(j).getLogBody();
 				PhysicalExamination record = new PhysicalExamination();
 				err.setId(follow.getUUID());
 				err.setInfo(follow.getId());
@@ -2684,6 +2689,42 @@ public class UploadServiceImpl implements UploadService {
 				//record.setUploadTime(uploadTime);
 				physicalExaminationDao.insertSelective(record);
 				err.setCode("0");
+	
+				List<TakeMedicine> list = bo.getElderlyHealthManage().get(j).getTakeMedicineRecord();
+				if(list != null && list.size() > 0){					
+					for(int i = 0; i < list.size(); i++){
+						TakeMedicine take = list.get(i);
+						Error e = new Error();
+						e.setId(take.getUUID());
+						e.setInfo(take.getId());
+						TakeMedicineRecord med = new TakeMedicineRecord();
+						med.setId(CodeUtil.getUUID());
+						med.setExamId(record.getId());						
+						med.setArchiveNo(record.getArchiveNo());
+						med.setIdNumber(idNumber);
+						med.setServiceName(take.getServicename());
+						med.setMedicineType(take.getDrugtype());
+						med.setMedicineName(take.getDrugname());
+						med.setMedicineUsage(take.getUsage());
+						med.setFrequency(take.getFrequency());						
+						med.setMedicineDosage(take.getAmount());
+						med.setUnit(take.getUnit());
+						med.setMedicineTime(take.getUseyears());
+						med.setMedicineTimeUnit(take.getUseyearsunit());
+						med.setMedicineCompliance(take.getDrugcompliance());						
+						med.setOther(take.getOther());
+						
+						med.setCreateName(follow.getCreated_By());
+						med.setCreateTime(DateUtil.getDate(follow.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
+						//med.setCreateUser(follow.getCreated_By());
+												
+						med.setUpdateName(follow.getUpdated_By());
+						med.setUpdateTime(DateUtil.getDate(follow.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
+						//med.setUpdateUser(f/ollow.getUpdated_By());
+						takeMedicineRecordDao.insertSelective(med);
+						e.setCode("0");
+					}						
+				}
 			}catch(Exception e){
 				e.printStackTrace();
 				err.setCode("-1");

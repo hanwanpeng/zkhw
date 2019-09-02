@@ -7,7 +7,9 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class HealthManageBo {
+public class HealthManageUp {
 
-	private List<HealthManageUp> ElderlyHealthManage;
+	private HealthManage LogBody;
+	
+	private List<TakeMedicine> TakeMedicineRecord;
 }
