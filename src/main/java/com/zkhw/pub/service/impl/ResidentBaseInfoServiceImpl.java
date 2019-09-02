@@ -834,7 +834,7 @@ public class ResidentBaseInfoServiceImpl implements ResidentBaseInfoService {
 			map.put("mari", info.getMaritalStatus());
 			
 			String paytype = info.getPayType();
-			if(!"".equals(paytype)){
+			if(StringUtil.isNotEmpty(paytype)){
 				String[] py = paytype.split(",");
 				for(int i = 1; i <= py.length; i++){
 					map.put("p" + i , py[i -1]);
@@ -844,7 +844,7 @@ public class ResidentBaseInfoServiceImpl implements ResidentBaseInfoService {
 			map.put("payOther", info.getPayOther());
 
 			String allergys = info.getDrugAllergy();
-			if(!"".equals(allergys)){
+			if(StringUtil.isNotEmpty(allergys)){
 				String[] a = allergys.split(",");
 				for(int i = 1; i <= a.length; i++){
 					map.put("allergy" + i , a[i -1]);
@@ -854,7 +854,7 @@ public class ResidentBaseInfoServiceImpl implements ResidentBaseInfoService {
 			map.put("allergyOther", info.getAllergyOther());
 			
 			String exposures = info.getExposure();
-			if(!"".equals(exposures)){
+			if(StringUtil.isNotEmpty(exposures)){
 				String[] e = exposures.split(",");
 				for(int i = 1; i <= e.length; i++){
 					map.put("exposure" + i , e[i-1]);
