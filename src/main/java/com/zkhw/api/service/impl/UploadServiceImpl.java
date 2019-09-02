@@ -13,6 +13,7 @@ import com.zkhw.api.bo.DiabetesBo;
 import com.zkhw.api.bo.DiabetesFollow;
 import com.zkhw.api.bo.Error;
 import com.zkhw.api.bo.ErrorInfo;
+import com.zkhw.api.bo.FamilyHistory;
 import com.zkhw.api.bo.FollowResult;
 import com.zkhw.api.bo.Gravida42After;
 import com.zkhw.api.bo.Gravida42AfterBo;
@@ -32,6 +33,7 @@ import com.zkhw.api.bo.NeonatusBaseInfo;
 import com.zkhw.api.bo.NeonatusBaseInfoBo;
 import com.zkhw.api.bo.NeonatusFirst;
 import com.zkhw.api.bo.NeonatusFirstBo;
+import com.zkhw.api.bo.OperationHistory;
 import com.zkhw.api.bo.PsychosisBo;
 import com.zkhw.api.bo.PsychosisFirst;
 import com.zkhw.api.bo.PsychosisFollow;
@@ -73,12 +75,20 @@ import com.zkhw.flup.entity.TuberculosisInfo;
 import com.zkhw.framework.utils.DateUtil;
 import com.zkhw.ltd.dao.OrganizationDao;
 import com.zkhw.ltd.entity.Organization;
+import com.zkhw.pub.dao.FamilyRecordDao;
+import com.zkhw.pub.dao.MentachysisRecordDao;
+import com.zkhw.pub.dao.OperationRecordDao;
 import com.zkhw.pub.dao.PhysicalExaminationDao;
 import com.zkhw.pub.dao.ResidentBaseInfoDao;
 import com.zkhw.pub.dao.ResidentDiseasesDao;
+import com.zkhw.pub.dao.TraumatismRecordDao;
+import com.zkhw.pub.entity.FamilyRecord;
+import com.zkhw.pub.entity.MetachysisRecord;
+import com.zkhw.pub.entity.OperationRecord;
 import com.zkhw.pub.entity.PhysicalExamination;
 import com.zkhw.pub.entity.ResidentBaseInfo;
 import com.zkhw.pub.entity.ResidentDiseases;
+import com.zkhw.pub.entity.TraumatismRecord;
 
 @Service
 public class UploadServiceImpl implements UploadService {
@@ -130,6 +140,18 @@ public class UploadServiceImpl implements UploadService {
 	
 	@Autowired
 	private ResidentDiseasesDao residentDiseasesDao;
+	
+	@Autowired
+	private OperationRecordDao operationRecordDao;
+	
+	@Autowired
+	private TraumatismRecordDao traumatismRecordDao;
+	
+	@Autowired
+	private MentachysisRecordDao mentachysisRecordDao;
+	
+	@Autowired
+	private FamilyRecordDao familyRecordDao;
 	
 	@Override
 	public ErrorInfo diabetesUpload(DiabetesBo bo) {
@@ -1780,8 +1802,114 @@ public class UploadServiceImpl implements UploadService {
 			}
 			errList.add(err);
 		}
-		List<Error> OperationHistory = new ArrayList<Error>();
-		errInfo.setOperationHistory(OperationHistory);
+		
+		List<Error> opErrList = new ArrayList<Error>();
+		if(bo.getOperationHistory() != null && bo.getOperationHistory().size() > 0){
+			for(int i = 0; i < bo.getOperationHistory().size(); i++){
+				Error opErr = new Error();
+				try{
+					OperationHistory ope = bo.getOperationHistory().get(i);
+					opErr.setId(ope.getUuid());
+					opErr.setInfo(ope.getId());
+					
+					List<ResidentBaseInfo> residents = residentBaseInfoDao.findResidentByArchiveNo(ope.getArchiveId());
+					String idNumber = "";
+					if(residents != null && residents.size() > 0){
+						idNumber = residents.get(0).getIdNumber();
+					}
+					
+					String type = ope.getType();
+					if("SX0075_1".equals(type)){
+						OperationRecord record = new OperationRecord();
+						record.setId(ope.getUuid());
+						record.setArchiveNo(ope.getArchiveId());
+						record.setIdNumber(idNumber);
+						record.setOperationName(ope.getName());
+						record.setOperationTime(ope.getHappenDate());
+						record.setCreateName(ope.getCreated_By());
+						record.setCreateTime(DateUtil.getDate(ope.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
+						record.setUpdateName(ope.getUpdated_By());
+						record.setUpdateTime(DateUtil.getDate(ope.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
+						
+						operationRecordDao.insertSelective(record);
+					}else if("SX0075_2".equals(type)){
+						TraumatismRecord record = new TraumatismRecord();
+						record.setId(ope.getId());
+						record.setArchiveNo(ope.getArchiveId());
+						record.setIdNumber(idNumber);
+						record.setTraumatismName(ope.getName());
+						record.setTraumatismTime(ope.getHappenDate());
+						record.setCreateName(ope.getCreated_By());
+						record.setCreateTime(DateUtil.getDate(ope.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
+						record.setUpdateName(ope.getUpdated_By());
+						record.setUpdateTime(DateUtil.getDate(ope.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
+						
+						traumatismRecordDao.insertSelective(record);
+					}else if("SX0075_3".equals(type)){
+						MetachysisRecord record = new MetachysisRecord();
+						record.setId(ope.getId());
+						record.setArchiveNo(ope.getArchiveId());
+						record.setIdNumber(idNumber);
+						record.setMetachysisReasonn(ope.getName());
+						record.setMetachysisTime(ope.getHappenDate());
+						record.setCreateName(ope.getCreated_By());
+						record.setCreateTime(DateUtil.getDate(ope.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
+						record.setUpdateName(ope.getUpdated_By());
+						record.setUpdateTime(DateUtil.getDate(ope.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
+						
+						mentachysisRecordDao.insertSelective(record);
+					}
+					
+					opErr.setCode("0");
+					
+				}catch(Exception e){
+					e.printStackTrace();
+					opErr.setCode("-1");
+				}
+				
+				opErrList.add(opErr);
+			}
+		}
+		List<Error> famErrList = new ArrayList<Error>();
+		if(bo.getFamilyHistory() != null && bo.getFamilyHistory().size() > 0){
+			for(int i = 0;i < bo.getFamilyHistory().size(); i++){
+				Error famErr = new Error();
+				try{
+					FamilyHistory fam = bo.getFamilyHistory().get(i);
+					famErr.setId(fam.getUuid());
+					famErr.setInfo(fam.getFamilyDisId());
+					
+					List<ResidentBaseInfo> residents = residentBaseInfoDao.findResidentByArchiveNo(fam.getArchiveId());
+					String idNumber = "";
+					if(residents != null && residents.size() > 0){
+						idNumber = residents.get(0).getIdNumber();
+					}
+					
+					FamilyRecord record = new FamilyRecord();
+					record.setId(fam.getUuid());
+					record.setArchiveNo(fam.getArchiveId());
+					record.setIdNumber(idNumber);
+					record.setRelation(fam.getRelation());
+					record.setDiseaseCode(fam.getDisease());
+					record.setDiseaseName(fam.getOtherDis());
+					record.setCreateName(fam.getCreated_By());
+					record.setCreateTime(DateUtil.getDate(fam.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
+					record.setUpdateName(fam.getUpdated_By());
+					record.setUpdateTime(DateUtil.getDate(fam.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
+					
+					familyRecordDao.insertSelective(record);
+					
+					famErr.setCode("0");
+					
+				}catch(Exception e){
+					e.printStackTrace();
+					famErr.setCode("1");
+				}
+				famErrList.add(famErr);
+			}
+		}
+		errInfo.setOperationHistory(opErrList);
+		errInfo.setFamilyHistory(famErrList);
 		errInfo.setArchive(errList);
 		return errInfo;
 	}

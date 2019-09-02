@@ -10,4 +10,8 @@ import lombok.Setter;
 public class ResidentUpBo {
 
 	private List<Resident> Archive;
+	
+	private List<OperationHistory> OperationHistory;
+	
+	private List<FamilyHistory> FamilyHistory;
 }
