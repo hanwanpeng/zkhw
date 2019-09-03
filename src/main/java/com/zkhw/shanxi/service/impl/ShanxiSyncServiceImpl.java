@@ -128,10 +128,13 @@ public class ShanxiSyncServiceImpl implements ShanxiSyncService {
 			for(int i = 0; i < list.size(); i++){
 				try{
 					PhysicalExamination phy = list.get(i);	
-					String d = DateUtil.fmtDate(phy.getCreateTime(), "yyyy-MM-dd");
-					if(!d.equals("2019-06-26")){
+/*					String d = DateUtil.fmtDate(phy.getCreateTime(), "yyyy-MM-dd");
+					if(!d.equals("2019-07-26")){
 						continue;
 					}
+					if(!phy.getIdNumber().equals("612430195304232221")){
+						continue;
+					}*/
 					Businessdata data = new Businessdata();
 					
 					Header header = new Header();
@@ -674,7 +677,7 @@ public class ShanxiSyncServiceImpl implements ShanxiSyncService {
 					Organization o = organizationService.getOrganizationByCode(temp.getCreateOrg());
 					if(o != null){
 						if("61".equals(o.getProvinceCode())){
-							this.getResident(info, temp);
+							//this.getResident(info, temp);
 						}
 					}
 
@@ -900,7 +903,9 @@ public class ShanxiSyncServiceImpl implements ShanxiSyncService {
 		if(hyperList != null && hyperList.size() > 0){
 			for(int i = 0; i < hyperList.size(); i++){
 				Hypertension record = hyperList.get(i);
-				
+				if(!record.getIdNumber().equals("612430195910072221")){
+					continue;
+				}
 				Businessdata data = new Businessdata();
 
 				Header header = new Header();
@@ -934,12 +939,6 @@ public class ShanxiSyncServiceImpl implements ShanxiSyncService {
 				
 				String visitClass = CodeConvert.visitClassConvert(hypertensionVo.getVisitClass());
 				hypertensionVo.setVisitClass(visitClass);
-				
-				String mindAdjust = CodeConvert.diabetesPsychologyConvert(hypertensionVo.getMindAdjust());
-				hypertensionVo.setMindAdjust(mindAdjust);
-				
-				String doctorObey = CodeConvert.diabetesPsychologyConvert(hypertensionVo.getDoctorObey());
-				hypertensionVo.setDoctorObey(doctorObey);
 				
 				String drugObey = CodeConvert.complianceConvert(hypertensionVo.getDrugObey());
 				hypertensionVo.setDrugObey(drugObey);
