@@ -19,6 +19,8 @@ import com.zkhw.api.bo.CheckResidentBatchBo;
 import com.zkhw.api.bo.CheckResidentBo;
 import com.zkhw.api.bo.DictBo;
 import com.zkhw.api.bo.DictInfo;
+import com.zkhw.api.bo.FamilyHistory;
+import com.zkhw.api.bo.OperationHistory;
 import com.zkhw.api.bo.OrgBo;
 import com.zkhw.api.bo.OrgInfo;
 import com.zkhw.api.bo.ResidentDownBo;
@@ -40,8 +42,18 @@ import com.zkhw.ltd.dao.OrganizationDao;
 import com.zkhw.ltd.dao.UserDao;
 import com.zkhw.ltd.entity.Organization;
 import com.zkhw.ltd.entity.User;
+import com.zkhw.pub.dao.FamilyRecordDao;
+import com.zkhw.pub.dao.MentachysisRecordDao;
+import com.zkhw.pub.dao.OperationRecordDao;
 import com.zkhw.pub.dao.ResidentBaseInfoDao;
+import com.zkhw.pub.dao.ResidentDiseasesDao;
+import com.zkhw.pub.dao.TraumatismRecordDao;
+import com.zkhw.pub.entity.FamilyRecord;
+import com.zkhw.pub.entity.MetachysisRecord;
+import com.zkhw.pub.entity.OperationRecord;
 import com.zkhw.pub.entity.ResidentBaseInfo;
+import com.zkhw.pub.entity.ResidentDiseases;
+import com.zkhw.pub.entity.TraumatismRecord;
 import com.zkhw.pub.query.ResidentBaseInfoQuery;
 import com.zkhw.sys.dao.AppVersionsDao;
 import com.zkhw.sys.entity.AppVersions;
@@ -69,6 +81,21 @@ public class DownLoadServiceImpl implements DownLoadService {
 	
 	@Autowired
 	private GravidaInfoDao gravidaInfoDao;
+	
+	@Autowired
+	private ResidentDiseasesDao residentDiseasesDao;
+	
+	@Autowired
+	private FamilyRecordDao familyRecordDao;
+	
+	@Autowired
+	private OperationRecordDao operationRecordDao;
+	
+	@Autowired
+	private TraumatismRecordDao traumatismRecordDao;
+	
+	@Autowired
+	private MentachysisRecordDao mentachysisRecordDao;
 	
 	@Override
 	public OrgBo getOrgList(String startIndex, String returnSize, String duns) {
@@ -275,7 +302,10 @@ public class DownLoadServiceImpl implements DownLoadService {
 			info.setDuns(res.getCreateOrg());
 			info.setCreatedBy(res.getCreateUser());
 			info.setCreatedDate(res.getCreateTime());
-			
+						
+			this.getDiseases(info);
+			this.getFamilyHistory(info);
+			this.getOperationHistory(info);
 			infoList.add(info);
 		}
 		
@@ -633,4 +663,203 @@ public class DownLoadServiceImpl implements DownLoadService {
 		return bo;
 	}
 
+	private ResidentInfo getDiseases(ResidentInfo info){
+		try{
+			ResidentDiseases dis = new ResidentDiseases();
+			dis.setArchiveNo(info.getArchiveid());
+			List<ResidentDiseases> disList = residentDiseasesDao.selectByArchiveNo(dis);
+			if(disList != null && disList.size() > 0){
+				for(int i = 0; i < disList.size(); i++){
+					ResidentDiseases d = disList.get(i);
+					String code = d.getDiseaseType();
+					switch (code) {
+					case "2":
+						info.setDishyperflag("1");
+						info.setHyperDiagnoseDate(d.getDiseaseDate());
+						break;
+					case "3":
+						info.setDisdmflag("1");
+						info.setDmDiagnoseDate(d.getDiseaseDate());
+						break;	
+					case "4":
+						info.setDisheartflag("1");
+						info.setHeartDiagnoseDate(d.getDiseaseDate());
+						break;
+					case "5":
+						info.setDislungflag("1");
+						info.setLungdiagnoseDate(d.getDiseaseDate());
+						break;
+					case "6":
+						info.setDistumorflag("1");
+						info.setTumorName(d.getDiseaseName());
+						info.setTumorDiagnoseDate(d.getDiseaseDate());
+						break;
+					case "7":
+						info.setDisstrokeflag("1");
+						info.setStrokeDiagnoseDate(d.getDiseaseDate());
+						break;	
+					case "8":
+						info.setDismentalflag("1");
+						info.setMentaDiagnoseDate(d.getDiseaseDate());
+						break;	
+					case "9":
+						info.setDistbflag("1");
+						info.setTbDiagnoseDate(d.getDiseaseDate());
+						break;	
+					case "10":
+						info.setDishepatitisflag("1");
+						info.setHepatitDiagnoseDate(d.getDiseaseDate());
+						break;	
+					case "11":
+						info.setDisinfectflag("1");
+						info.setInfectDiagnoseDate(d.getDiseaseDate());
+						break;
+					case "12":
+						info.setDisoccupationflag("1");
+						info.setOccupationName(d.getDiseaseName());
+						info.setOccupaDiagnoseDate(d.getDiseaseDate());
+						break;	
+					case "13":
+						info.setDisOtherflag("1");
+						info.setDisOtherName(d.getDiseaseName());
+						info.setDisOtherDiagnoseDate(d.getDiseaseDate());
+						break;						
+					default:
+						break;
+					}
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return info;
+		
+	}
+	
+	private ResidentInfo getFamilyHistory(ResidentInfo info){
+		try{			
+			List<FamilyHistory> hisList = new ArrayList<FamilyHistory>();
+			FamilyRecord fam = new FamilyRecord();
+			fam.setArchiveNo(info.getArchiveid());
+			List<FamilyRecord> famList = familyRecordDao.selectByArchiveNo(fam);
+			if(famList != null && famList.size() > 0){
+				for(int i = 0; i < famList.size(); i++){
+					FamilyHistory his = new FamilyHistory();
+					his.setArchiveId(famList.get(i).getArchiveNo());
+					his.setDisease(famList.get(i).getDiseaseCode());
+					his.setDuns(info.getDuns());
+					his.setFamilyDisId(famList.get(i).getId());
+					his.setOtherDis(famList.get(i).getDiseaseName());
+					his.setRelation(famList.get(i).getRelation());
+					
+					his.setCreated_By(famList.get(i).getCreateName());
+					if(famList.get(i).getCreateTime() != null){
+						his.setCreated_Date(DateUtil.getDateTimeString(famList.get(i).getCreateTime()));
+					}
+					his.setUpdated_By(famList.get(i).getUpdateName());
+					if(famList.get(i).getUpdateTime() != null){
+						his.setUpdated_Date(DateUtil.getDateTimeString(famList.get(i).getUpdateTime()));
+					}
+					
+					his.setUuid(famList.get(i).getId());
+					hisList.add(his);
+				}
+			}
+			info.setFamilyHistory(hisList);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return info;
+	}
+	
+	private ResidentInfo getOperationHistory(ResidentInfo info){
+		try{
+			List<OperationHistory> hisList = new ArrayList<OperationHistory>();
+			OperationRecord ope = new OperationRecord();			
+			ope.setArchiveNo(info.getArchiveid());
+			List<OperationRecord> opeList = operationRecordDao.selectByArchiveNo(ope);
+			if(opeList != null && opeList.size() > 0){
+				for(int i = 0; i < opeList.size(); i++){
+					OperationHistory his = new OperationHistory();
+					his.setArchiveId(opeList.get(i).getArchiveNo());
+					his.setName(opeList.get(i).getOperationName());
+					his.setHappenDate(opeList.get(i).getOperationTime());
+					his.setDuns(info.getDuns());
+					his.setId(opeList.get(i).getId());
+					his.setType("SX0075_1");
+					
+					his.setCreated_By(opeList.get(i).getCreateName());
+					if(opeList.get(i).getCreateTime() != null){
+						his.setCreated_Date(DateUtil.getDateTimeString(opeList.get(i).getCreateTime()));
+					}
+					his.setUpdated_By(opeList.get(i).getUpdateName());
+					if(opeList.get(i).getUpdateTime() != null){
+						his.setUpdated_Date(DateUtil.getDateTimeString(opeList.get(i).getUpdateTime()));
+					}
+					
+					his.setUuid(opeList.get(i).getId());
+					hisList.add(his);
+				}
+			}
+			
+			TraumatismRecord tra = new TraumatismRecord();			
+			tra.setArchiveNo(info.getArchiveid());
+			List<TraumatismRecord> traList = traumatismRecordDao.selectByArchiveNo(tra);
+			if(traList != null && traList.size() > 0){
+				for(int i = 0; i < traList.size(); i++){
+					OperationHistory his = new OperationHistory();
+					his.setArchiveId(traList.get(i).getArchiveNo());
+					his.setName(traList.get(i).getTraumatismName());
+					his.setHappenDate(traList.get(i).getTraumatismTime());
+					his.setDuns(info.getDuns());
+					his.setId(traList.get(i).getId());
+					his.setType("SX0075_2");
+					
+					his.setCreated_By(traList.get(i).getCreateName());
+					if(traList.get(i).getCreateTime() != null){
+						his.setCreated_Date(DateUtil.getDateTimeString(traList.get(i).getCreateTime()));
+					}
+					his.setUpdated_By(traList.get(i).getUpdateName());
+					if(traList.get(i).getUpdateTime() != null){
+						his.setUpdated_Date(DateUtil.getDateTimeString(traList.get(i).getUpdateTime()));
+					}
+					
+					his.setUuid(opeList.get(i).getId());
+					hisList.add(his);
+				}
+			}
+
+			MetachysisRecord met = new MetachysisRecord();			
+			met.setArchiveNo(info.getArchiveid());
+			List<MetachysisRecord> metList = mentachysisRecordDao.selectByArchiveNo(met);
+			if(metList != null && metList.size() > 0){
+				for(int i = 0; i < metList.size(); i++){
+					OperationHistory his = new OperationHistory();
+					his.setArchiveId(metList.get(i).getArchiveNo());
+					his.setName(metList.get(i).getMetachysisReasonn());
+					his.setHappenDate(metList.get(i).getMetachysisTime());
+					his.setDuns(info.getDuns());
+					his.setId(metList.get(i).getId());
+					his.setType("SX0075_3");
+					
+					his.setCreated_By(metList.get(i).getCreateName());
+					if(metList.get(i).getCreateTime() != null){
+						his.setCreated_Date(DateUtil.getDateTimeString(metList.get(i).getCreateTime()));
+					}
+					his.setUpdated_By(metList.get(i).getUpdateName());
+					if(metList.get(i).getUpdateTime() != null){
+						his.setUpdated_Date(DateUtil.getDateTimeString(metList.get(i).getUpdateTime()));
+					}
+					
+					his.setUuid(opeList.get(i).getId());
+					hisList.add(his);
+				}
+			}
+			
+			info.setOperationHistory(hisList);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return info;
+	}
 }

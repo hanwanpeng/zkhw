@@ -1,6 +1,7 @@
 package com.zkhw.api.bo;
 
 import java.util.Date;
+import java.util.List;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
@@ -207,5 +208,102 @@ public class ResidentInfo {
 	//修改时间
 	@JSONField(name = "UPDATEDDATE")
 	private Date updatedDate;
+	
+	
+	//高血压确诊日期
+	@JSONField(name = "HYPERDIAGNOSEDATE")
+	private String hyperDiagnoseDate;
+	
+	//糖尿病确诊日期
+	@JSONField(name = "DMDIAGNOSEDATE")
+	private String dmDiagnoseDate;
+	
+	//是否患冠心病
+	@JSONField(name = "DISHEARTFLAG")
+	private String disheartflag;
+	
+	//冠心病确诊日期
+	@JSONField(name = "HEARTDIAGNOSEDATE")
+	private String heartDiagnoseDate;
+	
+	//是否患慢性阻塞性肺疾病
+	@JSONField(name = "DISLUNGFLAG")
+	private String dislungflag;
+	
+	//肺病确诊日期
+	@JSONField(name = "LUNGDIAGNOSEDATE")
+	private String lungdiagnoseDate;
+	
+	//是否患恶性肿瘤
+	@JSONField(name = "DISTUMORFLAG")
+	private String distumorflag;
+	
+	//恶性肿瘤名称
+	@JSONField(name = "TUMORNAME")
+	private String tumorName;
+	
+	//恶性肿瘤确诊日期
+	@JSONField(name = "TUMORDIAGNOSEDATE")
+	private String tumorDiagnoseDate;
+	
+	//是否患脑卒中
+	@JSONField(name = "DISSTROKEFLAG")
+	private String disstrokeflag;
+	
+	//脑卒中确诊日期
+	@JSONField(name = "STROKEDIAGNOSEDATE")
+	private String strokeDiagnoseDate;
+		
+	//精神疾病确诊日期
+	@JSONField(name = "MENTADIAGNOSEDATE")
+	private String mentaDiagnoseDate;
+		
+	//肺结核确诊日期
+	@JSONField(name = "TBDIAGNOSEDATE")
+	private String tbDiagnoseDate;
+	
+	//是否患肝炎
+	@JSONField(name = "DISHEPATITISFLAG")
+	private String dishepatitisflag;
+	
+	//肝炎确诊日期
+	@JSONField(name = "HEPATITDIAGNOSEDATE")
+	private String hepatitDiagnoseDate;
+	
+	//是否患其他法定传染病
+	@JSONField(name = "DISINFECTFLAG")
+	private String disinfectflag;
+	
+	//其他传染病确诊日期
+	@JSONField(name = "INFECTDIAGNOSEDATE")
+	private String infectDiagnoseDate;
+	
+	//是否患职业病
+	@JSONField(name = "DISOCCUPATIONFLAG")
+	private String disoccupationflag;
+	
+	//职业病名称
+	@JSONField(name = "OCCUPATIONNAME")
+	private String occupationName;
+	
+	//职业病确诊日期
+	@JSONField(name = "OCCUPADIAGNOSEDATE")
+	private String occupaDiagnoseDate;
+	
+	//是否患其他疾病
+	@JSONField(name = "DISOTHERFLAG")
+	private String disOtherflag;
+	
+	//其他疾病名称
+	@JSONField(name = "DISOTHERNAME")
+	private String disOtherName;
+	
+	//其他疾病确诊日期
+	@JSONField(name = "DISOTHERDIAGNOSEDATE")
+	private String disOtherDiagnoseDate;
+	
+	private List<FamilyHistory> FamilyHistory;
+	
+	private List<OperationHistory> OperationHistory;
 	
 }
