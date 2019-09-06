@@ -70,4 +70,10 @@ public class ErrorInfo {
 	
 	@JSONField(name = "FeiJieHeVisit")
 	private List<Error> FeiJieHeVisit;
+	
+	@JSONField(name = "LogBody")
+	private List<Error> LogBody;
+	
+	@JSONField(name = "FeimianyiHis")
+	private List<Error> FeimianyiHis;
 }

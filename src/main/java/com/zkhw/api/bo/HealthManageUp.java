@@ -12,4 +12,5 @@ public class HealthManageUp {
 	private HealthManage LogBody;
 	
 	private List<TakeMedicine> TakeMedicineRecord;
+	
 }

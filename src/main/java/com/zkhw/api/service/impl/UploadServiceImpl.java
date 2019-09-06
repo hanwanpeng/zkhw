@@ -1,7 +1,9 @@
 package com.zkhw.api.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import com.zkhw.api.bo.DiabetesFollow;
 import com.zkhw.api.bo.Error;
 import com.zkhw.api.bo.ErrorInfo;
 import com.zkhw.api.bo.FamilyHistory;
+import com.zkhw.api.bo.FeimianyiHis;
 import com.zkhw.api.bo.FollowResult;
 import com.zkhw.api.bo.Gravida42After;
 import com.zkhw.api.bo.Gravida42AfterBo;
@@ -76,6 +79,7 @@ import com.zkhw.framework.utils.DateUtil;
 import com.zkhw.ltd.dao.OrganizationDao;
 import com.zkhw.ltd.entity.Organization;
 import com.zkhw.pub.dao.FamilyRecordDao;
+import com.zkhw.pub.dao.HospitalizedRecordDao;
 import com.zkhw.pub.dao.MentachysisRecordDao;
 import com.zkhw.pub.dao.OperationRecordDao;
 import com.zkhw.pub.dao.PhysicalExaminationDao;
@@ -83,7 +87,9 @@ import com.zkhw.pub.dao.ResidentBaseInfoDao;
 import com.zkhw.pub.dao.ResidentDiseasesDao;
 import com.zkhw.pub.dao.TakeMedicineRecordDao;
 import com.zkhw.pub.dao.TraumatismRecordDao;
+import com.zkhw.pub.dao.VaccinationRecordDao;
 import com.zkhw.pub.entity.FamilyRecord;
+import com.zkhw.pub.entity.HospitalizedRecord;
 import com.zkhw.pub.entity.MetachysisRecord;
 import com.zkhw.pub.entity.OperationRecord;
 import com.zkhw.pub.entity.PhysicalExamination;
@@ -91,6 +97,7 @@ import com.zkhw.pub.entity.ResidentBaseInfo;
 import com.zkhw.pub.entity.ResidentDiseases;
 import com.zkhw.pub.entity.TakeMedicineRecord;
 import com.zkhw.pub.entity.TraumatismRecord;
+import com.zkhw.pub.entity.VaccinationRecord;
 
 @Service
 public class UploadServiceImpl implements UploadService {
@@ -157,6 +164,12 @@ public class UploadServiceImpl implements UploadService {
 	
 	@Autowired
 	private TakeMedicineRecordDao takeMedicineRecordDao;
+	
+	@Autowired
+	private VaccinationRecordDao vaccinationRecordDao;
+	
+	@Autowired
+	private HospitalizedRecordDao hospitalizedRecordDao;
 	
 	@Override
 	public ErrorInfo diabetesUpload(DiabetesBo bo) {
@@ -2408,6 +2421,7 @@ public class UploadServiceImpl implements UploadService {
 		// TODO Auto-generated method stub
 		ErrorInfo errInfo = new ErrorInfo();
 		List<Error> errList = new ArrayList<Error>();
+		Map<String,String> keys = new HashMap<String,String>();
 		for(int j = 0; j < bo.getElderlyHealthManage().size(); j++){
 			Error err = new Error();
 			try{
@@ -2417,6 +2431,7 @@ public class UploadServiceImpl implements UploadService {
 				err.setInfo(follow.getId());
 
 				record.setId(CodeUtil.getUUID());
+				keys.put(follow.getId(), record.getId());
 				record.setArchiveNo(follow.getArchiveId());			
 				List<ResidentBaseInfo> residents = residentBaseInfoDao.findResidentByArchiveNo(follow.getArchiveId());
 				String idNumber = "";
@@ -2476,6 +2491,17 @@ public class UploadServiceImpl implements UploadService {
 				record.setLifewayOccupationalDisease(follow.getUndress());
 				record.setLifewayJob(follow.getUndress_work());
 				record.setLifewayJobPeriod(follow.getUndress_worktime() == null?"":follow.getUndress_worktime().toString());
+				
+				record.setLifewayHazardousDust(follow.getFenchen());
+				record.setLifewayDustPreventive(follow.getFenchen_val());
+				record.setLifewayHazardousRadiation(follow.getFangshe());
+				record.setLifewayRadiationPreventive(follow.getFangshe_val());
+				record.setLifewayHazardousPhysical(follow.getWuli());
+				record.setLifewayPhysicalPreventive(follow.getWuli_val());
+				record.setLifewayHazardousChemical(follow.getHuaxue());
+				record.setLifewayChemicalPreventive(follow.getHuaxue_val());
+				record.setLifewayHazardousOther(follow.getDuwu_qita());
+				record.setLifewayOtherPreventive(follow.getDuwu_qita_val());
 				
 				record.setOrganLips(follow.getLip());
 				record.setOrganTooth(follow.getTooth());
@@ -2690,6 +2716,151 @@ public class UploadServiceImpl implements UploadService {
 				physicalExaminationDao.insertSelective(record);
 				err.setCode("0");
 	
+				
+				if(StringUtil.isNotEmpty(follow.getZhuyuan_a_binganhao()) || StringUtil.isNotEmpty(follow.getZhuyuan_a_time())
+						|| StringUtil.isNotEmpty(follow.getZhuyuan_a_yiliao()) || StringUtil.isNotEmpty(follow.getZhuyuan_a_yuanyin())){
+					
+					String inHospitalTime = "";
+					String leaveHospitalTime = "";
+					if(StringUtil.isNotEmpty(follow.getZhuyuan_a_time())){
+						String[] d = follow.getZhuyuan_a_time().split("/");
+						inHospitalTime = d[0];
+						if(d.length > 1){
+							leaveHospitalTime = d[1];
+						}
+					}
+					
+					HospitalizedRecord h = new HospitalizedRecord();
+					h.setId(CodeUtil.getUUID());
+					h.setExamId(record.getId());
+					h.setArchiveNo(record.getArchiveNo());
+					h.setIdNumber(idNumber);
+					//h.setServiceName(serviceName);
+					h.setHospitalizedType(1);
+					h.setInHospitalTime(inHospitalTime);
+					h.setLeaveHospitalTime(leaveHospitalTime);
+					h.setReason(follow.getZhuyuan_a_yuanyin());
+					h.setHospitalOrgan(follow.getZhuyuan_a_yiliao());
+					h.setCaseCode(follow.getZhuyuan_a_binganhao());
+					//h.setRemark(remark);
+					
+					h.setCreateOrg(record.getCreateOrg());
+					h.setCreateName(record.getCreateName());
+					h.setCreateTime(record.getCreateTime());
+					h.setUpdateName(record.getUpdateName());
+					h.setUpdateTime(record.getUpdateTime());
+					
+					hospitalizedRecordDao.insertSelective(h);
+				}
+				
+				if(StringUtil.isNotEmpty(follow.getZhuyuan_b_binganhao()) || StringUtil.isNotEmpty(follow.getZhuyuan_b_time())
+						|| StringUtil.isNotEmpty(follow.getZhuyuan_b_yiliao()) || StringUtil.isNotEmpty(follow.getZhuyuan_b_yuanyin())){
+					
+					String inHospitalTime = "";
+					String leaveHospitalTime = "";
+					if(StringUtil.isNotEmpty(follow.getZhuyuan_b_time())){
+						String[] d = follow.getZhuyuan_b_time().split("/");
+						inHospitalTime = d[0];
+						if(d.length > 1){
+							leaveHospitalTime = d[1];
+						}
+					}
+					
+					HospitalizedRecord h = new HospitalizedRecord();
+					h.setId(CodeUtil.getUUID());
+					h.setExamId(record.getId());
+					h.setArchiveNo(record.getArchiveNo());
+					h.setIdNumber(idNumber);
+					//h.setServiceName(serviceName);
+					h.setHospitalizedType(1);
+					h.setInHospitalTime(inHospitalTime);
+					h.setLeaveHospitalTime(leaveHospitalTime);
+					h.setReason(follow.getZhuyuan_b_yuanyin());
+					h.setHospitalOrgan(follow.getZhuyuan_b_yiliao());
+					h.setCaseCode(follow.getZhuyuan_b_binganhao());
+					//h.setRemark(remark);
+					
+					h.setCreateOrg(record.getCreateOrg());
+					h.setCreateName(record.getCreateName());
+					h.setCreateTime(record.getCreateTime());
+					h.setUpdateName(record.getUpdateName());
+					h.setUpdateTime(record.getUpdateTime());
+					
+					hospitalizedRecordDao.insertSelective(h);
+				}
+				
+				if(StringUtil.isNotEmpty(follow.getJiating_a_binganhao()) || StringUtil.isNotEmpty(follow.getJiating_a_time())
+						|| StringUtil.isNotEmpty(follow.getJiating_a_yiliao()) || StringUtil.isNotEmpty(follow.getJiating_a_yuanyin())){
+					
+					String inHospitalTime = "";
+					String leaveHospitalTime = "";
+					if(StringUtil.isNotEmpty(follow.getJiating_a_time())){
+						String[] d = follow.getJiating_a_time().split("/");
+						inHospitalTime = d[0];
+						if(d.length > 1){
+							leaveHospitalTime = d[1];
+						}
+					}
+					
+					HospitalizedRecord h = new HospitalizedRecord();
+					h.setId(CodeUtil.getUUID());
+					h.setExamId(record.getId());
+					h.setArchiveNo(record.getArchiveNo());
+					h.setIdNumber(idNumber);
+					//h.setServiceName(serviceName);
+					h.setHospitalizedType(2);
+					h.setInHospitalTime(inHospitalTime);
+					h.setLeaveHospitalTime(leaveHospitalTime);
+					h.setReason(follow.getJiating_a_yuanyin());
+					h.setHospitalOrgan(follow.getJiating_a_yiliao());
+					h.setCaseCode(follow.getJiating_a_binganhao());
+					//h.setRemark(remark);
+					
+					h.setCreateOrg(record.getCreateOrg());
+					h.setCreateName(record.getCreateName());
+					h.setCreateTime(record.getCreateTime());
+					h.setUpdateName(record.getUpdateName());
+					h.setUpdateTime(record.getUpdateTime());
+					
+					hospitalizedRecordDao.insertSelective(h);
+				}
+				
+				if(StringUtil.isNotEmpty(follow.getJiating_b_binganhao()) || StringUtil.isNotEmpty(follow.getJiating_b_time())
+						|| StringUtil.isNotEmpty(follow.getJiating_b_yiliao()) || StringUtil.isNotEmpty(follow.getJiating_b_yuanyin())){
+					
+					String inHospitalTime = "";
+					String leaveHospitalTime = "";
+					if(StringUtil.isNotEmpty(follow.getJiating_b_time())){
+						String[] d = follow.getJiating_b_time().split("/");
+						inHospitalTime = d[0];
+						if(d.length > 1){
+							leaveHospitalTime = d[1];
+						}
+					}
+					
+					HospitalizedRecord h = new HospitalizedRecord();
+					h.setId(CodeUtil.getUUID());
+					h.setExamId(record.getId());
+					h.setArchiveNo(record.getArchiveNo());
+					h.setIdNumber(idNumber);
+					//h.setServiceName(serviceName);
+					h.setHospitalizedType(2);
+					h.setInHospitalTime(inHospitalTime);
+					h.setLeaveHospitalTime(leaveHospitalTime);
+					h.setReason(follow.getJiating_b_yuanyin());
+					h.setHospitalOrgan(follow.getJiating_b_yiliao());
+					h.setCaseCode(follow.getJiating_b_binganhao());
+					//h.setRemark(remark);
+					
+					h.setCreateOrg(record.getCreateOrg());
+					h.setCreateName(record.getCreateName());
+					h.setCreateTime(record.getCreateTime());
+					h.setUpdateName(record.getUpdateName());
+					h.setUpdateTime(record.getUpdateTime());
+					
+					hospitalizedRecordDao.insertSelective(h);
+				}				
+				
 				List<TakeMedicine> list = bo.getElderlyHealthManage().get(j).getTakeMedicineRecord();
 				if(list != null && list.size() > 0){					
 					for(int i = 0; i < list.size(); i++){
@@ -2732,7 +2903,54 @@ public class UploadServiceImpl implements UploadService {
 			}
 			errList.add(err);
 		}
-		errInfo.setElderlyHealthManage(errList);
+		List<FeimianyiHis> feiHis =  bo.getFeimianyiHis();
+		if(feiHis != null && feiHis.size() > 0){
+			for(int i = 0; i < feiHis.size(); i++){
+				try{
+					VaccinationRecord record = new VaccinationRecord();
+					record.setId(CodeUtil.getUUID());
+					record.setExamId(keys.get(feiHis.get(i).getExamid()));
+					record.setArchiveNo(feiHis.get(i).getArchiveid());
+					//record.setIdNumber(idNumber);
+					//record.setServiceName(serviceName);
+					//record.setCardId(cardId);
+					//record.setVaccinationType(vaccinationType);
+					//record.setVaccinationId(vaccinationId);
+					record.setVaccinationName(feiHis.get(i).getName());
+					//record.setAcuscount(acuscount);
+					//record.setDose(dose);
+					//record.setDescnption(descnption);
+					//record.setInocuState(inocuState);
+					//record.setSinocuDate(sinocuDate);
+					record.setVaccinationTime(feiHis.get(i).getTime());
+					//record.setInocuDoctor(inocuDoctor);
+					//record.setRegisterPerson(registerPerson);
+					//record.setDzjgm(dzjgm);
+					//record.setBatchNumber(batchNumber);
+					//record.setCounty(county);
+					//record.setInoculationSite(inoculationSite);
+					//record.setInoculationWay(inoculationWay);
+					//record.setVaccinationOrgan(vaccinationOrgan);
+					record.setVaccinationOrganName(feiHis.get(i).getJiezhongjigou());
+					//record.setRemark(remark);
+					//record.setValiddate(validdate);
+					//record.setManufacturer(manufacturer);
+					//record.setManufactCode(manufactCode);
+					
+					//record.setCreateName(createName);
+					record.setCreateTime(DateUtil.getDate(feiHis.get(i).getTime(), "yyyy-MM-dd HH:mm:ss"));
+					//record.setUpdateName(updateName);
+					//record.setUpdateTime(updateTime);
+					
+					vaccinationRecordDao.insertSelective(record);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+		}
+		errInfo.setLogBody(errList);
+		errInfo.setTakeMedicineRecord(new ArrayList<Error>());
+		errInfo.setFeimianyiHis(new ArrayList<Error>());
 		return errInfo;
 	}
 }

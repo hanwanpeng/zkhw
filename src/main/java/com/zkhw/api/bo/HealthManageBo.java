@@ -10,4 +10,6 @@ import lombok.Setter;
 public class HealthManageBo {
 
 	private List<HealthManageUp> ElderlyHealthManage;
+	
+	private List<FeimianyiHis> FeimianyiHis;
 }

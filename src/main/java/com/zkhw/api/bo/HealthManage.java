@@ -546,5 +546,82 @@ public class HealthManage extends BaseBo{
 	//健康建议
 	private String healthadvice;
 	
+	//粉尘
+	private String fenchen;
+	
+	//粉尘描述
+	private String fenchen_memo;
+	
+	//粉尘防护措施
+	private String fenchen_val;
+	
+	//放射
+	private String fangshe;
+	
+	//放射描述
+	private String fangshe_memo;
+	
+	//放射防护措施
+	private String fangshe_val;
+	
+	//物理
+	private String wuli;
+	
+	//物理描述
+	private String wuli_memo;
+	
+	//物理防护措施
+	private String wuli_val;
+	
+	//化学
+	private String huaxue;
+	
+	//化学描述
+	private String huaxue_memo;
+	
+	//化学防护措施
+	private String huaxue_val;
+	
+	//毒物其他
+	private String duwu_qita;
+	
+	//毒物其他描述
+	private String duwu_qita_memo;
+	
+	//毒物其他防护措施
+	private String duwu_qita_val;
+	
+	private String zhuyuan_a_binganhao;
+	
+	private String zhuyuan_a_time;
+	
+	private String zhuyuan_a_yiliao;
+	
+	private String zhuyuan_a_yuanyin;
+	
+	private String zhuyuan_b_binganhao;
+	
+	private String zhuyuan_b_time;
+	
+	private String zhuyuan_b_yiliao;
+	
+	private String zhuyuan_b_yuanyin;	
+	
+	private String jiating_a_binganhao;
+	
+	private String jiating_a_time;
+	
+	private String jiating_a_yiliao;
+	
+	private String jiating_a_yuanyin;
+	
+	private String jiating_b_binganhao;
+	
+	private String jiating_b_time;
+	
+	private String jiating_b_yiliao;
+	
+	private String jiating_b_yuanyin;	
+	
 	private String UUID;
 }
