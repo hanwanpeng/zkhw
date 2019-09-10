@@ -110,6 +110,25 @@
        and  age = #{age,jdbcType=INTEGER}
      </if>          
   </select>
+  
+  <select id="findFollowRecordBetweenAge" parameterType="com.zkhw.flup.entity.ChildrenHealthRecord" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from children_health_record
+    where 1 = 1
+     <if test="archiveNo != null">
+       and  archive_no = #{archiveNo,jdbcType=VARCHAR}
+     </if> 
+     <if test="age == 8">
+       and  age BETWEEN 0 and 8
+     </if>  
+     <if test="age == 30">
+       and  age BETWEEN 9 and 30
+     </if>   
+     <if test="age == 72">
+       and  age BETWEEN 31 and 72
+     </if>                 
+  </select>  
     
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from children_health_record

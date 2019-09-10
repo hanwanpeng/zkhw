@@ -1,5 +1,7 @@
 package com.zkhw.flup.service;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,4 +19,8 @@ public interface ChildrenService {
 	ChildrenHealthRecord findFollowRecordByAge(ChildrenHealthRecord record);
 
 	void childrenForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,NeonatusInfo neonatus);
+	
+	Map<String, String> exportInfoPdf(String archiveNo);
+	
+	Map<String, String> exportFollowPdf(String archiveNo,String type);
 }

@@ -1,5 +1,7 @@
 package com.zkhw.flup.service;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,4 +26,8 @@ public interface GravidaService {
 	PageInfos<GravidaAfterRecord> findGravidaAfterByPage(GravidaAfterRecord gravida, PageInfos<GravidaAfterRecord> pageData);
 
 	void gravidaForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,GravidaInfoQuery gravida);
+	
+	
+	Map<String, String> exportInfoPdf(String archiveNo);
+	
 }

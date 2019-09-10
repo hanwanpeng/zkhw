@@ -181,6 +181,8 @@ public class PhysicalExaminationVo {
     private String organDoctor;
 
     private String examinationEye;
+    
+    private String examinationEyeOther;
 
     private String examinationSkin;
 
@@ -197,6 +199,8 @@ public class PhysicalExaminationVo {
     private String examinationBarrelChest;
 
     private String examinationBreathSounds;
+    
+    private String examinationBreathOther;
 
     private String examinationRale;
 
@@ -361,6 +365,8 @@ public class PhysicalExaminationVo {
     private String dangerControlling;
 
     private String targetWeight;
+    
+    private String adviseBacterin;
 
     private String dangerControllingOther;
 

@@ -18,4 +18,6 @@ public interface ChildrenHealthRecordDao {
     int updateByPrimaryKey(ChildrenHealthRecord record);
     
     List<ChildrenHealthRecord> findFollowRecordByAge(ChildrenHealthRecord record);
+    
+    List<ChildrenHealthRecord> findFollowRecordBetweenAge(ChildrenHealthRecord record);
 }
