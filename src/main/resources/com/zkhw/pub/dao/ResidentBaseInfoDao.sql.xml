@@ -110,6 +110,152 @@
 		</if>
 	</select>
   
+  <!-- 小程序体检人群统计 -->
+  <select id="statForExamNum" parameterType="com.zkhw.stat.query.ResidentQuery" resultType="com.zkhw.stat.vo.ExaminationNumVo">
+  SELECT (SELECT COUNT(1) FROM resident_base_info r JOIN physical_examination_record p ON r.id_number = p.id_number
+  <if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+		<if test="startTime != null and startTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d')]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d')]]>
+		</if>
+  ) AS allExamNum,
+(SELECT COUNT(1) FROM resident_base_info r JOIN physical_examination_record p ON r.id_number = p.id_number
+WHERE YEAR(NOW())-SUBSTRING(r.id_number,7,4) &gt;= 65
+		<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+		<if test="startTime != null and startTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d')]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d')]]>
+		</if>
+)AS examForElderlyNum,
+(SELECT COUNT(1) FROM resident_base_info r JOIN physical_examination_record p ON r.id_number = p.id_number
+WHERE r.is_hypertension = '1'
+<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+		<if test="startTime != null and startTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d')]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d')]]>
+		</if>
+) AS examForHypertensionNum,
+(SELECT COUNT(1) FROM resident_base_info r JOIN physical_examination_record p ON r.id_number = p.id_number
+WHERE r.is_diabetes = '1'
+<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+		<if test="startTime != null and startTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d')]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d')]]>
+		</if>
+) AS examForDiabetesNum,
+(SELECT COUNT(1) FROM resident_base_info r JOIN physical_examination_record p ON r.id_number = p.id_number
+WHERE r.is_psychosis = '1'
+<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+		<if test="startTime != null and startTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d')]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d')]]>
+		</if>
+) AS examForPsychosisNum,
+(SELECT COUNT(1) FROM resident_base_info r JOIN physical_examination_record p ON r.id_number = p.id_number
+WHERE r.is_tuberculosis = '1'
+<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+		<if test="startTime != null and startTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d')]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+            <![CDATA[and DATE_FORMAT(check_date, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d')]]>
+		</if>
+) AS examForTuberculosisNum
+</select>
   
   
   <!-- 慢病随访统计人数 -->
@@ -207,7 +353,100 @@
 		</if>
 	) AS psychosisNum
 	</select>
-  
+
+
+<!-- 汇总表中的数据2019年体检,26岁—64岁体检,65岁以上老年人体检,贫困户体检,贫困户患慢病人员 -->
+<select id="statForExamination" parameterType="com.zkhw.stat.query.ResidentQuery" resultType="com.zkhw.stat.vo.ExaminationVo">
+		SELECT (SELECT COUNT(1) FROM resident_base_info r JOIN physical_examination_record p ON r.id_number = p.id_number
+	WHERE YEAR(NOW())-SUBSTRING(r.id_number,7,4) &gt;= 65
+		<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+	) AS elderlyYet,
+	(SELECT COUNT(1) FROM resident_base_info r JOIN physical_examination_record p ON r.id_number = p.id_number
+	WHERE YEAR(NOW())-SUBSTRING(r.id_number,7,4)  &lt;65 AND YEAR(NOW())-SUBSTRING(r.id_number,7,4) &gt;=26
+		<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+	) AS twentySixNum,
+	(SELECT COUNT(1) FROM resident_base_info r JOIN physical_examination_record p ON r.id_number = p.id_number
+		<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+	)AS examinationNum,
+	(SELECT COUNT(1) FROM resident_base_info r JOIN physical_examination_record p ON r.id_number = p.id_number WHERE r.is_poor = '1' 
+		<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+	) AS poorExamNum,
+	(SELECT COUNT(1) FROM resident_base_info r JOIN physical_examination_record p ON r.id_number
+	= p.id_number WHERE r.is_poor = '1'AND (r.is_hypertension = '1' OR r.is_diabetes = '1' OR r.is_psychosis = '1' OR r.is_tuberculosis =
+	'1')
+		<if test="provinceCode != null and provinceCode != ''">
+			and province_code = #{provinceCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cityCode != null and cityCode != ''">
+			and city_code = #{cityCode,jdbcType=VARCHAR}
+		</if>
+		<if test="countyCode != null and countyCode != ''">
+			and county_code = #{countyCode,jdbcType=VARCHAR}
+		</if>
+		<if test="townsCode != null and townsCode != ''">
+			and towns_code = #{townsCode,jdbcType=VARCHAR}
+		</if>
+		<if test="villageCode != null and villageCode != ''">
+			and village_code = #{villageCode,jdbcType=VARCHAR}
+		</if>
+	) AS poorAndDiseaseNum
+	</select>
   
   
   <!-- 查询老年人体检人数 -->
@@ -391,6 +630,23 @@
 		and village_code = #{villageCode,jdbcType=VARCHAR}
 	</if>
 	) AS poorNum,
+	(SELECT COUNT(1) FROM resident_base_info WHERE is_deformity = '1'
+	<if test="provinceCode != null and provinceCode != ''">
+		and province_code = #{provinceCode,jdbcType=VARCHAR}
+	</if>
+	<if test="cityCode != null and cityCode != ''">
+		and city_code = #{cityCode,jdbcType=VARCHAR}
+	</if>
+	<if test="countyCode != null and countyCode != ''">
+		and county_code = #{countyCode,jdbcType=VARCHAR}
+	</if>
+	<if test="townsCode != null and townsCode != ''">
+		and towns_code = #{townsCode,jdbcType=VARCHAR}
+	</if>
+	<if test="villageCode != null and villageCode != ''">
+		and village_code = #{villageCode,jdbcType=VARCHAR}
+	</if>
+	) AS deformityNum,
 	(SELECT COUNT(1) FROM resident_base_info WHERE 1 = 1
 	<if test="provinceCode != null and provinceCode != ''">
 		and province_code = #{provinceCode,jdbcType=VARCHAR}

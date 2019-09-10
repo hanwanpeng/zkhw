@@ -31,6 +31,7 @@ import com.zkhw.stat.vo.ChildVo;
 import com.zkhw.stat.vo.ElderlyEstimateVo;
 import com.zkhw.stat.vo.ElderlyRecordVo;
 import com.zkhw.stat.vo.ElderlyVo;
+import com.zkhw.stat.vo.ExaminationNumVo;
 import com.zkhw.stat.vo.FlupVo;
 import com.zkhw.stat.vo.GravidaVo;
 import com.zkhw.stat.vo.PersonVo;
@@ -74,6 +75,16 @@ public class StatisticsServiceImpl implements StatisticsService {
 	
 	@Autowired
 	private DiabetesFollowRecordDao diabetesFollowRecordDao;
+	
+	
+	/**
+	 *  体检人群统计 -小程序
+	 */
+	@Override
+	public ExaminationNumVo statForExamNum(ResidentQuery query) {
+		ExaminationNumVo statForExamNum = residentBaseInfoDao.statForExamNum(query);
+		return statForExamNum;
+	}
 	
 	
 	/**

@@ -27,6 +27,7 @@ import com.zkhw.stat.query.ResidentQuery;
 import com.zkhw.stat.service.StatisticsService;
 import com.zkhw.stat.vo.ChildVo;
 import com.zkhw.stat.vo.ElderlyVo;
+import com.zkhw.stat.vo.ExaminationNumVo;
 import com.zkhw.stat.vo.FlupVo;
 import com.zkhw.stat.vo.GravidaVo;
 import com.zkhw.stat.vo.PersonVo;
@@ -50,6 +51,31 @@ public class StatisticsController {
 	
 	@Autowired
 	private OrganizationService organizationService;
+	
+	/**
+	 *  体检人群统计 -小程序
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/statForExamNum", method = RequestMethod.GET)
+	public void statForExamNum(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,ResidentQuery query){
+		try {
+			ExaminationNumVo examinationNumVo = statisticsService.statForExamNum(query);
+			if(examinationNumVo != null) {
+				result.setData(examinationNumVo);
+				result.setCode("0");
+				result.setMsg("成功");
+			}else {
+				result.setCode("1");
+				result.setMsg("未查询到结果！");
+			}
+		}catch (Exception e) {
+			result.setCode("1");
+			result.setMsg("失败");
+		}
+		
+		JsonWebPrintUtils.printApiResult(req, resp, result);
+	}
+	
 	
 	/**
 	 * 个人统计（通过身份证号查询）-小程序

@@ -61,6 +61,11 @@ public class StatResidentVo {
 	private Integer poorNum;
 	
 	/**
+	 * 残疾人数
+	 */
+	private Integer deformityNum;
+	
+	/**
 	 * 其他人数
 	 */
 	private Integer otherNum;
