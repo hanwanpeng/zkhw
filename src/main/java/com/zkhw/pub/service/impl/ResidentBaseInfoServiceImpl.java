@@ -40,7 +40,6 @@ import com.zkhw.pub.mo.ResidentMo;
 import com.zkhw.pub.query.ResidentBaseInfoQuery;
 import com.zkhw.pub.service.ResidentBaseInfoService;
 import com.zkhw.pub.vo.ResidentVo;
-import com.zkhw.stat.query.ResidentQuery;
 
 
 @Service
@@ -64,79 +63,6 @@ public class ResidentBaseInfoServiceImpl implements ResidentBaseInfoService {
 	@Autowired
 	private ResidentDiseasesDao residentDiseasesDao;
 	
-	
-	/**
-	 * 汇总表花名册
-	 */
-	@Override
-	public void allForExcel(HttpServletRequest request, HttpServletResponse response, ApiJsonResult result,
-			ResidentBaseInfoQuery resident) {
-		List<ResidentBaseInfo> residentBaseInfoList = residentBaseInfoDao.findResidentList(resident);
-		if (residentBaseInfoList.size() > 0) {
-			// 表头
-			ArrayList<String> headerList = new ArrayList<String>();
-			String[] header = { "人口总数", "贫困户总人数", "家庭签约人数", "贫困户签约人数", "高血压人数", "糖尿病人数", "肺结核人数", "精神病人数", "2019年体检人数",
-					"26岁—64岁体检人数", "65岁以上老年人体检人数", "贫困户体检人数", "贫困户患慢病人员人数", "重点人群总人数", "残疾人数", "0—6岁儿童人数", "7岁--25岁总人数",
-					"26岁--64岁总人数", "65岁以上老年人总数", "孕产妇总数" };
-			for (int i = 0; i < header.length; i++) {
-				headerList.add(header[i]);
-			}
-			// 行内容
-			ArrayList<List<String>> rowList = new ArrayList<List<String>>();
-			String title = "汇总表查询列表";
-			String sheetName = "汇总表花名册";
-
-			ArrayList<String> row = new ArrayList<String>();
-
-			ResidentQuery query = new ResidentQuery();
-			BeanUtils.copyProperties(resident, query);
-			List<ResidentBaseInfo> statForAgeList = residentBaseInfoDao.statForAge(query);
-			int size = statForAgeList.size();
-			row.add(String.valueOf(size));// 总人数
-			
-			
-
-			rowList.add(row);
-			// 输出excel到浏览器
-			response.setContentType("application/msexcel");
-			response.setCharacterEncoding("UTF-8");
-			response.setHeader("Pragma", "No-cache");
-			response.setHeader("Access-Control-Allow-Origin", "*");
-			response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE");
-			response.setHeader("Access-Control-Allow-Headers",
-					"Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Max-Age, X-Auth-Token, Content-Type, Accept");
-			response.setHeader("Cache-Control", "no-cache");
-			response.setDateHeader("Expires", 0);
-			OutputStream out = null;
-
-			try {
-				out = response.getOutputStream();// 取得输出流
-				response.reset();// 清空输出流
-				String filename = title + ".xls";
-				filename = new String(filename.getBytes("gb2312"), "ISO8859-1");
-				response.setHeader("Content-disposition", "attachment; filename=" + filename);// 设定输出文件头
-				ExcelUtil excelUtil = new ExcelUtil();
-				excelUtil.writeExcelWithMultiSheet(headerList, rowList, out, sheetName);
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				if (out != null) {
-					try {
-						out.close();
-					} catch (Exception e2) {
-						e2.printStackTrace();
-					}
-				}
-			}
-
-		} else {
-			result.setCode("1");
-			result.setMsg("没有查询到数据");
-			JsonWebPrintUtils.printOutNullApiResult(request, response, result);
-
-		}
-
-	}
 	
 	/**
 	 * 26-64岁花名册
