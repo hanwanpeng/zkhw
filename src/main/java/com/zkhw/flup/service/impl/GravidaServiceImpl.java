@@ -3,7 +3,9 @@ package com.zkhw.flup.service.impl;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -168,6 +170,129 @@ public class GravidaServiceImpl implements GravidaService {
 			pageData.setRows(page.getList());
 		}
 		return pageData;
+	}
+
+	@Override
+	public Map<String, String> exportInfoPdf(String archiveNo) {
+		// TODO Auto-generated method stub
+		Map<String, String> map = new HashMap<String,String>();
+		GravidaInfo info = gravidaInfoDao.getGravidaByArchiveNo(archiveNo);
+		
+		map.put("a1", archiveNo.substring(0,1));
+		map.put("a2", archiveNo.substring(1,2));
+		map.put("a3", archiveNo.substring(2,3));
+		map.put("a4", archiveNo.substring(3,4));
+		map.put("a5", archiveNo.substring(4,5));
+		map.put("a6", archiveNo.substring(5,6));
+		map.put("a7", archiveNo.substring(6,7));
+		map.put("a8", archiveNo.substring(7,8));
+		map.put("a9", archiveNo.substring(8,9));
+		map.put("a10", archiveNo.substring(9,10));
+		map.put("a11", archiveNo.substring(10,11));
+		map.put("a12", archiveNo.substring(11,12));
+		map.put("a13", archiveNo.substring(12,13));
+		map.put("a14", archiveNo.substring(13,14));
+		map.put("a15", archiveNo.substring(14,15));
+		map.put("a16", archiveNo.substring(15,16));
+		map.put("a17", archiveNo.substring(16,17));
+		
+		if(info != null){
+			//姓名
+			map.put("name", info.getName());
+			
+			//随访时间
+			//随访日期
+			String visitDate = info.getVisitDate();
+			
+			if(StringUtil.isNotEmpty(visitDate)){
+				String[] b = visitDate.split("-");
+				map.put("year", b[0]);					
+				map.put("month", b[1]);
+				map.put("day", b[2]);
+			}
+
+			//孕周
+			map.put("week", info.getGestationalWeeks() == null?"":info.getGestationalWeeks().toString());
+			//孕妇年龄
+			map.put("age", info.getGravidaAge() == null?"":info.getGravidaAge().toString());
+			//丈夫姓名
+			map.put("husbandName", info.getHusbandName());
+			//丈夫年龄
+			map.put("husbandAge", info.getHusbandAge() == null?"":info.getHusbandAge().toString());
+			//丈夫电话
+			map.put("husbandPhone", info.getHusbandPhone());
+			//孕次
+			map.put("pregnantNum", info.getPregnantNum() == null?"":info.getPregnantNum().toString());
+			//阴道分娩次数
+			map.put("labourNum", info.getNaturalLabourNum() == null?"":info.getNaturalLabourNum().toString());
+			//剖腹产次数
+			map.put("cesareanNum", info.getCesareanNum() == null?"":info.getCesareanNum().toString());
+			//末次月经日期
+			String lastDate = info.getLastMenstruationDate();
+			if(StringUtil.isNotEmpty(lastDate)){
+				String[] b = lastDate.split("-");
+				map.put("lastyear", b[0]);					
+				map.put("lastmonth", b[1]);
+				map.put("lastday", b[2]);
+			}
+
+			//预产期
+			String dueDate = info.getDueDate();
+			if(StringUtil.isNotEmpty(dueDate)){
+				String[] b = dueDate.split("-");
+				map.put("dueyear", b[0]);					
+				map.put("duemonth", b[1]);
+				map.put("dueday", b[2]);
+			}
+			
+			//既往主要症状
+			String symptom = info.getPastIllness();
+			if(StringUtil.isNotEmpty(symptom)){
+				String[] sym = symptom.split(",");
+				for(int i = 1; i <= sym.length; i++){
+					map.put("sym" + i , sym[i -1]);
+				}
+			}			
+			map.put("symptomOther", info.getPastIllnessOther());
+			
+			//家族史
+			String family = info.getFamilyHistory();
+			if(StringUtil.isNotEmpty(family)){
+				String[] fam = family.split(",");
+				for(int i = 1; i <= fam.length; i++){
+					map.put("fam" + i , fam[i -1]);
+				}
+			}			
+			map.put("familyOther", info.getFamilyHistoryOther());
+
+			//个人史
+			String customs = info.getHabitsCustoms();
+			if(StringUtil.isNotEmpty(customs)){
+				String[] cus = customs.split(",");
+				for(int i = 1; i <= cus.length; i++){
+					map.put("cus" + i , cus[i -1]);
+				}
+			}			
+			map.put("customsOther", info.getHabitsCustomsOther());
+			//妇产科手术史
+			map.put("operation", info.getIsoperation());
+			map.put("oName", info.getOperationName());
+			
+			
+
+				
+			//map.put("nvisit", info.getNextVisitDate());
+			String nvisitDate = info.getNextVisitDate();
+			
+			if(StringUtil.isNotEmpty(nvisitDate)){
+				String[] b = nvisitDate.split("-");
+				map.put("nextYear", b[0]);					
+				map.put("nextMonth", b[1]);
+				map.put("nextDay", b[2]);
+			}
+			map.put("doctor", info.getVisitDoctor());
+		}
+		return map;
 	}
 
 	

@@ -175,7 +175,14 @@
     from gravida_info
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  
+ 
+   <select id="getGravidaByArchiveNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gravida_info
+    where archive_no = #{archiveNo,jdbcType=VARCHAR} order by create_time desc limit 1
+  </select>
+   
   <select id="findGravidaList" parameterType="com.zkhw.flup.query.GravidaInfoQuery" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

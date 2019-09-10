@@ -23,4 +23,6 @@ public interface GravidaInfoDao {
     List<GravidaInfo> findGravidaList(GravidaInfoQuery gravida);
 
 	GravidaVo statForGravida(ResidentQuery query);
+	
+	GravidaInfo getGravidaByArchiveNo(String archiveNo);
 }
