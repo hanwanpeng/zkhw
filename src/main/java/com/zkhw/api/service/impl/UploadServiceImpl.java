@@ -2889,6 +2889,7 @@ public class UploadServiceImpl implements UploadService {
 				}				
 				
 				List<TakeMedicine> list = bo.getElderlyHealthManage().get(j).getTakeMedicineRecord();
+				List<Error> takeMedicineRecord = new ArrayList<Error>();
 				if(list != null && list.size() > 0){					
 					for(int i = 0; i < list.size(); i++){
 						TakeMedicine take = list.get(i);
@@ -2921,9 +2922,10 @@ public class UploadServiceImpl implements UploadService {
 						//med.setUpdateUser(f/ollow.getUpdated_By());
 						takeMedicineRecordDao.insertSelective(med);
 						e.setCode("0");
+						takeMedicineRecord.add(e);
 					}						
 				}
-				result.setTakeMedicineRecord(new ArrayList<Error>());
+				result.setTakeMedicineRecord(takeMedicineRecord);
 			}catch(Exception e){
 				e.printStackTrace();
 				err.setCode("-1");
@@ -2932,9 +2934,14 @@ public class UploadServiceImpl implements UploadService {
 			errList.add(result);
 		}
 		List<FeimianyiHis> feiHis =  bo.getFeimianyiHis();
+		List<Error> feimianyiHis = new ArrayList<Error>();
 		if(feiHis != null && feiHis.size() > 0){
 			for(int i = 0; i < feiHis.size(); i++){
 				try{
+					Error e = new Error();
+					//e.setId(feiHis.get(i).getUUID());
+					e.setInfo(feiHis.get(i).getId());
+					
 					VaccinationRecord record = new VaccinationRecord();
 					record.setId(CodeUtil.getUUID());
 					record.setExamId(keys.get(feiHis.get(i).getExamid()));
@@ -2971,6 +2978,8 @@ public class UploadServiceImpl implements UploadService {
 					//record.setUpdateTime(updateTime);
 					
 					vaccinationRecordDao.insertSelective(record);
+					e.setCode("0");
+					feimianyiHis.add(e);
 				}catch(Exception e){
 					e.printStackTrace();
 				}
@@ -2978,7 +2987,7 @@ public class UploadServiceImpl implements UploadService {
 		}
 		errInfo.setElderlyHealthManage(errList);
 		//errInfo.setTakeMedicineRecord(new ArrayList<Error>());
-		errInfo.setFeimianyiHis(new ArrayList<Error>());
+		errInfo.setFeimianyiHis(feimianyiHis);
 		return errInfo;
 	}
 }
