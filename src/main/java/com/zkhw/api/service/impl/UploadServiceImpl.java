@@ -2923,6 +2923,7 @@ public class UploadServiceImpl implements UploadService {
 						e.setCode("0");
 					}						
 				}
+				result.setTakeMedicineRecord(new ArrayList<Error>());
 			}catch(Exception e){
 				e.printStackTrace();
 				err.setCode("-1");
@@ -2976,7 +2977,7 @@ public class UploadServiceImpl implements UploadService {
 			}
 		}
 		errInfo.setElderlyHealthManage(errList);
-		errInfo.setTakeMedicineRecord(new ArrayList<Error>());
+		//errInfo.setTakeMedicineRecord(new ArrayList<Error>());
 		errInfo.setFeimianyiHis(new ArrayList<Error>());
 		return errInfo;
 	}
