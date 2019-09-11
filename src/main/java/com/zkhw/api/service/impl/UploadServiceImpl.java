@@ -1831,6 +1831,16 @@ public class UploadServiceImpl implements UploadService {
 		}
 		
 		List<Error> opErrList = new ArrayList<Error>();
+
+		if(bo.getOperationHistory() != null && bo.getOperationHistory().size() > 0){
+			for(int i = 0; i < bo.getOperationHistory().size(); i++){
+				String  archiveNo = bo.getOperationHistory().get(i).getArchiveId();
+				operationRecordDao.deleteByArchiveNo(archiveNo);
+				traumatismRecordDao.deleteByArchiveNo(archiveNo);
+				mentachysisRecordDao.deleteByArchiveNo(archiveNo);
+			}
+		}
+
 		if(bo.getOperationHistory() != null && bo.getOperationHistory().size() > 0){
 			for(int i = 0; i < bo.getOperationHistory().size(); i++){
 				Error opErr = new Error();
@@ -1898,6 +1908,13 @@ public class UploadServiceImpl implements UploadService {
 			}
 		}
 		List<Error> famErrList = new ArrayList<Error>();
+		if(bo.getFamilyHistory() != null && bo.getFamilyHistory().size() > 0){
+			for(int i = 0;i < bo.getFamilyHistory().size(); i++){
+				String  archiveNo = bo.getFamilyHistory().get(i).getArchiveId();
+				familyRecordDao.deleteByArchiveNo(archiveNo);
+			}
+		}
+		
 		if(bo.getFamilyHistory() != null && bo.getFamilyHistory().size() > 0){
 			for(int i = 0;i < bo.getFamilyHistory().size(); i++){
 				Error famErr = new Error();
