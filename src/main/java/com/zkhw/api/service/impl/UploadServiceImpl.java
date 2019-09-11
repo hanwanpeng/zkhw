@@ -2446,7 +2446,8 @@ public class UploadServiceImpl implements UploadService {
 	public ErrorInfo healthManage(HealthManageBo bo) {
 		// TODO Auto-generated method stub
 		ErrorInfo errInfo = new ErrorInfo();
-		List<Error> errList = new ArrayList<Error>();
+		FollowResult result = new FollowResult();
+		List<FollowResult> errList = new ArrayList<FollowResult>();
 		Map<String,String> keys = new HashMap<String,String>();
 		for(int j = 0; j < bo.getElderlyHealthManage().size(); j++){
 			Error err = new Error();
@@ -2741,7 +2742,7 @@ public class UploadServiceImpl implements UploadService {
 				//record.setUploadTime(uploadTime);
 				physicalExaminationDao.insertSelective(record);
 				err.setCode("0");
-	
+				result.setLogBody(err);
 				
 				if(StringUtil.isNotEmpty(follow.getZhuyuan_a_binganhao()) || StringUtil.isNotEmpty(follow.getZhuyuan_a_time())
 						|| StringUtil.isNotEmpty(follow.getZhuyuan_a_yiliao()) || StringUtil.isNotEmpty(follow.getZhuyuan_a_yuanyin())){
@@ -2927,7 +2928,7 @@ public class UploadServiceImpl implements UploadService {
 				err.setCode("-1");
 				
 			}
-			errList.add(err);
+			errList.add(result);
 		}
 		List<FeimianyiHis> feiHis =  bo.getFeimianyiHis();
 		if(feiHis != null && feiHis.size() > 0){
@@ -2974,7 +2975,7 @@ public class UploadServiceImpl implements UploadService {
 				}
 			}
 		}
-		errInfo.setLogBody(errList);
+		errInfo.setElderlyHealthManage(errList);
 		errInfo.setTakeMedicineRecord(new ArrayList<Error>());
 		errInfo.setFeimianyiHis(new ArrayList<Error>());
 		return errInfo;
