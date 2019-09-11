@@ -1730,6 +1730,15 @@ public class UploadServiceImpl implements UploadService {
 				if(StringUtil.isNotEmpty(redisent.getDisOtherflag())){
 					if("1".equals((redisent.getDisOtherflag()))){
 						info.setDiseaseOther(redisent.getDisOtherName());
+						ResidentDiseases dis = new ResidentDiseases();
+						dis.setId(CodeUtil.getUUID());
+						dis.setArchiveNo(redisent.getArchiveid());
+						dis.setName(redisent.getFullname());
+						dis.setIdNumber(redisent.getIdentityno());
+						dis.setDiseaseType("13");
+						dis.setDiseaseName(redisent.getDisOtherName());
+						dis.setDiseaseDate(redisent.getDisOtherDiagnoseDate());
+						residentDiseasesDao.insertSelective(dis);
 					}			
 				}
 				

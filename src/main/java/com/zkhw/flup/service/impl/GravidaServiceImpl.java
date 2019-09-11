@@ -278,9 +278,152 @@ public class GravidaServiceImpl implements GravidaService {
 			map.put("operation", info.getIsoperation());
 			map.put("oName", info.getOperationName());
 			
+			//自然流产次数
+			map.put("abortionNum", info.getNaturalAbortionNum()==null?"":info.getNaturalAbortionNum().toString());
+			//人工流产次数
+			map.put("abactioNum", info.getAbactioNum()==null?"":info.getAbactioNum().toString());
+			//死胎次数
+			map.put("fetaldeathNum", info.getFetaldeathNum()==null?"":info.getFetaldeathNum().toString());
+			//死产次数
+			map.put("stillbirthNum", info.getStillbirthNum()==null?"":info.getStillbirthNum().toString());
+			//新生儿死亡次数
+			map.put("deathNum", info.getNeonatalDeathNum()==null?"":info.getNeonatalDeathNum().toString());
+			//出生缺陷儿次数
+			map.put("defectNum", info.getBirthDefectNum()==null?"":info.getBirthDefectNum().toString());
 			
-
-				
+			//身高
+			map.put("height", info.getHeight());
+			//体重
+			map.put("weight", info.getWeight());
+			//体质指数bmi
+			map.put("bmi", info.getBmi());
+			
+			//高压
+			map.put("dbp", info.getBloodPressureHigh() == null?"":info.getBloodPressureHigh().toString());
+			//低压
+			map.put("sbp", info.getBloodPressureLow() == null?"":info.getBloodPressureLow().toString());
+			
+			//心脏
+			map.put("heart", info.getHeart());
+			map.put("heartOther", info.getHeartOther());	
+			//肺部
+			map.put("lungs", info.getLungs());
+			map.put("lungsOther", info.getLungsOther());
+			//外阴
+			map.put("vulva", info.getVulva());
+			map.put("vulvaOther", info.getVulvaOther());
+			//阴道
+			map.put("vagina", info.getVagina());
+			map.put("vaginaOther", info.getVaginaOther());
+			//宫颈
+			map.put("cervix", info.getCervix());
+			map.put("cervixOther", info.getCervixOther());
+			//子宫
+			map.put("corpus", info.getCorpus());
+			map.put("corpusOther", info.getCorpusOther());
+			//附件
+			map.put("accessories", info.getAccessories());
+			map.put("accessoriesOther", info.getAccessoriesOther());
+			
+			//血红蛋白
+			map.put("hemoglobin", info.getHemoglobin());
+			//白细胞计数
+			map.put("leukocyte", info.getLeukocyte());
+			//血小板计数
+			map.put("platelet", info.getPlatelet());
+			//血常规其他
+			map.put("bloodOther", info.getBloodOther());
+			
+			//尿蛋白
+			map.put("urineProtein", info.getUrineProtein());
+			//尿糖
+			map.put("glycosuria", info.getGlycosuria());
+			//尿酮体
+			map.put("acetone", info.getUrineAcetoneBodies());
+			//尿潜血
+			map.put("bld", info.getBld());
+			//尿常规其他
+			map.put("urineOther", info.getUrineOther());
+			
+			//血型
+			map.put("bloodGroup", info.getBloodGroup());
+			//RH
+			map.put("rh", info.getBloodRh());
+			//血糖
+			map.put("sugar", info.getBloodSugar());
+			
+			//血清谷丙转氨酶
+			map.put("sgft", info.getSgft());
+			//血清谷草转氨酶
+			map.put("ast", info.getAst());
+			//白蛋白
+			map.put("albumin", info.getAlbumin());
+			//总胆红素
+			map.put("tbilirubin", info.getTotalBilirubin());
+			//结合胆红素
+			map.put("cbilirubin", info.getConjugatedBilirubin());
+			
+			//血清肌酐
+			map.put("scr", info.getScr());
+			//血尿素
+			map.put("urea", info.getBloodUrea());
+			
+			
+			//阴道分泌物
+			String fluid = info.getVaginalFluid();
+			if(StringUtil.isNotEmpty(fluid)){
+				String[] flu = fluid.split(",");
+				for(int i = 1; i <= flu.length; i++){
+					map.put("fluid" + i , flu[i -1]);
+				}
+			}
+			
+			map.put("fluidOther", info.getVaginalFluidOther());
+			//阴道清洁度
+			map.put("clean", info.getVaginalCleaning());
+			
+			//乙型肝炎表面抗原
+			map.put("hb", info.getHb());
+			//乙型肝炎表面抗体
+			map.put("hbsab", info.getHbsab());
+			//乙型肝炎e抗原
+			map.put("hbeag", info.getHbeag());
+			//乙型肝炎e抗体
+			map.put("hbeab", info.getHbeab());
+			//乙型肝炎核心抗体
+			map.put("hbcab", info.getHbcab());
+			
+			//梅毒血清学实验
+			map.put("syphilis", info.getSyphilis());
+			//HIV抗体检测
+			map.put("hiv", info.getHiv());
+			
+			//B超
+			map.put("bultrasonic", info.getBUltrasonic());
+			//其他检测
+			map.put("other", info.getOther());
+			
+			//总体评估
+			map.put("assessment", info.getGeneralAssessment());
+			//评估异常
+			map.put("error", info.getAssessmentError());
+			
+			
+			//转诊
+			map.put("transfer", info.getTransferTreatment());
+			map.put("transferReason", info.getTransferTreatmentReason());
+			map.put("transferOrg", info.getTransferTreatmentDepartment());
+			
+			//健康指导
+			String guidance = info.getHealthGuidance();
+			if(StringUtil.isNotEmpty(guidance)){
+				String[] gui = guidance.split(",");
+				for(int i = 1; i <= gui.length; i++){
+					map.put("gui" + i , gui[i-1]);
+				}
+			}
+			map.put("guidanceOther", info.getHealthGuidanceOther());
+			
 			//map.put("nvisit", info.getNextVisitDate());
 			String nvisitDate = info.getNextVisitDate();
 			

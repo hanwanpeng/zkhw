@@ -1004,6 +1004,8 @@ public class ResidentBaseInfoServiceImpl implements ResidentBaseInfoService {
 						residentDiseases.setDiseaseName(vo.getCancer());//恶性肿瘤
 					}else if("12".equals(diseaseType)){
 						residentDiseases.setDiseaseName(vo.getOccupationDisease());//职业病
+					}else if("13".equals(diseaseType)){
+						residentDiseases.setDiseaseName(vo.getDiseaseOther());
 					}
 					residentDiseases.setDiseaseDate(diseaseDate);//疾病日期
 					
