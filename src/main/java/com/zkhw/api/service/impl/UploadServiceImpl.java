@@ -2111,8 +2111,8 @@ public class UploadServiceImpl implements UploadService {
 				record.setWeight(follow.getWight());
 				
 				//出生身长（cm）
-				if(StringUtil.isNotEmpty(follow.getHearingOfNewborn())){
-					record.setBirthHeight(follow.getHearingOfNewborn());
+				if(StringUtil.isNotEmpty(follow.getHeightOfNewborn())){
+					record.setBirthHeight(follow.getHeightOfNewborn());
 				}
 				//喂养方式
 				record.setFeedingPatterns(follow.getFeedWay());
@@ -2141,8 +2141,14 @@ public class UploadServiceImpl implements UploadService {
 				
 				//前囱状态
 				record.setAnteriorFontanelle(follow.getBregma());
-				//前囱高
-				record.setAnteriorFontanelleHigh(follow.getBregma1());
+				if(StringUtil.isNotEmpty(follow.getBregma1())){
+					String[] bregma = follow.getBregma1().split("*");
+					record.setAnteriorFontanelleWide(bregma[0]);
+					if(bregma.length > 1){
+						record.setAnteriorFontanelleHigh(bregma[1]);
+					}
+				}
+
 				//前囱其他
 				record.setAnteriorFontanelleOther(follow.getBregma2());
 				//眼睛是否异常
@@ -2164,7 +2170,7 @@ public class UploadServiceImpl implements UploadService {
 				//肛门
 				record.setAnus(follow.getAnus());
 				//心肺听诊
-				record.setHeartLung(follow.getHeatr_lung());
+				record.setHeartLung(follow.getHeart_lung());
 				//胸部
 				record.setBreast(follow.getBreastexam());
 				//腹部触诊
