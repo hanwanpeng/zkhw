@@ -2295,8 +2295,13 @@ public class UploadServiceImpl implements UploadService {
 				record.setSkinOther(follow.getSkinbug());
 				//前囱状态
 				record.setAnteriorFontanelle(follow.getBregma());
-				//前囱高
-				record.setAnteriorFontanelleHigh(follow.getBregma1());
+				if(StringUtil.isNotEmpty(follow.getBregma1())){
+					String[] bregma = follow.getBregma1().split("*");
+					record.setAnteriorFontanelleWide(bregma[0]);
+					if(bregma.length > 1){
+						record.setAnteriorFontanelleHigh(bregma[1]);
+					}
+				}
 				//颈部包块
 				record.setNeckMass(follow.getNeckMasses());
 				//眼睛是否异常
