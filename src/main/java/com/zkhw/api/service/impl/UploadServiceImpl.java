@@ -2338,7 +2338,7 @@ public class UploadServiceImpl implements UploadService {
 				
 				//四肢
 				record.setExtremity(follow.getExtremity());
-				record.setExtremityOther(record.getExtremityOther());
+				record.setExtremityOther(follow.getExtremitybug());
 				//步态
 				record.setGait(follow.getTread());
 				//可疑佝偻病症状
