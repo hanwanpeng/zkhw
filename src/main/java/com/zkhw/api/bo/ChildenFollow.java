@@ -75,7 +75,7 @@ public class ChildenFollow  extends BaseBo{
 	private String vision;
 	
 	//出牙/龋齿数(颗)
-	private String tooth;
+	private Integer tooth;
 	
 	//口腔
 	private String cavum;

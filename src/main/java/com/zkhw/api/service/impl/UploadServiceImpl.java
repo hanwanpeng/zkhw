@@ -2318,7 +2318,7 @@ public class UploadServiceImpl implements UploadService {
 				record.setOralCavity(follow.getCavum());
 				record.setCavityOther(follow.getCavumbug());
 				//出牙数
-				//record.setTeethingNum(follow.getTooth());
+				record.setTeethingNum(follow.getTooth());
 				//龋齿数
 				//record.setCariesNum(cariesNum);
 				//胸部
