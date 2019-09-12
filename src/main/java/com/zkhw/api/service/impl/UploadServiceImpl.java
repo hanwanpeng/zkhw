@@ -2320,7 +2320,7 @@ public class UploadServiceImpl implements UploadService {
 				//出牙数
 				record.setTeethingNum(follow.getTooth());
 				//龋齿数
-				//record.setCariesNum(cariesNum);
+				record.setCariesNum(follow.getCaries());
 				//胸部
 				record.setBreast(follow.getHeart_lung());
 				record.setBreastOther(follow.getHeatr_lungbug());
