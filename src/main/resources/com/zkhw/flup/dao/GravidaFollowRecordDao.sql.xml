@@ -78,7 +78,7 @@
     select 
     <include refid="Base_Column_List" />
     from gravida_follow_record
-    where gravida_id = #{gravidaId,jdbcType=VARCHAR}
+    where gravida_id = #{gravidaId,jdbcType=VARCHAR} order by visit_date asc
   </select>
     
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

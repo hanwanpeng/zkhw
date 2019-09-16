@@ -229,6 +229,7 @@ public class GravidaServiceImpl implements GravidaService {
 			map.put("cesareanNum", info.getCesareanNum() == null?"":info.getCesareanNum().toString());
 			//末次月经日期
 			String lastDate = info.getLastMenstruationDate();
+			map.put("menses", lastDate);
 			if(StringUtil.isNotEmpty(lastDate)){
 				String[] b = lastDate.split("-");
 				map.put("lastyear", b[0]);					
@@ -438,7 +439,215 @@ public class GravidaServiceImpl implements GravidaService {
 		return map;
 	}
 
-	
+	@Override
+	public Map<String, String> exportFollowPdf(String gravidaId) {
+		// TODO Auto-generated method stub
+		Map<String, String> map = new HashMap<String,String>();
+		List<GravidaFollowRecord> list = gravidaFollowRecordDao.findFollowByGravidaId(gravidaId);
+		
+		if(list != null && list.size() > 0){
+			String archiveNo = list.get(0).getArchiveNo();
+			
+			map.put("a1", archiveNo.substring(0,1));
+			map.put("a2", archiveNo.substring(1,2));
+			map.put("a3", archiveNo.substring(2,3));
+			map.put("a4", archiveNo.substring(3,4));
+			map.put("a5", archiveNo.substring(4,5));
+			map.put("a6", archiveNo.substring(5,6));
+			map.put("a7", archiveNo.substring(6,7));
+			map.put("a8", archiveNo.substring(7,8));
+			map.put("a9", archiveNo.substring(8,9));
+			map.put("a10", archiveNo.substring(9,10));
+			map.put("a11", archiveNo.substring(10,11));
+			map.put("a12", archiveNo.substring(11,12));
+			map.put("a13", archiveNo.substring(12,13));
+			map.put("a14", archiveNo.substring(13,14));
+			map.put("a15", archiveNo.substring(14,15));
+			map.put("a16", archiveNo.substring(15,16));
+			map.put("a17", archiveNo.substring(16,17));
+			
+			//姓名
+			map.put("name", list.get(0).getName());
+			
+			for(int i = 0; i < list.size(); i++){
+				int index = i + 2;
+				GravidaFollowRecord info = list.get(i);
+				
+				//随访日期
+				map.put("visitDate" + index, info.getVisitDate());
+				
+				//孕周
+				map.put("week" + index, info.getGestationalWeeks() == null?"":info.getGestationalWeeks().toString());
+				//主诉
+				map.put("symptom" + index, info.getSymptom());
+				//体重
+				map.put("weight" + index, info.getWeight());
+				//宫高
+				map.put("fundus" + index, info.getFundusHeight());
+				//腹围
+				map.put("abdomen" + index, info.getAbdomenCircumference());
+				//胎位
+				map.put("fetus" + index, info.getFetusPosition());
+				//胎心率
+				map.put("heartRate" + index, info.getFetalHeartRate());
+				//高压
+				map.put("dbp" + index, info.getBloodPressureHigh() == null?"":info.getBloodPressureHigh().toString());
+				//低压
+				map.put("sbp" + index, info.getBloodPressureLow() == null?"":info.getBloodPressureLow().toString());
+				//血红蛋白
+				map.put("hemoglobin" + index, info.getHemoglobin());
+				//尿蛋白
+				map.put("urineProtein" + index, info.getUrineProtein());
+				//其他检测
+				map.put("other" + index, info.getCheckOther());
+				//分类
+				map.put("conditions" + index, info.getConditions());
+				//异常信息
+				map.put("error" + index, info.getErrorInfo());
+								
+				//转诊
+				map.put("transfer" + index, info.getTransferTreatment());
+				map.put("transferReason" + index, info.getTransferTreatmentReason());
+				map.put("transferOrg" + index, info.getTransferTreatmentDepartment());
+				
+				//健康指导
+				String guidance = info.getGuidance();
+				if(StringUtil.isNotEmpty(guidance)){
+					String[] gui = guidance.split(",");
+					for(int j = 1; j <= gui.length; j++){
+						map.put("gui" + index + gui[j-1] ,"√");
+					}
+				}
+				map.put("guidanceOther" + index, info.getGuidanceOther());
+				
+				map.put("nextVisit" + index, info.getNextVisitDate());
+				
+				map.put("doctor" + index, info.getVisitDoctor());
+			}
+		}
+		return map;
+	}
 
-	
+	@Override
+	public Map<String, String> exportAfterPdf(String gravidaId, String type) {
+		// TODO Auto-generated method stub
+		Map<String, String> map = new HashMap<String,String>();
+		List<GravidaAfterRecord> list = gravidaAfterRecordDao.findAfterByGravidaId(gravidaId);
+		if(list != null && list.size() > 0){
+			
+			String archiveNo = list.get(0).getArchiveNo();
+			map.put("a1", archiveNo.substring(0,1));
+			map.put("a2", archiveNo.substring(1,2));
+			map.put("a3", archiveNo.substring(2,3));
+			map.put("a4", archiveNo.substring(3,4));
+			map.put("a5", archiveNo.substring(4,5));
+			map.put("a6", archiveNo.substring(5,6));
+			map.put("a7", archiveNo.substring(6,7));
+			map.put("a8", archiveNo.substring(7,8));
+			map.put("a9", archiveNo.substring(8,9));
+			map.put("a10", archiveNo.substring(9,10));
+			map.put("a11", archiveNo.substring(10,11));
+			map.put("a12", archiveNo.substring(11,12));
+			map.put("a13", archiveNo.substring(12,13));
+			map.put("a14", archiveNo.substring(13,14));
+			map.put("a15", archiveNo.substring(14,15));
+			map.put("a16", archiveNo.substring(15,16));
+			map.put("a17", archiveNo.substring(16,17));
+			
+			//姓名
+			map.put("name", list.get(0).getName());
+			
+			for(int i = 0; i < list.size(); i++){
+				
+				String t = list.get(i).getRecordType();
+				if(type.equals(t)){
+					GravidaAfterRecord info = list.get(i);
+					
+					//随访时间
+					//随访日期
+					String visitDate = info.getVisitDate();
+					
+					if(StringUtil.isNotEmpty(visitDate)){
+						String[] b = visitDate.split("-");
+						map.put("year", b[0]);					
+						map.put("month", b[1]);
+						map.put("day", b[2]);
+					}
+
+					//分娩日期
+					String childbirth = info.getChildbirth();
+					if(StringUtil.isNotEmpty(childbirth)){
+						String[] b = childbirth.split("-");
+						map.put("birthyear", b[0]);					
+						map.put("birthmonth", b[1]);
+						map.put("birthday", b[2]);
+					}
+
+					//出院日期
+					String discharge = info.getDischargeDate();
+					if(StringUtil.isNotEmpty(discharge)){
+						String[] b = discharge.split("-");
+						map.put("dischargeyear", b[0]);					
+						map.put("dischargemonth", b[1]);
+						map.put("dischargeday", b[2]);
+					}
+					
+					if("1".equals(type)){
+						//体温
+						map.put("temperature", info.getTemperature());
+					}
+
+					//一般健康状况
+					map.put("health", info.getGeneralHealthStatus());
+					//一般心理状况
+					map.put("psychology", info.getGeneralPsychologyStatus());					
+					//高压
+					map.put("dbp", info.getBloodPressureHigh() == null?"":info.getBloodPressureHigh().toString());
+					//低压
+					map.put("sbp", info.getBloodPressureLow() == null?"":info.getBloodPressureLow().toString());
+					
+					//乳房
+					map.put("breast", info.getBreast());
+					map.put("breastError", info.getBreastError());
+					//恶露
+					map.put("lyma", info.getLyma());
+					map.put("lymaError", info.getLymaError());
+					//子宫
+					map.put("womb", info.getWomb());
+					map.put("wombError", info.getWombError());
+					//伤口
+					map.put("wound", info.getWound());
+					map.put("woundError", info.getWoundError());
+					//其他
+					map.put("other", info.getOther());
+					
+					//分类
+					map.put("conditions", info.getConditions());
+					//异常信息
+					map.put("error", info.getConditionError());
+														
+					//转诊
+					map.put("transfer", info.getTransferTreatment());
+					map.put("transferReason", info.getTransferTreatmentReason());
+					map.put("transferOrg", info.getTransferTreatmentDepartment());
+					
+					//健康指导
+					String guidance = info.getGuidance();
+					if(StringUtil.isNotEmpty(guidance)){
+						String[] gui = guidance.split(",");
+						for(int j = 1; j <= gui.length; j++){
+							map.put("gui" + j , gui[j-1]);
+						}
+					}
+					map.put("guidanceOther", info.getGuidanceOther());
+					if("1".equals(type)){
+						map.put("nextVisit", info.getNextVisitDate());
+					}
+
+					map.put("doctor", info.getVisitDoctor());
+				}								
+			}			
+		}
+		return map;
+	}		
 }

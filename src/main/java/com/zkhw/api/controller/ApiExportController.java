@@ -20,8 +20,10 @@ import com.zkhw.common.config.Config;
 import com.zkhw.common.utils.AliOssUtil;
 import com.zkhw.common.utils.PdfUtils;
 import com.zkhw.common.vo.ApiJsonResult;
+import com.zkhw.flup.entity.GravidaInfo;
 import com.zkhw.flup.service.ChildrenService;
 import com.zkhw.flup.service.DiabetesService;
+import com.zkhw.flup.service.GravidaService;
 import com.zkhw.flup.service.HypertensionService;
 import com.zkhw.flup.service.PsychosisService;
 import com.zkhw.flup.service.TuberculosisService;
@@ -50,6 +52,9 @@ public class ApiExportController {
 	
 	@Autowired
 	private ChildrenService childrenService;
+	
+	@Autowired
+	private GravidaService gravidaService;
 
 	@RequestMapping(value = "/hypFollowPdf", method = RequestMethod.GET)
 	public void hypFollowPdf(HttpServletRequest request, HttpServletResponse response, ApiJsonResult result) throws Exception {
@@ -379,7 +384,7 @@ public class ApiExportController {
 		String key = archiveNo;
 		List<ResidentBaseInfo> list = residentBaseInfoDao.findResidentByArchiveNo(archiveNo);
 		if(list != null && list.size() > 0){
-			key = "儿童基本信息_" + list.get(0).getName();
+			key = "新生儿家庭访视记录_" + list.get(0).getName();
 		}
 		String fileName =  tempPath + File.separator + key + ".pdf";
 
@@ -436,7 +441,7 @@ public class ApiExportController {
 		String key = archiveNo;
 		List<ResidentBaseInfo> list = residentBaseInfoDao.findResidentByArchiveNo(archiveNo);
 		if(list != null && list.size() > 0){
-			key = "儿童随访_" + list.get(0).getName();
+			key = "儿童健康检查记录_" + list.get(0).getName();
 		}
 		String fileName =  tempPath + File.separator + key + ".pdf";
 
@@ -448,6 +453,174 @@ public class ApiExportController {
 		try {	
 
 			Map<String, String> map = childrenService.exportFollowPdf(archiveNo, type);
+
+			Map<String, String> map2 = new HashMap<String,String>();
+			//map2.put("img", "c:/50336.jpg");
+
+			Map<String, Object> o = new HashMap<String,Object>();
+			o.put("datemap", map);
+			o.put("imgmap", map2);
+			PdfUtils.pdfout(o, templatePath,fileName);
+						
+			PutObjectResult putresult = AliOssUtil.putFile(key, Config.bucketName, uploadFile);
+			if(putresult != null){
+				if (uploadFile.exists()) {
+					uploadFile.delete();
+				}
+			}
+			
+			String url = AliOssUtil.presignedURL(Config.bucketName, key);
+			r.setCode(0);
+			r.setMessage("Success");
+			r.setData(url);
+			JsonWebPrintUtils.printApiResult(request, response, r);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+		}
+	}
+	
+	@RequestMapping(value = "/gravidaInfoPdf", method = RequestMethod.GET)
+	public void gravidaInfoPdf(HttpServletRequest request, HttpServletResponse response, ApiJsonResult result) throws Exception {
+		Result r = new Result();
+		String archiveNo = request.getParameter("archiveNo");
+		//archiveNo = "45042110220205555";
+		String path = request.getSession().getServletContext().getRealPath("template");
+		String templatePath = path+ File.separator + "gravidaInfo.pdf";
+		
+		String tempPath = request.getSession().getServletContext().getRealPath("temp");
+		String key = archiveNo;
+		List<ResidentBaseInfo> list = residentBaseInfoDao.findResidentByArchiveNo(archiveNo);
+		if(list != null && list.size() > 0){
+			key = "第一次随访产前检查记录_" + list.get(0).getName();
+		}
+		String fileName =  tempPath + File.separator + key + ".pdf";
+
+		File uploadFile = new File(tempPath,key + ".pdf");
+		if (!uploadFile.exists()) {
+			uploadFile.createNewFile();
+		}
+		
+		try {	
+
+			Map<String, String> map = gravidaService.exportInfoPdf(archiveNo);
+
+			Map<String, String> map2 = new HashMap<String,String>();
+			//map2.put("img", "c:/50336.jpg");
+
+			Map<String, Object> o = new HashMap<String,Object>();
+			o.put("datemap", map);
+			o.put("imgmap", map2);
+			PdfUtils.pdfout(o, templatePath,fileName);
+						
+			PutObjectResult putresult = AliOssUtil.putFile(key, Config.bucketName, uploadFile);
+			if(putresult != null){
+				if (uploadFile.exists()) {
+					uploadFile.delete();
+				}
+			}
+			
+			String url = AliOssUtil.presignedURL(Config.bucketName, key);
+			r.setCode(0);
+			r.setMessage("Success");
+			r.setData(url);
+			JsonWebPrintUtils.printApiResult(request, response, r);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+		}
+	}
+	
+	@RequestMapping(value = "/gravidaFollowPdf", method = RequestMethod.GET)
+	public void gravidaFollowPdf(HttpServletRequest request, HttpServletResponse response, ApiJsonResult result) throws Exception {
+		Result r = new Result();
+		String gravidaId = request.getParameter("gravidaId");
+		//archiveNo = "45042110220205555";
+		String path = request.getSession().getServletContext().getRealPath("template");
+		String f = "gravidaFollow.pdf";
+		String templatePath = path+ File.separator + f;
+		
+		String tempPath = request.getSession().getServletContext().getRealPath("temp");
+		String key = gravidaId;
+		GravidaInfo g = gravidaService.getGravidaInfoById(gravidaId);
+		if(g != null){
+			key = "产前随访服务记录_" + g.getName();
+		}
+		
+		String fileName =  tempPath + File.separator + key + ".pdf";
+
+		File uploadFile = new File(tempPath,key + ".pdf");
+		if (!uploadFile.exists()) {
+			uploadFile.createNewFile();
+		}
+		
+		try {	
+
+			Map<String, String> map = gravidaService.exportFollowPdf(gravidaId);
+
+			Map<String, String> map2 = new HashMap<String,String>();
+			//map2.put("img", "c:/50336.jpg");
+
+			Map<String, Object> o = new HashMap<String,Object>();
+			o.put("datemap", map);
+			o.put("imgmap", map2);
+			PdfUtils.pdfout(o, templatePath,fileName);
+						
+			PutObjectResult putresult = AliOssUtil.putFile(key, Config.bucketName, uploadFile);
+			if(putresult != null){
+				if (uploadFile.exists()) {
+					uploadFile.delete();
+				}
+			}
+			
+			String url = AliOssUtil.presignedURL(Config.bucketName, key);
+			r.setCode(0);
+			r.setMessage("Success");
+			r.setData(url);
+			JsonWebPrintUtils.printApiResult(request, response, r);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+		}
+	}
+	
+	@RequestMapping(value = "/gravidaAfterPdf", method = RequestMethod.GET)
+	public void gravidaAfterPdf(HttpServletRequest request, HttpServletResponse response, ApiJsonResult result) throws Exception {
+		Result r = new Result();
+		String gravidaId = request.getParameter("gravidaId");
+		String type = request.getParameter("type");
+		//archiveNo = "45042110220205555";
+		String path = request.getSession().getServletContext().getRealPath("template");
+		String f = "gravidaAfter1.pdf";
+		if(StringUtil.isNotEmpty(type)){
+			f = "gravidaAfter" + type + ".pdf";
+		}
+		String templatePath = path+ File.separator + f;
+		
+		String tempPath = request.getSession().getServletContext().getRealPath("temp");
+		String key = gravidaId;
+		GravidaInfo g = gravidaService.getGravidaInfoById(gravidaId);
+		if(g != null){
+			if("1".equals(type)){
+				key = "产后访视记录_" + g.getName();
+			}else{
+				key = "产后42天健康检查记录_" + g.getName();
+			}
+			
+		}
+		String fileName =  tempPath + File.separator + key + ".pdf";
+
+		File uploadFile = new File(tempPath,key + ".pdf");
+		if (!uploadFile.exists()) {
+			uploadFile.createNewFile();
+		}
+		
+		try {	
+
+			Map<String, String> map = gravidaService.exportAfterPdf(gravidaId, type);
 
 			Map<String, String> map2 = new HashMap<String,String>();
 			//map2.put("img", "c:/50336.jpg");
