@@ -432,6 +432,14 @@ public class ApiExportController {
 		//archiveNo = "45042110220205555";
 		String path = request.getSession().getServletContext().getRealPath("template");
 		String f = "childrenFollow1.pdf";
+		String n = "(1~8月)";
+		if(StringUtil.isNotEmpty(type)){
+			if("2".equals(type)){
+				n = "(12~30月)";
+			}else if("3".equals(type)){
+				n = "(3~6岁)";
+			}
+		}
 		if(StringUtil.isNotEmpty(type)){
 			f = "childrenFollow" + type + ".pdf";
 		}
@@ -441,7 +449,7 @@ public class ApiExportController {
 		String key = archiveNo;
 		List<ResidentBaseInfo> list = residentBaseInfoDao.findResidentByArchiveNo(archiveNo);
 		if(list != null && list.size() > 0){
-			key = "儿童健康检查记录_" + list.get(0).getName();
+			key = "儿童健康检查记录" + n + "_" + list.get(0).getName();
 		}
 		String fileName =  tempPath + File.separator + key + ".pdf";
 
