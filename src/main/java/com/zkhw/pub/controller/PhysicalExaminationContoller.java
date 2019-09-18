@@ -16,6 +16,7 @@ import com.zkhw.framework.utils.JsonWebPrintUtils;
 import com.zkhw.pub.entity.ResidentBaseInfo;
 import com.zkhw.pub.query.ResidentBaseInfoQuery;
 import com.zkhw.pub.service.PhysicalExaminationService;
+import com.zkhw.pub.vo.AbnormalResultsVo;
 import com.zkhw.pub.vo.ExaminationListVo;
 import com.zkhw.pub.vo.PhysicalExaminationVo;
 import com.zkhw.pub.vo.TjDataVo;
@@ -38,6 +39,10 @@ public class PhysicalExaminationContoller {
 	public void showResident(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,String archiveNo){
 		try {
 			PhysicalExaminationVo vo = physicalExaminationService.getPhysicalExaminationByArchiveNo(archiveNo);
+			AbnormalResultsVo abnormalResultsVo = physicalExaminationService.physicalToAbnormalResults(archiveNo);
+			if(abnormalResultsVo != null) {
+				vo.setAbnormalResultsVo(abnormalResultsVo);
+			}
 			result.setData(vo);
 			result.setCode("0");
 			result.setMsg("成功");

@@ -385,4 +385,6 @@ public class PhysicalExaminationVo {
     List<TakeMedicineRecord> medicines;
     
     List<VaccinationRecord> vaccinations;
+    
+    AbnormalResultsVo abnormalResultsVo;
 }

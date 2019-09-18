@@ -5,6 +5,7 @@ import java.util.Map;
 import com.zkhw.common.vo.PageInfos;
 import com.zkhw.pub.entity.ResidentBaseInfo;
 import com.zkhw.pub.query.ResidentBaseInfoQuery;
+import com.zkhw.pub.vo.AbnormalResultsVo;
 import com.zkhw.pub.vo.ExaminationListVo;
 import com.zkhw.pub.vo.PhysicalExaminationVo;
 import com.zkhw.pub.vo.TjDataVo;
@@ -22,4 +23,6 @@ public interface PhysicalExaminationService {
 	PageInfos<ExaminationListVo> findPhysicalExaminationByPage(ResidentBaseInfoQuery record,PageInfos<ResidentBaseInfo> pageData);
 	
 	TjDataVo findTjData(String archiveNo);
+
+	AbnormalResultsVo physicalToAbnormalResults(String archiveNo);
 }

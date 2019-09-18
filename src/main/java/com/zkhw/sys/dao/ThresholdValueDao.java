@@ -20,4 +20,6 @@ public interface ThresholdValueDao {
     List<ThresholdValue> findThresholdList(ThresholdValue record);
     
     int updateByType(ThresholdValue record);
+    
+    List<ThresholdValue> selectAll();
 }

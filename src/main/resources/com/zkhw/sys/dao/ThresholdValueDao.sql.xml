@@ -20,6 +20,13 @@
     id, class_type, type, warning_min, warning_max, threshold_min, threshold_max, create_user, 
     create_name, create_time, update_user, update_name, update_time
   </sql>
+
+	<select id="selectAll"  parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from threshold_value
+	</select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

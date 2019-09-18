@@ -41,9 +41,12 @@ import com.zkhw.pub.entity.TjXy;
 import com.zkhw.pub.entity.VaccinationRecord;
 import com.zkhw.pub.query.ResidentBaseInfoQuery;
 import com.zkhw.pub.service.PhysicalExaminationService;
+import com.zkhw.pub.vo.AbnormalResultsVo;
 import com.zkhw.pub.vo.ExaminationListVo;
 import com.zkhw.pub.vo.PhysicalExaminationVo;
 import com.zkhw.pub.vo.TjDataVo;
+import com.zkhw.sys.dao.ThresholdValueDao;
+import com.zkhw.sys.entity.ThresholdValue;
 
 @Service
 public class PhysicalExaminationServiceImpl implements PhysicalExaminationService {
@@ -84,6 +87,9 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 	@Autowired
 	private TjXdtDao tjXdtDao;
 	
+	@Autowired
+	private ThresholdValueDao thresholdValueDao;
+	
 	@Override
 	public PhysicalExaminationVo getPhysicalExaminationByArchiveNo(String archiveNo) {
 		PhysicalExamination exam = physicalExaminationDao.getLastByArchiveNo(archiveNo);
@@ -110,7 +116,7 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 	
 	
 	/**
-	 * 根据身份证号查询体检报告
+	 * 根据身份证号查询体检报告(小程序)
 	 */
 	@Override
 	public PhysicalExaminationVo physicalByIdNumber(String idNumber) {
@@ -124,7 +130,296 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 			List<TakeMedicineRecord> meds = takeMedicineRecordDao.findRecordByExamId(physical.getId());
 			vo.setMedicines(meds);
 			List<VaccinationRecord> vaccs = vaccinationRecordDao.findRecordByExamId(physical.getId());
-			vo.setVaccinations(vaccs);			
+			vo.setVaccinations(vaccs);		
+			//----------------------------------------------------
+			//体检异常结果
+			AbnormalResultsVo abnormalResultsVo = new AbnormalResultsVo();
+	
+			String bloodHemoglobin = physical.getBloodHemoglobin();//血红蛋白
+			String bloodPlatelet = physical.getBloodPlatelet();//血小板
+			String bloodLeukocyte = physical.getBloodLeukocyte();//白细胞
+			String urineProtein = physical.getUrineProtein();//尿蛋白
+			String glycosuria = physical.getGlycosuria();//尿糖
+			String urineAcetoneBodies = physical.getUrineAcetoneBodies();//尿酮体
+			String bld = physical.getBld();//尿潜血
+			String bloodGlucoseMmol = physical.getBloodGlucoseMmol();//空腹血糖
+			String sgft = physical.getSgft();//血清谷丙转氨酶
+			String ast = physical.getAst();//血清谷草转氨酶
+			String albumin = physical.getAlbumin();//白蛋白
+			String totalBilirubin = physical.getTotalBilirubin();//总胆红素
+			String conjugatedBilirubin = physical.getConjugatedBilirubin();//直接胆红素
+			String scr = physical.getScr();//血清肌酐
+			String bloodUrea = physical.getBloodUrea();//尿素
+			String tc = physical.getTc();//总胆固醇
+			String tg = physical.getTg();//甘油三酯
+			String ldl = physical.getLdl();//低密度脂蛋白
+			String hdl = physical.getHdl();//高密度脂蛋白
+			Integer baseBloodPressureRightHigh = physical.getBaseBloodPressureRightHigh();//高血压（右）
+			Integer baseBloodPressureRightLow = physical.getBaseBloodPressureRightLow();//低血压（右）
+			String cardiogram = physical.getCardiogram();//心电是否异常
+			String cardiogramMemo = physical.getCardiogramMemo();//心电描述
+			String ultrasoundAbdomen = physical.getUltrasoundAbdomen();//腹部B超是否异常
+			String ultrasoundMemo = physical.getUltrasoundMemo();//腹部B超异常描述
+			String healthEvaluation = physical.getHealthEvaluation();//健康评价
+			String abnormal1 = physical.getAbnormal1();//异常1
+			String abnormal2 = physical.getAbnormal2();//异常2
+			String abnormal3 = physical.getAbnormal3();//异常3
+			String abnormal4 = physical.getAbnormal4();//异常4
+			
+			
+			
+			
+			
+			//获取数值标准
+			List<ThresholdValue> thresholdValueList = thresholdValueDao.selectAll();
+			ThresholdValue thresholdValue = null;
+			String type = null;
+			for (int i = 0; i < thresholdValueList.size(); i++) {
+				thresholdValue = thresholdValueList.get(i);
+				type = thresholdValue.getType();
+				//血红蛋白
+				if("HGB".equals(type) && !StringUtil.isEmpty(bloodHemoglobin)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(bloodHemoglobin) < warningMin) {
+						abnormalResultsVo.setHgb("偏低:" + bloodHemoglobin + "g/L");
+					}
+					if(Float.parseFloat(bloodHemoglobin) > warningMax) {
+						abnormalResultsVo.setHgb("偏高:" + bloodHemoglobin + "g/L" );
+					}
+				}
+				//血小板
+				if("PLT".equals(type) && !StringUtil.isEmpty(bloodPlatelet)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(bloodPlatelet) < warningMin) {
+						abnormalResultsVo.setPlt("偏低:" + bloodPlatelet );
+					}
+					if(Float.parseFloat(bloodPlatelet) > warningMax) {
+						abnormalResultsVo.setPlt("偏高:" + bloodPlatelet);
+					}
+				}
+				//白细胞数目
+				if("WBC".equals(type) && !StringUtil.isEmpty(bloodLeukocyte)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(bloodLeukocyte) < warningMin) {
+						abnormalResultsVo.setWbc("偏低:" + bloodLeukocyte + "10^9个/L" );
+					}
+					if(Float.parseFloat(bloodPlatelet) > warningMax) {
+						abnormalResultsVo.setWbc("偏高:" + bloodLeukocyte + "10^9个/L");
+					}
+				}
+				//尿蛋白
+				if(!StringUtil.isEmpty(urineProtein)) {
+					abnormalResultsVo.setUrineProtein(":" + urineProtein);
+				}
+				//尿糖
+				if(!StringUtil.isEmpty(glycosuria)) {
+					abnormalResultsVo.setGlycosuria(":" + glycosuria);
+				}
+				//尿酮体
+				if(!StringUtil.isEmpty(urineAcetoneBodies)) {
+					abnormalResultsVo.setUrineAcetoneBodies(":" + urineAcetoneBodies);
+				}
+				//尿潜血
+				if(!StringUtil.isEmpty(bld)) {
+					abnormalResultsVo.setBld(":" + bld);
+				}
+				//空腹血糖
+				 int bgm = 0;
+				if("GLU".equals(type) && !StringUtil.isEmpty(bloodGlucoseMmol)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(bloodGlucoseMmol) < warningMin) {
+						abnormalResultsVo.setGlu("偏低:" + bloodGlucoseMmol + "mmol/L" );
+					}
+					if(Float.parseFloat(bloodPlatelet) > warningMax) {
+						abnormalResultsVo.setGlu("偏高:" + bloodGlucoseMmol + "mmol/L");
+						 bgm = 1;
+					}
+				}
+				//血清谷丙转氨酶
+				if("ALT".equals(type) && !StringUtil.isEmpty(sgft)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(sgft) < warningMin) {
+						abnormalResultsVo.setAlt("偏低:" + sgft + "U/L" );
+					}
+					if(Float.parseFloat(sgft) > warningMax) {
+						abnormalResultsVo.setAlt("偏高:" + sgft + "U/L");
+					}
+				}
+				//血清谷草转氨酶
+				if("AST".equals(type) && !StringUtil.isEmpty(ast)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(ast) < warningMin) {
+						abnormalResultsVo.setAst("偏低:" + ast + "U/L" );
+					}
+					if(Float.parseFloat(ast) > warningMax) {
+						abnormalResultsVo.setAst("偏高:" + ast + "U/L");
+					}
+				}
+				//白蛋白
+				if("ALB".equals(type) && !StringUtil.isEmpty(albumin)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(albumin) < warningMin) {
+						abnormalResultsVo.setAlb("偏低:" + albumin + "g/L" );
+					}
+					if(Float.parseFloat(albumin) > warningMax) {
+						abnormalResultsVo.setAlb("偏高:" + albumin + "g/L");
+					}
+				}
+				//总胆红素
+				if("TBIL".equals(type) && !StringUtil.isEmpty(totalBilirubin)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(totalBilirubin) < warningMin) {
+						abnormalResultsVo.setTbil("偏低:" + totalBilirubin + "μmol/L" );
+					}
+					if(Float.parseFloat(totalBilirubin) > warningMax) {
+						abnormalResultsVo.setTbil("偏高:" + totalBilirubin + "μmol/L");
+					}
+				}
+				//直接胆红素
+				if("DBIL".equals(type) && !StringUtil.isEmpty(conjugatedBilirubin)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(conjugatedBilirubin) < warningMin) {
+						abnormalResultsVo.setDbil("偏低:" + conjugatedBilirubin + "μmol/L" );
+					}
+					if(Float.parseFloat(conjugatedBilirubin) > warningMax) {
+						abnormalResultsVo.setDbil("偏高:" + conjugatedBilirubin + "μmol/L");
+					}
+				}
+				//血清肌酐
+				if("CREA".equals(type) && !StringUtil.isEmpty(scr)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(scr) < warningMin) {
+						abnormalResultsVo.setCrea("偏低:" + scr + "μmol/L" );
+					}
+					if(Float.parseFloat(scr) > warningMax) {
+						abnormalResultsVo.setCrea("偏高:" + scr + "μmol/L");
+					}
+				}
+				//尿素
+				if("UREA".equals(type) && !StringUtil.isEmpty(bloodUrea)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(bloodUrea) < warningMin) {
+						abnormalResultsVo.setUrea("偏低:" + bloodUrea + "mmol/L" );
+					}
+					if(Float.parseFloat(bloodUrea) > warningMax) {
+						abnormalResultsVo.setUrea("偏高:" + bloodUrea + "mmol/L");
+					}
+				}
+				//总胆固醇
+				int flg = 0;
+				if("CHO".equals(type) && !StringUtil.isEmpty(tc)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(tc) < warningMin) {
+						abnormalResultsVo.setCho("偏低:" + tc + "mmol/L" );
+					}
+					if(Float.parseFloat(tc) > warningMax) {
+						abnormalResultsVo.setCho("偏高:" + tc + "mmol/L");
+						flg = 1;
+					}
+				}
+				//甘油三酯
+				if("TG".equals(type) && !StringUtil.isEmpty(tg)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(tg) < warningMin) {
+						abnormalResultsVo.setTg("偏低:" + tg + "mmol/L" );
+					}
+					if(Float.parseFloat(tg) > warningMax) {
+						abnormalResultsVo.setTg("偏高:" + tg + "mmol/L");
+						flg = 1;
+					}
+				}
+				//低密度脂蛋白
+				if("LDLC".equals(type) && !StringUtil.isEmpty(ldl)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(ldl) < warningMin) {
+						abnormalResultsVo.setLdlc("偏低:" + ldl + "mmol/L" );
+					}
+					if(Float.parseFloat(ldl) > warningMax) {
+						abnormalResultsVo.setLdlc("偏高:" + ldl + "mmol/L");
+					}
+				}
+				//高密度脂蛋白
+				if("HDLC".equals(type) && !StringUtil.isEmpty(hdl)) {
+					Float warningMin = thresholdValue.getWarningMin();
+					Float warningMax = thresholdValue.getWarningMax();
+					if(Float.parseFloat(hdl) < warningMin) {
+						abnormalResultsVo.setHdlc("偏低:" + hdl + "mmol/L" );
+					}
+					if(Float.parseFloat(hdl) > warningMax) {
+						abnormalResultsVo.setHdlc("偏高:" + hdl + "mmol/L");
+					}
+				}
+				//血压值  baseBloodPressureRightHigh  
+				int gyyfiag = 0;
+				if(baseBloodPressureRightLow != null && baseBloodPressureRightHigh != null) {
+					int RightLow = baseBloodPressureRightLow.intValue();
+					int RightHigh = baseBloodPressureRightHigh.intValue();
+					if(RightLow < 60 || RightHigh < 90 ) {
+						abnormalResultsVo.setDbp("偏低:" + baseBloodPressureRightHigh + "/" + baseBloodPressureRightLow);
+						gyyfiag = 1;
+					}
+					if(RightLow > 90 || RightHigh > 140) {
+						abnormalResultsVo.setDbp("偏高:" + baseBloodPressureRightHigh + "/" + baseBloodPressureRightLow);
+						gyyfiag = 2;
+					}
+				}
+				//心电图异常描述
+				if(!StringUtil.isEmpty(cardiogram) && "2".equals(cardiogram)) {
+					abnormalResultsVo.setCardiogramMemo(cardiogramMemo);
+				}
+				//腹部B超异常描述
+				if(!StringUtil.isEmpty(ultrasoundAbdomen) && "2".equals(ultrasoundAbdomen)) {
+					abnormalResultsVo.setUltrasoundMemo(ultrasoundMemo);
+				}
+				//健康评价
+				if(!StringUtil.isEmpty(healthEvaluation) && "2".equals(healthEvaluation)) {
+					if(!StringUtil.isEmpty(abnormal1)) {
+						abnormalResultsVo.setAbnormal1(abnormal1);
+					}
+					if(!StringUtil.isEmpty(abnormal2)) {
+						abnormalResultsVo.setAbnormal1(abnormal2);
+					}
+					if(!StringUtil.isEmpty(abnormal3)) {
+						abnormalResultsVo.setAbnormal1(abnormal3);
+					}
+					if(!StringUtil.isEmpty(abnormal4)) {
+						abnormalResultsVo.setAbnormal1(abnormal4);
+					}
+				}
+				//低血压健康指导
+				if(gyyfiag == 1) {
+					abnormalResultsVo.setDbpGuide("低血压健康指导: 低血压是指以体循环动脉血压（收缩压和/或舒张压）降低为主要特征（收缩压≤90毫米汞柱，舒张压≤60毫米汞柱），可伴有心、脑、肾等器官的功能或器质性损害的临床综合征。健康指导：改善生活行为：减轻并控制体重、少盐少脂，增加运动、戒烟限酒、减轻精神压力、保持心理平衡。低血压患者应生活要有规律，防止过度疲劳，因为过度疲劳会使血压下降，并且要保持良好的精神状态。");
+					
+				}else if (gyyfiag == 2) {//高血压指导
+					abnormalResultsVo.setSbpGuide("高血压健康指导:改善生活行为，减轻并控制体重、少盐少脂，增加运动、戒烟限酒、减轻精神压力、保持心理平衡。高血压患者应用药物控制血压。应定期随访和测量血压，预防心脑肾并发症的发生，降低心脑血管事件的发生率。");
+				}
+				//高血脂健康指导
+				if(flg == 1) {
+					abnormalResultsVo.setHyperlipidemiaGuide("高血脂健康指导:高血脂症注意清淡膳食，粗细搭配。常吃蔬菜、豆类及其制品，适量吃鱼、禽、瘦肉，减少脂肪和盐摄入，戒烟限酒，合理增加运动。血脂高的人群最好每年常规化验一次血脂，及时应用药物进行系统治疗。");
+				}
+				//糖尿病健康指导
+				if(bgm == 1) {
+					abnormalResultsVo.setDiabetesGuide("糖尿病健康指导:糖尿病患者要在医生的指导下，增强控制好血糖的信心。定期监测血糖指标，改变生活习惯和方式，药物治疗和锻炼相结合，适当增加运动锻炼，循序渐进。戒烟戒酒，控制饮食（低热量），低盐低脂，优质蛋白，控制碳水化合物，补足维生素，保持情绪稳定。");
+				}
+				
+				
+			}
+			vo.setAbnormalResultsVo(abnormalResultsVo);
+			//-----------------------------------------------------
 		}
 		
 		return vo;
@@ -854,5 +1149,302 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 		data.setXdtList(TjXdtList);
 		return data;
 	}	
+	
+	
+	
+	/**
+	 * 体检异常结果web
+	 */
+	@Override
+	public AbnormalResultsVo physicalToAbnormalResults(String archiveNo) {
+		PhysicalExamination physical = physicalExaminationDao.getLastByArchiveNo(archiveNo);
+		//体检异常结果
+		AbnormalResultsVo abnormalResultsVo = new AbnormalResultsVo();
+
+		String bloodHemoglobin = physical.getBloodHemoglobin();//血红蛋白
+		String bloodPlatelet = physical.getBloodPlatelet();//血小板
+		String bloodLeukocyte = physical.getBloodLeukocyte();//白细胞
+		String urineProtein = physical.getUrineProtein();//尿蛋白
+		String glycosuria = physical.getGlycosuria();//尿糖
+		String urineAcetoneBodies = physical.getUrineAcetoneBodies();//尿酮体
+		String bld = physical.getBld();//尿潜血
+		String bloodGlucoseMmol = physical.getBloodGlucoseMmol();//空腹血糖
+		String sgft = physical.getSgft();//血清谷丙转氨酶
+		String ast = physical.getAst();//血清谷草转氨酶
+		String albumin = physical.getAlbumin();//白蛋白
+		String totalBilirubin = physical.getTotalBilirubin();//总胆红素
+		String conjugatedBilirubin = physical.getConjugatedBilirubin();//直接胆红素
+		String scr = physical.getScr();//血清肌酐
+		String bloodUrea = physical.getBloodUrea();//尿素
+		String tc = physical.getTc();//总胆固醇
+		String tg = physical.getTg();//甘油三酯
+		String ldl = physical.getLdl();//低密度脂蛋白
+		String hdl = physical.getHdl();//高密度脂蛋白
+		Integer baseBloodPressureRightHigh = physical.getBaseBloodPressureRightHigh();//高血压（右）
+		Integer baseBloodPressureRightLow = physical.getBaseBloodPressureRightLow();//低血压（右）
+		String cardiogram = physical.getCardiogram();//心电是否异常
+		String cardiogramMemo = physical.getCardiogramMemo();//心电描述
+		String ultrasoundAbdomen = physical.getUltrasoundAbdomen();//腹部B超是否异常
+		String ultrasoundMemo = physical.getUltrasoundMemo();//腹部B超异常描述
+		String healthEvaluation = physical.getHealthEvaluation();//健康评价
+		String abnormal1 = physical.getAbnormal1();//异常1
+		String abnormal2 = physical.getAbnormal2();//异常2
+		String abnormal3 = physical.getAbnormal3();//异常3
+		String abnormal4 = physical.getAbnormal4();//异常4
+		
+		
+		
+		
+		
+		//获取数值标准
+		List<ThresholdValue> thresholdValueList = thresholdValueDao.selectAll();
+		ThresholdValue thresholdValue = null;
+		String type = null;
+		for (int i = 0; i < thresholdValueList.size(); i++) {
+			thresholdValue = thresholdValueList.get(i);
+			type = thresholdValue.getType();
+			//血红蛋白
+			if("HGB".equals(type) && !StringUtil.isEmpty(bloodHemoglobin)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(bloodHemoglobin) < warningMin) {
+					abnormalResultsVo.setHgb("偏低:" + bloodHemoglobin + "g/L");
+				}
+				if(Float.parseFloat(bloodHemoglobin) > warningMax) {
+					abnormalResultsVo.setHgb("偏高:" + bloodHemoglobin + "g/L" );
+				}
+			}
+			//血小板
+			if("PLT".equals(type) && !StringUtil.isEmpty(bloodPlatelet)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(bloodPlatelet) < warningMin) {
+					abnormalResultsVo.setPlt("偏低:" + bloodPlatelet );
+				}
+				if(Float.parseFloat(bloodPlatelet) > warningMax) {
+					abnormalResultsVo.setPlt("偏高:" + bloodPlatelet);
+				}
+			}
+			//白细胞数目
+			if("WBC".equals(type) && !StringUtil.isEmpty(bloodLeukocyte)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(bloodLeukocyte) < warningMin) {
+					abnormalResultsVo.setWbc("偏低:" + bloodLeukocyte + "10^9个/L" );
+				}
+				if(Float.parseFloat(bloodPlatelet) > warningMax) {
+					abnormalResultsVo.setWbc("偏高:" + bloodLeukocyte + "10^9个/L");
+				}
+			}
+			//尿蛋白
+			if(!StringUtil.isEmpty(urineProtein)) {
+				abnormalResultsVo.setUrineProtein(":" + urineProtein);
+			}
+			//尿糖
+			if(!StringUtil.isEmpty(glycosuria)) {
+				abnormalResultsVo.setGlycosuria(":" + glycosuria);
+			}
+			//尿酮体
+			if(!StringUtil.isEmpty(urineAcetoneBodies)) {
+				abnormalResultsVo.setUrineAcetoneBodies(":" + urineAcetoneBodies);
+			}
+			//尿潜血
+			if(!StringUtil.isEmpty(bld)) {
+				abnormalResultsVo.setBld(":" + bld);
+			}
+			//空腹血糖
+			 int bgm = 0;
+			if("GLU".equals(type) && !StringUtil.isEmpty(bloodGlucoseMmol)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(bloodGlucoseMmol) < warningMin) {
+					abnormalResultsVo.setGlu("偏低:" + bloodGlucoseMmol + "mmol/L" );
+				}
+				if(Float.parseFloat(bloodPlatelet) > warningMax) {
+					abnormalResultsVo.setGlu("偏高:" + bloodGlucoseMmol + "mmol/L");
+					 bgm = 1;
+				}
+			}
+			//血清谷丙转氨酶
+			if("ALT".equals(type) && !StringUtil.isEmpty(sgft)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(sgft) < warningMin) {
+					abnormalResultsVo.setAlt("偏低:" + sgft + "U/L" );
+				}
+				if(Float.parseFloat(sgft) > warningMax) {
+					abnormalResultsVo.setAlt("偏高:" + sgft + "U/L");
+				}
+			}
+			//血清谷草转氨酶
+			if("AST".equals(type) && !StringUtil.isEmpty(ast)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(ast) < warningMin) {
+					abnormalResultsVo.setAst("偏低:" + ast + "U/L" );
+				}
+				if(Float.parseFloat(ast) > warningMax) {
+					abnormalResultsVo.setAst("偏高:" + ast + "U/L");
+				}
+			}
+			//白蛋白
+			if("ALB".equals(type) && !StringUtil.isEmpty(albumin)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(albumin) < warningMin) {
+					abnormalResultsVo.setAlb("偏低:" + albumin + "g/L" );
+				}
+				if(Float.parseFloat(albumin) > warningMax) {
+					abnormalResultsVo.setAlb("偏高:" + albumin + "g/L");
+				}
+			}
+			//总胆红素
+			if("TBIL".equals(type) && !StringUtil.isEmpty(totalBilirubin)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(totalBilirubin) < warningMin) {
+					abnormalResultsVo.setTbil("偏低:" + totalBilirubin + "μmol/L" );
+				}
+				if(Float.parseFloat(totalBilirubin) > warningMax) {
+					abnormalResultsVo.setTbil("偏高:" + totalBilirubin + "μmol/L");
+				}
+			}
+			//直接胆红素
+			if("DBIL".equals(type) && !StringUtil.isEmpty(conjugatedBilirubin)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(conjugatedBilirubin) < warningMin) {
+					abnormalResultsVo.setDbil("偏低:" + conjugatedBilirubin + "μmol/L" );
+				}
+				if(Float.parseFloat(conjugatedBilirubin) > warningMax) {
+					abnormalResultsVo.setDbil("偏高:" + conjugatedBilirubin + "μmol/L");
+				}
+			}
+			//血清肌酐
+			if("CREA".equals(type) && !StringUtil.isEmpty(scr)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(scr) < warningMin) {
+					abnormalResultsVo.setCrea("偏低:" + scr + "μmol/L" );
+				}
+				if(Float.parseFloat(scr) > warningMax) {
+					abnormalResultsVo.setCrea("偏高:" + scr + "μmol/L");
+				}
+			}
+			//尿素
+			if("UREA".equals(type) && !StringUtil.isEmpty(bloodUrea)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(bloodUrea) < warningMin) {
+					abnormalResultsVo.setUrea("偏低:" + bloodUrea + "mmol/L" );
+				}
+				if(Float.parseFloat(bloodUrea) > warningMax) {
+					abnormalResultsVo.setUrea("偏高:" + bloodUrea + "mmol/L");
+				}
+			}
+			//总胆固醇
+			int flg = 0;
+			if("CHO".equals(type) && !StringUtil.isEmpty(tc)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(tc) < warningMin) {
+					abnormalResultsVo.setCho("偏低:" + tc + "mmol/L" );
+				}
+				if(Float.parseFloat(tc) > warningMax) {
+					abnormalResultsVo.setCho("偏高:" + tc + "mmol/L");
+					flg = 1;
+				}
+			}
+			//甘油三酯
+			if("TG".equals(type) && !StringUtil.isEmpty(tg)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(tg) < warningMin) {
+					abnormalResultsVo.setTg("偏低:" + tg + "mmol/L" );
+				}
+				if(Float.parseFloat(tg) > warningMax) {
+					abnormalResultsVo.setTg("偏高:" + tg + "mmol/L");
+					flg = 1;
+				}
+			}
+			//低密度脂蛋白
+			if("LDLC".equals(type) && !StringUtil.isEmpty(ldl)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(ldl) < warningMin) {
+					abnormalResultsVo.setLdlc("偏低:" + ldl + "mmol/L" );
+				}
+				if(Float.parseFloat(ldl) > warningMax) {
+					abnormalResultsVo.setLdlc("偏高:" + ldl + "mmol/L");
+				}
+			}
+			//高密度脂蛋白
+			if("HDLC".equals(type) && !StringUtil.isEmpty(hdl)) {
+				Float warningMin = thresholdValue.getWarningMin();
+				Float warningMax = thresholdValue.getWarningMax();
+				if(Float.parseFloat(hdl) < warningMin) {
+					abnormalResultsVo.setHdlc("偏低:" + hdl + "mmol/L" );
+				}
+				if(Float.parseFloat(hdl) > warningMax) {
+					abnormalResultsVo.setHdlc("偏高:" + hdl + "mmol/L");
+				}
+			}
+			//血压值  baseBloodPressureRightHigh  
+			int gyyfiag = 0;
+			if(baseBloodPressureRightLow != null && baseBloodPressureRightHigh != null) {
+				int RightLow = baseBloodPressureRightLow.intValue();
+				int RightHigh = baseBloodPressureRightHigh.intValue();
+				if(RightLow < 60 || RightHigh < 90 ) {
+					abnormalResultsVo.setDbp("偏低:" + baseBloodPressureRightHigh + "/" + baseBloodPressureRightLow);
+					gyyfiag = 1;
+				}
+				if(RightLow > 90 || RightHigh > 140) {
+					abnormalResultsVo.setDbp("偏高:" + baseBloodPressureRightHigh + "/" + baseBloodPressureRightLow);
+					gyyfiag = 2;
+				}
+			}
+			//心电图异常描述
+			if(!StringUtil.isEmpty(cardiogram) && "2".equals(cardiogram)) {
+				abnormalResultsVo.setCardiogramMemo(cardiogramMemo);
+			}
+			//腹部B超异常描述
+			if(!StringUtil.isEmpty(ultrasoundAbdomen) && "2".equals(ultrasoundAbdomen)) {
+				abnormalResultsVo.setUltrasoundMemo(ultrasoundMemo);
+			}
+			//健康评价
+			if(!StringUtil.isEmpty(healthEvaluation) && "2".equals(healthEvaluation)) {
+				if(!StringUtil.isEmpty(abnormal1)) {
+					abnormalResultsVo.setAbnormal1(abnormal1);
+				}
+				if(!StringUtil.isEmpty(abnormal2)) {
+					abnormalResultsVo.setAbnormal1(abnormal2);
+				}
+				if(!StringUtil.isEmpty(abnormal3)) {
+					abnormalResultsVo.setAbnormal1(abnormal3);
+				}
+				if(!StringUtil.isEmpty(abnormal4)) {
+					abnormalResultsVo.setAbnormal1(abnormal4);
+				}
+			}
+			//低血压健康指导
+			if(gyyfiag == 1) {
+				abnormalResultsVo.setDbpGuide("低血压健康指导: 低血压是指以体循环动脉血压（收缩压和/或舒张压）降低为主要特征（收缩压≤90毫米汞柱，舒张压≤60毫米汞柱），可伴有心、脑、肾等器官的功能或器质性损害的临床综合征。健康指导：改善生活行为：减轻并控制体重、少盐少脂，增加运动、戒烟限酒、减轻精神压力、保持心理平衡。低血压患者应生活要有规律，防止过度疲劳，因为过度疲劳会使血压下降，并且要保持良好的精神状态。");
+				
+			}else if (gyyfiag == 2) {//高血压指导
+				abnormalResultsVo.setSbpGuide("高血压健康指导:改善生活行为，减轻并控制体重、少盐少脂，增加运动、戒烟限酒、减轻精神压力、保持心理平衡。高血压患者应用药物控制血压。应定期随访和测量血压，预防心脑肾并发症的发生，降低心脑血管事件的发生率。");
+			}
+			//高血脂健康指导
+			if(flg == 1) {
+				abnormalResultsVo.setHyperlipidemiaGuide("高血脂健康指导:高血脂症注意清淡膳食，粗细搭配。常吃蔬菜、豆类及其制品，适量吃鱼、禽、瘦肉，减少脂肪和盐摄入，戒烟限酒，合理增加运动。血脂高的人群最好每年常规化验一次血脂，及时应用药物进行系统治疗。");
+			}
+			//糖尿病健康指导
+			if(bgm == 1) {
+				abnormalResultsVo.setDiabetesGuide("糖尿病健康指导:糖尿病患者要在医生的指导下，增强控制好血糖的信心。定期监测血糖指标，改变生活习惯和方式，药物治疗和锻炼相结合，适当增加运动锻炼，循序渐进。戒烟戒酒，控制饮食（低热量），低盐低脂，优质蛋白，控制碳水化合物，补足维生素，保持情绪稳定。");
+			}
+			
+		}
+		return abnormalResultsVo;
+	}
+	
 	
 }
