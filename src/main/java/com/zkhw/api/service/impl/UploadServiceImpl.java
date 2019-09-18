@@ -1422,7 +1422,7 @@ public class UploadServiceImpl implements UploadService {
 				record.setHiv(follow.getHIV());
 				//B超
 				record.setBUltrasonic(follow.getB());
-				//record.setOther(other);
+				record.setOther(follow.getOther());
 				//总体评估
 				record.setGeneralAssessment(follow.getEvaluate());
 				//评估异常
