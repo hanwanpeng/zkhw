@@ -1022,7 +1022,7 @@ public class UploadServiceImpl implements UploadService {
 				}
 				record.setGuidanceOther(follow.getGuideother());
 				//有无转诊
-				//record.setTransferTreatment(transferTreatment);
+				record.setTransferTreatment(follow.getReferralId());
 				//转诊原因
 				record.setTransferTreatmentReason(follow.getTransReason());
 				//转诊机构和科室
@@ -1124,7 +1124,7 @@ public class UploadServiceImpl implements UploadService {
 				}
 				record.setGuidanceOther(follow.getGuideother());
 				//有无转诊
-				//record.setTransferTreatment(transferTreatment);
+				record.setTransferTreatment(follow.getReferralId());
 				//转诊原因
 				record.setTransferTreatmentReason(follow.getTransReason());
 				//转诊机构和科室
