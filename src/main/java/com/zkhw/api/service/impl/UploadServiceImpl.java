@@ -1022,7 +1022,7 @@ public class UploadServiceImpl implements UploadService {
 				}
 				record.setGuidanceOther(follow.getGuideother());
 				//有无转诊
-				//record.setTransferTreatment(transferTreatment);
+				record.setTransferTreatment(follow.getReferralId());
 				//转诊原因
 				record.setTransferTreatmentReason(follow.getTransReason());
 				//转诊机构和科室
@@ -1124,7 +1124,7 @@ public class UploadServiceImpl implements UploadService {
 				}
 				record.setGuidanceOther(follow.getGuideother());
 				//有无转诊
-				//record.setTransferTreatment(transferTreatment);
+				record.setTransferTreatment(follow.getReferralId());
 				//转诊原因
 				record.setTransferTreatmentReason(follow.getTransReason());
 				//转诊机构和科室
@@ -1422,7 +1422,7 @@ public class UploadServiceImpl implements UploadService {
 				record.setHiv(follow.getHIV());
 				//B超
 				record.setBUltrasonic(follow.getB());
-				//record.setOther(other);
+				record.setOther(follow.getOther());
 				//总体评估
 				record.setGeneralAssessment(follow.getEvaluate());
 				//评估异常
@@ -2111,8 +2111,8 @@ public class UploadServiceImpl implements UploadService {
 				record.setWeight(follow.getWight());
 				
 				//出生身长（cm）
-				if(StringUtil.isNotEmpty(follow.getHearingOfNewborn())){
-					record.setBirthHeight(follow.getHearingOfNewborn());
+				if(StringUtil.isNotEmpty(follow.getHeightOfNewborn())){
+					record.setBirthHeight(follow.getHeightOfNewborn());
 				}
 				//喂养方式
 				record.setFeedingPatterns(follow.getFeedWay());
@@ -2141,8 +2141,14 @@ public class UploadServiceImpl implements UploadService {
 				
 				//前囱状态
 				record.setAnteriorFontanelle(follow.getBregma());
-				//前囱高
-				record.setAnteriorFontanelleHigh(follow.getBregma1());
+				if(StringUtil.isNotEmpty(follow.getBregma1())){
+					String[] bregma = follow.getBregma1().split("*");
+					record.setAnteriorFontanelleWide(bregma[0]);
+					if(bregma.length > 1){
+						record.setAnteriorFontanelleHigh(bregma[1]);
+					}
+				}
+
 				//前囱其他
 				record.setAnteriorFontanelleOther(follow.getBregma2());
 				//眼睛是否异常
@@ -2164,7 +2170,7 @@ public class UploadServiceImpl implements UploadService {
 				//肛门
 				record.setAnus(follow.getAnus());
 				//心肺听诊
-				record.setHeartLung(follow.getHeatr_lung());
+				record.setHeartLung(follow.getHeart_lung());
 				//胸部
 				record.setBreast(follow.getBreastexam());
 				//腹部触诊
@@ -2289,8 +2295,13 @@ public class UploadServiceImpl implements UploadService {
 				record.setSkinOther(follow.getSkinbug());
 				//前囱状态
 				record.setAnteriorFontanelle(follow.getBregma());
-				//前囱高
-				record.setAnteriorFontanelleHigh(follow.getBregma1());
+				if(StringUtil.isNotEmpty(follow.getBregma1())){
+					String[] bregma = follow.getBregma1().split("*");
+					record.setAnteriorFontanelleWide(bregma[0]);
+					if(bregma.length > 1){
+						record.setAnteriorFontanelleHigh(bregma[1]);
+					}
+				}
 				//颈部包块
 				record.setNeckMass(follow.getNeckMasses());
 				//眼睛是否异常
@@ -2307,9 +2318,9 @@ public class UploadServiceImpl implements UploadService {
 				record.setOralCavity(follow.getCavum());
 				record.setCavityOther(follow.getCavumbug());
 				//出牙数
-				//record.setTeethingNum(follow.getTooth());
+				record.setTeethingNum(follow.getTooth());
 				//龋齿数
-				//record.setCariesNum(cariesNum);
+				record.setCariesNum(follow.getCaries());
 				//胸部
 				record.setBreast(follow.getHeart_lung());
 				record.setBreastOther(follow.getHeatr_lungbug());
@@ -2327,7 +2338,7 @@ public class UploadServiceImpl implements UploadService {
 				
 				//四肢
 				record.setExtremity(follow.getExtremity());
-				record.setExtremityOther(record.getExtremityOther());
+				record.setExtremityOther(follow.getExtremitybug());
 				//步态
 				record.setGait(follow.getTread());
 				//可疑佝偻病症状
@@ -2446,7 +2457,8 @@ public class UploadServiceImpl implements UploadService {
 	public ErrorInfo healthManage(HealthManageBo bo) {
 		// TODO Auto-generated method stub
 		ErrorInfo errInfo = new ErrorInfo();
-		List<Error> errList = new ArrayList<Error>();
+		FollowResult result = new FollowResult();
+		List<FollowResult> errList = new ArrayList<FollowResult>();
 		Map<String,String> keys = new HashMap<String,String>();
 		for(int j = 0; j < bo.getElderlyHealthManage().size(); j++){
 			Error err = new Error();
@@ -2741,7 +2753,7 @@ public class UploadServiceImpl implements UploadService {
 				//record.setUploadTime(uploadTime);
 				physicalExaminationDao.insertSelective(record);
 				err.setCode("0");
-	
+				result.setLogBody(err);
 				
 				if(StringUtil.isNotEmpty(follow.getZhuyuan_a_binganhao()) || StringUtil.isNotEmpty(follow.getZhuyuan_a_time())
 						|| StringUtil.isNotEmpty(follow.getZhuyuan_a_yiliao()) || StringUtil.isNotEmpty(follow.getZhuyuan_a_yuanyin())){
@@ -2888,6 +2900,7 @@ public class UploadServiceImpl implements UploadService {
 				}				
 				
 				List<TakeMedicine> list = bo.getElderlyHealthManage().get(j).getTakeMedicineRecord();
+				List<Error> takeMedicineRecord = new ArrayList<Error>();
 				if(list != null && list.size() > 0){					
 					for(int i = 0; i < list.size(); i++){
 						TakeMedicine take = list.get(i);
@@ -2920,19 +2933,26 @@ public class UploadServiceImpl implements UploadService {
 						//med.setUpdateUser(f/ollow.getUpdated_By());
 						takeMedicineRecordDao.insertSelective(med);
 						e.setCode("0");
+						takeMedicineRecord.add(e);
 					}						
 				}
+				result.setTakeMedicineRecord(takeMedicineRecord);
 			}catch(Exception e){
 				e.printStackTrace();
 				err.setCode("-1");
 				
 			}
-			errList.add(err);
+			errList.add(result);
 		}
 		List<FeimianyiHis> feiHis =  bo.getFeimianyiHis();
+		List<Error> feimianyiHis = new ArrayList<Error>();
 		if(feiHis != null && feiHis.size() > 0){
 			for(int i = 0; i < feiHis.size(); i++){
 				try{
+					Error e = new Error();
+					//e.setId(feiHis.get(i).getUUID());
+					e.setInfo(feiHis.get(i).getId());
+					
 					VaccinationRecord record = new VaccinationRecord();
 					record.setId(CodeUtil.getUUID());
 					record.setExamId(keys.get(feiHis.get(i).getExamid()));
@@ -2969,14 +2989,16 @@ public class UploadServiceImpl implements UploadService {
 					//record.setUpdateTime(updateTime);
 					
 					vaccinationRecordDao.insertSelective(record);
+					e.setCode("0");
+					feimianyiHis.add(e);
 				}catch(Exception e){
 					e.printStackTrace();
 				}
 			}
 		}
-		errInfo.setLogBody(errList);
-		errInfo.setTakeMedicineRecord(new ArrayList<Error>());
-		errInfo.setFeimianyiHis(new ArrayList<Error>());
+		errInfo.setElderlyHealthManage(errList);
+		//errInfo.setTakeMedicineRecord(new ArrayList<Error>());
+		errInfo.setFeimianyiHis(feimianyiHis);
 		return errInfo;
 	}
 }

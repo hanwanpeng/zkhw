@@ -132,10 +132,10 @@ public class NeonatusFirst extends BaseBo{
 	private String anus1;
 	
 	//心肺听诊
-	private String heatr_lung;
+	private String heart_lung;
 	
 	//心肺听诊异常
-	private String heatr_lung1;
+	private String heart_lung1;
 	
 	//外生殖器
 	private String pudendum;

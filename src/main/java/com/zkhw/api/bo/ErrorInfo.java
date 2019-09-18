@@ -48,7 +48,7 @@ public class ErrorInfo {
 	private List<Error> ChanHou42day;
 	
 	@JSONField(name = "ElderlyHealthManage")
-	private List<Error> ElderlyHealthManage;
+	private List<FollowResult> ElderlyHealthManage;
 	
 	@JSONField(name = "TangNiaoBingVisit")
 	private List<FollowResult> TangNiaoBingVisit;
@@ -70,9 +70,6 @@ public class ErrorInfo {
 	
 	@JSONField(name = "FeiJieHeVisit")
 	private List<Error> FeiJieHeVisit;
-	
-	@JSONField(name = "LogBody")
-	private List<Error> LogBody;
 	
 	@JSONField(name = "FeimianyiHis")
 	private List<Error> FeimianyiHis;

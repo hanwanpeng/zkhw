@@ -30,4 +30,8 @@ public interface GravidaService {
 	
 	Map<String, String> exportInfoPdf(String archiveNo);
 	
+	Map<String, String> exportFollowPdf(String gravidaId);
+	
+	Map<String, String> exportAfterPdf(String gravidaId,String type);
+	
 }

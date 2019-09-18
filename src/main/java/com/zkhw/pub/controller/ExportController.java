@@ -14,9 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.github.pagehelper.util.StringUtil;
 import com.zkhw.common.utils.PdfUtils;
 import com.zkhw.common.vo.ApiJsonResult;
+import com.zkhw.flup.service.ChildrenService;
 import com.zkhw.flup.service.DiabetesService;
+import com.zkhw.flup.service.GravidaService;
 import com.zkhw.flup.service.HypertensionService;
 import com.zkhw.flup.service.PsychosisService;
 import com.zkhw.flup.service.TuberculosisService;
@@ -44,6 +47,12 @@ public class ExportController {
 	
 	@Autowired
 	private TuberculosisService tuberculosisService;
+	
+	@Autowired
+	private ChildrenService childrenService;
+	
+	@Autowired
+	private GravidaService gravidaService;
 	
 	@RequestMapping(value = "/baseinfoPdf", method = RequestMethod.GET)
 	public void dataPdf(HttpServletRequest request, HttpServletResponse response, ApiJsonResult result) throws Exception {
@@ -350,5 +359,208 @@ public class ExportController {
 				}
 			}
 		}
+	}
+	
+	@RequestMapping(value = "/childrenInfoPdf", method = RequestMethod.GET)
+	public void childrenInfoPdf(HttpServletRequest request, HttpServletResponse response, ApiJsonResult result) throws Exception {
+		String archiveNo = request.getParameter("archiveNo");
+		//archiveNo = "45042110220205555";
+		String path = request.getSession().getServletContext().getRealPath("template");
+		String templatePath = path+ File.separator + "childrenInfo.pdf";
+		OutputStream out = null;
+		String filename =  "新生儿家庭访视记录.pdf";
+		try {	
+			out = response.getOutputStream();// 取得输出流
+			filename = new String(filename.getBytes("gb2312"), "ISO8859-1");
+			response.setContentType("application/pdf;charset=UTF-8");
+			response.setHeader("Content-Disposition","attachment;filename=\"" + filename + "\"");						
+			response.reset();// 清空输出流
+			PdfUtils pdf = new PdfUtils();
+			Map<String, String> map = childrenService.exportInfoPdf(archiveNo);
+
+
+			Map<String, String> map2 = new HashMap<String,String>();
+			//map2.put("img", "c:/50336.jpg");
+
+			Map<String, Object> o = new HashMap<String,Object>();
+			o.put("datemap", map);
+			o.put("imgmap", map2);
+			pdf.createPdf(out, o, templatePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (out != null) {
+				try {
+					out.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	@RequestMapping(value = "/childrenFollowPdf", method = RequestMethod.GET)
+	public void childrenFollowPdf(HttpServletRequest request, HttpServletResponse response, ApiJsonResult result) throws Exception {
+		String archiveNo = request.getParameter("archiveNo");
+		String type = request.getParameter("type");
+		//archiveNo = "45042110220205555";
+		String path = request.getSession().getServletContext().getRealPath("template");
+		String f = "childrenFollow1.pdf";
+		if(StringUtil.isNotEmpty(type)){
+			f = "childrenFollow" + type + ".pdf";
+		}
+		String templatePath = path+ File.separator + f;
+		OutputStream out = null;
+		String filename =  "儿童健康检查记录.pdf";
+		try {	
+			out = response.getOutputStream();// 取得输出流
+			filename = new String(filename.getBytes("gb2312"), "ISO8859-1");
+			response.setContentType("application/pdf;charset=UTF-8");
+			response.setHeader("Content-Disposition","attachment;filename=\"" + filename + "\"");						
+			response.reset();// 清空输出流
+			PdfUtils pdf = new PdfUtils();
+			Map<String, String> map = childrenService.exportFollowPdf(archiveNo, type);
+
+
+			Map<String, String> map2 = new HashMap<String,String>();
+			//map2.put("img", "c:/50336.jpg");
+
+			Map<String, Object> o = new HashMap<String,Object>();
+			o.put("datemap", map);
+			o.put("imgmap", map2);
+			pdf.createPdf(out, o, templatePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (out != null) {
+				try {
+					out.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	@RequestMapping(value = "/gravidaInfoPdf", method = RequestMethod.GET)
+	public void gravidaInfoPdf(HttpServletRequest request, HttpServletResponse response, ApiJsonResult result) throws Exception {
+		String archiveNo = request.getParameter("archiveNo");
+		//archiveNo = "45042110220205555";
+		String path = request.getSession().getServletContext().getRealPath("template");
+		String templatePath = path+ File.separator + "gravidaInfo.pdf";
+		OutputStream out = null;
+		String filename =  "第一次随访产前检查记录.pdf";
+		try {	
+			out = response.getOutputStream();// 取得输出流
+			filename = new String(filename.getBytes("gb2312"), "ISO8859-1");
+			response.setContentType("application/pdf;charset=UTF-8");
+			response.setHeader("Content-Disposition","attachment;filename=\"" + filename + "\"");						
+			response.reset();// 清空输出流
+			PdfUtils pdf = new PdfUtils();
+			Map<String, String> map = gravidaService.exportInfoPdf(archiveNo);
+
+
+			Map<String, String> map2 = new HashMap<String,String>();
+			//map2.put("img", "c:/50336.jpg");
+
+			Map<String, Object> o = new HashMap<String,Object>();
+			o.put("datemap", map);
+			o.put("imgmap", map2);
+			pdf.createPdf(out, o, templatePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (out != null) {
+				try {
+					out.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
+
+	@RequestMapping(value = "/gravidaFollowPdf", method = RequestMethod.GET)
+	public void gravidaFollowPdf(HttpServletRequest request, HttpServletResponse response, ApiJsonResult result) throws Exception {
+		String gravidaId = request.getParameter("gravidaId");
+		//archiveNo = "45042110220205555";
+		String path = request.getSession().getServletContext().getRealPath("template");
+		String f = "gravidaFollow.pdf";
+
+		String templatePath = path+ File.separator + f;
+		OutputStream out = null;
+		String filename =  "产前随访服务记录.pdf";
+		try {	
+			out = response.getOutputStream();// 取得输出流
+			filename = new String(filename.getBytes("gb2312"), "ISO8859-1");
+			response.setContentType("application/pdf;charset=UTF-8");
+			response.setHeader("Content-Disposition","attachment;filename=\"" + filename + "\"");						
+			response.reset();// 清空输出流
+			PdfUtils pdf = new PdfUtils();
+			Map<String, String> map = gravidaService.exportFollowPdf(gravidaId);
+
+
+			Map<String, String> map2 = new HashMap<String,String>();
+			//map2.put("img", "c:/50336.jpg");
+
+			Map<String, Object> o = new HashMap<String,Object>();
+			o.put("datemap", map);
+			o.put("imgmap", map2);
+			pdf.createPdf(out, o, templatePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (out != null) {
+				try {
+					out.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	@RequestMapping(value = "/gravidaAfterPdf", method = RequestMethod.GET)
+	public void gravidaAfterPdf(HttpServletRequest request, HttpServletResponse response, ApiJsonResult result) throws Exception {
+		String gravidaId = request.getParameter("gravidaId");
+		String type = request.getParameter("type");
+		//archiveNo = "45042110220205555";
+		String path = request.getSession().getServletContext().getRealPath("template");
+		String f = "gravidaAfter1.pdf";
+		if(StringUtil.isNotEmpty(type)){
+			f = "gravidaAfter" + type + ".pdf";
+		}
+		String templatePath = path+ File.separator + f;
+		OutputStream out = null;
+		String filename =  "产后访视记录.pdf";
+		try {	
+			out = response.getOutputStream();// 取得输出流
+			filename = new String(filename.getBytes("gb2312"), "ISO8859-1");
+			response.setContentType("application/pdf;charset=UTF-8");
+			response.setHeader("Content-Disposition","attachment;filename=\"" + filename + "\"");						
+			response.reset();// 清空输出流
+			PdfUtils pdf = new PdfUtils();
+			Map<String, String> map = gravidaService.exportAfterPdf(gravidaId, type);
+
+
+			Map<String, String> map2 = new HashMap<String,String>();
+			//map2.put("img", "c:/50336.jpg");
+
+			Map<String, Object> o = new HashMap<String,Object>();
+			o.put("datemap", map);
+			o.put("imgmap", map2);
+			pdf.createPdf(out, o, templatePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (out != null) {
+				try {
+					out.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
 	}	
+	
 }

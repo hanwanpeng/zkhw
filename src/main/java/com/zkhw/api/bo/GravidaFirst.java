@@ -300,6 +300,8 @@ public class GravidaFirst extends BaseBo{
 	//B超
 	private String B;
 	
+	private String other;
+	
 	//总体评估
 	private String evaluate;
 	
