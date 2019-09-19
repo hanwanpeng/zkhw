@@ -127,9 +127,12 @@ public class OrganizationController {
 					if("1".equals(type)){
 						lev = lev + 1;
 					}else{
-						if(StringUtil.isNotEmpty(villageCode)){
-							lev = 5;
+						if("4".equals(lev) && StringUtil.isNotEmpty(org.getVillageCode())){
+							if(StringUtil.isNotEmpty(villageCode)){
+								lev = 5;
+							}
 						}
+
 					}
 					organization.setOrganLevel(String.valueOf(lev));
 					
