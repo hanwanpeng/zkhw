@@ -101,6 +101,8 @@ public class PhysicalExaminationVo {
     private String lifewayDrinkOneyear;
 
     private String lifewayDrinkType;
+    
+    private String lifewayDrinkOther;
 
     private String lifewayOccupationalDisease;
 

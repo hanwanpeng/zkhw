@@ -2142,7 +2142,7 @@ public class UploadServiceImpl implements UploadService {
 				//前囱状态
 				record.setAnteriorFontanelle(follow.getBregma());
 				if(StringUtil.isNotEmpty(follow.getBregma1())){
-					String[] bregma = follow.getBregma1().split("*");
+					String[] bregma = follow.getBregma1().split("\\*");
 					record.setAnteriorFontanelleWide(bregma[0]);
 					if(bregma.length > 1){
 						record.setAnteriorFontanelleHigh(bregma[1]);
@@ -2296,7 +2296,7 @@ public class UploadServiceImpl implements UploadService {
 				//前囱状态
 				record.setAnteriorFontanelle(follow.getBregma());
 				if(StringUtil.isNotEmpty(follow.getBregma1())){
-					String[] bregma = follow.getBregma1().split("*");
+					String[] bregma = follow.getBregma1().split("\\*");
 					record.setAnteriorFontanelleWide(bregma[0]);
 					if(bregma.length > 1){
 						record.setAnteriorFontanelleHigh(bregma[1]);
