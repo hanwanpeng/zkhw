@@ -213,16 +213,28 @@ public class PhysicalExaminationVo {
     private String examinationHeartRhythm;
 
     private String examinationHeartNoise;
+    
+    private String examinationNoiseOther;
 
     private String examinationAbdomenTenderness;
+    
+    private String examinationTendernessMemo;
 
     private String examinationAbdomenMass;
+    
+    private String examinationMassMemo;
 
     private String examinationAbdomenHepatomegaly;
+    
+    private String examinationHepatomegalyMemo;
 
     private String examinationAbdomenSplenomegaly;
+    
+    private String examinationSplenomegalyMemo;
 
     private String examinationAbdomenShiftingdullness;
+    
+    private String examinationShiftingdullnessMemo;
 
     private String examinationLowerextremityEdema;
 
@@ -239,14 +251,24 @@ public class PhysicalExaminationVo {
     private String examinationDoctor;
 
     private String examinationWomanVulva;
+    
+    private String examinationVulvaMemo;
 
     private String examinationWomanVagina;
+    
+    private String examinationVaginaMemo;
 
     private String examinationWomanCervix;
+    
+    private String examinationCervixMemo;
 
     private String examinationWomanCorpus;
+    
+    private String examinationCorpusMemo;
 
     private String examinationWomanAccessories;
+    
+    private String examinationAccessoriesMemo;
 
     private String examinationWomanDoctor;
 
@@ -275,6 +297,8 @@ public class PhysicalExaminationVo {
     private String bloodGlucoseMg;
 
     private String cardiogram;
+    
+    private String cardiogramMemo;
 
     private String cardiogramImg;
 
@@ -313,18 +337,26 @@ public class PhysicalExaminationVo {
     private String hdl;
 
     private String chestX;
+    
+    private String xMemo;
 
     private String chestxImg;
 
     private String ultrasoundAbdomen;
+    
+    private String ultrasoundMemo;
 
     private String abdomenbImg;
 
     private String otherB;
+    
+    private String otherbMemo;
 
     private String otherbImg;
 
     private String cervicalSmear;
+    
+    private String cervicalSmearMemo;
 
     private String other;
 
@@ -349,8 +381,12 @@ public class PhysicalExaminationVo {
     private String ocularDiseasesOther;
 
     private String nervousSystemDisease;
+    
+    private String nervousDiseaseMemo;
 
     private String otherDisease;
+    
+    private String otherDiseaseMemo;
 
     private String healthEvaluation;
     

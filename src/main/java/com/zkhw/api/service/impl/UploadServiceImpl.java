@@ -232,6 +232,7 @@ public class UploadServiceImpl implements UploadService {
 				record.setCheckDate(follow.getCheckDate());			
 				record.setCompliance(follow.getDrugComply());
 				record.setUntowardEffect(follow.getHasAdverse());
+				record.setUntowardEffectDrug(follow.getAdverseMemo());
 				record.setReactiveHypoglycemia(follow.getAdverseOfSugar());
 				record.setFollowType(follow.getVisitClass());
 				record.setInsulinName(follow.getInsulinName());
