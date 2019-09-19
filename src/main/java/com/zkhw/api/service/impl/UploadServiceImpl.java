@@ -660,7 +660,8 @@ public class UploadServiceImpl implements UploadService {
 				//最近一次治疗效果
 				psy.setRecentlyTreatmentEffect(first.getLatestTreatRes());
 				
-				//psy.setDangerousAct(dangerousAct);
+				String acts = "";
+				
 				//轻度滋事次数
 				psy.setSlightTroubleNum(first.getTrouble());
 				//肇事次数
@@ -673,7 +674,28 @@ public class UploadServiceImpl implements UploadService {
 				psy.setAutolesionNum(first.getSelfInjury());
 				//自杀未遂次数
 				psy.setAttemptedSuicideNum(first.getAttemptedSuicide());
-				
+				if(first.getTrouble() != null && first.getTrouble() > 0){
+					acts = acts + "1" + ",";
+				}
+				if(first.getAccident() != null && first.getAccident() > 0){
+					acts = acts + "2" + ",";
+				}
+				if(first.getProblem() != null && first.getProblem() > 0){
+					acts = acts + "3" + ",";
+				}	
+				if(first.getBehavior() != null && first.getBehavior() > 0){
+					acts = acts + "4" + ",";
+				}
+				if(first.getSelfInjury() != null && first.getSelfInjury() > 0){
+					acts = acts + "5" + ",";
+				}
+				if(first.getAttemptedSuicide() != null && first.getAttemptedSuicide() > 0){
+					acts = acts + "6" + ",";
+				}
+				if(StringUtil.isNotEmpty(acts)){
+					acts = acts.substring(0, acts.length() - 1);
+				}
+				psy.setDangerousAct(acts);
 				//经济状况
 				psy.setEconomics(first.getEconomic());
 				//专科医生意见

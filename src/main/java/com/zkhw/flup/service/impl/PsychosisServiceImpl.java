@@ -243,7 +243,7 @@ public class PsychosisServiceImpl implements PsychosisService {
 			
 			//初次发病时间
 			if(StringUtil.isNotEmpty(info.getFirstMorbidityDate())){
-				String[] d = info.getAgreeDate().split("-");
+				String[] d = info.getFirstMorbidityDate().split("-");
 				map.put("morbidityYear", d[0]);
 				if(d.length > 1){
 					map.put("morbidityMonth", d[1]);
@@ -272,7 +272,7 @@ public class PsychosisServiceImpl implements PsychosisService {
 			
 			//首次药物
 			if(StringUtil.isNotEmpty(info.getFirstMedicineDate())){
-				String[] d = info.getAgreeDate().split("-");
+				String[] d = info.getFirstMedicineDate().split("-");
 				map.put("medicineYear", d[0]);
 				if(d.length > 1){
 					map.put("medicineMonth", d[1]);
