@@ -2605,7 +2605,7 @@ public class UploadServiceImpl implements UploadService {
 				record.setExaminationVulvaMemo(follow.getVulva_memo());
 				record.setExaminationWomanVagina(follow.getVaginal());
 				record.setExaminationVaginaMemo(follow.getVaginal_memo());
-				record.setExaminationWomanCervix(follow.getCervix());
+				record.setExaminationWomanCervix(follow.getCervixed());
 				record.setExaminationCervixMemo(follow.getCervix_memo());
 				record.setExaminationWomanCorpus(follow.getPalace());
 				record.setExaminationCorpusMemo(follow.getPalace_memo());
@@ -2755,149 +2755,153 @@ public class UploadServiceImpl implements UploadService {
 				err.setCode("0");
 				result.setLogBody(err);
 				
-				if(StringUtil.isNotEmpty(follow.getZhuyuan_a_binganhao()) || StringUtil.isNotEmpty(follow.getZhuyuan_a_time())
-						|| StringUtil.isNotEmpty(follow.getZhuyuan_a_yiliao()) || StringUtil.isNotEmpty(follow.getZhuyuan_a_yuanyin())){
-					
-					String inHospitalTime = "";
-					String leaveHospitalTime = "";
-					if(StringUtil.isNotEmpty(follow.getZhuyuan_a_time())){
-						String[] d = follow.getZhuyuan_a_time().split("/");
-						inHospitalTime = d[0];
-						if(d.length > 1){
-							leaveHospitalTime = d[1];
+				try{
+					if(StringUtil.isNotEmpty(follow.getZhuyuan_a_binganhao()) || StringUtil.isNotEmpty(follow.getZhuyuan_a_time())
+							|| StringUtil.isNotEmpty(follow.getZhuyuan_a_yiliao()) || StringUtil.isNotEmpty(follow.getZhuyuan_a_yuanyin())){
+						
+						String inHospitalTime = "";
+						String leaveHospitalTime = "";
+						if(StringUtil.isNotEmpty(follow.getZhuyuan_a_time())){
+							String[] d = follow.getZhuyuan_a_time().split(",");
+							inHospitalTime = d[0];
+							if(d.length > 1){
+								leaveHospitalTime = d[1];
+							}
 						}
+						
+						HospitalizedRecord h = new HospitalizedRecord();
+						h.setId(CodeUtil.getUUID());
+						h.setExamId(record.getId());
+						h.setArchiveNo(record.getArchiveNo());
+						h.setIdNumber(idNumber);
+						//h.setServiceName(serviceName);
+						h.setHospitalizedType(1);
+						h.setInHospitalTime(inHospitalTime);
+						h.setLeaveHospitalTime(leaveHospitalTime);
+						h.setReason(follow.getZhuyuan_a_yuanyin());
+						h.setHospitalOrgan(follow.getZhuyuan_a_yiliao());
+						h.setCaseCode(follow.getZhuyuan_a_binganhao());
+						//h.setRemark(remark);
+						
+						h.setCreateOrg(record.getCreateOrg());
+						h.setCreateName(record.getCreateName());
+						h.setCreateTime(record.getCreateTime());
+						h.setUpdateName(record.getUpdateName());
+						h.setUpdateTime(record.getUpdateTime());
+						
+						hospitalizedRecordDao.insertSelective(h);
 					}
 					
-					HospitalizedRecord h = new HospitalizedRecord();
-					h.setId(CodeUtil.getUUID());
-					h.setExamId(record.getId());
-					h.setArchiveNo(record.getArchiveNo());
-					h.setIdNumber(idNumber);
-					//h.setServiceName(serviceName);
-					h.setHospitalizedType(1);
-					h.setInHospitalTime(inHospitalTime);
-					h.setLeaveHospitalTime(leaveHospitalTime);
-					h.setReason(follow.getZhuyuan_a_yuanyin());
-					h.setHospitalOrgan(follow.getZhuyuan_a_yiliao());
-					h.setCaseCode(follow.getZhuyuan_a_binganhao());
-					//h.setRemark(remark);
+					if(StringUtil.isNotEmpty(follow.getZhuyuan_b_binganhao()) || StringUtil.isNotEmpty(follow.getZhuyuan_b_time())
+							|| StringUtil.isNotEmpty(follow.getZhuyuan_b_yiliao()) || StringUtil.isNotEmpty(follow.getZhuyuan_b_yuanyin())){
+						
+						String inHospitalTime = "";
+						String leaveHospitalTime = "";
+						if(StringUtil.isNotEmpty(follow.getZhuyuan_b_time())){
+							String[] d = follow.getZhuyuan_b_time().split(",");
+							inHospitalTime = d[0];
+							if(d.length > 1){
+								leaveHospitalTime = d[1];
+							}
+						}
+						
+						HospitalizedRecord h = new HospitalizedRecord();
+						h.setId(CodeUtil.getUUID());
+						h.setExamId(record.getId());
+						h.setArchiveNo(record.getArchiveNo());
+						h.setIdNumber(idNumber);
+						//h.setServiceName(serviceName);
+						h.setHospitalizedType(1);
+						h.setInHospitalTime(inHospitalTime);
+						h.setLeaveHospitalTime(leaveHospitalTime);
+						h.setReason(follow.getZhuyuan_b_yuanyin());
+						h.setHospitalOrgan(follow.getZhuyuan_b_yiliao());
+						h.setCaseCode(follow.getZhuyuan_b_binganhao());
+						//h.setRemark(remark);
+						
+						h.setCreateOrg(record.getCreateOrg());
+						h.setCreateName(record.getCreateName());
+						h.setCreateTime(record.getCreateTime());
+						h.setUpdateName(record.getUpdateName());
+						h.setUpdateTime(record.getUpdateTime());
+						
+						hospitalizedRecordDao.insertSelective(h);
+					}
 					
-					h.setCreateOrg(record.getCreateOrg());
-					h.setCreateName(record.getCreateName());
-					h.setCreateTime(record.getCreateTime());
-					h.setUpdateName(record.getUpdateName());
-					h.setUpdateTime(record.getUpdateTime());
+					if(StringUtil.isNotEmpty(follow.getJiating_a_binganhao()) || StringUtil.isNotEmpty(follow.getJiating_a_time())
+							|| StringUtil.isNotEmpty(follow.getJiating_a_yiliao()) || StringUtil.isNotEmpty(follow.getJiating_a_yuanyin())){
+						
+						String inHospitalTime = "";
+						String leaveHospitalTime = "";
+						if(StringUtil.isNotEmpty(follow.getJiating_a_time())){
+							String[] d = follow.getJiating_a_time().split(",");
+							inHospitalTime = d[0];
+							if(d.length > 1){
+								leaveHospitalTime = d[1];
+							}
+						}
+						
+						HospitalizedRecord h = new HospitalizedRecord();
+						h.setId(CodeUtil.getUUID());
+						h.setExamId(record.getId());
+						h.setArchiveNo(record.getArchiveNo());
+						h.setIdNumber(idNumber);
+						//h.setServiceName(serviceName);
+						h.setHospitalizedType(2);
+						h.setInHospitalTime(inHospitalTime);
+						h.setLeaveHospitalTime(leaveHospitalTime);
+						h.setReason(follow.getJiating_a_yuanyin());
+						h.setHospitalOrgan(follow.getJiating_a_yiliao());
+						h.setCaseCode(follow.getJiating_a_binganhao());
+						//h.setRemark(remark);
+						
+						h.setCreateOrg(record.getCreateOrg());
+						h.setCreateName(record.getCreateName());
+						h.setCreateTime(record.getCreateTime());
+						h.setUpdateName(record.getUpdateName());
+						h.setUpdateTime(record.getUpdateTime());
+						
+						hospitalizedRecordDao.insertSelective(h);
+					}
 					
-					hospitalizedRecordDao.insertSelective(h);
+					if(StringUtil.isNotEmpty(follow.getJiating_b_binganhao()) || StringUtil.isNotEmpty(follow.getJiating_b_time())
+							|| StringUtil.isNotEmpty(follow.getJiating_b_yiliao()) || StringUtil.isNotEmpty(follow.getJiating_b_yuanyin())){
+						
+						String inHospitalTime = "";
+						String leaveHospitalTime = "";
+						if(StringUtil.isNotEmpty(follow.getJiating_b_time())){
+							String[] d = follow.getJiating_b_time().split(",");
+							inHospitalTime = d[0];
+							if(d.length > 1){
+								leaveHospitalTime = d[1];
+							}
+						}
+						
+						HospitalizedRecord h = new HospitalizedRecord();
+						h.setId(CodeUtil.getUUID());
+						h.setExamId(record.getId());
+						h.setArchiveNo(record.getArchiveNo());
+						h.setIdNumber(idNumber);
+						//h.setServiceName(serviceName);
+						h.setHospitalizedType(2);
+						h.setInHospitalTime(inHospitalTime);
+						h.setLeaveHospitalTime(leaveHospitalTime);
+						h.setReason(follow.getJiating_b_yuanyin());
+						h.setHospitalOrgan(follow.getJiating_b_yiliao());
+						h.setCaseCode(follow.getJiating_b_binganhao());
+						//h.setRemark(remark);
+						
+						h.setCreateOrg(record.getCreateOrg());
+						h.setCreateName(record.getCreateName());
+						h.setCreateTime(record.getCreateTime());
+						h.setUpdateName(record.getUpdateName());
+						h.setUpdateTime(record.getUpdateTime());
+						
+						hospitalizedRecordDao.insertSelective(h);
+					}				
+				}catch(Exception e){
+					e.printStackTrace();
 				}
-				
-				if(StringUtil.isNotEmpty(follow.getZhuyuan_b_binganhao()) || StringUtil.isNotEmpty(follow.getZhuyuan_b_time())
-						|| StringUtil.isNotEmpty(follow.getZhuyuan_b_yiliao()) || StringUtil.isNotEmpty(follow.getZhuyuan_b_yuanyin())){
-					
-					String inHospitalTime = "";
-					String leaveHospitalTime = "";
-					if(StringUtil.isNotEmpty(follow.getZhuyuan_b_time())){
-						String[] d = follow.getZhuyuan_b_time().split("/");
-						inHospitalTime = d[0];
-						if(d.length > 1){
-							leaveHospitalTime = d[1];
-						}
-					}
-					
-					HospitalizedRecord h = new HospitalizedRecord();
-					h.setId(CodeUtil.getUUID());
-					h.setExamId(record.getId());
-					h.setArchiveNo(record.getArchiveNo());
-					h.setIdNumber(idNumber);
-					//h.setServiceName(serviceName);
-					h.setHospitalizedType(1);
-					h.setInHospitalTime(inHospitalTime);
-					h.setLeaveHospitalTime(leaveHospitalTime);
-					h.setReason(follow.getZhuyuan_b_yuanyin());
-					h.setHospitalOrgan(follow.getZhuyuan_b_yiliao());
-					h.setCaseCode(follow.getZhuyuan_b_binganhao());
-					//h.setRemark(remark);
-					
-					h.setCreateOrg(record.getCreateOrg());
-					h.setCreateName(record.getCreateName());
-					h.setCreateTime(record.getCreateTime());
-					h.setUpdateName(record.getUpdateName());
-					h.setUpdateTime(record.getUpdateTime());
-					
-					hospitalizedRecordDao.insertSelective(h);
-				}
-				
-				if(StringUtil.isNotEmpty(follow.getJiating_a_binganhao()) || StringUtil.isNotEmpty(follow.getJiating_a_time())
-						|| StringUtil.isNotEmpty(follow.getJiating_a_yiliao()) || StringUtil.isNotEmpty(follow.getJiating_a_yuanyin())){
-					
-					String inHospitalTime = "";
-					String leaveHospitalTime = "";
-					if(StringUtil.isNotEmpty(follow.getJiating_a_time())){
-						String[] d = follow.getJiating_a_time().split("/");
-						inHospitalTime = d[0];
-						if(d.length > 1){
-							leaveHospitalTime = d[1];
-						}
-					}
-					
-					HospitalizedRecord h = new HospitalizedRecord();
-					h.setId(CodeUtil.getUUID());
-					h.setExamId(record.getId());
-					h.setArchiveNo(record.getArchiveNo());
-					h.setIdNumber(idNumber);
-					//h.setServiceName(serviceName);
-					h.setHospitalizedType(2);
-					h.setInHospitalTime(inHospitalTime);
-					h.setLeaveHospitalTime(leaveHospitalTime);
-					h.setReason(follow.getJiating_a_yuanyin());
-					h.setHospitalOrgan(follow.getJiating_a_yiliao());
-					h.setCaseCode(follow.getJiating_a_binganhao());
-					//h.setRemark(remark);
-					
-					h.setCreateOrg(record.getCreateOrg());
-					h.setCreateName(record.getCreateName());
-					h.setCreateTime(record.getCreateTime());
-					h.setUpdateName(record.getUpdateName());
-					h.setUpdateTime(record.getUpdateTime());
-					
-					hospitalizedRecordDao.insertSelective(h);
-				}
-				
-				if(StringUtil.isNotEmpty(follow.getJiating_b_binganhao()) || StringUtil.isNotEmpty(follow.getJiating_b_time())
-						|| StringUtil.isNotEmpty(follow.getJiating_b_yiliao()) || StringUtil.isNotEmpty(follow.getJiating_b_yuanyin())){
-					
-					String inHospitalTime = "";
-					String leaveHospitalTime = "";
-					if(StringUtil.isNotEmpty(follow.getJiating_b_time())){
-						String[] d = follow.getJiating_b_time().split("/");
-						inHospitalTime = d[0];
-						if(d.length > 1){
-							leaveHospitalTime = d[1];
-						}
-					}
-					
-					HospitalizedRecord h = new HospitalizedRecord();
-					h.setId(CodeUtil.getUUID());
-					h.setExamId(record.getId());
-					h.setArchiveNo(record.getArchiveNo());
-					h.setIdNumber(idNumber);
-					//h.setServiceName(serviceName);
-					h.setHospitalizedType(2);
-					h.setInHospitalTime(inHospitalTime);
-					h.setLeaveHospitalTime(leaveHospitalTime);
-					h.setReason(follow.getJiating_b_yuanyin());
-					h.setHospitalOrgan(follow.getJiating_b_yiliao());
-					h.setCaseCode(follow.getJiating_b_binganhao());
-					//h.setRemark(remark);
-					
-					h.setCreateOrg(record.getCreateOrg());
-					h.setCreateName(record.getCreateName());
-					h.setCreateTime(record.getCreateTime());
-					h.setUpdateName(record.getUpdateName());
-					h.setUpdateTime(record.getUpdateTime());
-					
-					hospitalizedRecordDao.insertSelective(h);
-				}				
 				
 				List<TakeMedicine> list = bo.getElderlyHealthManage().get(j).getTakeMedicineRecord();
 				List<Error> takeMedicineRecord = new ArrayList<Error>();
