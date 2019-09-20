@@ -2745,7 +2745,8 @@ public class UploadServiceImpl implements UploadService {
 				record.setOtherDiseaseMemo(follow.getOtherdismemo());
 				
 				//健康评价
-				record.setHealthEvaluation(follow.getHealthesti());
+				record.setHealthEvaluation(follow.getCheckresult());
+				record.setAbnormal1(follow.getHealthesti());
 				//健康指导
 				record.setHealthGuidance(follow.getHealthguide());
 				//危险因素控制
