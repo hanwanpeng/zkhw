@@ -342,6 +342,9 @@ public class PsychosisServiceImpl implements PsychosisService {
 	public Map<String, String> exportFollowPdf(String id) {
 		Map<String, String> map = new HashMap<String,String>();
 		PsychosisFollowRecord record = psychosisFollowRecordDao.selectByPrimaryKey(id);
+		if(record == null){
+			record = psychosisFollowRecordDao.findLastFollowRecord(id);
+		}
 		if(record != null){
 			
 			String archiveNo = record.getArchiveNo();

@@ -218,7 +218,7 @@ public class ApiExportController {
 	public void psyFollowPdf(HttpServletRequest request, HttpServletResponse response, ApiJsonResult result) throws Exception {
 		Result r = new Result();
 		String archiveNo = request.getParameter("archiveNo");
-		String id = request.getParameter("id");
+		//String id = request.getParameter("id");
 		//archiveNo = "45042110220205555";
 		String path = request.getSession().getServletContext().getRealPath("template");
 		String templatePath = path+ File.separator + "psyFollow.pdf";
@@ -238,7 +238,7 @@ public class ApiExportController {
 		
 		try {	
 
-			Map<String, String> map = psychosisService.exportFollowPdf(id);
+			Map<String, String> map = psychosisService.exportFollowPdf(archiveNo);
 
 			Map<String, String> map2 = new HashMap<String,String>();
 			//map2.put("img", "c:/50336.jpg");
