@@ -409,9 +409,9 @@ public class TuberculosisServiceImpl implements TuberculosisService {
 				String stopDate = tub.getStopDate();			
 				if(StringUtil.isNotEmpty(stopDate)){
 					String[] b = stopDate.split("-");
-					map.put("stopyear" + index, b[0]);					
-					map.put("stopmonth" + index, b[1]);
-					map.put("stopday" + index, b[2]);
+					map.put("stopyear", b[0]);					
+					map.put("stopmonth", b[1]);
+					map.put("stopday", b[2]);
 				}
 				map.put("stopReason" + tub.getStopReason(), "√");
 				
