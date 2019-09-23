@@ -174,11 +174,11 @@ public class UploadServiceImpl implements UploadService {
 	@Override
 	public ErrorInfo diabetesUpload(DiabetesBo bo) {
 		// TODO Auto-generated method stub
-		ErrorInfo errInfo = new ErrorInfo();
-		FollowResult result = new FollowResult();
+		ErrorInfo errInfo = new ErrorInfo();		
 		List<FollowResult> errList = new ArrayList<FollowResult>();
 		for(int j = 0; j < bo.getTangNiaoBingVisit().size(); j++){
 			Error err = new Error();
+			FollowResult result = new FollowResult();
 			try{
 				TangNiaoBingVisit visit = bo.getTangNiaoBingVisit().get(j);
 				DiabetesFollow follow = visit.getLogBody();
@@ -318,11 +318,11 @@ public class UploadServiceImpl implements UploadService {
 	@Override
 	public ErrorInfo psychosisFollow(PsychosisBo bo) {
 		// TODO Auto-generated method stub
-		ErrorInfo errInfo = new ErrorInfo();
-		FollowResult result = new FollowResult();
+		ErrorInfo errInfo = new ErrorInfo();		
 		List<FollowResult> errList = new ArrayList<FollowResult>();
 		for(int j = 0; j < bo.getJingShenBingVisit().size(); j++){
 			Error err = new Error();
+			FollowResult result = new FollowResult();
 			try{
 				JingShenBingVisit visit = bo.getJingShenBingVisit().get(j);
 				PsychosisFollow follow = visit.getLogBody();
@@ -459,11 +459,11 @@ public class UploadServiceImpl implements UploadService {
 	@Override
 	public ErrorInfo hypertensionUpload(HypertensionBo bo) {
 		// TODO Auto-generated method stub
-		ErrorInfo errInfo = new ErrorInfo();
-		FollowResult result = new FollowResult();
+		ErrorInfo errInfo = new ErrorInfo();		
 		List<FollowResult> errList = new ArrayList<FollowResult>();
 		for(int j = 0; j < bo.getHypertensionFollowUpLog().size(); j++){
 			Error err = new Error();
+			FollowResult result = new FollowResult();
 			try{
 				HypertensionFollowUpLog visit = bo.getHypertensionFollowUpLog().get(j);
 				HypertensionFollow follow = visit.getLogBody();
@@ -2479,12 +2479,12 @@ public class UploadServiceImpl implements UploadService {
 	@Override
 	public ErrorInfo healthManage(HealthManageBo bo) {
 		// TODO Auto-generated method stub
-		ErrorInfo errInfo = new ErrorInfo();
-		FollowResult result = new FollowResult();
+		ErrorInfo errInfo = new ErrorInfo();		
 		List<FollowResult> errList = new ArrayList<FollowResult>();
 		Map<String,String> keys = new HashMap<String,String>();
 		for(int j = 0; j < bo.getElderlyHealthManage().size(); j++){
 			Error err = new Error();
+			FollowResult result = new FollowResult();
 			try{
 				HealthManage follow = bo.getElderlyHealthManage().get(j).getLogBody();
 				PhysicalExamination record = new PhysicalExamination();
