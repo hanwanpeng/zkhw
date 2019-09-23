@@ -1780,7 +1780,7 @@ public class UploadServiceImpl implements UploadService {
 				info.setStatus("1");
 				//责任医生
 				info.setDoctorId(redisent.getDutydoctor());				
-				info.setDoctorName(redisent.getCreated_By());
+				info.setDoctorName(redisent.getDoctorName());
 				//是否贫困
 				if(StringUtil.isNotEmpty(redisent.getIsPoor())){
 					info.setIsPoor(Integer.valueOf(redisent.getIsPoor()));
@@ -1815,6 +1815,7 @@ public class UploadServiceImpl implements UploadService {
 				info.setCreateOrg(redisent.getDuns());
 				Organization org = organizationDao.getOrganizationByCode(redisent.getDuns());
 				if(org != null){
+					info.setAichiveOrg(org.getOrganName());
 					info.setCreateOrgName(org.getOrganName());
 					info.setProvinceCode(org.getProvinceCode());
 					info.setProvinceName(org.getProvinceName());
