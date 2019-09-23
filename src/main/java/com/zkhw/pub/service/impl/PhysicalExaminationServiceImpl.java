@@ -552,10 +552,11 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 				map.put("createUser", info.getCreateName());
 				//责任医生
 				map.put("doctorName", info.getDoctorName());
-				
-				map.put("cyear", String.valueOf(1900 + cdate.getYear()));
-				map.put("cmonth", String.valueOf(cdate.getMonth() + 1));
-				map.put("cdate", String.valueOf(cdate.getDate()));	
+				if(cdate != null){
+					map.put("cyear", String.valueOf(1900 + cdate.getYear()));
+					map.put("cmonth", String.valueOf(cdate.getMonth() + 1));
+					map.put("cdate", String.valueOf(cdate.getDate()));	
+				}
 			}
 				
 			//姓名
@@ -570,7 +571,7 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 			}
 			//症状
 			String symptom = exam.getSymptom();
-			if(!"".equals(symptom)){
+			if(StringUtil.isNotEmpty(symptom)){
 				String[] sym = symptom.split(",");
 				for(int i = 1; i <= sym.length; i++){
 					map.put("sym" + i , sym[i -1]);
@@ -623,7 +624,7 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 			map.put("exerciseType", exam.getLifewayExerciseType());
 			//饮食习惯
 			String diets = exam.getLifewayDiet();
-			if(!"".equals(diets)){
+			if(StringUtil.isNotEmpty(diets)){
 				String[] diet = diets.split(",");
 				for(int i = 1; i <= diet.length; i++){
 					map.put("diet" + i , diet[i -1]);
@@ -651,7 +652,7 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 			map.put("drunkenness", exam.getLifewayDrinkOneyear());	
 			//饮酒种类
 			String drinkType = exam.getLifewayDrinkType();
-			if(!"".equals(drinkType)){
+			if(StringUtil.isNotEmpty(drinkType)){
 				String[] d = drinkType.split(",");
 				for(int i = 1; i <= d.length; i++){
 					map.put("drinkType" + i , d[i -1]);
@@ -690,7 +691,7 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 			map.put("lips", exam.getOrganLips());
 			//齿列
 			String tooth = exam.getOrganTooth();
-			if(!"".equals(tooth)){
+			if(StringUtil.isNotEmpty(tooth)){
 				String[] t = tooth.split(",");
 				for(int i = 1; i <= t.length; i++){
 					map.put("tooth" + i , t[i-1]);
@@ -804,7 +805,7 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 			map.put("anusOther", exam.getExaminationAnusOther());	
 			//乳腺
 			String breasts = exam.getExaminationBreast();
-			if(!"".equals(breasts)){
+			if(StringUtil.isNotEmpty(breasts)){
 				String[] b = breasts.split(",");
 				for(int i = 1; i <= b.length; i++){
 					map.put("breast" + i , b[i -1]);
@@ -919,7 +920,7 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 			
 			//脑血管疾病
 			String cere = exam.getCerebrovascularDisease();
-			if(!"".equals(cere)){
+			if(StringUtil.isNotEmpty(cere)){
 				String[] c = cere.split(",");
 				for(int i = 1; i <= c.length; i++){
 					map.put("cere" + i , c[i-1]);
@@ -929,7 +930,7 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 			map.put("cereother", exam.getCerebrovascularDiseaseOther());			
 			//肾脏疾病
 			String kidn = exam.getKidneyDisease();
-			if(!"".equals(kidn)){
+			if(StringUtil.isNotEmpty(kidn)){
 				String[] k = kidn.split(",");
 				for(int i = 1; i <= k.length; i++){
 					map.put("kidn" + i , k[i-1]);
@@ -939,7 +940,7 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 			map.put("kidnother", exam.getKidneyDiseaseOther());	
 			//心脏疾病
 			String heart = exam.getHeartDisease();
-			if(!"".equals(heart)){
+			if(StringUtil.isNotEmpty(heart)){
 				String[] h = heart.split(",");
 				for(int i = 1; i <= h.length; i++){
 					map.put("heart" + i , h[i-1]);
@@ -949,7 +950,7 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 			map.put("heartother", exam.getHeartDiseaseOther());	
 			//血管疾病
 			String vas = exam.getVascularDisease();
-			if(!"".equals(vas)){
+			if(StringUtil.isNotEmpty(vas)){
 				String[] v = vas.split(",");
 				for(int i = 1; i <= v.length; i++){
 					map.put("vas" + i , v[i-1]);
@@ -959,7 +960,7 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 			map.put("vasother", exam.getVascularDiseaseOther());				
 			//眼部疾病
 			String ocu = exam.getOcularDiseases();
-			if(!"".equals(ocu)){
+			if(StringUtil.isNotEmpty(ocu)){
 				String[] o = ocu.split(",");
 				for(int i = 1; i <= o.length; i++){
 					map.put("ocu" + i , o[i-1]);
@@ -1033,7 +1034,7 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 			map.put("abnormal4", exam.getAbnormal4());
 			//健康指导
 			String guidance = exam.getHealthGuidance();
-			if(!"".equals(guidance)){
+			if(StringUtil.isNotEmpty(guidance)){
 				String[] gui = guidance.split(",");
 				for(int i = 1; i <= gui.length; i++){
 					map.put("gui" + i , gui[i-1]);
@@ -1042,7 +1043,7 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 			
 			//危险因素控制
 			String danger = exam.getDangerControlling();
-			if(!"".equals(danger)){
+			if(StringUtil.isNotEmpty(danger)){
 				String[] d = danger.split(",");
 				for(int i = 1; i <= d.length; i++){
 					map.put("danger" + i , d[i-1]);
