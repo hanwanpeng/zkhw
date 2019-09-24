@@ -198,6 +198,8 @@ public class Resident extends BaseBo{
 	//责任医生
 	private String dutydoctor;
 	
+	private String doctorName;
+	
 	//建档日期
 	private String build_date;
 	
