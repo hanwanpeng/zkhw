@@ -2347,7 +2347,7 @@ public class UploadServiceImpl implements UploadService {
 				record.setCariesNum(follow.getCaries());
 				//胸部
 				record.setBreast(follow.getHeart_lung());
-				record.setBreastOther(follow.getHeatr_lungbug());
+				record.setBreastOther(follow.getHeart_lungbug());
 				//腹部
 				record.setAbdominal(follow.getAbdCavity());
 				record.setAbdominalOther(follow.getAbdCavitybug());
