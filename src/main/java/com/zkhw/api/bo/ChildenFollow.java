@@ -213,7 +213,7 @@ public class ChildenFollow  extends BaseBo{
 	private String cavumbug;
 	
 	//心肺异常
-	private String heatr_lungbug;
+	private String heart_lungbug;
 	
 	//腹部异常
 	private String abdCavitybug;
