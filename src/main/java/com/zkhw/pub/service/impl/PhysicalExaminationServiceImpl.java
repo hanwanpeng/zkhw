@@ -1233,7 +1233,7 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 				if(Float.parseFloat(bloodLeukocyte) < warningMin) {
 					abnormalResultsVo.setWbc("偏低:" + bloodLeukocyte + "10^9个/L" );
 				}
-				if(Float.parseFloat(bloodPlatelet) > warningMax) {
+				if(Float.parseFloat(bloodLeukocyte) > warningMax) {
 					abnormalResultsVo.setWbc("偏高:" + bloodLeukocyte + "10^9个/L");
 				}
 			}
@@ -1261,10 +1261,11 @@ public class PhysicalExaminationServiceImpl implements PhysicalExaminationServic
 				if(Float.parseFloat(bloodGlucoseMmol) < warningMin) {
 					abnormalResultsVo.setGlu("偏低:" + bloodGlucoseMmol + "mmol/L" );
 				}
-				if(Float.parseFloat(bloodPlatelet) > warningMax) {
+				if(Float.parseFloat(bloodGlucoseMmol) > warningMax) {
 					abnormalResultsVo.setGlu("偏高:" + bloodGlucoseMmol + "mmol/L");
 					 bgm = 1;
 				}
+
 			}
 			//血清谷丙转氨酶
 			if("ALT".equals(type) && !StringUtil.isEmpty(sgft)) {
