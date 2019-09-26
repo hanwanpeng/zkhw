@@ -111,16 +111,16 @@ public class OrganizationController {
 			if(StringUtil.isNotEmpty(organization.getOrganParentCode())){
 				Organization org = organizationService.getOrganizationByCode(organization.getOrganParentCode());				
 				if(org != null){					
-					organization.setProvinceCode(org.getProvinceCode());
-					organization.setProvinceName(org.getProvinceName());
-					organization.setCityCode(org.getCityCode());
-					organization.setCityName(org.getCityName());
-					organization.setCountyCode(org.getCountyCode());
-					organization.setCountyName(org.getCountyName());
-					organization.setTownsCode(org.getTownsCode());
-					organization.setTownsName(org.getTownsName());
-					organization.setVillageCode(org.getVillageCode());
-					organization.setVillageName(org.getVillageName());
+					//organization.setProvinceCode(org.getProvinceCode());
+					//organization.setProvinceName(org.getProvinceName());
+					//organization.setCityCode(org.getCityCode());
+					//organization.setCityName(org.getCityName());
+					//organization.setCountyCode(org.getCountyCode());
+					//organization.setCountyName(org.getCountyName());
+					//organization.setTownsCode(org.getTownsCode());
+					//organization.setTownsName(org.getTownsName());
+					//organization.setVillageCode(org.getVillageCode());
+					//organization.setVillageName(org.getVillageName());
 					
 					String level = org.getOrganLevel();
 					int lev = Integer.parseInt(level);
