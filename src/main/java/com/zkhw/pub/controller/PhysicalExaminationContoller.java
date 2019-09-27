@@ -47,6 +47,7 @@ public class PhysicalExaminationContoller {
 			result.setCode("0");
 			result.setMsg("成功");
 		} catch (Exception e) {
+			e.printStackTrace();
 			result.setCode("1");
 			result.setMsg("失败");
 		}

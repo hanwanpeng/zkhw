@@ -741,7 +741,7 @@ public class ResidentBaseInfoServiceImpl implements ResidentBaseInfoService {
 			map.put("residentType", info.getResidentType());
 			
 			if(info.getNation() != null && !info.getNation().equals("")){
-				if("01".equals(info.getNation())){
+				if("01".equals(info.getNation()) || "1".equals(info.getNation())){
 					map.put("nationCode", "01");
 				}else{
 					map.put("nationCode", "99");
