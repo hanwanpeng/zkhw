@@ -1952,20 +1952,22 @@ public class UploadServiceImpl implements UploadService {
 					if(residents != null && residents.size() > 0){
 						idNumber = residents.get(0).getIdNumber();
 					}
-					
-					FamilyRecord record = new FamilyRecord();
-					record.setId(fam.getUuid());
-					record.setArchiveNo(fam.getArchiveId());
-					record.setIdNumber(idNumber);
-					record.setRelation(fam.getRelation());
-					record.setDiseaseCode(fam.getDisease());
-					record.setDiseaseName(fam.getOtherDis());
-					record.setCreateName(fam.getCreated_By());
-					record.setCreateTime(DateUtil.getDate(fam.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
-					record.setUpdateName(fam.getUpdated_By());
-					record.setUpdateTime(DateUtil.getDate(fam.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
-					
-					familyRecordDao.insertSelective(record);
+					String[] dis = fam.getDisease().split(",");
+					for(int k = 0; k < dis.length; k++){
+						FamilyRecord record = new FamilyRecord();
+						record.setId(CodeUtil.getUUID());
+						record.setArchiveNo(fam.getArchiveId());
+						record.setIdNumber(idNumber);
+						record.setRelation(fam.getRelation());
+						record.setDiseaseCode(dis[k]);
+						record.setDiseaseName(fam.getOtherDis());
+						record.setCreateName(fam.getCreated_By());
+						record.setCreateTime(DateUtil.getDate(fam.getCreated_Date(), "yyyy-MM-dd HH:mm:ss"));
+						record.setUpdateName(fam.getUpdated_By());
+						record.setUpdateTime(DateUtil.getDate(fam.getUpdated_Date(), "yyyy-MM-dd HH:mm:ss"));
+						
+						familyRecordDao.insertSelective(record);
+					}
 					
 					famErr.setCode("0");
 					

@@ -110,15 +110,23 @@ public class OrganizationController {
 			organization.setId(CodeUtil.getUUID());
 			if(StringUtil.isNotEmpty(organization.getOrganParentCode())){
 				Organization org = organizationService.getOrganizationByCode(organization.getOrganParentCode());				
-				if(org != null){					
-					//organization.setProvinceCode(org.getProvinceCode());
-					//organization.setProvinceName(org.getProvinceName());
-					//organization.setCityCode(org.getCityCode());
-					//organization.setCityName(org.getCityName());
-					//organization.setCountyCode(org.getCountyCode());
-					//organization.setCountyName(org.getCountyName());
-					//organization.setTownsCode(org.getTownsCode());
-					//organization.setTownsName(org.getTownsName());
+				if(org != null){
+					if(StringUtil.isEmpty(provinceCode)){
+						organization.setProvinceCode(org.getProvinceCode());
+						organization.setProvinceName(org.getProvinceName());
+					}
+					if(StringUtil.isEmpty(cityCode)){
+						organization.setCityCode(org.getCityCode());
+						organization.setCityName(org.getCityName());
+					}
+					if(StringUtil.isEmpty(countyCode)){
+						organization.setCountyCode(org.getCountyCode());
+						organization.setCountyName(org.getCountyName());
+					}
+					if(StringUtil.isEmpty(townsCode)){
+						organization.setTownsCode(org.getTownsCode());
+						organization.setTownsName(org.getTownsName());
+					}
 					//organization.setVillageCode(org.getVillageCode());
 					//organization.setVillageName(org.getVillageName());
 					
