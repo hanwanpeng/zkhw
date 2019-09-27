@@ -42,5 +42,8 @@ public interface ResidentBaseInfoService {
 
 	public void minElderlyForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery resident);
 
+	void physicalForExcel(HttpServletRequest request, HttpServletResponse response, ApiJsonResult result,
+			ResidentBaseInfoQuery resident);
+
 }
  

@@ -261,6 +261,18 @@ public class ResidentBaseInfoController {
 	}
 	
 	/**
+	 * 健康体检花名册
+	 * @param redident
+	 * @param pageData
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/physicalForExcel", method = RequestMethod.GET)
+	public void physicalForExcel(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,ResidentBaseInfoQuery resident){
+			residentBaseInfoService.physicalForExcel(request, response, result, resident);
+	}
+	
+	/**
 	 * 26-64岁花名册
 	 * @param redident
 	 * @param pageData

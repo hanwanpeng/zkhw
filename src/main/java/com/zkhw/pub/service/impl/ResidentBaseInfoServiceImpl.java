@@ -24,17 +24,37 @@ import com.zkhw.common.utils.ExcelUtil;
 import com.zkhw.common.vo.ApiJsonResult;
 import com.zkhw.common.vo.PageInfos;
 import com.zkhw.framework.utils.JsonWebPrintUtils;
+import com.zkhw.pub.dao.ElderlySelfcareEstimateDao;
+import com.zkhw.pub.dao.ElderlyTcmRecordDao;
 import com.zkhw.pub.dao.FamilyRecordDao;
 import com.zkhw.pub.dao.MentachysisRecordDao;
 import com.zkhw.pub.dao.OperationRecordDao;
+import com.zkhw.pub.dao.PhysicalExaminationDao;
 import com.zkhw.pub.dao.ResidentBaseInfoDao;
 import com.zkhw.pub.dao.ResidentDiseasesDao;
+import com.zkhw.pub.dao.TjBcDao;
+import com.zkhw.pub.dao.TjNcgDao;
+import com.zkhw.pub.dao.TjSgtzDao;
+import com.zkhw.pub.dao.TjShDao;
+import com.zkhw.pub.dao.TjXcgDao;
+import com.zkhw.pub.dao.TjXdtDao;
+import com.zkhw.pub.dao.TjXyDao;
 import com.zkhw.pub.dao.TraumatismRecordDao;
+import com.zkhw.pub.entity.ElderlySelfcareEstimate;
+import com.zkhw.pub.entity.ElderlyTcmRecord;
 import com.zkhw.pub.entity.FamilyRecord;
 import com.zkhw.pub.entity.MetachysisRecord;
 import com.zkhw.pub.entity.OperationRecord;
+import com.zkhw.pub.entity.PhysicalExamination;
 import com.zkhw.pub.entity.ResidentBaseInfo;
 import com.zkhw.pub.entity.ResidentDiseases;
+import com.zkhw.pub.entity.TjBc;
+import com.zkhw.pub.entity.TjNcg;
+import com.zkhw.pub.entity.TjSgtz;
+import com.zkhw.pub.entity.TjSh;
+import com.zkhw.pub.entity.TjXcg;
+import com.zkhw.pub.entity.TjXdt;
+import com.zkhw.pub.entity.TjXy;
 import com.zkhw.pub.entity.TraumatismRecord;
 import com.zkhw.pub.mo.ResidentMo;
 import com.zkhw.pub.query.ResidentBaseInfoQuery;
@@ -62,6 +82,188 @@ public class ResidentBaseInfoServiceImpl implements ResidentBaseInfoService {
 	
 	@Autowired
 	private ResidentDiseasesDao residentDiseasesDao;
+	
+	@Autowired
+	private TjBcDao tjBcDao;
+	
+	@Autowired
+	private TjXdtDao tjXdtDao;
+	
+	@Autowired
+	private TjShDao tjShDao;
+	
+	@Autowired
+	private TjXcgDao tjXcgDao;
+	
+	@Autowired
+	private TjNcgDao tjNcgDao;
+	
+	@Autowired
+	private TjXyDao tjXyDao;
+	
+	@Autowired
+	private TjSgtzDao tjSgtzDao;
+	
+	@Autowired
+	private PhysicalExaminationDao physicalExaminationDao;
+	
+	@Autowired
+	private ElderlySelfcareEstimateDao elderlySelfcareEstimateDao;
+	
+	@Autowired
+	private ElderlyTcmRecordDao elderlyTcmRecordDao;
+	
+	
+	
+	
+	/**
+	 * 健康体检花名册
+	 */
+	@Override
+	public void physicalForExcel(HttpServletRequest request, HttpServletResponse response, ApiJsonResult result,
+			ResidentBaseInfoQuery resident) {
+		//体检人群
+		List<ResidentBaseInfo> residentBaseInfoList = residentBaseInfoDao.findResidentList(resident);
+		if (residentBaseInfoList.size() > 0) {
+			// 表头
+			ArrayList<String> headerList = new ArrayList<String>();
+			String[] header = { "村名", "姓名", "身份证号", "性别", "年龄", "电话号码", "是否贫困户", "B超", "心电图", "生化", "血常规", "尿常规", "血压", "身高体重", "健康体检表", "老年人生活自理能力评估", "老年人中医体质辨识"};
+			for (int i = 0; i < header.length; i++) {
+				headerList.add(header[i]);
+			}
+			// 行内容
+			ArrayList<List<String>> rowList = new ArrayList<List<String>>();
+			String title = "健康体检花名册";
+			String sheetName = "健康体检花名册";
+			String archiveNo = null;
+			for (ResidentBaseInfo residentBaseInfo : residentBaseInfoList) {
+				archiveNo = residentBaseInfo.getArchiveNo();
+				ArrayList<String> row = new ArrayList<String>();
+				row.add(residentBaseInfo.getVillageName());//村名
+				row.add(residentBaseInfo.getName());//姓名
+				row.add(residentBaseInfo.getIdNumber());//身份证号
+				String sex = residentBaseInfo.getSex();//性别
+				if (!StringUtil.isEmpty(sex) && sex.equals("1")) {
+					row.add("男");
+				} else {
+					row.add("女");
+				}
+				Integer age = residentBaseInfo.getAge();//年龄
+				if(age != null) {
+					row.add(age.toString());
+				}
+				row.add(residentBaseInfo.getPhone());//电话
+				Integer isPoor = residentBaseInfo.getIsPoor();//是否贫困（1是贫困）
+				if(isPoor != null) {
+					row.add(residentBaseInfo.getIsPoor().toString());
+				}
+				List<TjBc> TjBcList = tjBcDao.findListByAichiveNo(archiveNo);
+				if(TjBcList.size() > 0) {
+					row.add("1");//B超(1完成)
+				}else {
+					row.add("0");
+				}
+				List<TjXdt> tjXdtList = tjXdtDao.findListByAichiveNo(archiveNo);//心电图
+				if(tjXdtList.size() > 0) {
+					row.add("1");//心电图(1完成)
+				}else {
+					row.add("0");
+				}
+				
+				List<TjSh> tjShList = tjShDao.findListByAichiveNo(archiveNo);
+				if(tjShList.size() > 0) {
+					row.add("1");//生化(1完成)
+				}else {
+					row.add("0");
+				}
+				List<TjXcg> tjXcgList = tjXcgDao.findListByAichiveNo(archiveNo);
+				if(tjXcgList.size() > 0) {
+					row.add("1");//血常规(1完成)
+				}else {
+					row.add("0");
+				}
+			    List<TjNcg> tjNcgList = tjNcgDao.findListByAichiveNo(archiveNo);
+				if(tjNcgList.size() > 0) {
+					row.add("1");//尿常规(1完成)
+				}else {
+					row.add("0");
+				}
+				List<TjXy> tjXyList = tjXyDao.findListByAichiveNo(archiveNo);
+				if(tjXyList.size() > 0) {
+					row.add("1");//血压(1完成)
+				}else {
+					row.add("0");
+				}
+				List<TjSgtz> tjSgtzList = tjSgtzDao.findListByAichiveNo(archiveNo);
+				if(tjSgtzList.size() > 0) {
+					row.add("1");//身高体重(1完成)
+				}else {
+					row.add("0");
+				}
+				PhysicalExamination physicalExamination = physicalExaminationDao.getLastByArchiveNo(archiveNo);
+				if(physicalExamination != null) {
+					Integer uploadStatus = physicalExamination.getUploadStatus();
+					if(uploadStatus != null && uploadStatus == 1) {
+						row.add("1");//健康体检
+					}else {
+						row.add("0");//健康体检
+					}
+				}
+				List<ElderlySelfcareEstimate> elderlySelfcareEstimateList = elderlySelfcareEstimateDao.findSelfcareListByExamid(archiveNo);
+				if(elderlySelfcareEstimateList.size() > 0) {
+					row.add("1");//老年人生活自理能力评估
+				}else {
+					row.add("0");
+				}
+				List<ElderlyTcmRecord> elderlyTcmRecordList = elderlyTcmRecordDao.findTcmListByExamId(archiveNo);
+				if(elderlyTcmRecordList.size() > 0) {
+					row.add("1");//老年人中医体质辨识
+				}else {
+					row.add("0");
+				}
+				
+				rowList.add(row);
+			}
+			// 输出excel到浏览器
+			response.setContentType("application/msexcel");
+			response.setCharacterEncoding("UTF-8");
+			response.setHeader("Pragma", "No-cache");
+			response.setHeader("Access-Control-Allow-Origin", "*");
+			response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE");
+			response.setHeader("Access-Control-Allow-Headers",
+					"Access-Control-Allow-Origin, Access-Control-Allow-Methods, Access-Control-Max-Age, X-Auth-Token, Content-Type, Accept");
+			response.setHeader("Cache-Control", "no-cache");
+			response.setDateHeader("Expires", 0);
+			OutputStream out = null;
+
+			try {
+				out = response.getOutputStream();// 取得输出流
+				response.reset();// 清空输出流
+				String filename = title + ".xls";
+				filename = new String(filename.getBytes("gb2312"), "ISO8859-1");
+				response.setHeader("Content-disposition", "attachment; filename=" + filename);// 设定输出文件头
+				ExcelUtil excelUtil = new ExcelUtil();
+				excelUtil.writeExcelWithMultiSheet(headerList, rowList, out, sheetName);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				if (out != null) {
+					try {
+						out.close();
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				}
+			}
+
+		} else {
+			result.setCode("1");
+			result.setMsg("没有查询到数据");
+			JsonWebPrintUtils.printOutNullApiResult(request, response, result);
+		}
+		
+		
+	}
 	
 	
 	/**
