@@ -25,6 +25,7 @@ import com.zkhw.base.mo.VehicleMo;
 import com.zkhw.base.query.VehicleQuery;
 import com.zkhw.base.service.VehicleManagerService;
 import com.zkhw.base.util.BaiduUtile;
+import com.zkhw.base.vo.NetworkVehicleVo;
 import com.zkhw.base.vo.VehicleVo;
 import com.zkhw.common.utils.CodeUtil;
 import com.zkhw.common.utils.SystemParam;
@@ -170,10 +171,89 @@ public class VehicleManageController {
 	}
 	
 	
+	/**
+	 * 判断是否为车联网车辆
+	 */
+	@RequestMapping(value = "/isNetworkVehicle", method = RequestMethod.GET)
+	public void isNetworkVehicle(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,VehicleQuery query){
+		try {
+
+			
+			String token = "1";
+			String carId = query.getCarId();
+			
+			String url = "http://211.94.119.53:19007/openapi/iov/business/vehicle/isNetworkVehicle.json";
+			String param = "token=" +  token + "&vin=" + carId;
+			
+			String s = sendGet(url,param);
+			if(!StringUtil.isEmpty(s)) {
+				ApiJsonResult aj = JsonConverter.json2Obj(s,ApiJsonResult.class);
+				String data = aj.getData().toString();
+				NetworkVehicleVo networkVehicleVo = JsonConverter.json2Obj(data,NetworkVehicleVo.class);
+				
+				//1：车联网车辆，0：非车联网车辆
+				//String networkVehicle = networkVehicleVo.getNetworkVehicle();
+				//String lastTime = networkVehicleVo.getLastTime();//最后上传数据时间
+			
+				
+				result.setData(networkVehicleVo);
+				result.setCode("0");
+				result.setMsg("成功");
+			}
+			
+		} catch (Exception e) {
+			result.setCode("1");
+			result.setMsg("失败");
+		}
+		JsonWebPrintUtils.printApiResult(request, response, result);
+	}
 	
 	
 	/**
-	 * 车联网--当前位置信息 (小程序)
+	 *  添加(修改)转发车辆
+	 */
+	@RequestMapping(value = "/addVehicle", method = RequestMethod.GET)
+	public void addVehicle(HttpServletRequest request, HttpServletResponse response,ApiJsonResult result,VehicleQuery query){
+		try {
+
+			String token = "dcc035eda0ff4606af8b38fd1eb33677";
+			String carId = query.getCarId();//车架号
+			String uid = "";//用户
+			String expiryDate = "";//截止日期  格式：(yyyy-MM-dd HH:mm:ss)
+			
+			String url = "http://211.94.119.53:19007/openapi/iov/forward/vehicle/add.json";
+			String param = "token=" +  token + "&uid=" + uid + "&vin=" + carId + "&expiryDate" + expiryDate;
+			
+			String s = sendGet(url,param);
+			if(!StringUtil.isEmpty(s)) {
+				ApiJsonResult aj = JsonConverter.json2Obj(s,ApiJsonResult.class);
+				String data = aj.getData().toString();
+				NetworkVehicleVo networkVehicleVo = JsonConverter.json2Obj(data,NetworkVehicleVo.class);
+				
+				//1：车联网车辆，0：非车联网车辆
+				//String networkVehicle = networkVehicleVo.getNetworkVehicle();
+				//String lastTime = networkVehicleVo.getLastTime();//最后上传数据时间
+			
+				
+				result.setData(networkVehicleVo);
+				result.setCode("0");
+				result.setMsg("成功");
+			}
+			
+		} catch (Exception e) {
+			result.setCode("1");
+			result.setMsg("失败");
+		}
+		JsonWebPrintUtils.printApiResult(request, response, result);
+	}
+	
+	
+	
+	
+	
+	
+	/**
+	 * 车联网--当前位置信息 (小程序) 不用了
 	 */
 	@RequestMapping(value = "/appNowVehicle", method = RequestMethod.GET)
 	public void appNowVehicle(HttpServletRequest req, HttpServletResponse resp,ApiJsonResult result,VehicleQuery query){
@@ -217,7 +297,7 @@ public class VehicleManageController {
 	
 	
 	/**
-	 * 历史位置信息  ---(小程序)
+	 * 历史位置信息  ---(小程序)  不用了
 	 * token = "dd04ee9a70754cfaa8cd94bbec80507e";
 	 * carId = "LVBV3JBB5KY017515";
 	 */
@@ -281,7 +361,7 @@ public class VehicleManageController {
 	
 	
 	/**
-	 * 车联网--当前位置信息
+	 * 车联网--当前位置信息     不用了
 	 * token = "dd04ee9a70754cfaa8cd94bbec80507e";
 	 * carId = "LVBV3JBB5KY017515";
 	 */
@@ -316,7 +396,7 @@ public class VehicleManageController {
 	
 	
 	/**
-	 * 车联网--车辆网历史位置信息
+	 * 车联网--车辆网历史位置信息     不用了
 	 * token = "dd04ee9a70754cfaa8cd94bbec80507e";
 	 * carId = "LVBV3JBB5KY017515";
 	 */
