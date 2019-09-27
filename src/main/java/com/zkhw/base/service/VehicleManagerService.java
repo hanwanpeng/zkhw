@@ -1,6 +1,8 @@
 package com.zkhw.base.service;
 
 import com.zkhw.base.entity.VehicleManage;
+import com.zkhw.base.query.VehicleQuery;
+import com.zkhw.base.vo.NetworkVehicleVo;
 import com.zkhw.common.vo.PageInfos;
 
 public interface VehicleManagerService {
@@ -24,5 +26,7 @@ public interface VehicleManagerService {
 	void deleteVehicle(VehicleManage vehicleManage);
 
 	VehicleManage vehicleByCode(VehicleManage vehicleManage);
+
+	NetworkVehicleVo isNetworkVehicle(VehicleQuery query);
 
 }
