@@ -9,7 +9,7 @@
   <url>http://maven.apache.org</url>
   <properties> 
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<spring.version>5.0.2.RELEASE</spring.version>
+	<spring.version>5.3.18</spring.version>
 	<spring.security.version>5.0.0.RELEASE</spring.security.version>
 	<jedis.version>2.9.0</jedis.version>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
