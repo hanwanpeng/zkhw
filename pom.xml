@@ -17,7 +17,7 @@
 	<cglib.version>3.2.5</cglib.version>
 	<aspect.version>1.8.10</aspect.version>
 	<slf4j.version>1.7.24</slf4j.version>
-	<jackson.version>2.9.5</jackson.version>
+	<jackson.version>2.13.4.1</jackson.version>
 	<java-compiler.version>1.8</java-compiler.version>
 	<poi.version>3.14</poi.version>
 	<fr.opensagres.xdocreport.version>2.0.1</fr.opensagres.xdocreport.version>
